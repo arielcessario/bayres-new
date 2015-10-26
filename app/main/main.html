@@ -1,6 +1,12 @@
 <h3>Main</h3>
 <div ng-controller="MainController as mainCtrl">
 
+    <h4>Carrito</h4>
+    <div>
+        <span>${{mainCtrl.carritoInfo.totalAPagar}} </span><span>({{mainCtrl.carritoInfo.cantidadDeProductos}})</span>
+    </div>
+
+    <br>
     <h4>Ofertas</h4>
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
         <div ng-repeat="producto in mainCtrl.productosEnOfertas">

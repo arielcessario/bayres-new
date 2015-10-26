@@ -24,11 +24,26 @@ function UsuarioController($location, UserService, AcUtils) {
     var vm = this;
 
     vm.userForm = {
-        nombre: ''
+        'nombre': '',
+        'apellido': '',
+        'mail': '',
+        'nacionalidad_id': 0,
+        'tipo_doc': 0,
+        'nro_doc': '',
+        'comentarios': '',
+        'marcado': '',
+        'telefono': '',
+        'fecha_nacimiento': '',
+        'profesion_id': 0,
+        'saldo': '',
+        'rol_id': 0,
+        'news_letter': 0,
+        'password': ''
     };
 
     vm.logout = logout;
     vm.create = create;
+    vm.update = update;
 
     function logout() {
         UserService.logout(function (data) {
@@ -40,6 +55,12 @@ function UsuarioController($location, UserService, AcUtils) {
 
     function create() {
         UserService.create(vm.userForm, function (data) {
+            console.log(data);
+        });
+    }
+
+    function update() {
+        UserService.update(vm.userForm, function (data) {
             console.log(data);
         });
     }
