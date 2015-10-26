@@ -4,11 +4,6 @@
 angular.module('bayres', [
   'ngRoute',
   'ngCookies',
-  //'angular-storage',
-  //'angular-jwt',
-  //'acUtils',
-  //'acUsuarios',
-  //'acProductos',
   'bayres.main',
   'bayres.login',
   'bayres.usuarios',
@@ -16,17 +11,16 @@ angular.module('bayres', [
   'bayres.carrito'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/main'});
+
 }])
 .controller('BayresController', BayresController);
 
 
-BayresController.$inject = ['$scope', 'UserService', 'AcUtils', 'ProductService', 'CartService'];
-//MainService.$inject = ['$http'];
+BayresController.$inject = ['$location'];
 
-function BayresController($scope, UserService, AcUtils, ProductService, CartService) {
+function BayresController($location) {
 
-  var vm = this;
+  $location.path('/main');
 
 
 }

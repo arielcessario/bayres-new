@@ -27,24 +27,21 @@ function MainController($scope, AcUtils, UserService, ProductService) {
     vm.productosMasVendidos = [];
     vm.productosDestacados = [];
 
-    /****************************************************************
-     * Retorna los productos que estan en oferta
-     *****************************************************************/
+    vm.addProducto = addProducto;
+
     ProductService.getByParams("en_oferta", "1", "true", function(data){
         vm.productosEnOfertas = data;
     });
 
-    /****************************************************************
-     * Retorna los productos destacados
-     *****************************************************************/
     ProductService.getByParams("destacado", "1", "true", function(data){
         vm.productosDestacados = data;
     });
 
-    /****************************************************************
-     * Retorna los 8 productos más vendidos
-     *****************************************************************/
     ProductService.getMasVendidos(function (data) {
         vm.productosMasVendidos = data;
     });
+
+    function addProducto(producto) {
+        console.log(producto);
+    }
 }
