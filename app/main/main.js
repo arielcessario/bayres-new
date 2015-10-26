@@ -23,12 +23,28 @@ MainController.$inject = ['$scope', 'AcUtils', 'UserService', 'ProductService'];
 function MainController($scope, AcUtils, UserService, ProductService) {
     var vm = this;
 
-    vm.productos = [];
+    vm.productosEnOfertas = [];
     vm.productosMasVendidos = [];
     vm.productosDestacados = [];
 
-    ProductService.get(function(data){
-        console.log(data);
-        vm.productos = data;
+    /****************************************************************
+     * Retorna los productos que estan en oferta
+     *****************************************************************/
+    ProductService.getByParams("en_oferta", "1", "true", function(data){
+        vm.productosEnOfertas = data;
+    });
+
+    /****************************************************************
+     * Retorna los productos destacados
+     *****************************************************************/
+    ProductService.getByParams("destacado", "1", "true", function(data){
+        vm.productosDestacados = data;
+    });
+
+    /****************************************************************
+     * Retorna los 8 productos más vendidos
+     *****************************************************************/
+    ProductService.getMasVendidos(function (data) {
+        vm.productosMasVendidos = data;
     });
 }

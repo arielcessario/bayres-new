@@ -1,6 +1,38 @@
 <h3>Main</h3>
 <div ng-controller="MainController as mainCtrl">
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
 
+    <h4>Ofertas</h4>
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="producto in mainCtrl.productosEnOfertas">
+            <div class="">
+                <div>{{producto.producto_id}}</div>
+                <div>{{producto.nombre}}</div>
+                <div>{{producto.precios[0].precio_unitario}}</div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <h4>Destacados</h4>
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="producto in mainCtrl.productosDestacados">
+            <div class="">
+                <div>{{producto.producto_id}}</div>
+                <div>{{producto.nombre}}</div>
+                <div>{{producto.precios[0].precio_unitario}}</div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <h4>+Vendidos</h4>
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="producto in mainCtrl.productosMasVendidos">
+            <div class="">
+                <div>{{producto.producto_id}}</div>
+                <div>{{producto.nombre}}</div>
+                <div>{{producto.precios[0].precio_unitario}}</div>
+            </div>
+        </div>
     </div>
 </div>
