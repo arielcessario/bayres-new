@@ -1,5 +1,7 @@
 'use strict';
 
+window.appName = 'bayres';
+
 angular.module('bayres.login', [
   'ngRoute',
   'ngCookies',

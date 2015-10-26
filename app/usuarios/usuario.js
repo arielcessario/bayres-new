@@ -1,42 +1,45 @@
 'use strict';
 
 angular.module('bayres.usuarios', [
-  'ngRoute',
-  'ngCookies',
-  'angular-storage',
-  'angular-jwt',
-  'acUtils',
-  'acUsuarios'
+    'ngRoute',
+    'ngCookies',
+    'angular-storage',
+    'angular-jwt',
+    'acUtils',
+    'acUsuarios'
 ])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/usuarios', {
-    templateUrl: 'usuarios/usuario.html',
-    controller: 'UsuarioController',
-    data: {requiresLogin: true}
-  });
-}])
-.controller('UsuarioController', UsuarioController);
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/usuarios', {
+            templateUrl: 'usuarios/usuario.html',
+            controller: 'UsuarioController',
+            data: {requiresLogin: true}
+        });
+    }])
+    .controller('UsuarioController', UsuarioController);
 
-UsuarioController.$inject = ['$scope', 'UserService', 'AcUtils'];
+UsuarioController.$inject = ['$location', 'UserService', 'AcUtils'];
 
-function UsuarioController($scope, UserService, AcUtils) {
-  var vm = this;
+function UsuarioController($location, UserService, AcUtils) {
+    var vm = this;
 
-  vm.userForm = {
-    nombre:''
-  };
+    vm.userForm = {
+        nombre: ''
+    };
 
-  vm.logout = function() {
-    UserService.logout(function (data) {
-      console.log(data);
-      $route.current.templateUrl = 'login/login.html';
-    });
-  }
+    vm.logout = logout;
 
-  vm.create = function() {
-    UserService.create(vm.userForm, function(data){
-      console.log(data);
-    });
-  }
+    function logout() {
+        UserService.logout(function (data) {
+            console.log('lslsls');
+            console.log(data);
+            $location.path('/login');
+        });
+    }
+
+    vm.create = function () {
+        UserService.create(vm.userForm, function (data) {
+            console.log(data);
+        });
+    }
 }
