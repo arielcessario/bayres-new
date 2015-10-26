@@ -9,19 +9,22 @@ angular.module('bayres', [
   //'acUtils',
   //'acUsuarios',
   //'acProductos',
+  'bayres.main',
   'bayres.login',
-  'bayres.usuarios'
+  'bayres.usuarios',
+  'bayres.productos',
+  'bayres.carrito'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/login'});
+  $routeProvider.otherwise({redirectTo: '/main'});
 }])
-.controller('MainController', MainController);
+.controller('BayresController', BayresController);
 
 
-MainController.$inject = ['$scope', 'UserService', 'AcUtils', 'ProductService', 'CartService'];
+BayresController.$inject = ['$scope', 'UserService', 'AcUtils', 'ProductService', 'CartService'];
 //MainService.$inject = ['$http'];
 
-function MainController($scope, UserService, AcUtils, ProductService, CartService) {
+function BayresController($scope, UserService, AcUtils, ProductService, CartService) {
 
   var vm = this;
 

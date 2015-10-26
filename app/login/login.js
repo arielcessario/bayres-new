@@ -19,21 +19,24 @@ angular.module('bayres.login', [
 }])
 .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$scope', 'UserService', 'AcUtils'];
+LoginController.$inject = ['$location', 'UserService', 'AcUtils'];
 
-function LoginController($scope, UserService, AcUtils) {
+function LoginController($location, UserService, AcUtils) {
   var vm = this;
+
+  vm.login = login;
 
   vm.loginForm = {
     mail:'',
     password:''
   };
 
-  vm.login = function() {
+  function login() {
     console.log(vm.loginForm);
 
     UserService.login(vm.loginForm.mail, vm.loginForm.password, 1, function(data){
       console.log(data);
+      $location.path('/main');
     });
   }
 }

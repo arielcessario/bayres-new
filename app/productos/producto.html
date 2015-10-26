@@ -1,0 +1,12 @@
+<h3>Producto</h3>
+<div ng-controller="ProductoController as productCtrl">
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="producto in productCtrl.productos">
+            <div class="">
+                <div>{{producto.producto_id}}</div>
+                <div>{{producto.nombre}}</div>
+                <div>{{producto.precios[0].precio_unitario}}</div>
+            </div>
+        </div>
+    </div>
+</div>

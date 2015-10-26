@@ -28,16 +28,17 @@ function UsuarioController($location, UserService, AcUtils) {
     };
 
     vm.logout = logout;
+    vm.create = create;
 
     function logout() {
         UserService.logout(function (data) {
             console.log('lslsls');
             console.log(data);
-            $location.path('/login');
+            $location.path('/main');
         });
     }
 
-    vm.create = function () {
+    function create() {
         UserService.create(vm.userForm, function (data) {
             console.log(data);
         });
