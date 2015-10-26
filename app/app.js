@@ -1,12 +1,29 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('bayres', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'ngCookies',
+  //'angular-storage',
+  //'angular-jwt',
+  //'acUtils',
+  //'acUsuarios',
+  //'acProductos',
+  'bayres.login',
+  'bayres.usuarios'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+  $routeProvider.otherwise({redirectTo: '/login'});
+}])
+.controller('MainController', MainController);
+
+
+MainController.$inject = ['$scope', 'UserService', 'AcUtils', 'ProductService', 'CartService'];
+//MainService.$inject = ['$http'];
+
+function MainController($scope, UserService, AcUtils, ProductService, CartService) {
+
+  var vm = this;
+
+
+}

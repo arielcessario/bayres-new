@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="bayres" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="bayres" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="bayres" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="bayres" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +16,8 @@
 </head>
 <body>
   <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
+    <li><a href="#/login">Login</a></li>
+    <li><a href="#/usuarios">Usuario</a></li>
   </ul>
 
   <!--[if lt IE 7]>
@@ -33,11 +33,14 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
+  <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="bower_components/ac-angular-utils/ac-utils.js"></script>
+  <script src="bower_components/ac-angular-usuarios/ac-usuarios.js"></script>
+  <script src="bower_components/ac-angular-productos/ac-productos.js"></script>
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+  <script src="login/login.js"></script>
+  <script src="usuarios/usuario.js"></script>
 </body>
 </html>
