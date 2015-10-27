@@ -18,15 +18,18 @@ angular.module('bayres.main', [
     }])
     .controller('MainController', MainController);
 
-MainController.$inject = ['$scope', 'AcUtils', 'UserService', 'ProductService'];
+MainController.$inject = ['$location', 'AcUtils', 'UserService', 'ProductService'];
 
-function MainController($scope, AcUtils, UserService, ProductService) {
+function MainController($location, AcUtils, UserService, ProductService) {
     var vm = this;
 
     vm.productosEnOfertas = [];
     vm.productosMasVendidos = [];
     vm.productosDestacados = [];
     vm.carritoDetalles = [];
+    vm.productoList = [];
+    vm.productoResultado = '';
+    vm.productoBuscado = '';
 
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -35,6 +38,8 @@ function MainController($scope, AcUtils, UserService, ProductService) {
     };
 
     vm.addProducto = addProducto;
+    vm.showDetalle = showDetalle;
+    vm.findProducto = findProducto;
 
     ProductService.getByParams("en_oferta", "1", "true", function(data){
         vm.productosEnOfertas = data;
@@ -104,4 +109,20 @@ function MainController($scope, AcUtils, UserService, ProductService) {
 
         console.log(vm.carritoInfo);
     }
+
+    function findProducto() {
+        if (vm.productoBuscado.length > 2) {
+            ProductService.getByParams('nombre', vm.productoBuscado, 'true', function(data){
+                vm.productoResultado = (data.length > 0) ? 'RESULTADOS' : 'No se encontro resultado';
+                vm.productoList = data;
+            });
+        } else {
+            $location.path('/main');
+        }
+    }
+
+    function showDetalle(id) {
+        $location.path('/productos/' + id);
+    }
+
 }

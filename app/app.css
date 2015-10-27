@@ -28,3 +28,7 @@
   content: "";
   padding: 0;
 }
+.producto-container {
+  width: 120px;
+  margin: 5px;
+}

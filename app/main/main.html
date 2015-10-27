@@ -1,6 +1,26 @@
 <h3>Main</h3>
 <div ng-controller="MainController as mainCtrl">
 
+
+    <h4>Ofertas</h4>
+    <div>
+        <input ng-model="mainCtrl.productoBuscado" type="text"
+               ng-change="mainCtrl.findProducto();" placeholder="Buscar..." />
+    </div>
+    <div>{{mainCtrl.productoResultado}}</div>
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="producto in mainCtrl.productoList">
+            <div class="producto-container">
+                <div>{{producto.producto_id}}</div>
+                <div>{{producto.nombre}}</div>
+                <div>{{producto.precios[0].precio}}</div>
+                <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
+                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
     <h4>Carrito</h4>
     <div>
         <span>${{mainCtrl.carritoInfo.totalAPagar}} </span><span>({{mainCtrl.carritoInfo.cantidadDeProductos}})</span>
@@ -10,11 +30,12 @@
     <h4>Ofertas</h4>
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
         <div ng-repeat="producto in mainCtrl.productosEnOfertas">
-            <div class="">
+            <div class="producto-container">
                 <div>{{producto.producto_id}}</div>
                 <div>{{producto.nombre}}</div>
                 <div>{{producto.precios[0].precio}}</div>
                 <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
+                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
             </div>
         </div>
     </div>
@@ -23,11 +44,12 @@
     <h4>Destacados</h4>
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
         <div ng-repeat="producto in mainCtrl.productosDestacados">
-            <div class="">
+            <div class="producto-container">
                 <div>{{producto.producto_id}}</div>
                 <div>{{producto.nombre}}</div>
                 <div>{{producto.precios[0].precio}}</div>
                 <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
+                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
             </div>
         </div>
     </div>
@@ -36,11 +58,12 @@
     <h4>+Vendidos</h4>
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
         <div ng-repeat="producto in mainCtrl.productosMasVendidos">
-            <div class="">
+            <div class="producto-container">
                 <div>{{producto.producto_id}}</div>
                 <div>{{producto.nombre}}</div>
                 <div>{{producto.precios[0].precio}}</div>
                 <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
+                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
             </div>
         </div>
     </div>

@@ -19,12 +19,15 @@ angular.module('bayres.carrito', [
     }])
     .controller('CarritoController', CarritoController);
 
-CarritoController.$inject = ['$scope', 'AcUtils', 'UserService', 'ProductService'];
+CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'ProductService'];
 
-function CarritoController($scope, AcUtils, UserService, ProductService) {
+function CarritoController($routeParams, AcUtils, UserService, ProductService) {
     var vm = this;
 
     vm.productos = [];
+    //vm.carrito = $routeParams.carrito;
+
+    console.log(carrito);
 
     ProductService.get(function(data){
         console.log(data);
