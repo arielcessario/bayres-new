@@ -1,0 +1,97 @@
+$font_color_title: #8cc63f;
+$font_color_text: #fff;
+$font_color_text-hover: #ffff00;
+
+@import "compass";
+@import "compass/reset";
+
+body {
+  font-family: 'Myriad Pro Bold Condensed', serif;
+  overflow-x: hidden;
+}
+
+.agreement-form {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #005B16;
+  z-index: 200000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #575457;
+  background: -moz-linear-gradient(left, #575457 0%, #131313 53%, #474647 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #575457), color-stop(53%, #131313), color-stop(100%, #474647));
+  background: -webkit-linear-gradient(left, #575457 0%, #131313 53%, #474647 100%);
+  background: -o-linear-gradient(left, #575457 0%, #131313 53%, #474647 100%);
+  background: -ms-linear-gradient(left, #575457 0%, #131313 53%, #474647 100%);
+  background: linear-gradient(to right, #575457 0%, #131313 53%, #474647 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575457', endColorstr='#474647', GradientType=1);
+}
+.agreement-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.agreement-logo{
+  /*
+  background-image: url('images/logo_bayres.png');
+  background-repeat: no-repeat;
+  position: relative;
+  margin: auto;
+  width: 700px;
+  height: 200px;
+  top: 50px;
+  */
+}
+@media (max-width: 360px) {
+  .agreement-logo {
+    margin-left: 10%;
+    background-image: url('images/logo_bayres.png');
+    background-size: contain;
+  }
+}
+.agreement-titulo{
+  font-family: "Myriad Pro Bold Condensed";
+  font-size: 50px;
+  position: relative;
+  line-height: 55px;
+  color: $font_color_title;
+  margin-top: 100px;
+  text-align: center;
+}
+.agreement-text{
+  font-family: "Myriad Pro";
+  font-size: 20px;
+  position: relative;
+  line-height: 20px;
+  top: 10px;
+  color: $font_color_text;
+  padding-bottom: 30px;
+  margin-left: 8%;
+  margin-right: 8%;
+  text-align: center;
+}
+.botonera button {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  color: $font_color_text;
+  font-family: 'Myriad Pro Bold Condensed', serif;
+  margin-left: 7px;
+  margin-right: 7px;
+  border-radius: 12px;
+  border: 0px solid;
+  cursor: pointer;
+  background: #b4ddb4;
+  background: -moz-linear-gradient(top, #b4ddb4 0%, #006200 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b4ddb4), color-stop(100%, #006200));
+  background: -webkit-linear-gradient(top, #b4ddb4 0%, #006200 100%);
+  background: -o-linear-gradient(top, #b4ddb4 0%, #006200 100%);
+  background: -ms-linear-gradient(top, #b4ddb4 0%, #006200 100%);
+  background: linear-gradient(to bottom, #b4ddb4 0%, #006200 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
+}

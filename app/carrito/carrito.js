@@ -17,16 +17,18 @@ angular.module('bayres.carrito', [
             data: {requiresLogin: true}
         });
     }])
-    .controller('CarritoController', CarritoController)
-    .service('CarritoService', CarritoService);
+    .controller('CarritoController', CarritoController);
 
-CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'ProductService', 'CarritoService'];
-CarritoService.$inject = ['$http'];
 
-function CarritoController($routeParams, AcUtils, UserService, ProductService, CarritoService) {
+CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'CartVars', 'CartService',
+    '$timeout', '$location'];
+
+function CarritoController($routeParams, AcUtils, UserService, CartVars, CartService,
+                           $timeout, $location) {
+
+    //  VARIABLES
     var vm = this;
 
-    vm.productos = [];
     vm.carritoDetalles = [];
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -34,65 +36,163 @@ function CarritoController($routeParams, AcUtils, UserService, ProductService, C
         modified: false
     };
 
+    //*******************************************************************
+    //  FUNCIONES
     //vm.carrito = $routeParams.carrito;
-
     vm.removeProducto = removeProducto;
+    vm.refreshProducto = refreshProducto;
+    vm.confirmCarrito = confirmCarrito;
 
-    console.log(carrito);
 
-    ProductService.get(function(data){
-        console.log(data);
-        vm.productos = data;
-    });
+    //*******************************************************************
+    //  PROGRAMA
+    vm.carritoDetalles = CartVars.carrito;
+    console.log(vm.carritoDetalles);
 
-    function removeProducto(producto) {
-        if(vm.carritoDetalles.length > 0) {
+    if(vm.carritoDetalles.length > 0) {
+        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+
+        console.log(vm.carritoInfo);
+    }
+
+    function removeProducto(index) {
+        if(CartVars.carrito.length > 0) {
             var producto = vm.carritoDetalles[index];
             var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
             var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
             if(borrarOk){
-                vm.carritoDetalles.splice( index, 1 );
-                vm.carritoDetalles.sort(function(a, b){ return a.nombre - b.nombre; });
-                CarritoService.calcularCarritoTotal(vm.carritoDetalles, function(data){
-                    vm.carritoInfo = data;
+                CartVars.carrito.splice( index, 1 );
+                CartVars.carrito.sort(function(a, b){
+                    return a.nombre - b.nombre;
                 });
+
+                calcularCarritoTotal();
             } else {
                 return;
             }
         }
     }
 
+    function calcularCarritoTotal() {
+        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
 
-}
+        console.log(vm.carritoInfo);
+    }
 
-function CarritoService($http) {
-
-    //Variables
-    var service = {};
-
-    service.calcularCarritoTotal = calcularCarritoTotal;
-
-    return service;
-
-    function calcularCarritoTotal(carritoDetalles, callback) {
-        var carritoInfo = {
-            cantidadDeProductos: 0,
-            totalAPagar: 0.00,
-            modified: false
+    function refreshProducto(producto) {
+        console.log(producto);
+        var miProducto = {
+            producto_id: producto.producto_id,
+            cantidad: 0,
+            en_oferta: 1,
+            precio_unitario: producto.precio_unitario,
+            carrito_id: -1,
+            nombre: producto.nombre
         };
-        var cantidadDeProductos = 0;
-        var totalAPagar = 0.00;
 
-        carritoDetalles.forEach(function(data){
-            cantidadDeProductos = data.cantidad + cantidadDeProductos;
-            totalAPagar = (data.precio_unitario * data.cantidad)+ totalAPagar;
+        actualizarMiCarrito(miProducto);
+    }
+
+    function actualizarMiCarrito(producto) {
+        var encontrado = false;
+        var indexToDelete = 0;
+
+        if(CartVars.carrito.length > 0) {
+            var index = 0;
+            CartVars.carrito.forEach(function(data){
+                if(data.producto_id == producto.producto_id) {
+                    producto.cantidad = data.cantidad + producto.cantidad;
+                    indexToDelete = index;
+                    encontrado = true;
+                }
+                index = index + 1;
+            });
+
+            if(encontrado) {
+                CartVars.carrito.splice( indexToDelete, 1 );
+            }
+        }
+        CartVars.carrito.push(producto);
+        CartVars.carrito.sort(function(a, b){
+            return a.nombre - b.nombre;
         });
+        console.log(CartVars.carrito);
 
-        carritoInfo.cantidadDeProductos = cantidadDeProductos;
-        carritoInfo.totalAPagar = totalAPagar;
-        carritoInfo.modified = true;
+        calcularCarritoTotal();
+    }
 
-        callback(carritoInfo);
+    function confirmCarrito() {
+        if(CartVars.carrito.length > 0) {
+            var usuario = UserService.getLogged();
+            var carrito = {
+                'usuario_id': usuario.usuario_id,
+                'total': vm.carritoInfo.totalAPagar,
+                'status': 1,
+                'fecha': getCurrentDate(),
+                'productos': []
+            }
+
+            var error = false;
+            CartService.create(carrito, function(carrito_id) {
+                if (carrito_id > 0) {
+                    carrito.carrito_id = carrito_id;
+                    console.log(carrito);
+                    var i = 0;
+                    CartVars.carrito.forEach(function (producto) {
+                        CartService.addToCart(carrito_id, producto, function (data) {
+                            if (data > 0) {
+                                console.log(data);
+                                carrito.productos[i] = producto;
+                                i = i + 1;
+                            }
+                            else {
+                                console.log('Error detalle carrito');
+                                error = true;
+                            }
+                        });
+                    });
+                } else {
+                    console.log('Error creando el carrito');
+                    error = true;
+                }
+            });
+
+            if(!error) {
+                console.log('Carrito Pedido');
+                console.log('Envio los mails');
+                $timeout(function () {
+
+                    $location.path('/main');
+
+                    CartVars.carrito = [];
+                    vm.carritoDetalles = [];
+
+                }, 2000);
+
+            }
+        }
+        else {
+            console.log('Carrito vacio');
+        }
+    }
+
+    function getCurrentDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
+        var today = dd + '/' + mm + '/' + yyyy;
+        return today;
     }
 
 }
+

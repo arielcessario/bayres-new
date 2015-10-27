@@ -28,7 +28,11 @@
   content: "";
   padding: 0;
 }
+.categoria-container,
 .producto-container {
   width: 120px;
   margin: 5px;
+}
+#producto-cantidad {
+  width: 50px;
 }

@@ -1,7 +1,34 @@
+<ul class="menu">
+    <li><a href="#/agreement">Inicial</a></li>
+    <li><a href="#/main">Main</a></li>
+    <li><a href="#/login">Login</a></li>
+    <li><a href="#/usuarios">Usuario</a></li>
+    <li><a href="#/productos">Productos</a></li>
+    <li><a href="#/carrito">Carrito</a></li>
+</ul>
+
 <h3>Main</h3>
 <div ng-controller="MainController as mainCtrl">
 
+    <h4>Categorias</h4>
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <div ng-repeat="categoria in mainCtrl.categorias">
+            <div class="categoria-container">
+                <div>{{categoria.categoria_id}}</div>
+                <div>{{categoria.nombre}}</div>
+                <a href="" title="Detalle" ng-click="mainCtrl.showSubCategoria(categoria.categoria_id);">SubCategoria</a>
+                <div ng-if="mainCtrl.showInfo" ng-repeat="subcategoria in categoria.subcategorias">
+                    <div class="">
+                        <div>{{subcategoria.categoria_id}}</div>
+                        <div>{{subcategoria.nombre}}</div>
+                        <a href="" title="Detalle" ng-click="mainCtrl.hideSubCategoria(categoria.categoria_id);">Ocultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <br>
     <h4>Ofertas</h4>
     <div>
         <input ng-model="mainCtrl.productoBuscado" type="text"

@@ -40,6 +40,16 @@ function UsuarioController($location, UserService, AcUtils) {
         'news_letter': 0,
         'password': ''
     };
+    vm.dirForm = {
+        'usuario_id': 0,
+        'calle': '',
+        'nro': 0,
+        'piso': 0,
+        'puerta': '',
+        'ciudad_id': 0
+    };
+
+    vm.repeatMail = '';
 
     vm.logout = logout;
     vm.create = create;
@@ -47,7 +57,7 @@ function UsuarioController($location, UserService, AcUtils) {
 
     function logout() {
         UserService.logout(function (data) {
-            console.log('lslsls');
+            console.log('logout');
             console.log(data);
             $location.path('/main');
         });

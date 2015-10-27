@@ -18,18 +18,26 @@ angular.module('bayres.main', [
     }])
     .controller('MainController', MainController);
 
-MainController.$inject = ['$location', 'AcUtils', 'UserService', 'ProductService'];
+MainController.$inject = ['$location', 'AcUtils', 'UserService', 'ProductService',
+    'CategoryService', 'CartVars'];
 
-function MainController($location, AcUtils, UserService, ProductService) {
+function MainController($location, AcUtils, UserService, ProductService,
+                        CategoryService, CartVars) {
     var vm = this;
+
+    var productosList = [];
 
     vm.productosEnOfertas = [];
     vm.productosMasVendidos = [];
     vm.productosDestacados = [];
-    vm.carritoDetalles = [];
+    //vm.carritoDetalles = [];
     vm.productoList = [];
+    vm.categorias = [];
+    vm.subcategorias = [];
+
     vm.productoResultado = '';
     vm.productoBuscado = '';
+    vm.showInfo = false;
 
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -40,6 +48,29 @@ function MainController($location, AcUtils, UserService, ProductService) {
     vm.addProducto = addProducto;
     vm.showDetalle = showDetalle;
     vm.findProducto = findProducto;
+    vm.showSubCategoria = showSubCategoria;
+    vm.hideSubCategoria = hideSubCategoria;
+
+    ProductService.get(function(data){
+        productosList = data;
+    });
+
+    CategoryService.getByParams("parent_id", "-1", "true", function(data){
+        vm.categorias = data;
+        var i = 0;
+        vm.categorias.forEach(function(categoria){
+            CategoryService.getByParams("parent_id", categoria.categoria_id.toString(), "true", function(list){
+                vm.categorias[i].subcategorias = list;
+                var j = 0;
+                list.forEach(function(subcategoria){
+                    var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
+                    vm.categorias[i].subcategorias[j].total_categoria = count;
+                    j = j + 1;
+                });
+                i++;
+            });
+        });
+    });
 
     ProductService.getByParams("en_oferta", "1", "true", function(data){
         vm.productosEnOfertas = data;
@@ -67,13 +98,14 @@ function MainController($location, AcUtils, UserService, ProductService) {
         actualizarMiCarrito(miProducto);
     }
 
+
     function actualizarMiCarrito(producto) {
         var encontrado = false;
         var indexToDelete = 0;
 
-        if(vm.carritoDetalles.length > 0) {
+        if(CartVars.carrito.length > 0) {
             var index = 0;
-            vm.carritoDetalles.forEach(function(data){
+            CartVars.carrito.forEach(function(data){
                 if(data.producto_id == producto.producto_id) {
                     producto.cantidad = data.cantidad + producto.cantidad;
                     indexToDelete = index;
@@ -83,29 +115,21 @@ function MainController($location, AcUtils, UserService, ProductService) {
             });
 
             if(encontrado) {
-                vm.carritoDetalles.splice( indexToDelete, 1 );
+                CartVars.carrito.splice( indexToDelete, 1 );
             }
         }
-        vm.carritoDetalles.push(producto);
-        //Ordeno carrito detalles por nombre del producto
-        vm.carritoDetalles.sort(function(a, b){ return a.nombre - b.nombre; });
-        console.log(vm.carritoDetalles);
+        CartVars.carrito.push(producto);
+        CartVars.carrito.sort(function(a, b){
+            return a.nombre - b.nombre;
+        });
+        console.log(CartVars.carrito);
 
         calcularCarritoTotal();
     }
 
     function calcularCarritoTotal() {
-        var cantidadDeProductos = 0;
-        var totalAPagar = 0.00;
-
-        vm.carritoDetalles.forEach(function(data){
-            cantidadDeProductos = data.cantidad + cantidadDeProductos;
-            totalAPagar = (data.precio_unitario * data.cantidad)+ totalAPagar;
-        });
-
-        vm.carritoInfo.cantidadDeProductos = cantidadDeProductos;
-        vm.carritoInfo.totalAPagar = totalAPagar;
-        vm.carritoInfo.modified = true;
+        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
 
         console.log(vm.carritoInfo);
     }
@@ -123,6 +147,16 @@ function MainController($location, AcUtils, UserService, ProductService) {
 
     function showDetalle(id) {
         $location.path('/productos/' + id);
+    }
+
+    function showSubCategoria(categoria_id) {
+        console.log(categoria_id);
+        vm.showInfo = true;
+    }
+
+    function hideSubCategoria(categoria_id) {
+        console.log(categoria_id);
+        vm.showInfo = false;
     }
 
 }

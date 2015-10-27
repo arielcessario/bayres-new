@@ -1,12 +1,25 @@
 <h3>Carrito</h3>
 <div ng-controller="CarritoController as carritoCtrl">
+
+    <div>
+        <span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
+    </div>
+
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
-        <div ng-repeat="producto in carritoCtrl.productos">
-            <div class="">
+        <div ng-repeat="producto in carritoCtrl.carritoDetalles">
+            <div class="producto-container">
                 <div>{{producto.producto_id}}</div>
                 <div>{{producto.nombre}}</div>
-                <div>{{producto.precios[0].precio_unitario}}</div>
+                <div>{{producto.cantidad}}</div>
+                <div>{{producto.precio_unitario}}</div>
+                <input id="producto-cantidad" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
+                       type="number" ng-model="producto.cantidad" style=""/>
+                <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">-</a>
             </div>
         </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+        <a href="" title="" ng-click="carritoCtrl.confirmCarrito()">Confirmar Pedido</a>
     </div>
 </div>

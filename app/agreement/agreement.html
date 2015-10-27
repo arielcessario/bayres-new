@@ -1,0 +1,30 @@
+<div ng-controller="AgreementController as agreementCtrl">
+    <div class="agreement-form">
+        <div class="agreement-form-container">
+            <div class="agreement-logo">
+                <img src="images/logo_bayres.png">
+            </div>
+
+            <div class="agreement-titulo">CONDICIONES DE INGRESO A ESTA WEB</div>
+
+            <div class="agreement-text">
+                Para entrar en nuestra web DEBES SER MAYOR DE EDAD. Bayres no problem GrowShop no se hace
+                responsable del uso indebido que se le pueda dar a cualquiera de nuestros productos, que son completamente
+                legales en Argentina.
+                Bayres no problem GrowShop desarrolla su actividad comercial mediante el ofrecimiento virtual de variados
+                productos o articulos de licito comercio en Argentina.
+                Bayres no problem Grow Shop insta a la responsabilidad y diligencia de cada persona sobre los actos propios y en
+                ningun caso invita ni incita a sus clientes a actuar de forma contraria a la ley, solicitando al cliente un uso
+                noble, recto, responsable y diligente de los articulos o productos adquiridos.
+                Si entras a esta web significa que eres MAYOR DE EDAD, que ENTIENDES y ACEPTAS las normas expuestas
+                anteriormente.
+            </div>
+
+            <div class="botonera" style="margin-bottom: 50px;">
+                <button ng-click="agreementCtrl.acepto();">Acepto</button>
+                <button ng-click="agreementCtrl.noAcepto();">No Acepto</button>
+            </div>
+
+        </div>
+    </div>
+</div>
