@@ -14,7 +14,8 @@ angular.module('bayres.login', [
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    data: {requiresLogin: false}
   });
 }])
 .controller('LoginController', LoginController);
@@ -36,10 +37,9 @@ function LoginController($location, UserService, $timeout) {
 
   function login() {
     if(vm.loginForm.mail.trim().length > 0 && vm.loginForm.password.trim().length > 0) {
-      UserService.login(vm.loginForm.mail, vm.loginForm.password, 1, function(data){
+      UserService.login(vm.loginForm.mail.trim(), vm.loginForm.password.trim(), 1, function(data){
         console.log(data);
         if(data != -1) {
-
           $timeout(function () {
             vm.message = 'Usuario logueado';
             $location.path('/main');
@@ -53,7 +53,6 @@ function LoginController($location, UserService, $timeout) {
     } else {
       vm.message = 'Ingrese una mail y contraseña';
     }
-
   }
 
   function createUsuario() {

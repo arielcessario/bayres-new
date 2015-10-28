@@ -1,3 +1,9 @@
+//Fonts Faces
+$myriad_pro_bold: "Myriad Pro Bold";
+$myriad_pro_bold_condensed: "Myriad Pro Bold Condensed";
+$myriad_pro_condensed: "Myriad Pro Condensed";
+$myriad_pro_regular: "Myriad Pro Regular";
+
 $font_color_title: #8cc63f;
 $font_color_message: #8cc63f;
 $font_color_text: #fff;
@@ -9,9 +15,15 @@ $border_color: #8CC63F;
 
 @import "compass";
 @import "compass/reset";
+@import "compass/css3/font-face";
+
+@include font-face($myriad_pro_bold, font-files("MYRIADPRO-BOLD.woff"));
+@include font-face($myriad_pro_bold_condensed, font-files("MYRIADPRO-BOLDCOND.woff"));
+@include font-face($myriad_pro_condensed, font-files("MYRIADPRO-COND.woff"));
+@include font-face($myriad_pro_regular, font-files("MYRIADPRO-REGULAR.woff"));
 
 body {
-  font-family: 'Myriad Pro Bold Condensed', serif;
+  font-family: $myriad_pro_bold_condensed, serif;
   overflow-x: hidden;
   background-color: $background_color;
 }
@@ -61,7 +73,7 @@ body {
   }
 }
 .agreement-titulo{
-  font-family: "Myriad Pro Bold Condensed";
+  font-family: $myriad_pro_bold_condensed;
   font-size: 50px;
   position: relative;
   line-height: 55px;
@@ -70,7 +82,7 @@ body {
   text-align: center;
 }
 .agreement-text{
-  font-family: "Myriad Pro";
+  font-family: $myriad_pro_regular;
   font-size: 20px;
   position: relative;
   line-height: 20px;
@@ -95,7 +107,7 @@ button {
   height: 30px;
   font-size: 14px;
   color: $font_color_text;
-  font-family: 'Myriad Pro Bold Condensed', serif;
+  font-family: $myriad_pro_bold_condensed, serif;
   margin-left: 7px;
   margin-right: 7px;
   border-radius: 12px;
@@ -113,6 +125,7 @@ button {
 .container-title {
   text-align: center;
   width: 100%;
+  margin-bottom: 20px;
 }
 .title-font {
   //color: white;

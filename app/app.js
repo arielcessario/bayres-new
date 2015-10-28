@@ -17,9 +17,9 @@ config(['$routeProvider', function($routeProvider) {
 .controller('BayresController', BayresController);
 
 
-BayresController.$inject = ['$location', 'UserService', 'CategoryService'];
+BayresController.$inject = ['$location', 'UserService'];
 
-function BayresController($location, UserService, CategoryService) {
+function BayresController($location, UserService) {
 
   var vm = this;
 

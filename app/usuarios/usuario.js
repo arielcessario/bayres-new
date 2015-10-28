@@ -52,6 +52,7 @@ function UsuarioController($location, UserService, AcUtils) {
     vm.repeatMail = '';
     vm.message = '';
 
+    vm.home = home;
     vm.login = login;
     vm.create = create;
     vm.update = update;
@@ -88,5 +89,9 @@ function UsuarioController($location, UserService, AcUtils) {
         } else {
             vm.message = 'Complete todos los campos';
         }
+    }
+
+    function home() {
+        $location.path('/main');
     }
 }

@@ -42,7 +42,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     vm.removeProducto = removeProducto;
     vm.refreshProducto = refreshProducto;
     vm.confirmCarrito = confirmCarrito;
-
+    vm.home = home;
 
     //*******************************************************************
     //  PROGRAMA
@@ -176,6 +176,10 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
         else {
             console.log('Carrito vacio');
         }
+    }
+
+    function home() {
+        $location.path('/main');
     }
 
     function getCurrentDate() {
