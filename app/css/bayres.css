@@ -63,13 +63,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 8, ../sass/bayres.scss */
+/* line 13, ../sass/bayres.scss */
 body {
   font-family: 'Myriad Pro Bold Condensed', serif;
   overflow-x: hidden;
+  background-color: #00fefe;
 }
 
-/* line 13, ../sass/bayres.scss */
+/* line 19, ../sass/bayres.scss */
 .agreement-form {
   position: fixed;
   height: 100%;
@@ -88,7 +89,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575457', endColorstr='#474647', GradientType=1);
 }
 
-/* line 30, ../sass/bayres.scss */
+/* line 36, ../sass/bayres.scss */
 .agreement-form-container {
   display: flex;
   flex-direction: column;
@@ -99,7 +100,7 @@ body {
   width: 100%;
 }
 
-/* line 39, ../sass/bayres.scss */
+/* line 45, ../sass/bayres.scss */
 .agreement-logo {
   /*
   background-image: url('images/logo_bayres.png');
@@ -113,14 +114,14 @@ body {
 }
 
 @media (max-width: 360px) {
-  /* line 51, ../sass/bayres.scss */
+  /* line 57, ../sass/bayres.scss */
   .agreement-logo {
     margin-left: 10%;
     background-image: url("images/logo_bayres.png");
     background-size: contain;
   }
 }
-/* line 57, ../sass/bayres.scss */
+/* line 63, ../sass/bayres.scss */
 .agreement-titulo {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 50px;
@@ -131,7 +132,7 @@ body {
   text-align: center;
 }
 
-/* line 66, ../sass/bayres.scss */
+/* line 72, ../sass/bayres.scss */
 .agreement-text {
   font-family: "Myriad Pro";
   font-size: 20px;
@@ -145,8 +146,19 @@ body {
   text-align: center;
 }
 
-/* line 78, ../sass/bayres.scss */
-.botonera button {
+/* line 84, ../sass/bayres.scss */
+.botonera {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+/* line 93, ../sass/bayres.scss */
+button {
   width: 100px;
   height: 30px;
   font-size: 14px;
@@ -165,4 +177,69 @@ body {
   background: -ms-linear-gradient(top, #b4ddb4 0%, #006200 100%);
   background: linear-gradient(to bottom, #b4ddb4 0%, #006200 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
+}
+
+/* line 113, ../sass/bayres.scss */
+.container-title {
+  text-align: center;
+  width: 100%;
+}
+
+/* line 117, ../sass/bayres.scss */
+.title-font {
+  font-size: 71px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+}
+
+/* line 122, ../sass/bayres.scss */
+.primary-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+/* line 130, ../sass/bayres.scss */
+.container-form {
+  min-height: 370px;
+  width: 690px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  border: #8CC63F 1px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+/* line 143, ../sass/bayres.scss */
+.container-form-2 {
+  margin: 40px 0;
+}
+
+/* line 146, ../sass/bayres.scss */
+.form-control {
+  padding: 3px;
+  width: 300px;
+  height: 28px;
+  border-radius: 28px;
+  border: 2px solid #fff;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* line 155, ../sass/bayres.scss */
+.form-message {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* line 159, ../sass/bayres.scss */
+.message {
+  font-weight: bold;
+  color: #8cc63f;
 }

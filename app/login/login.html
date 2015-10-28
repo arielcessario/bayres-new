@@ -1,17 +1,23 @@
-<div ng-controller="LoginController as loginCtrl">
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+<div class="container-title">
+    <label class="title-font">Ingres&aacute;</label>
+</div>
+
+<div ng-controller="LoginController as loginCtrl" class="primary-form">
+    <div class="container-form">
         <div class="form-group">
-            <label class="">Mail:</label>
-            <input class="form-control" ng-model="loginCtrl.loginForm.mail" type="text">
+            <input type="text" class="form-control" ng-model="loginCtrl.loginForm.mail" placeholder="Mail...">
         </div>
         <div class="form-group">
-            <label class="">Password:</label>
-            <input class="form-control" ng-model="loginCtrl.loginForm.password" type="text">
+            <input type="password" class="form-control" ng-model="loginCtrl.loginForm.password" placeholder="Contrase&ntilde;a...">
         </div>
-    </div>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
-        <div class="form-group">
-            <button class="btn btn-primary" ng-click="loginCtrl.login()">Login</button>
+
+        <div class="botonera">
+            <button ng-click="loginCtrl.login();">Aceptar</button>
+            <button ng-click="loginCtrl.createUsuario();">Nuevo Usuario</button>
+        </div>
+
+        <div class="form-message">
+            <div class="message">{{loginCtrl.message}}</div>
         </div>
     </div>
 </div>

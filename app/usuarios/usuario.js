@@ -50,28 +50,43 @@ function UsuarioController($location, UserService, AcUtils) {
     };
 
     vm.repeatMail = '';
+    vm.message = '';
 
-    vm.logout = logout;
+    vm.login = login;
     vm.create = create;
     vm.update = update;
 
-    function logout() {
-        UserService.logout(function (data) {
-            console.log('logout');
-            console.log(data);
-            $location.path('/main');
-        });
+    function validateForm() {
+        if(vm.userForm.nombre.trim().length > 0 && vm.userForm.apellido.trim().length > 0
+        && vm.userForm.fecha_nacimiento.trim().length > 0 && vm.userForm.telefono.trim().length > 0
+        && vm.userForm.mail.trim().length > 0 && vm.userForm.password.trim().length > 0
+        && vm.repeatMail.trim().length > 0)
+            return true;
+
+        return false;
+    }
+
+    function login() {
+        $location.path('/login');
     }
 
     function create() {
-        UserService.create(vm.userForm, function (data) {
-            console.log(data);
-        });
+        if(validateForm()) {
+            UserService.create(vm.userForm, function (data) {
+                console.log(data);
+            });
+        } else {
+            vm.message = 'Complete todos los campos';
+        }
     }
 
     function update() {
-        UserService.update(vm.userForm, function (data) {
-            console.log(data);
-        });
+        if(validateForm()) {
+            UserService.update(vm.userForm, function (data) {
+                console.log(data);
+            });
+        } else {
+            vm.message = 'Complete todos los campos';
+        }
     }
 }

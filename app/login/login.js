@@ -19,12 +19,15 @@ angular.module('bayres.login', [
 }])
 .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$location', 'UserService', 'AcUtils'];
+LoginController.$inject = ['$location', 'UserService', '$timeout'];
 
-function LoginController($location, UserService, AcUtils) {
+function LoginController($location, UserService, $timeout) {
   var vm = this;
 
+  vm.message = '';
+
   vm.login = login;
+  vm.createUsuario = createUsuario;
 
   vm.loginForm = {
     mail:'',
@@ -32,11 +35,28 @@ function LoginController($location, UserService, AcUtils) {
   };
 
   function login() {
-    console.log(vm.loginForm);
+    if(vm.loginForm.mail.trim().length > 0 && vm.loginForm.password.trim().length > 0) {
+      UserService.login(vm.loginForm.mail, vm.loginForm.password, 1, function(data){
+        console.log(data);
+        if(data != -1) {
 
-    UserService.login(vm.loginForm.mail, vm.loginForm.password, 1, function(data){
-      console.log(data);
-      $location.path('/main');
-    });
+          $timeout(function () {
+            vm.message = 'Usuario logueado';
+            $location.path('/main');
+          }, 2000);
+
+          vm.message = '';
+        } else {
+          vm.message = 'Usuario o contraseña erroneo';
+        }
+      });
+    } else {
+      vm.message = 'Ingrese una mail y contraseña';
+    }
+
+  }
+
+  function createUsuario() {
+    $location.path('/usuarios');
   }
 }

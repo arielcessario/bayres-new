@@ -17,16 +17,25 @@ config(['$routeProvider', function($routeProvider) {
 .controller('BayresController', BayresController);
 
 
-BayresController.$inject = ['$location', 'ProductService', 'CategoryService'];
+BayresController.$inject = ['$location', 'UserService', 'CategoryService'];
 
-function BayresController($location, ProductService, CategoryService) {
+function BayresController($location, UserService, CategoryService) {
 
   var vm = this;
 
   //var productosList = [];
   //vm.categorias = [];
+  vm.logout = logout;
 
   $location.path('/agreement');
+
+  function logout() {
+    UserService.logout(function (data) {
+      console.log('logout');
+      console.log(data);
+      $location.path('/main');
+    });
+  }
 
 /*
   ProductService.get(function(data){

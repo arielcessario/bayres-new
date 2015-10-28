@@ -1,50 +1,43 @@
-<div ng-controller="UsuarioController as userCtrl">
-  <div style="display: flex; flex-direction: row; margin-left: 30px;">
-    <div class="form-group">
-      <label class="">Nombre:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.nombre" type="text">
-    </div>
-    <div class="form-group">
-      <label class="">Apellido:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.apellido" type="text">
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: row; margin-left: 30px;">
-    <div class="form-group">
-      <label class="">Fecha de Nacimiento:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.fecha_nacimiento" type="text">
-    </div>
-    <div class="form-group">
-      <label class="">Telefono:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.telefono" type="text">
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: row; margin-left: 30px;">
-    <div class="form-group">
-      <label class="">Direccion:</label>
-      <input class="form-control" ng-model="userCtrl.dirForm.direccion" type="text">
-    </div>
-    <div class="form-group">
-      <label class="">Mail:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.mail" type="text">
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: row; margin-left: 30px;">
-    <div class="form-group">
-      <label class="">Repetir Mail:</label>
-      <input class="form-control" ng-model="userCtrl.repeatMail" type="text">
-    </div>
-    <div class="form-group">
-      <label class="">Contraseña:</label>
-      <input class="form-control" ng-model="userCtrl.userForm.password" type="text">
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: row; margin-left: 30px;">
-    <div class="form-group">
-      <button class="btn btn-primary" ng-click="userCtrl.create();">Crear</button>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary" ng-click="userCtrl.logout();">Logout</button>
+<div class="container-title">
+  <label class="title-font">Registro</label>
+</div>
+
+<div ng-controller="UsuarioController as userCtrl" class="primary-form">
+  <div class="container-form">
+    <div class="container-form-2">
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.userForm.nombre" placeholder="Nombre...">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.userForm.apellido" placeholder="Apellido...">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.userForm.fecha_nacimiento" placeholder="Fecha Nacimiento...">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.userForm.telefono" placeholder="Tel&eacute;fono...">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.dirForm.direccion" placeholder="Direcci&oacute;n">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.userForm.mail" placeholder="Mail...">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="userCtrl.repeatMail" placeholder="Repetir Mail...">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" ng-model="userCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+      </div>
+
+      <div class="botonera">
+        <button ng-click="userCtrl.create();">Aceptar</button>
+        <button ng-click="userCtrl.login();">Ingresar</button>
+      </div>
+
+      <div class="form-message">
+        <div class="message">{{userCtrl.message}}</div>
+      </div>
     </div>
   </div>
 </div>

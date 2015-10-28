@@ -16,14 +16,15 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-  <!--ul class="menu">
+  <ul class="menu" ng-controller="BayresController as bayresCtrl">
     <li><a href="#/agreement">Inicial</a></li>
     <li><a href="#/main">Main</a></li>
     <li><a href="#/login">Login</a></li>
     <li><a href="#/usuarios">Usuario</a></li>
     <li><a href="#/productos">Productos</a></li>
     <li><a href="#/carrito">Carrito</a></li>
-  </ul-->
+    <li><a href="" ng-click="bayresCtrl.logout();">Logout</a></li>
+  </ul>
 
 
   <div ng-view></div>

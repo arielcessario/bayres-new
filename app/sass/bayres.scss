@@ -1,6 +1,11 @@
 $font_color_title: #8cc63f;
+$font_color_message: #8cc63f;
 $font_color_text: #fff;
 $font_color_text-hover: #ffff00;
+
+$background_color: #00fefe;
+
+$border_color: #8CC63F;
 
 @import "compass";
 @import "compass/reset";
@@ -8,6 +13,7 @@ $font_color_text-hover: #ffff00;
 body {
   font-family: 'Myriad Pro Bold Condensed', serif;
   overflow-x: hidden;
+  background-color: $background_color;
 }
 
 .agreement-form {
@@ -75,7 +81,16 @@ body {
   margin-right: 8%;
   text-align: center;
 }
-.botonera button {
+.botonera {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+button {
   width: 100px;
   height: 30px;
   font-size: 14px;
@@ -94,4 +109,54 @@ body {
   background: -ms-linear-gradient(top, #b4ddb4 0%, #006200 100%);
   background: linear-gradient(to bottom, #b4ddb4 0%, #006200 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
+}
+.container-title {
+  text-align: center;
+  width: 100%;
+}
+.title-font {
+  //color: white;
+  font-size: 71px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+}
+.primary-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.container-form{
+  min-height: 370px;
+  width: 690px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  border: $border_color 1px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.container-form-2{
+  margin: 40px 0;
+}
+.form-control {
+  padding: 3px;
+  width: 300px;
+  height: 28px;
+  border-radius: 28px;
+  border: 2px solid #fff;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.form-message {
+  margin-top: 20px;
+  text-align: center;
+}
+.message {
+  font-weight: bold;
+  color: $font_color_message;
 }
