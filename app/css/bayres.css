@@ -79,14 +79,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-family: "Myriad Pro Regular";
   src: url('../fonts/MYRIADPRO-REGULAR.woff?1445998044') format('woff');
 }
-/* line 25, ../sass/bayres.scss */
+/* line 26, ../sass/bayres.scss */
 body {
   font-family: "Myriad Pro Bold Condensed", serif;
   overflow-x: hidden;
   background-color: #00fefe;
 }
 
-/* line 31, ../sass/bayres.scss */
+/* line 32, ../sass/bayres.scss */
 .agreement-form {
   position: fixed;
   height: 100%;
@@ -105,7 +105,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575457', endColorstr='#474647', GradientType=1);
 }
 
-/* line 48, ../sass/bayres.scss */
+/* line 49, ../sass/bayres.scss */
 .agreement-form-container {
   display: flex;
   flex-direction: column;
@@ -116,7 +116,7 @@ body {
   width: 100%;
 }
 
-/* line 57, ../sass/bayres.scss */
+/* line 58, ../sass/bayres.scss */
 .agreement-logo {
   /*
   background-image: url('images/logo_bayres.png');
@@ -130,14 +130,14 @@ body {
 }
 
 @media (max-width: 360px) {
-  /* line 69, ../sass/bayres.scss */
+  /* line 70, ../sass/bayres.scss */
   .agreement-logo {
     margin-left: 10%;
     background-image: url("images/logo_bayres.png");
     background-size: contain;
   }
 }
-/* line 75, ../sass/bayres.scss */
+/* line 76, ../sass/bayres.scss */
 .agreement-titulo {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 50px;
@@ -148,7 +148,7 @@ body {
   text-align: center;
 }
 
-/* line 84, ../sass/bayres.scss */
+/* line 85, ../sass/bayres.scss */
 .agreement-text {
   font-family: "Myriad Pro Regular";
   font-size: 20px;
@@ -162,7 +162,7 @@ body {
   text-align: center;
 }
 
-/* line 96, ../sass/bayres.scss */
+/* line 97, ../sass/bayres.scss */
 .botonera {
   margin-top: 20px;
   display: flex;
@@ -173,7 +173,7 @@ body {
   align-items: center;
 }
 
-/* line 105, ../sass/bayres.scss */
+/* line 106, ../sass/bayres.scss */
 button {
   width: 100px;
   height: 30px;
@@ -195,20 +195,20 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
 }
 
-/* line 125, ../sass/bayres.scss */
+/* line 126, ../sass/bayres.scss */
 .container-title {
   text-align: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* line 130, ../sass/bayres.scss */
+/* line 131, ../sass/bayres.scss */
 .title-font {
   font-size: 71px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
 }
 
-/* line 135, ../sass/bayres.scss */
+/* line 136, ../sass/bayres.scss */
 .primary-form {
   display: flex;
   flex-direction: column;
@@ -218,7 +218,7 @@ button {
   align-items: center;
 }
 
-/* line 143, ../sass/bayres.scss */
+/* line 144, ../sass/bayres.scss */
 .container-form {
   min-height: 370px;
   width: 690px;
@@ -233,30 +233,128 @@ button {
   align-items: center;
 }
 
-/* line 156, ../sass/bayres.scss */
+/* line 157, ../sass/bayres.scss */
 .container-form-2 {
   margin: 40px 0;
 }
 
-/* line 159, ../sass/bayres.scss */
+/* line 160, ../sass/bayres.scss */
 .form-control {
-  padding: 3px;
-  width: 300px;
-  height: 28px;
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #000;
+  /*background-color: #fff;*/
+  background-image: none;
+  border: 1px solid #ccc;
   border-radius: 28px;
-  border: 2px solid #fff;
-  margin-bottom: 10px;
-  font-size: 16px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-/* line 168, ../sass/bayres.scss */
+/* line 178, ../sass/bayres.scss */
 .form-message {
   margin-top: 20px;
   text-align: center;
 }
 
-/* line 172, ../sass/bayres.scss */
+/* line 182, ../sass/bayres.scss */
 .message {
   font-weight: bold;
   color: #8cc63f;
+}
+
+/* line 186, ../sass/bayres.scss */
+.datos-titulo, .pwd-titulo {
+  font-size: 24px;
+  color: #8cc63f;
+  text-align: center;
+}
+
+/* line 191, ../sass/bayres.scss */
+.label-input {
+  font-size: 20px;
+  color: #fff;
+  margin-left: 10px;
+}
+
+/* line 196, ../sass/bayres.scss */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* line 199, ../sass/bayres.scss */
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+/* line 205, ../sass/bayres.scss */
+.container-1, .container-2 {
+  width: 90%;
+}
+
+/* line 208, ../sass/bayres.scss */
+.container-1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+/* line 216, ../sass/bayres.scss */
+.container-datos {
+  order: 0;
+  flex: 2 1 auto;
+  align-self: auto;
+}
+
+/* line 221, ../sass/bayres.scss */
+.container-datos-1, .container-datos-2 {
+  width: 165px;
+  margin: 0 15px;
+}
+
+/* line 225, ../sass/bayres.scss */
+.container-pwd {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+/* line 230, ../sass/bayres.scss */
+.container-interno {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+/* line 238, ../sass/bayres.scss */
+.control-select {
+  height: 38px;
+}
+
+/* line 241, ../sass/bayres.scss */
+.btn-cancel {
+  background: #a90329;
+  background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a90329), color-stop(44%, #8f0222), color-stop(100%, #6d0019));
+  background: -webkit-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+  background: -o-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+  background: -ms-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+  background: linear-gradient(to bottom, #a90329 0%, #8f0222 44%, #6d0019 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
 }

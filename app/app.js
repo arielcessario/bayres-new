@@ -9,7 +9,8 @@ angular.module('bayres', [
   'bayres.login',
   'bayres.usuarios',
   'bayres.productos',
-  'bayres.carrito'
+  'bayres.carrito',
+  'bayres.micuenta'
 ]).
 config(['$routeProvider', function($routeProvider) {
 

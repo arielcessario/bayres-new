@@ -1,0 +1,102 @@
+<div class="container-title">
+    <label class="title-font">Mi Cuenta</label>
+</div>
+
+<div ng-controller="MiCuentaController as cuentaCtrl" class="primary-form">
+    <div class="container-form">
+        <div class="container-1">
+            <div class="container-datos">
+                <div class="datos-titulo">
+                    Modificar datos personales
+                </div>
+                <div class="container-interno">
+                    <div class="container-datos-1">
+                        <div class="form-group">
+                            <label class="label-input">Apellido</label>
+                            <input type="text" class="form-control" ng-model="cuentaCtrl.userForm.apellido" placeholder="Apellido...">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-input">Nombre</label>
+                            <input type="text" class="form-control" ng-model="cuentaCtrl.userForm.nombre" placeholder="Nombre...">
+                        </div>
+                    </div>
+                    <div class="container-datos-2">
+                        <div class="form-group">
+                            <label class="label-input">Direcci&oacute;n</label>
+                            <input type="text" class="form-control" ng-model="cuentaCtrl.dirForm.direccion" placeholder="Direcci&oacute;n">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-input">Mail</label>
+                            <input type="text" class="form-control" ng-model="cuentaCtrl.userForm.mail" placeholder="Mail...">
+                        </div>
+                    </div>
+                </div>
+                <button ng-click="cuentaCtrl.updateUser();">Ok</button>
+            </div>
+            <div class="container-pwd">
+                <div class="pwd-titulo">
+                    Modificar Contrase&ntilde;a
+                </div>
+                <div class="form-group">
+                    <label class="label-input">Contrase&ntilde;a vieja</label>
+                    <input type="password" class="form-control" ng-model="cuentaCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+                </div>
+                <div class="form-group">
+                    <label class="label-input">Contrase&ntilde;a nueva</label>
+                    <input type="password" class="form-control" ng-model="cuentaCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+                </div>
+                <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="carrito-historico">
+                <span class="datos-titulo">Ultimos pedidos</span>
+                <select ng-click="cuentaCtrl.detalle = cuentaCtrl.pedido.productos;"
+                        ng-change="cuentaCtrl.getPedidoSelected(cuentaCtrl.pedido);"
+                        ng-model="cuentaCtrl.pedido"
+                        ng-options="pedido.carrito_id + ' - ' + pedido.fecha.substring(0, 10) + ' - ' + pedido.total for  pedido in cuentaCtrl.historico_pedidos"
+                        class="form-control control-select">
+                </select>
+            </div>
+            <div class="carrito-productos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cant.</th>
+                            <th>Precio U.</th>
+                            <th>Precio</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div ng-repeat="detalle in cuentaCtrl.detalle">
+                            <tr>
+                                <td>{{detalle.nombre}}</td>
+                                <td>{{detalle.cantidad}}</td>
+                                <td>{{detalle.precio_unitario | currency}}</td>
+                                <td>{{detalle.precio_unitario * detalle.cantidad | currency}}</td>
+                                <td>
+                                    <a href="" ng-click="cuentaCtrl.repetirProducto(detalle);">
+                                        <img src="images/cart.png" title="Agregar Producto al Carrito" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="botonera">
+                <button ng-click="userCtrl.cancelCarrito();" class="btn-cancel">Cancelar Pedido</button>
+                <button ng-click="userCtrl.repeatCarrito();">Pedilo!</button>
+                <button ng-click="userCtrl.home();">Home</button>
+            </div>
+
+            <div class="form-message">
+                <div class="message">{{userCtrl.message}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,14 +17,16 @@ angular.module('bayres.carrito', [
             data: {requiresLogin: true}
         });
     }])
-    .controller('CarritoController', CarritoController);
+    .controller('CarritoController', CarritoController)
+    .service('CarritoService', CarritoService);
 
 
 CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'CartVars', 'CartService',
-    '$timeout', '$location'];
+    '$timeout', '$location', 'CarritoService'];
+CarritoService.$inject = ['$http'];
 
 function CarritoController($routeParams, AcUtils, UserService, CartVars, CartService,
-                           $timeout, $location) {
+                           $timeout, $location, CarritoService) {
 
     //  VARIABLES
     var vm = this;
@@ -162,6 +164,15 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
             if(!error) {
                 console.log('Carrito Pedido');
                 console.log('Envio los mails');
+
+                CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, CartVars.carrito, 1, 'Falta la direccion', function(data){
+                    console.log(data);
+                });
+
+                CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, CartVars.carrito, 1, 'Falta la direccion', function(data){
+                    console.log(data);
+                });
+
                 $timeout(function () {
 
                     $location.path('/main');
@@ -198,5 +209,121 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
         return today;
     }
 
+}
+
+//*******************************************************************
+function CarritoService($http) {
+
+    //Variables
+    var service = {};
+
+    service.sendMailCancelarCarritoComprador = sendMailCancelarCarritoComprador;
+    service.sendMailCancelarCarritoVendedor = sendMailCancelarCarritoVendedor;
+    service.sendMailCarritoComprador = sendMailCarritoComprador;
+    service.sendMailCarritoVendedor = sendMailCarritoVendedor;
+
+    return service;
+
+
+    /**
+     *
+     * @param usuario
+     * @param carrito
+     * @param callback
+     * @returns {*}
+     */
+    function sendMailCancelarCarritoComprador(usuario, carrito, callback) {
+        return $http.post('mailer/mailer.php',
+            {
+                function: 'sendCancelarCarritoComprador',
+                'usuario': usuario,
+                'carrito': JSON.stringify(carrito)
+            })
+            .success(function (data) {
+                callback(data);
+            })
+            .error(function (data) {
+                callback(data);
+            });
+    }
+
+    /**
+     *
+     * @param usuario
+     * @param email
+     * @param carrito
+     * @param callback
+     * @returns {*}
+     */
+    function sendMailCancelarCarritoVendedor(usuario, email, carrito, callback) {
+        return $http.post('mailer/mailer.php',
+            {
+                function: 'sendCancelarCarritoVendedor',
+                'usuario': usuario,
+                'email': email,
+                'carrito': JSON.stringify(carrito)
+            })
+            .success(function (data) {
+                callback(data);
+            })
+            .error(function (data) {
+                callback(data);
+            });
+    }
+
+    /**
+     *
+     * @param mail
+     * @param nombre
+     * @param carrito
+     * @param sucursal
+     * @param direccion
+     * @param callback
+     */
+    function sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, callback) {
+        return $http.post('mailer/mailer.php',
+            {
+                function: 'sendCarritoComprador',
+                'email': mail,
+                'nombre': nombre,
+                'carrito': JSON.stringify(carrito),
+                'sucursal': sucursal,
+                'direccion': direccion
+            })
+            .success(function (data) {
+                callback(data);
+            })
+            .error(function (data) {
+                callback(data);
+            });
+    }
+
+    /**
+     *
+     * @param mail
+     * @param nombre
+     * @param carrito
+     * @param sucursal
+     * @param direccion
+     * @param callback
+     * @returns {*}
+     */
+    function sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, callback) {
+        return $http.post('mailer/mailer.php',
+            {
+                function: 'sendCarritoVendedor',
+                'email': mail,
+                'nombre': nombre,
+                'carrito': JSON.stringify(carrito),
+                'sucursal': sucursal,
+                'direccion': direccion
+            })
+            .success(function (data) {
+                callback(data);
+            })
+            .error(function (data) {
+                callback(data);
+            });
+    }
 }
 
