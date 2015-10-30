@@ -28,6 +28,7 @@ function LoginController($location, UserService, $timeout) {
   vm.message = '';
 
   vm.login = login;
+  vm.passwordEnter = passwordEnter;
   vm.createUsuario = createUsuario;
 
   vm.loginForm = {
@@ -52,6 +53,12 @@ function LoginController($location, UserService, $timeout) {
       });
     } else {
       vm.message = 'Ingrese una mail y contraseña';
+    }
+  }
+
+  function passwordEnter(event) {
+    if(event.keyCode == 13) {
+      vm.login();
     }
   }
 

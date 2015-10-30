@@ -4,11 +4,6 @@
 
 <div ng-controller="CarritoController as carritoCtrl" class="primary-form">
     <div class="container-form">
-
-        <div>
-            <span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
-        </div>
-
         <div ng-repeat="producto in carritoCtrl.carritoDetalles">
             <div class="producto-container">
                 <div>{{producto.producto_id}}</div>
@@ -20,7 +15,22 @@
                 <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">-</a>
             </div>
         </div>
-
+        <div class="carrito-totales">
+            <spa>Total: </spa><span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
+        </div>
+        <div>
+            <select ng-model="carritoCtrl.tipoEnvioDefecto"
+                    ng-options="tipoEnvio.name for tipoEnvio in carritoCtrl.tipoEnvios track by tipoEnvio.id"
+                    class="form-control control-select">
+            </select>
+            <select ng-model="carritoCtrl.lugarDeEnvioDefecto"
+                    ng-options="lugarEnvio.name for lugarEnvio in carritoCtrl.lugarDeEnvios track by lugarEnvio.id"
+                    class="form-control control-select">
+            </select>
+        </div>
+        <div class="info-envios">
+            Los envios se realizan por medio de cadeteria, seg&uacute;n el tama&ntilde;o y peso del pedido. El costo del mismo es a cargo del comprador, previo coordinacion con el vendedor
+        </div>
         <div class="botonera">
             <button ng-click="carritoCtrl.confirmCarrito();">Confirmar Pedido</button>
             <button ng-click="carritoCtrl.home();">Home</button>

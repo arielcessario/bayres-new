@@ -32,11 +32,23 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     var vm = this;
 
     vm.carritoDetalles = [];
+    vm.tipoEnvios = [
+        {'id':1, 'name': 'Envio a'},
+        {'id':2, 'name': 'Retira por'}
+    ];
+    vm.lugarDeEnvios = [
+        {'id':1, 'name': 'Gran Buenos Aires'},
+        {'id':2, 'name': 'Capital Federal'},
+        {'id':3, 'name': 'Interior del Pais'}
+    ];
     vm.carritoInfo = {
         cantidadDeProductos: 0,
         totalAPagar: 0.00,
         modified: false
     };
+
+    vm.tipoEnvioDefecto = {'id':1, 'name': 'Envio a'};
+    vm.lugarDeEnvioDefecto = {'id':1, 'name': 'Gran Buenos Aires'};
 
     //*******************************************************************
     //  FUNCIONES

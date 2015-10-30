@@ -1,5 +1,48 @@
-<h3>Main</h3>
 <div ng-controller="MainController as mainCtrl">
+    <div class="login">
+        <div>Bienvenido!</div>
+        <div ng-if="!mainCtrl.isLogged" class="login-separator"><a href="" ng-click="mainCtrl.logout();" class="login-text">Nuevo usuario</a></div>
+        <div ng-if="!mainCtrl.isLogged">o</div>
+        <div ng-if="!mainCtrl.isLogged" class="login-separator"><a href="" ng-click="mainCtrl.logout();" class="login-text">Ya estoy registrado</a></div>
+        <div ng-if="mainCtrl.isLogged" class="login-separator">{{mainCtrl.usuario.nombre + ' ' + mainCtrl.usuario.apellido}}</div>
+        <div ng-if="mainCtrl.isLogged"><a href="" ng-click="mainCtrl.logout();" class="login-text">Salir</a></div>
+    </div>
+
+    <div class="header">
+        <!--div class="menu-mobile menu-type-mobile">
+            <div class="nav-button"
+                 ng-click="mainCtrl.menu_mobile_open = !mainCtrl.menu_mobile_open;"
+                 ng-class="{'nav-button-transformed':mainCtrl.menu_mobile_open}">
+                <div ng-class="{'nav-button-top-transformed':mainCtrl.menu_mobile_open}"></div>
+                <div ng-class="{'nav-button-mid-transformed':mainCtrl.menu_mobile_open}"></div>
+                <div ng-class="{'nav-button-bot-transformed':mainCtrl.menu_mobile_open}"></div>
+            </div>
+            <div class="header-separator"></div>
+            <div class="bienvenidos">Bienvenidos</div>
+            <div class="logo">
+                <img src="images/logo_top.png" alt="logo" height="45px" width="45px">
+            </div>
+        </div-->
+        <div class="menu-desktop menu-type-desktop">
+            <div id="menu-desktop-logo" ng-click="mainCtrl.goTo({nombre: 'INICIO', path: '/'});">
+                <img src="images/logo_top.png" alt="logo" height="60px" width="150px">
+            </div>
+            <div id="menu-desktop-right">
+                <div id="menu-desktop-upper"></div>
+                <div id="menu-desktop-lower">
+                    <div id="menu-desktop-lower-inner">
+                        <div class="menu-desktop-btn ac-ripple"
+                             ng-class="{'menu-desktop-btn-selected':mainCtrl.selectedPage.indexOf(link.nombre) > -1 }"
+                             ripple-color="#ffffff"
+                             ng-repeat="link in mainCtrl.links"
+                             ng-click="mainCtrl.goTo(link);"> {{link.nombre}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <ul class="menu" >
         <li><a href="#/agreement">Inicial</a></li>
@@ -9,7 +52,7 @@
         <li><a href="#/productos">Productos</a></li>
         <li><a href="#/carrito">Carrito</a></li>
         <li><a href="#/micuenta">Mi Cuenta</a></li>
-        <li><a href="" ng-click="mainCtrl.logout();">Logout</a></li>
+        <li></li>
     </ul>
 
 
