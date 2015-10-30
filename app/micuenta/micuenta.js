@@ -19,12 +19,13 @@ angular.module('bayres.micuenta', [
     }])
     .controller('MiCuentaController', MiCuentaController);
 
-MiCuentaController.$inject = ['$location', 'UserService', 'CartVars', 'CartService', 'AcUtils'];
+MiCuentaController.$inject = ['$location', 'UserService', 'CartVars', 'CartService', 'AcUtils', 'CarritoService'];
 
-function MiCuentaController($location, UserService, CartVars, CartService, AcUtils) {
+function MiCuentaController($location, UserService, CartVars, CartService, AcUtils, CarritoService) {
     var vm = this;
 
     vm.userForm = {
+        'usuario_id': -1,
         'nombre': '',
         'apellido': '',
         'mail': '',
@@ -41,6 +42,11 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         'news_letter': 0,
         'password': ''
     };
+    vm.passwordForm = {
+        'usuario_id': -1,
+        'password': '',
+        'password_repeat': ''
+    }
     vm.dirForm = {
         'usuario_id': 0,
         'calle': '',
@@ -49,23 +55,39 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         'puerta': '',
         'ciudad_id': 0
     };
+    vm.messageResponse = {
+        'message': '',
+        'userError': false,
+        'pwdError': false,
+        'carritoError': false,
+        'success': false
+    }
     vm.historico_pedidos = [];
-    vm.pedido = {};
+    vm.productos = [];
+    vm.carrito = {};
     vm.repeatMail = '';
     vm.message = '';
+    vm.showCarritoDetalle = false;
 
     vm.home = home;
-    vm.update = update;
-    vm.getPedidoSelected = getPedidoSelected;
+    vm.updateUser = updateUser;
+    vm.updatePwd = updatePwd;
+    vm.cancelCarrito = cancelCarrito;
+    vm.repeatCarrito = repeatCarrito;
+    vm.addProducto = addProducto;
+    vm.getCarritoSelected = getCarritoSelected;
 
 
     if(UserService.getLogged() != false) {
         var user = UserService.getLogged();
 
+        vm.userForm.usuario_id = user.usuario_id;
         vm.userForm.apellido = user.apellido;
         vm.userForm.nombre = user.nombre;
         vm.userForm.mail = user.mail;
         vm.userForm.news_letter = user.news_letter;
+
+        vm.passwordForm.usuario_id = user.usuario_id;
 
         getHistoricoDePedidos(user);
     }
@@ -78,17 +100,23 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
             });
             var select_one = { pedido_id:-1, fecha:'Seleccione un pedido' };
             vm.historico_pedidos.unshift(select_one);
-            vm.pedido = vm.historico_pedidos[0];
+            vm.carrito = vm.historico_pedidos[0];
         });
     }
 
-    function getPedidoSelected(pedido) {
-        console.log(pedido);
-        if(pedido != null) {
-            vm.carrito_mensaje = '0';
-            vm.message_error = '';
-            vm.pedido = pedido;
+    function getCarritoSelected(carrito) {
+        console.log(carrito);
+        if(carrito != null) {
+            if(carrito.pedido_id == -1)
+                vm.showCarritoDetalle = false;
+            else
+                vm.showCarritoDetalle = true;
+            vm.carrito = carrito;
         }
+    }
+
+    function addProducto(producto) {
+        console.log(producto);
     }
 
     function validateForm() {
@@ -101,13 +129,144 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         return false;
     }
 
-    function update() {
+    function updateUser() {
         if(validateForm()) {
             UserService.update(vm.userForm, function (data) {
                 console.log(data);
+                if(data != -1) {
+                    setMessageResponse(true, false, false, false, 'Datos actualizados');
+                } else {
+                    setMessageResponse(false, true, false, false, 'Error actualizando usuario');
+                }
             });
         } else {
-            vm.message = 'Complete todos los campos';
+            setMessageResponse(false, true, false, false, 'Complete todos los campos');
+        }
+    }
+
+    function updatePwd() {
+        if(vm.passwordForm.password.trim().length > 0 && vm.passwordForm.password_repeat.trim().length > 0) {
+            if(vm.passwordForm.password.trim() == vm.passwordForm.password_repeat.trim()) {
+                UserService.update(vm.passwordForm, function (data) {
+                    console.log(data);
+                    if(data != -1) {
+                        setMessageResponse(true, false, false, false, 'La contraseña se actualizo');
+                    } else {
+                        setMessageResponse(false, false, true, false, 'Error actualizando contraseña');
+                    }
+                });
+            } else {
+                setMessageResponse(false, false, true, false, 'Las contraseñas deben ser iguales');
+            }
+        } else {
+            setMessageResponse(false, false, true, false, 'Ingrese las contraseñas');
+        }
+    }
+
+    /**
+     *
+     * @param success
+     * @param userError
+     * @param pwdError
+     * @param carritoError
+     * @param message
+     */
+    function setMessageResponse(success, userError, pwdError, carritoError, message) {
+        vm.messageResponse.success = success;
+        vm.messageResponse.userError = userError;
+        vm.messageResponse.pwdError = pwdError;
+        vm.messageResponse.carritoError = carritoError;
+        vm.messageResponse.message = message;
+    }
+
+    function cancelCarrito(carrito) {
+        if(carrito.pedido_id != undefined) {
+            setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+        } else {
+            if (carrito.status == 3) {
+                setMessageResponse(false, false, false, true, 'El Pedido ya esta confirmado. No se puede cancelar');
+            }
+            else {
+                var result = confirm('¿Esta seguro que desea Cancelar el Pedido ' + carrito.carrito_id + '?');
+                if (result) {
+                    carrito.status = 0;
+                    CartService.update(carrito, function(data){
+                        console.log(data);
+                        if(data != -1){
+                            var usuario = UserService.getLogged();
+
+                            CarritoService.sendMailCancelarCarritoComprador(usuario.mail, carrito, function(data){
+                                if(data) {
+                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmación');
+                                } else {
+                                    setMessageResponse(false, false, false, true, 'Error enviando el mail');
+                                }
+                            });
+                            var usuarioNombre = usuario.apellido + ', ' + usuario.nombre;
+                            CarritoService.sendMailCancelarCarritoVendedor(usuarioNombre, usuario.mail, carrito, function(data){
+                                if(data) {
+                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmación');
+                                } else {
+                                    setMessageResponse(false, false, false, true, 'Error enviando el mail');
+                                }
+                            });
+
+                            getHistoricoDePedidos(usuario);
+                            setMessageResponse(true, false, false, false, 'Su pedido fue cancelado satisfactoriamente');
+                        } else {
+                            setMessageResponse(false, false, false, true, 'Error cancelando el pedido');
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    function repeatCarrito(carrito) {
+        console.log(carrito);
+
+        if(carrito === undefined) {
+            setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+        } else {
+            if(carrito.carrito_id == -1) {
+                setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+            } else {
+                carrito.productos.forEach(function(producto) {
+                    var miProducto = {
+                        producto_id: producto.producto_id,
+                        cantidad: producto.cantidad,
+                        en_oferta: producto.en_oferta,
+                        precio_unitario: producto.precio_unitario,
+                        carrito_id: -1,
+                        nombre: producto.nombre
+                    };
+
+                    var encontrado = false;
+                    var indexToDelete = 0;
+
+                    if(vm.carritoDetalles.length > 0) {
+                        var index = 0;
+                        vm.carritoDetalles.forEach(function(data){
+                            if(data.producto_id == miProducto.producto_id) {
+                                miProducto.cantidad = data.cantidad + miProducto.cantidad;
+                                indexToDelete = index;
+                                encontrado = true;
+                            }
+                            index = index + 1;
+                        });
+
+                        if(encontrado) {
+                            console.log('indexToDelete: ' + indexToDelete);
+                            vm.carritoDetalles.splice( indexToDelete, 1 );
+                        }
+                    }
+                    vm.carritoDetalles.push(miProducto);
+                    vm.carritoDetalles.sort(function(a, b){ return a.nombre - b.nombre; });
+                    console.log(vm.carritoDetalles);
+
+                    calcularCarritoTotal();
+                });
+            }
         }
     }
 

@@ -31,7 +31,15 @@
                         </div>
                     </div>
                 </div>
-                <button ng-click="cuentaCtrl.updateUser();">Ok</button>
+                <div class="container-buttons">
+                    <div class="">
+                        <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
+                    </div>
+                    <button ng-click="cuentaCtrl.updateUser();">Ok</button>
+                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.userError == true">
+                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
+                    </div>
+                </div>
             </div>
             <div class="container-pwd">
                 <div class="pwd-titulo">
@@ -39,63 +47,63 @@
                 </div>
                 <div class="form-group">
                     <label class="label-input">Contrase&ntilde;a vieja</label>
-                    <input type="password" class="form-control" ng-model="cuentaCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+                    <input type="password" class="form-control" ng-model="cuentaCtrl.passwordForm.password" placeholder="Contrase&ntilde;a...">
                 </div>
                 <div class="form-group">
                     <label class="label-input">Contrase&ntilde;a nueva</label>
-                    <input type="password" class="form-control" ng-model="cuentaCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+                    <input type="password" class="form-control" ng-model="cuentaCtrl.passwordForm.password_repeat" placeholder="Contrase&ntilde;a...">
                 </div>
-                <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
+                <div class="container-buttons">
+                    <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
+                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.pwdError == true">
+                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container-2">
-            <div class="carrito-historico">
-                <span class="datos-titulo">Ultimos pedidos</span>
-                <select ng-click="cuentaCtrl.detalle = cuentaCtrl.pedido.productos;"
-                        ng-change="cuentaCtrl.getPedidoSelected(cuentaCtrl.pedido);"
-                        ng-model="cuentaCtrl.pedido"
-                        ng-options="pedido.carrito_id + ' - ' + pedido.fecha.substring(0, 10) + ' - ' + pedido.total for  pedido in cuentaCtrl.historico_pedidos"
-                        class="form-control control-select">
-                </select>
-            </div>
-            <div class="carrito-productos">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cant.</th>
-                            <th>Precio U.</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div ng-repeat="detalle in cuentaCtrl.detalle">
-                            <tr>
-                                <td>{{detalle.nombre}}</td>
-                                <td>{{detalle.cantidad}}</td>
-                                <td>{{detalle.precio_unitario | currency}}</td>
-                                <td>{{detalle.precio_unitario * detalle.cantidad | currency}}</td>
-                                <td>
-                                    <a href="" ng-click="cuentaCtrl.repetirProducto(detalle);">
-                                        <img src="images/cart.png" title="Agregar Producto al Carrito" />
-                                    </a>
-                                </td>
-                            </tr>
+            <div class="container-carrito" >
+                <div class="carrito-historico">
+                    <span class="carrito-titulo">Ultimos pedidos</span>
+                    <select ng-click="cuentaCtrl.productos = cuentaCtrl.carrito.productos;"
+                            ng-change="cuentaCtrl.getCarritoSelected(cuentaCtrl.carrito);"
+                            ng-model="cuentaCtrl.carrito"
+                            ng-options="carrito.carrito_id + ' - ' + carrito.fecha.substring(0, 10) + ' - ' + carrito.total for carrito in cuentaCtrl.historico_pedidos"
+                            class="form-control control-select">
+                    </select>
+                </div>
+                <div class="carrito-productos" ng-if="cuentaCtrl.showCarritoDetalle == true">
+                    <div class="carrito-table-head">
+                        <div class="carrito-table-row-name">Producto</div>
+                        <div class="carrito-table-row">Cant.</div>
+                        <div class="carrito-table-row">Precio U.</div>
+                        <div class="carrito-table-row">Precio</div>
+                        <div class="carrito-table-row"><img src="images/cart.png" title="" hidden/></div>
+                    </div>
+                    <div ng-repeat="producto in cuentaCtrl.productos" class="carrito-table-body">
+                        <div class="carrito-table-row-name font-color-text">{{producto.nombre}} </div>
+                        <div class="carrito-table-row div-input">{{producto.cantidad}}</div>
+                        <div class="carrito-table-row div-input">{{producto.precio_unitario | currency}}</div>
+                        <div class="carrito-table-row div-input">{{producto.precio_unitario * producto.cantidad | currency}}</div>
+                        <div class="carrito-table-row">
+                            <a href="" ng-click="cuentaCtrl.addProducto(producto);">
+                                <img src="images/cart.png" title="Agregar Producto al Carrito" />
+                            </a>
                         </div>
-                    </tbody>
-                </table>
+                    </div>
+                </div>
+                <div class="container-buttons">
+                    <div class="botonera">
+                        <button ng-click="cuentaCtrl.cancelCarrito();" class="btn-cancel">Cancelar Pedido</button>
+                        <button ng-click="cuentaCtrl.repeatCarrito();">Pedilo!</button>
+                        <button ng-click="cuentaCtrl.home();">Home</button>
+                        <span class="carrito-subtotal font-color-text">Subtotal:</span><div class="div-input-big">{{cuentaCtrl.carrito.total | currency}}</div>
+                    </div>
 
-            </div>
-
-            <div class="botonera">
-                <button ng-click="userCtrl.cancelCarrito();" class="btn-cancel">Cancelar Pedido</button>
-                <button ng-click="userCtrl.repeatCarrito();">Pedilo!</button>
-                <button ng-click="userCtrl.home();">Home</button>
-            </div>
-
-            <div class="form-message">
-                <div class="message">{{userCtrl.message}}</div>
+                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.carritoError == true">
+                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

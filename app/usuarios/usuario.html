@@ -1,5 +1,5 @@
 <div class="container-title">
-  <label class="title-font">Registro</label>
+  <label class="title-font font-color-text">Registro</label>
 </div>
 
 <div ng-controller="UsuarioController as userCtrl" class="primary-form">
@@ -18,7 +18,7 @@
         <input type="text" class="form-control" ng-model="userCtrl.userForm.telefono" placeholder="Tel&eacute;fono...">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.dirForm.direccion" placeholder="Direcci&oacute;n">
+        <input type="text" class="form-control" ng-model="userCtrl.dirForm.direccion" placeholder="Direcci&oacute;n...">
       </div>
       <div class="form-group">
         <input type="text" class="form-control" ng-model="userCtrl.userForm.mail" placeholder="Mail...">
@@ -28,6 +28,9 @@
       </div>
       <div class="form-group">
         <input type="password" class="form-control" ng-model="userCtrl.userForm.password" placeholder="Contrase&ntilde;a...">
+      </div>
+      <div class="form-group">
+        <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
       </div>
 
       <div class="botonera">
