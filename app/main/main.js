@@ -55,34 +55,6 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.hideSubCategoria = hideSubCategoria;
 
 
-    /*
-    for (var i = 0; i < vm.links.length; i++) {
-        if (vm.links[i].path == $location.$$path) {
-            vm.selectedPage = vm.links[i].nombre;
-        }
-
-        if ($location.$$path == '/administracion') {
-            vm.selectedPage = 'INGRESO';
-        }
-
-        if ($location.$$path == '/servicios') {
-            vm.selectedPage = 'INICIO';
-        }
-
-        if ($location.$$path == '/nuevo_usuario') {
-            vm.selectedPage = 'INGRESO';
-        }
-
-        if ($location.$$path.indexOf('/noticias') > -1) {
-            //response = '/' + $location.$$path.split('/')[1];
-            vm.selectedPage = 'NOTICIAS';
-        }
-    }
-*/
-
-
-
-
     ProductService.getByParams("en_oferta", "1", "true", function(data){
         vm.productosEnOfertas = data;
     });

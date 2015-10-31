@@ -16,12 +16,15 @@ angular.module('bayres', [
 config(['$routeProvider', function($routeProvider) {
 
 }])
-.controller('BayresController', BayresController);
+.controller('BayresController', BayresController)
+.service('LinksService', LinksService);
 
 
-BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService', 'CategoryService'];
+BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService',
+  'CategoryService', 'LinksService', 'CartVars'];
 
-function BayresController($scope, $location, UserService, ProductService, CategoryService) {
+function BayresController($scope, $location, UserService, ProductService,
+                          CategoryService, LinksService, CartVars) {
 
   var vm = this;
   vm.isLogged = false;
@@ -32,6 +35,11 @@ function BayresController($scope, $location, UserService, ProductService, Catego
   var productosList = [];
   vm.categorias = [];
   vm.usuario = {};
+  vm.carritoInfo = {
+    cantidadDeProductos: CartVars.carrito_cantidad_productos(),
+    totalAPagar: CartVars.carrito_total(),
+    modified: false
+  };
 
   vm.goTo = goTo;
   vm.logout = logout;
@@ -41,35 +49,32 @@ function BayresController($scope, $location, UserService, ProductService, Catego
   $location.path('/agreement');
 
 
-  function LinksService() {
-    this.links = [
-      {nombre: 'INICIO', path: '/main'},
-      {nombre: 'Categorias', path: '/main'},
-      {nombre: 'Mi Carrito', path: '/carrito'},
-      {nombre: 'Mi Cuenta', path: '/micuenta'},
-      {nombre: 'Finalizar Compra', path: '/carrito'},
-      {nombre: 'Compras', path: '/revistas'},
-      {nombre: 'Contacto', path: '/contacto'}
-    ];
-  }
-
   $scope.$on('links', function (event, args) {
     vm.links = LinksService.links;
   });
 
-  vm.links = this.links = [
-    {nombre: 'INICIO', path: '/main'},
-    {nombre: 'Categorias', path: '/main'},
-    {nombre: 'Mi Carrito', path: '/carrito'},
-    {nombre: 'Mi Cuenta', path: '/micuenta'},
-    {nombre: 'Finalizar Compra', path: '/carrito'},
-    {nombre: 'Compras', path: '/revistas'},
-    {nombre: 'Contacto', path: '/contacto'}
-  ];
-
   if(UserService.getLogged() != false) {
     vm.usuario = UserService.getLogged();
     vm.isLogged = true;
+  }
+
+  for (var i = 0; i < vm.links.length; i++) {
+    if (vm.links[i].path == $location.$$path) {
+      vm.selectedPage = vm.links[i].nombre;
+    }
+
+    if ($location.$$path == '/login') {
+      vm.selectedPage = 'INGRESO';
+    }
+
+    if ($location.$$path == '/main') {
+      vm.selectedPage = 'INICIO';
+    }
+
+    if ($location.$$path == '/usuarios') {
+      vm.selectedPage = 'INGRESO';
+    }
+
   }
 
   function goTo(location) {
@@ -116,4 +121,16 @@ function BayresController($scope, $location, UserService, ProductService, Catego
     });
   });
 
+}
+
+function LinksService() {
+  this.links = [
+    {nombre: 'INICIO', path: '/main'},
+    {nombre: 'Categorias', path: '/main'},
+    {nombre: 'Mi Carrito', path: '/carrito'},
+    {nombre: 'Mi Cuenta', path: '/micuenta'},
+    {nombre: 'Finalizar Compra', path: '/carrito'},
+    {nombre: 'Compras', path: '/revistas'},
+    {nombre: 'Contacto', path: '/contacto'}
+  ];
 }

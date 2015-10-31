@@ -23,23 +23,25 @@
     <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.login();" class="login-text">Ya estoy registrado</a></div>
     <div ng-if="bayresCtrl.isLogged" class="login-separator">{{bayresCtrl.usuario.nombre + ' ' + bayresCtrl.usuario.apellido}}</div>
     <div ng-if="bayresCtrl.isLogged"><a href="" ng-click="bayresCtrl.logout();" class="login-text">Salir</a></div>
+    <div class="mi-carrito">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
+    <img src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
   </div>
 
   <div class="header">
-    <!--div class="menu-mobile menu-type-mobile">
+    <div class="menu-mobile menu-type-mobile">
         <div class="nav-button"
-             ng-click="mainCtrl.menu_mobile_open = !mainCtrl.menu_mobile_open;"
-             ng-class="{'nav-button-transformed':mainCtrl.menu_mobile_open}">
-            <div ng-class="{'nav-button-top-transformed':mainCtrl.menu_mobile_open}"></div>
-            <div ng-class="{'nav-button-mid-transformed':mainCtrl.menu_mobile_open}"></div>
-            <div ng-class="{'nav-button-bot-transformed':mainCtrl.menu_mobile_open}"></div>
+             ng-click="bayresCtrl.menu_mobile_open = !bayresCtrl.menu_mobile_open;"
+             ng-class="{'nav-button-transformed':bayresCtrl.menu_mobile_open}">
+            <div ng-class="{'nav-button-top-transformed':bayresCtrl.menu_mobile_open}"></div>
+            <div ng-class="{'nav-button-mid-transformed':bayresCtrl.menu_mobile_open}"></div>
+            <div ng-class="{'nav-button-bot-transformed':bayresCtrl.menu_mobile_open}"></div>
         </div>
         <div class="header-separator"></div>
         <div class="bienvenidos">Bienvenidos</div>
         <div class="logo">
             <img src="images/logo_top.png" alt="logo" height="45px" width="45px">
         </div>
-    </div-->
+    </div>
     <div class="menu-desktop menu-type-desktop">
       <div id="menu-desktop-logo" ng-click="bayresCtrl.goTo({nombre: 'INICIO', path: '/'});">
         <img src="images/logo_top.png" alt="logo" height="60px" width="150px">
@@ -57,6 +59,14 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="menu-mobile-panel" ng-class="{'menu-mobile-panel-show':bayresCtrl.menu_mobile_open}">
+    <div class="menu-desktop-btn ac-ripple"
+         ng-class="{'menu-desktop-btn-selected':bayresCtrl.selectedPage.indexOf(link.nombre) > -1 }"
+         ripple-color="#ffffff"
+         ng-repeat="link in bayresCtrl.links"
+         ng-click="bayresCtrl.goTo(link); bayresCtrl.menu_mobile_open=false;"> {{link.nombre}}
     </div>
   </div>
 
