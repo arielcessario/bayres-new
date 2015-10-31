@@ -79,14 +79,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-family: "Myriad Pro Regular";
   src: url('../fonts/MYRIADPRO-REGULAR.woff?1446168714') format('woff');
 }
-/* line 32, ../sass/bayres.scss */
+/* line 33, ../sass/bayres.scss */
 body {
   font-family: "Myriad Pro Bold Condensed", serif;
   overflow-x: hidden;
   background-color: #00fefe;
 }
 
-/* line 37, ../sass/bayres.scss */
+/* line 38, ../sass/bayres.scss */
 .font-color-text {
   color: #fff;
 }
@@ -94,7 +94,7 @@ body {
 /*
 AGREEMENT
 */
-/* line 43, ../sass/bayres.scss */
+/* line 44, ../sass/bayres.scss */
 .agreement-form {
   position: fixed;
   height: 100%;
@@ -113,7 +113,7 @@ AGREEMENT
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575457', endColorstr='#474647', GradientType=1);
 }
 
-/* line 60, ../sass/bayres.scss */
+/* line 61, ../sass/bayres.scss */
 .agreement-form-container {
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@ AGREEMENT
 }
 
 @media (max-width: 360px) {
-  /* line 72, ../sass/bayres.scss */
+  /* line 73, ../sass/bayres.scss */
   .img-logo {
     width: 335px;
     height: 120px;
@@ -135,7 +135,7 @@ AGREEMENT
   }
 }
 
-/* line 81, ../sass/bayres.scss */
+/* line 82, ../sass/bayres.scss */
 .agreement-titulo {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 50px;
@@ -146,14 +146,14 @@ AGREEMENT
   text-align: center;
 }
 @media (max-width: 360px) {
-  /* line 81, ../sass/bayres.scss */
+  /* line 82, ../sass/bayres.scss */
   .agreement-titulo {
     font-size: 45px;
     margin-top: 0px;
   }
 }
 
-/* line 94, ../sass/bayres.scss */
+/* line 95, ../sass/bayres.scss */
 .agreement-text {
   font-family: "Myriad Pro Regular";
   font-size: 20px;
@@ -167,7 +167,7 @@ AGREEMENT
   text-align: center;
 }
 @media (max-width: 360px) {
-  /* line 94, ../sass/bayres.scss */
+  /* line 95, ../sass/bayres.scss */
   .agreement-text {
     font-size: 16px;
   }
@@ -176,7 +176,7 @@ AGREEMENT
 /*
 HEADER - MEDIOS DE PAGOS Y FOOTER
 */
-/* line 112, ../sass/bayres.scss */
+/* line 113, ../sass/bayres.scss */
 .login {
   display: flex;
   flex-direction: row;
@@ -195,23 +195,23 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   font-family: "Myriad Pro Bold Condensed", serif;
 }
 
-/* line 129, ../sass/bayres.scss */
+/* line 130, ../sass/bayres.scss */
 .login-separator {
   padding: 0 5px;
 }
 
-/* line 132, ../sass/bayres.scss */
+/* line 133, ../sass/bayres.scss */
 .login-text {
   color: #ffae00;
   text-decoration: none;
 }
 
-/* line 136, ../sass/bayres.scss */
+/* line 137, ../sass/bayres.scss */
 .login-text:hover {
   color: #ffff00;
 }
 
-/* line 139, ../sass/bayres.scss */
+/* line 140, ../sass/bayres.scss */
 .header {
   width: 100%;
   height: 50px;
@@ -227,7 +227,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   transform: translate3d(0, 0, 0);
 }
 @media (min-width: 800px) {
-  /* line 139, ../sass/bayres.scss */
+  /* line 140, ../sass/bayres.scss */
   .header {
     display: flex;
     justify-content: center;
@@ -239,7 +239,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   visibility: collapse;
   display: none !important;
 }*/
-/* line 162, ../sass/bayres.scss */
+/* line 163, ../sass/bayres.scss */
 .menu-desktop {
   display: flex;
   flex-direction: row;
@@ -250,7 +250,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   width: 100%;
 }
 
-/* line 171, ../sass/bayres.scss */
+/* line 172, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-logo {
   flex: 2;
   background-color: transparent;
@@ -262,19 +262,19 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   z-index: 401;
 }
 
-/* line 181, ../sass/bayres.scss */
+/* line 182, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right {
   flex: 8;
   display: flex;
   flex-direction: column;
 }
 
-/* line 186, ../sass/bayres.scss */
+/* line 187, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right #menu-desktop-upper {
   flex: 1;
 }
 
-/* line 189, ../sass/bayres.scss */
+/* line 190, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right #menu-desktop-lower {
   background-color: transparent;
   flex: 1;
@@ -289,7 +289,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   align-items: center;
 }
 
-/* line 203, ../sass/bayres.scss */
+/* line 204, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right #menu-desktop-lower #menu-desktop-lower-inner {
   max-width: 1000px;
   width: 100%;
@@ -299,13 +299,13 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   align-items: flex-end;
 }
 
-/* line 211, ../sass/bayres.scss */
+/* line 212, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right #menu-desktop-lower .menu-desktop-btn:hover, .menu-desktop #menu-desktop-right #menu-desktop-lower .menu-desktop-btn-selected {
   color: #fff;
   background-color: darkgreen;
 }
 
-/* line 215, ../sass/bayres.scss */
+/* line 216, ../sass/bayres.scss */
 .menu-desktop #menu-desktop-right #menu-desktop-lower .menu-desktop-btn {
   cursor: pointer;
   font-family: "Myriad Pro Condensed";
@@ -318,14 +318,14 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   color: #fff;
 }
 
-/* line 227, ../sass/bayres.scss */
+/* line 228, ../sass/bayres.scss */
 .menu-mobile {
   display: flex;
   height: 100%;
   z-index: 100;
 }
 
-/* line 232, ../sass/bayres.scss */
+/* line 233, ../sass/bayres.scss */
 .nav-button {
   flex: 1;
   margin-top: 15px;
@@ -339,7 +339,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   transform-style: preserve-3D;
 }
 
-/* line 244, ../sass/bayres.scss */
+/* line 245, ../sass/bayres.scss */
 .menu-mobile .header-separator {
   height: 40px;
   margin-top: 5px;
@@ -348,7 +348,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   background-color: white;
 }
 
-/* line 251, ../sass/bayres.scss */
+/* line 252, ../sass/bayres.scss */
 .bienvenidos {
   color: white;
   margin-left: 30px;
@@ -357,7 +357,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   text-align: left;
 }
 
-/* line 258, ../sass/bayres.scss */
+/* line 259, ../sass/bayres.scss */
 .menu-mobile .logo {
   flex: 5;
   padding: 5px;
@@ -368,20 +368,20 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
 /*
 CONTENEDORES
 */
-/* line 268, ../sass/bayres.scss */
+/* line 269, ../sass/bayres.scss */
 .container-title {
   text-align: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* line 273, ../sass/bayres.scss */
+/* line 274, ../sass/bayres.scss */
 .title-font {
   font-size: 71px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
 }
 
-/* line 278, ../sass/bayres.scss */
+/* line 279, ../sass/bayres.scss */
 .primary-form {
   display: flex;
   flex-direction: column;
@@ -391,7 +391,7 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 286, ../sass/bayres.scss */
+/* line 287, ../sass/bayres.scss */
 .container-form {
   min-height: 370px;
   width: 690px;
@@ -406,13 +406,13 @@ CONTENEDORES
   align-items: center;
 }
 @media (max-width: 360px) {
-  /* line 286, ../sass/bayres.scss */
+  /* line 287, ../sass/bayres.scss */
   .container-form {
     width: 340px;
   }
 }
 
-/* line 302, ../sass/bayres.scss */
+/* line 303, ../sass/bayres.scss */
 .container-form-2 {
   margin: 40px 0;
   display: flex;
@@ -423,13 +423,13 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 311, ../sass/bayres.scss */
+/* line 312, ../sass/bayres.scss */
 .container-1, .container-2 {
   width: 100%;
   margin-top: 15px;
 }
 
-/* line 315, ../sass/bayres.scss */
+/* line 316, ../sass/bayres.scss */
 .container-1 {
   display: flex;
   flex-direction: row;
@@ -439,54 +439,54 @@ CONTENEDORES
   align-items: flex-start;
 }
 
-/* line 323, ../sass/bayres.scss */
+/* line 324, ../sass/bayres.scss */
 .container-2 {
   margin-bottom: 15px;
 }
 
-/* line 326, ../sass/bayres.scss */
+/* line 327, ../sass/bayres.scss */
 .container-datos {
   order: 0;
   flex: 2 1 auto;
   align-self: auto;
 }
 
-/* line 331, ../sass/bayres.scss */
+/* line 332, ../sass/bayres.scss */
 .container-datos-1, .container-datos-2 {
   width: 165px;
   margin: 0 15px;
 }
 
-/* line 335, ../sass/bayres.scss */
+/* line 336, ../sass/bayres.scss */
 .container-pwd {
   order: 0;
   flex: 1 1 auto;
   align-self: auto;
 }
 
-/* line 340, ../sass/bayres.scss */
+/* line 341, ../sass/bayres.scss */
 .container-datos, .container-pwd, .container-carrito {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* line 343, ../sass/bayres.scss */
+/* line 344, ../sass/bayres.scss */
 .container-datos {
   margin-left: 15px;
   margin-right: 7px;
 }
 
-/* line 347, ../sass/bayres.scss */
+/* line 348, ../sass/bayres.scss */
 .container-pwd {
   margin-left: 7px;
   margin-right: 15px;
 }
 
-/* line 351, ../sass/bayres.scss */
+/* line 352, ../sass/bayres.scss */
 .container-carrito {
   margin: 0 15px;
 }
 
-/* line 354, ../sass/bayres.scss */
+/* line 355, ../sass/bayres.scss */
 .container-interno {
   display: flex;
   flex-direction: row;
@@ -496,7 +496,7 @@ CONTENEDORES
   align-items: flex-start;
 }
 
-/* line 362, ../sass/bayres.scss */
+/* line 363, ../sass/bayres.scss */
 .carrito-historico, .carrito-productos {
   display: flex;
   flex-direction: row;
@@ -507,7 +507,7 @@ CONTENEDORES
   padding: 10px 0;
 }
 
-/* line 371, ../sass/bayres.scss */
+/* line 372, ../sass/bayres.scss */
 .container-producto {
   width: 180px;
   margin: 5px 8px 0 8px;
@@ -523,7 +523,7 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 385, ../sass/bayres.scss */
+/* line 386, ../sass/bayres.scss */
 .container-producto-border {
   border: 1px solid #8cc63f;
   width: 170px;
@@ -537,7 +537,7 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 397, ../sass/bayres.scss */
+/* line 398, ../sass/bayres.scss */
 .producto-nombre {
   font-family: "Myriad Pro Bold Condensed", serif;
   font-size: 19px;
@@ -553,13 +553,13 @@ CONTENEDORES
   text-shadow: 1px 1px 1px #000000;
 }
 
-/* line 411, ../sass/bayres.scss */
+/* line 412, ../sass/bayres.scss */
 .producto-img {
   height: 112px;
   width: 112px;
 }
 
-/* line 415, ../sass/bayres.scss */
+/* line 416, ../sass/bayres.scss */
 .producto-botones {
   display: flex;
   flex-direction: row;
@@ -569,27 +569,56 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 423, ../sass/bayres.scss */
+/* line 424, ../sass/bayres.scss */
 .producto-peso, .producto-precio {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-/* line 427, ../sass/bayres.scss */
+/* line 428, ../sass/bayres.scss */
 .producto-peso {
   color: red;
 }
 
-/* line 430, ../sass/bayres.scss */
+/* line 431, ../sass/bayres.scss */
 .producto-precio {
   color: #fff;
   margin-right: 25px;
 }
 
+/* line 435, ../sass/bayres.scss */
+.container-main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  text-align: center;
+  min-width: 480px;
+}
+
+/* line 446, ../sass/bayres.scss */
+.container-main-title {
+  color: #fff;
+}
+
+/* line 449, ../sass/bayres.scss */
+.container-main-productos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  width: 800px;
+  min-width: 480px;
+}
+
 /**
 CONTROLES
 */
-/* line 437, ../sass/bayres.scss */
+/* line 462, ../sass/bayres.scss */
 .botonera {
   margin-top: 20px;
   display: flex;
@@ -600,13 +629,13 @@ CONTROLES
   align-items: center;
 }
 @media (max-width: 360px) {
-  /* line 437, ../sass/bayres.scss */
+  /* line 462, ../sass/bayres.scss */
   .botonera {
     margin-bottom: 30px;
   }
 }
 
-/* line 449, ../sass/bayres.scss */
+/* line 474, ../sass/bayres.scss */
 .btn-carrito {
   width: 90px;
   height: 40px;
@@ -621,7 +650,22 @@ CONTROLES
   align-items: center;
 }
 
-/* line 462, ../sass/bayres.scss */
+/* line 487, ../sass/bayres.scss */
+.btn-carrito:hover {
+  width: 90px;
+  height: 40px;
+  background: url("../images/boton-oferta-hover.png") 50% 50% no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+/* line 500, ../sass/bayres.scss */
 .btn-info {
   width: 40px;
   height: 40px;
@@ -630,7 +674,16 @@ CONTROLES
   cursor: pointer;
 }
 
-/* line 469, ../sass/bayres.scss */
+/* line 507, ../sass/bayres.scss */
+.btn-info:hover {
+  width: 40px;
+  height: 40px;
+  background: url("../images/info_2b.png") 50% 50% no-repeat;
+  background-size: 90%;
+  cursor: pointer;
+}
+
+/* line 514, ../sass/bayres.scss */
 button {
   width: 100px;
   height: 30px;
@@ -652,7 +705,7 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
 }
 
-/* line 489, ../sass/bayres.scss */
+/* line 534, ../sass/bayres.scss */
 .form-control {
   display: block;
   width: 100%;
@@ -671,19 +724,19 @@ button {
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-/* line 506, ../sass/bayres.scss */
+/* line 551, ../sass/bayres.scss */
 .form-message {
   margin-top: 20px;
   text-align: center;
 }
 
-/* line 510, ../sass/bayres.scss */
+/* line 555, ../sass/bayres.scss */
 .message {
   font-weight: bold;
   color: #8cc63f;
 }
 
-/* line 514, ../sass/bayres.scss */
+/* line 559, ../sass/bayres.scss */
 .datos-titulo, .pwd-titulo, .carrito-titulo {
   font-size: 24px;
   color: #8cc63f;
@@ -691,24 +744,24 @@ button {
   margin: 15px 0;
 }
 
-/* line 520, ../sass/bayres.scss */
+/* line 565, ../sass/bayres.scss */
 .carrito-titulo {
   margin-right: 5px;
 }
 
-/* line 523, ../sass/bayres.scss */
+/* line 568, ../sass/bayres.scss */
 .label-input {
   font-size: 20px;
   color: #fff;
   margin-left: 10px;
 }
 
-/* line 528, ../sass/bayres.scss */
+/* line 573, ../sass/bayres.scss */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* line 531, ../sass/bayres.scss */
+/* line 576, ../sass/bayres.scss */
 label {
   display: inline-block;
   max-width: 100%;
@@ -716,14 +769,14 @@ label {
   font-weight: 700;
 }
 
-/* line 538, ../sass/bayres.scss */
+/* line 583, ../sass/bayres.scss */
 .control-select {
   height: 38px;
   width: 300px;
   margin-left: 5px;
 }
 
-/* line 543, ../sass/bayres.scss */
+/* line 588, ../sass/bayres.scss */
 .carrito-table-head, .carrito-table-body {
   display: flex;
   flex-direction: row;
@@ -734,23 +787,23 @@ label {
   width: 100%;
 }
 
-/* line 552, ../sass/bayres.scss */
+/* line 597, ../sass/bayres.scss */
 .carrito-table-head {
   color: #8cc63f;
 }
 
-/* line 555, ../sass/bayres.scss */
+/* line 600, ../sass/bayres.scss */
 .carrito-table-row-name {
   width: 220px;
 }
 
-/* line 558, ../sass/bayres.scss */
+/* line 603, ../sass/bayres.scss */
 .carrito-table-row {
   width: 85px;
   text-align: center;
 }
 
-/* line 562, ../sass/bayres.scss */
+/* line 607, ../sass/bayres.scss */
 .div-input, .div-input-big {
   background-color: #fff;
   padding: 5px 10px;
@@ -760,20 +813,20 @@ label {
   text-align: right;
 }
 
-/* line 570, ../sass/bayres.scss */
+/* line 615, ../sass/bayres.scss */
 .div-input {
   width: 60px;
   font-size: 12px;
 }
 
-/* line 574, ../sass/bayres.scss */
+/* line 619, ../sass/bayres.scss */
 .div-input-big {
   width: 90px;
   font-size: 18px;
   height: 20px;
 }
 
-/* line 579, ../sass/bayres.scss */
+/* line 624, ../sass/bayres.scss */
 .carrito-entrega {
   display: flex;
   flex-direction: row;
@@ -783,13 +836,13 @@ label {
   align-items: center;
 }
 
-/* line 587, ../sass/bayres.scss */
+/* line 632, ../sass/bayres.scss */
 .carrito-subtotal {
   font-size: 26px;
   font-weight: bold;
 }
 
-/* line 591, ../sass/bayres.scss */
+/* line 636, ../sass/bayres.scss */
 .container-contacto {
   display: flex;
   flex-direction: row;
@@ -800,22 +853,22 @@ label {
   width: 100%;
 }
 
-/* line 600, ../sass/bayres.scss */
+/* line 645, ../sass/bayres.scss */
 .container-contacto-1, .container-contacto-2 {
   width: 40%;
 }
 
-/* line 603, ../sass/bayres.scss */
+/* line 648, ../sass/bayres.scss */
 .container-contacto-1 {
   margin-right: 25px;
 }
 
-/* line 606, ../sass/bayres.scss */
+/* line 651, ../sass/bayres.scss */
 .container-contacto-2 {
   margin-left: 30px;
 }
 
-/* line 609, ../sass/bayres.scss */
+/* line 654, ../sass/bayres.scss */
 textarea {
   width: 250px;
   height: 178px;
@@ -823,7 +876,7 @@ textarea {
   border-radius: 10px;
 }
 
-/* line 615, ../sass/bayres.scss */
+/* line 660, ../sass/bayres.scss */
 .container-buttons {
   display: flex;
   flex-direction: row;
@@ -834,7 +887,7 @@ textarea {
   margin-bottom: 15px;
 }
 
-/* line 624, ../sass/bayres.scss */
+/* line 669, ../sass/bayres.scss */
 .btn-cancel {
   background: #a90329;
   background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
@@ -846,7 +899,7 @@ textarea {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
 }
 
-/* line 634, ../sass/bayres.scss */
+/* line 679, ../sass/bayres.scss */
 .carrito-totales {
   color: #fff;
   font-size: 54px;
@@ -854,7 +907,7 @@ textarea {
   text-align: center;
 }
 
-/* line 640, ../sass/bayres.scss */
+/* line 685, ../sass/bayres.scss */
 .info-envios {
   font-family: "Myriad Pro Condensed", serif;
   font-size: 18px;
@@ -863,7 +916,7 @@ textarea {
   margin: 0 10%;
 }
 
-/* line 648, ../sass/bayres.scss */
+/* line 693, ../sass/bayres.scss */
 #medios {
   background-color: #FCFCFC;
   font-family: "Myriad Pro Bold Condensed", serif;
@@ -873,7 +926,7 @@ textarea {
   white-space: nowrap;
 }
 
-/* line 656, ../sass/bayres.scss */
+/* line 701, ../sass/bayres.scss */
 #medios {
   position: absolute;
   height: 50px;
@@ -883,7 +936,7 @@ textarea {
   z-index: 50;
 }
 
-/* line 664, ../sass/bayres.scss */
+/* line 709, ../sass/bayres.scss */
 .medio-pagos {
   display: flex;
   flex-direction: row;
@@ -893,14 +946,14 @@ textarea {
   align-items: center;
 }
 
-/* line 672, ../sass/bayres.scss */
+/* line 717, ../sass/bayres.scss */
 .medio-pagos img {
   width: 40px;
   height: 30px;
   padding: 10px 5px 0 5px;
 }
 
-/* line 677, ../sass/bayres.scss */
+/* line 722, ../sass/bayres.scss */
 #footer {
   width: 100%;
   overflow-x: auto;
@@ -908,7 +961,7 @@ textarea {
   font-family: "Myriad Pro Condensed", serif;
 }
 
-/* line 683, ../sass/bayres.scss */
+/* line 728, ../sass/bayres.scss */
 #footer {
   position: absolute;
   height: 450px;
@@ -919,7 +972,7 @@ textarea {
   background-color: #000000;
 }
 
-/* line 692, ../sass/bayres.scss */
+/* line 737, ../sass/bayres.scss */
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -929,12 +982,12 @@ textarea {
   align-items: center;
 }
 
-/* line 700, ../sass/bayres.scss */
+/* line 745, ../sass/bayres.scss */
 .footer-upper {
   margin-top: 20px;
 }
 
-/* line 703, ../sass/bayres.scss */
+/* line 748, ../sass/bayres.scss */
 .footer-lower {
   display: flex;
   flex-direction: row;
@@ -945,42 +998,42 @@ textarea {
   margin-top: 50px;
 }
 @media (max-width: 360px) {
-  /* line 703, ../sass/bayres.scss */
+  /* line 748, ../sass/bayres.scss */
   .footer-lower {
     margin-top: 15px;
   }
 }
 
-/* line 715, ../sass/bayres.scss */
+/* line 760, ../sass/bayres.scss */
 .footer-lower-colum {
   width: 150px;
 }
 @media (max-width: 360px) {
-  /* line 715, ../sass/bayres.scss */
+  /* line 760, ../sass/bayres.scss */
   .footer-lower-colum {
     width: 75px;
     font-size: 14px;
   }
 }
 
-/* line 722, ../sass/bayres.scss */
+/* line 767, ../sass/bayres.scss */
 .footer-lower-title {
   color: #8cc63f;
 }
 
-/* line 725, ../sass/bayres.scss */
+/* line 770, ../sass/bayres.scss */
 .footer-lower-link {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
 }
 
-/* line 730, ../sass/bayres.scss */
+/* line 775, ../sass/bayres.scss */
 .footer-lower-link:hover {
   color: #ffff00;
 }
 
-/* line 733, ../sass/bayres.scss */
+/* line 778, ../sass/bayres.scss */
 .copyright {
   width: 100%;
   margin-top: 50px;
@@ -988,26 +1041,26 @@ textarea {
   font-size: 14px;
 }
 
-/* line 739, ../sass/bayres.scss */
+/* line 784, ../sass/bayres.scss */
 .ac-desarrollo {
   text-decoration: none;
   color: #fff;
 }
 
-/* line 743, ../sass/bayres.scss */
+/* line 788, ../sass/bayres.scss */
 .ac-desarrollo:hover {
   color: #ffff00;
 }
 
 @media (max-width: 360px) {
-  /* line 746, ../sass/bayres.scss */
+  /* line 791, ../sass/bayres.scss */
   .medio-pagos-text {
     display: none;
   }
 }
 
 @media (max-width: 360px) {
-  /* line 751, ../sass/bayres.scss */
+  /* line 796, ../sass/bayres.scss */
   .img-logo-footer {
     width: 335px;
     height: 100px;

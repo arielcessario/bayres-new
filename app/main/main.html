@@ -1,126 +1,49 @@
 <div ng-controller="MainController as mainCtrl">
 
-    <div id="main">
-        <div id="slider">
-            <div id="slider-main">
-                <div id="slide-01" ng-class="{'slide-shown': mainCtrl.slideSelected == 1}">
-                    <div class="slide-titulo">{{mainCtrl.slider_01.titulo}}</div>
-                    <div class="slide-descr">{{mainCtrl.slider_01.descripcion}}</div>
-                </div>
-                <div id="slide-02" ng-class="{'slide-shown': mainCtrl.slideSelected == 2}">
-                    <div class="slide-titulo">{{mainCtrl.slider_02.titulo}}</div>
-                    <div class="slide-descr">{{mainCtrl.slider_02.descripcion}}</div>
-                </div>
-                <div id="slide-03" ng-class="{'slide-shown': mainCtrl.slideSelected == 3}">
-                    <div class="slide-titulo">{{mainCtrl.slider_03.titulo}}</div>
-                    <div class="slide-descr">{{mainCtrl.slider_03.descripcion}}</div>
-                </div>
-                <div id="slide-04" ng-class="{'slide-shown': mainCtrl.slideSelected == 4}">
-                    <div class="slide-titulo">{{mainCtrl.slider_04.titulo}}</div>
-                    <div class="slide-descr">{{mainCtrl.slider_04.descripcion}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h4>Categorias</h4>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
-        <div ng-repeat="categoria in mainCtrl.categorias">
-            <div class="categoria-container">
-                <div>{{categoria.categoria_id}}</div>
-                <div>{{categoria.nombre}}</div>
-                <a href="" title="Detalle" ng-click="mainCtrl.showSubCategoria(categoria.categoria_id);">SubCategoria</a>
-                <div ng-if="mainCtrl.showInfo" ng-repeat="subcategoria in categoria.subcategorias">
-                    <div class="">
-                        <div>{{subcategoria.categoria_id}}</div>
-                        <div>{{subcategoria.nombre}}</div>
-                        <a href="" title="Detalle" ng-click="mainCtrl.hideSubCategoria(categoria.categoria_id);">Ocultar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <h4>Ofertas</h4>
-    <div>
-        <input ng-model="mainCtrl.productoBuscado" type="text"
-               ng-change="mainCtrl.findProducto();" placeholder="Buscar..." />
-    </div>
-    <div>{{mainCtrl.productoResultado}}</div>
-    <div class="">
-        <div ng-repeat="producto in mainCtrl.productoList">
-            <div class="container-producto">
-                <div>{{producto.nombre}}</div>
-                <div>{{producto.precios[0].precio}}</div>
-                <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
-                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
-            </div>
-        </div>
-    </div>
-
     <br>
     <h4>Carrito</h4>
     <div>
         <span>${{mainCtrl.carritoInfo.totalAPagar}} </span><span>({{mainCtrl.carritoInfo.cantidadDeProductos}})</span>
     </div>
 
-    <br>
-    <h4>Ofertas</h4>
-    <div class="">
-        <div ng-repeat="producto in mainCtrl.productosEnOfertas">
-            <div class="container-producto">
-                <div class="container-producto-border">
-                    <div class="producto-nombre">{{producto.nombre}}</div>
-                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
-                    <div class="producto-botones">
-                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
-                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+    <div class="container-main">
+        <div class="title-font container-main-title">Destacados</div>
+        <div class="container-main-productos">
+            <div ng-repeat="producto in mainCtrl.productosDestacados">
+                <div class="container-producto">
+                    <div class="container-producto-border">
+                        <div class="producto-nombre">{{producto.nombre}}</div>
+                        <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                        <div class="producto-botones">
+                            <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                                <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                            </div>
+                            <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
                         </div>
-                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-font container-main-title">+Vendidos</div>
+        <div class="container-main-productos">
+             <div ng-repeat="producto in mainCtrl.productosMasVendidos">
+                <div class="container-producto">
+                    <div class="container-producto-border">
+                        <div class="producto-nombre">{{producto.nombre}}</div>
+                        <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                        <div class="producto-botones">
+                            <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                                <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                            </div>
+                            <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <br>
-    <h4>Destacados</h4>
-    <div class="">
-        <div ng-repeat="producto in mainCtrl.productosDestacados">
-            <div class="container-producto">
-                <div class="container-producto-border">
-                    <div class="producto-nombre">{{producto.nombre}}</div>
-                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
-                    <div class="producto-botones">
-                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
-                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
-                        </div>
-                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <h4>+Vendidos</h4>
-    <div class="">
-        <div ng-repeat="producto in mainCtrl.productosMasVendidos">
-            <div class="container-producto">
-                <div class="container-producto-border">
-                    <div class="producto-nombre">{{producto.nombre}}</div>
-                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
-                    <div class="producto-botones">
-                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
-                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
-                        </div>
-                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 
