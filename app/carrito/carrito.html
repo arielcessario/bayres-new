@@ -4,21 +4,33 @@
 
 <div ng-controller="CarritoController as carritoCtrl" class="primary-form">
     <div class="container-form">
-        <div ng-repeat="producto in carritoCtrl.carritoDetalles">
-            <div class="producto-container">
-                <div>{{producto.producto_id}}</div>
-                <div>{{producto.nombre}}</div>
-                <div>{{producto.cantidad}}</div>
-                <div>{{producto.precio_unitario}}</div>
-                <input id="producto-cantidad" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
+        <div class="carrito-table-head">
+            <div class="carrito-table-row-name">Producto</div>
+            <div class="carrito-table-row">Precio U.</div>
+            <div class="carrito-table-row">Cant.</div>
+            <div class="carrito-table-row"><img src="images/lupa.png" title="" hidden/></div>
+            <div class="carrito-table-row"><img src="images/cruz.png" title="" hidden/></div>
+        </div>
+        <div ng-repeat="producto in carritoCtrl.carritoDetalles" class="carrito-table-body">
+            <div class="carrito-table-row-name font-color-text">{{producto.nombre}}</div>
+            <div class="carrito-table-row div-input">{{producto.precio_unitario}}</div>
+            <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
                        type="number" ng-model="producto.cantidad" style=""/>
-                <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">-</a>
+            <div class="carrito-table-row">
+                <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
+                    <img src="images/lupa.png" title="Agregar Producto al Carrito" />
+                </a>
+            </div>
+            <div class="carrito-table-row div-input">
+                <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
+                    <img src="images/cruz.png" title="Agregar Producto al Carrito" />
+                </a>
             </div>
         </div>
         <div class="carrito-totales">
             <spa>Total: </spa><span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
         </div>
-        <div>
+        <div class="carrito-entrega">
             <select ng-model="carritoCtrl.tipoEnvioDefecto"
                     ng-options="tipoEnvio.name for tipoEnvio in carritoCtrl.tipoEnvios track by tipoEnvio.id"
                     class="form-control control-select">

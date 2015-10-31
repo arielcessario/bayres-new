@@ -20,18 +20,12 @@ angular.module('bayres.main', [
     .controller('MainController', MainController);
 
 
+MainController.$inject = ['$interval', '$timeout', '$location', 'AcUtils', 'UserService',
+    'ProductService', 'CategoryService', 'CartVars'];
 
-
-
-
-MainController.$inject = ['$scope', '$location', 'AcUtils', 'UserService', 'ProductService',
-    'CategoryService', 'CartVars'];
-
-function MainController($scope, $location, AcUtils, UserService, ProductService,
-                        CategoryService, CartVars) {
+function MainController($interval, $timeout, $location, AcUtils, UserService,
+                        ProductService, CategoryService, CartVars) {
     var vm = this;
-
-    var productosList = [];
 
     vm.productosEnOfertas = [];
     vm.productosMasVendidos = [];
@@ -46,10 +40,7 @@ function MainController($scope, $location, AcUtils, UserService, ProductService,
     vm.productoResultado = '';
     vm.productoBuscado = '';
     vm.showInfo = false;
-    vm.isLogged = false;
-    vm.selectedPage = 'INICIO';
-    vm.menu_mobile_open = false;
-    vm.links = LinksService.links;
+
 
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -62,37 +53,7 @@ function MainController($scope, $location, AcUtils, UserService, ProductService,
     vm.findProducto = findProducto;
     vm.showSubCategoria = showSubCategoria;
     vm.hideSubCategoria = hideSubCategoria;
-    vm.goTo = goTo;
-    vm.logout = logout;
 
-
-    function LinksService() {
-        this.links = [
-            {nombre: 'INICIO', path: '/main'},
-            {nombre: 'Categorias', path: '/main'},
-            {nombre: 'Mi Carrito', path: '/carrito'},
-            {nombre: 'Mi Cuenta', path: '/micuenta'},
-            {nombre: 'Finalizar Compra', path: '/carrito'},
-            {nombre: 'Compras', path: '/revistas'},
-            {nombre: 'Contacto', path: '/contact'}
-        ];
-    }
-
-
-
-    $scope.$on('links', function (event, args) {
-        vm.links = LinksService.links;
-    });
-
-    vm.links = this.links = [
-        {nombre: 'INICIO', path: '/main'},
-        {nombre: 'Categorias', path: '/main'},
-        {nombre: 'Mi Carrito', path: '/carrito'},
-        {nombre: 'Mi Cuenta', path: '/micuenta'},
-        {nombre: 'Finalizar Compra', path: '/carrito'},
-        {nombre: 'Compras', path: '/revistas'},
-        {nombre: 'Contacto', path: '/contact'}
-    ];
 
     /*
     for (var i = 0; i < vm.links.length; i++) {
@@ -118,36 +79,9 @@ function MainController($scope, $location, AcUtils, UserService, ProductService,
         }
     }
 */
-    function goTo(location) {
-        $location.path(location.path);
-        vm.selectedPage = location.nombre;
-    }
 
-    ProductService.get(function(data){
-        productosList = data;
-    });
 
-    CategoryService.getByParams("parent_id", "-1", "true", function(data){
-        vm.categorias = data;
-        var i = 0;
-        vm.categorias.forEach(function(categoria){
-            CategoryService.getByParams("parent_id", categoria.categoria_id.toString(), "true", function(list){
-                vm.categorias[i].subcategorias = list;
-                var j = 0;
-                list.forEach(function(subcategoria){
-                    var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
-                    vm.categorias[i].subcategorias[j].total_categoria = count;
-                    j = j + 1;
-                });
-                i++;
-            });
-        });
-    });
 
-    if(UserService.getLogged() != false) {
-        vm.usuario = UserService.getLogged();
-        vm.isLogged = true;
-    }
 
     ProductService.getByParams("en_oferta", "1", "true", function(data){
         vm.productosEnOfertas = data;
@@ -161,14 +95,7 @@ function MainController($scope, $location, AcUtils, UserService, ProductService,
         vm.productosMasVendidos = data;
     });
 
-    function logout() {
-        UserService.logout(function (data) {
-            console.log('logout');
-            vm.usuario = {};
-            vm.isLogged = false;
-            $location.path('/main');
-        });
-    }
+
 
     function addProducto(producto) {
         console.log(producto);

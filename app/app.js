@@ -10,7 +10,8 @@ angular.module('bayres', [
   'bayres.usuarios',
   'bayres.productos',
   'bayres.carrito',
-  'bayres.micuenta'
+  'bayres.micuenta',
+  'bayres.contacto'
 ]).
 config(['$routeProvider', function($routeProvider) {
 
@@ -18,27 +19,81 @@ config(['$routeProvider', function($routeProvider) {
 .controller('BayresController', BayresController);
 
 
-BayresController.$inject = ['$location', 'UserService'];
+BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService', 'CategoryService'];
 
-function BayresController($location, UserService) {
+function BayresController($scope, $location, UserService, ProductService, CategoryService) {
 
   var vm = this;
+  vm.isLogged = false;
+  vm.selectedPage = 'INICIO';
+  vm.menu_mobile_open = false;
+  vm.links = LinksService.links;
 
-  //var productosList = [];
-  //vm.categorias = [];
+  var productosList = [];
+  vm.categorias = [];
+  vm.usuario = {};
+
+  vm.goTo = goTo;
   vm.logout = logout;
+  vm.login = login;
+  vm.createUsuario = createUsuario;
 
   $location.path('/agreement');
+
+
+  function LinksService() {
+    this.links = [
+      {nombre: 'INICIO', path: '/main'},
+      {nombre: 'Categorias', path: '/main'},
+      {nombre: 'Mi Carrito', path: '/carrito'},
+      {nombre: 'Mi Cuenta', path: '/micuenta'},
+      {nombre: 'Finalizar Compra', path: '/carrito'},
+      {nombre: 'Compras', path: '/revistas'},
+      {nombre: 'Contacto', path: '/contacto'}
+    ];
+  }
+
+  $scope.$on('links', function (event, args) {
+    vm.links = LinksService.links;
+  });
+
+  vm.links = this.links = [
+    {nombre: 'INICIO', path: '/main'},
+    {nombre: 'Categorias', path: '/main'},
+    {nombre: 'Mi Carrito', path: '/carrito'},
+    {nombre: 'Mi Cuenta', path: '/micuenta'},
+    {nombre: 'Finalizar Compra', path: '/carrito'},
+    {nombre: 'Compras', path: '/revistas'},
+    {nombre: 'Contacto', path: '/contacto'}
+  ];
+
+  if(UserService.getLogged() != false) {
+    vm.usuario = UserService.getLogged();
+    vm.isLogged = true;
+  }
+
+  function goTo(location) {
+    $location.path(location.path);
+    vm.selectedPage = location.nombre;
+  }
+
+  function login() {
+    $location.path('/login');
+  }
 
   function logout() {
     UserService.logout(function (data) {
       console.log('logout');
-      console.log(data);
+      vm.usuario = {};
+      vm.isLogged = false;
       $location.path('/main');
     });
   }
 
-/*
+  function createUsuario() {
+    $location.path('/usuarios');
+  }
+
   ProductService.get(function(data){
     productosList = data;
     console.log(productosList);
@@ -60,5 +115,5 @@ function BayresController($location, UserService) {
       });
     });
   });
-*/
+
 }

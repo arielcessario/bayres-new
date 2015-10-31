@@ -1,61 +1,27 @@
 <div ng-controller="MainController as mainCtrl">
-    <div class="login">
-        <div>Bienvenido!</div>
-        <div ng-if="!mainCtrl.isLogged" class="login-separator"><a href="" ng-click="mainCtrl.logout();" class="login-text">Nuevo usuario</a></div>
-        <div ng-if="!mainCtrl.isLogged">o</div>
-        <div ng-if="!mainCtrl.isLogged" class="login-separator"><a href="" ng-click="mainCtrl.logout();" class="login-text">Ya estoy registrado</a></div>
-        <div ng-if="mainCtrl.isLogged" class="login-separator">{{mainCtrl.usuario.nombre + ' ' + mainCtrl.usuario.apellido}}</div>
-        <div ng-if="mainCtrl.isLogged"><a href="" ng-click="mainCtrl.logout();" class="login-text">Salir</a></div>
-    </div>
 
-    <div class="header">
-        <!--div class="menu-mobile menu-type-mobile">
-            <div class="nav-button"
-                 ng-click="mainCtrl.menu_mobile_open = !mainCtrl.menu_mobile_open;"
-                 ng-class="{'nav-button-transformed':mainCtrl.menu_mobile_open}">
-                <div ng-class="{'nav-button-top-transformed':mainCtrl.menu_mobile_open}"></div>
-                <div ng-class="{'nav-button-mid-transformed':mainCtrl.menu_mobile_open}"></div>
-                <div ng-class="{'nav-button-bot-transformed':mainCtrl.menu_mobile_open}"></div>
-            </div>
-            <div class="header-separator"></div>
-            <div class="bienvenidos">Bienvenidos</div>
-            <div class="logo">
-                <img src="images/logo_top.png" alt="logo" height="45px" width="45px">
-            </div>
-        </div-->
-        <div class="menu-desktop menu-type-desktop">
-            <div id="menu-desktop-logo" ng-click="mainCtrl.goTo({nombre: 'INICIO', path: '/'});">
-                <img src="images/logo_top.png" alt="logo" height="60px" width="150px">
-            </div>
-            <div id="menu-desktop-right">
-                <div id="menu-desktop-upper"></div>
-                <div id="menu-desktop-lower">
-                    <div id="menu-desktop-lower-inner">
-                        <div class="menu-desktop-btn ac-ripple"
-                             ng-class="{'menu-desktop-btn-selected':mainCtrl.selectedPage.indexOf(link.nombre) > -1 }"
-                             ripple-color="#ffffff"
-                             ng-repeat="link in mainCtrl.links"
-                             ng-click="mainCtrl.goTo(link);"> {{link.nombre}}
-                        </div>
-                    </div>
+    <div id="main">
+        <div id="slider">
+            <div id="slider-main">
+                <div id="slide-01" ng-class="{'slide-shown': mainCtrl.slideSelected == 1}">
+                    <div class="slide-titulo">{{mainCtrl.slider_01.titulo}}</div>
+                    <div class="slide-descr">{{mainCtrl.slider_01.descripcion}}</div>
+                </div>
+                <div id="slide-02" ng-class="{'slide-shown': mainCtrl.slideSelected == 2}">
+                    <div class="slide-titulo">{{mainCtrl.slider_02.titulo}}</div>
+                    <div class="slide-descr">{{mainCtrl.slider_02.descripcion}}</div>
+                </div>
+                <div id="slide-03" ng-class="{'slide-shown': mainCtrl.slideSelected == 3}">
+                    <div class="slide-titulo">{{mainCtrl.slider_03.titulo}}</div>
+                    <div class="slide-descr">{{mainCtrl.slider_03.descripcion}}</div>
+                </div>
+                <div id="slide-04" ng-class="{'slide-shown': mainCtrl.slideSelected == 4}">
+                    <div class="slide-titulo">{{mainCtrl.slider_04.titulo}}</div>
+                    <div class="slide-descr">{{mainCtrl.slider_04.descripcion}}</div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <ul class="menu" >
-        <li><a href="#/agreement">Inicial</a></li>
-        <li><a href="#/main">Main</a></li>
-        <li><a href="#/login">Login</a></li>
-        <li><a href="#/usuarios">Usuario</a></li>
-        <li><a href="#/productos">Productos</a></li>
-        <li><a href="#/carrito">Carrito</a></li>
-        <li><a href="#/micuenta">Mi Cuenta</a></li>
-        <li></li>
-    </ul>
-
-
 
     <h4>Categorias</h4>
     <div style="display: flex; flex-direction: row; margin-left: 30px;">
@@ -82,10 +48,9 @@
                ng-change="mainCtrl.findProducto();" placeholder="Buscar..." />
     </div>
     <div>{{mainCtrl.productoResultado}}</div>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+    <div class="">
         <div ng-repeat="producto in mainCtrl.productoList">
-            <div class="producto-container">
-                <div>{{producto.producto_id}}</div>
+            <div class="container-producto">
                 <div>{{producto.nombre}}</div>
                 <div>{{producto.precios[0].precio}}</div>
                 <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
@@ -102,118 +67,60 @@
 
     <br>
     <h4>Ofertas</h4>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+    <div class="">
         <div ng-repeat="producto in mainCtrl.productosEnOfertas">
-            <div class="producto-container">
-                <div>{{producto.producto_id}}</div>
-                <div>{{producto.nombre}}</div>
-                <div>{{producto.precios[0].precio}}</div>
-                <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
-                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
+            <div class="container-producto">
+                <div class="container-producto-border">
+                    <div class="producto-nombre">{{producto.nombre}}</div>
+                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                    <div class="producto-botones">
+                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <br>
     <h4>Destacados</h4>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+    <div class="">
         <div ng-repeat="producto in mainCtrl.productosDestacados">
-            <div class="producto-container">
-                <div>{{producto.producto_id}}</div>
-                <div>{{producto.nombre}}</div>
-                <div>{{producto.precios[0].precio}}</div>
-                <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
-                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
+            <div class="container-producto">
+                <div class="container-producto-border">
+                    <div class="producto-nombre">{{producto.nombre}}</div>
+                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                    <div class="producto-botones">
+                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <br>
     <h4>+Vendidos</h4>
-    <div style="display: flex; flex-direction: row; margin-left: 30px;">
+    <div class="">
         <div ng-repeat="producto in mainCtrl.productosMasVendidos">
-            <div class="producto-container">
-                <div>{{producto.producto_id}}</div>
-                <div>{{producto.nombre}}</div>
-                <div>{{producto.precios[0].precio}}</div>
-                <a href="" title="{{producto.nombre}}" ng-click="mainCtrl.addProducto(producto)">+</a>
-                <a href="" title="Detalle" ng-click="mainCtrl.showDetalle(producto.producto_id);">Detalle</a>
+            <div class="container-producto">
+                <div class="container-producto-border">
+                    <div class="producto-nombre">{{producto.nombre}}</div>
+                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                    <div class="producto-botones">
+                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<div id="medios" class="parallax__group parallax__layer parallax__layer--base">
-    <div class="medio-pagos">
-        <span class="medio-pagos-text">MEDIOS DE PAGO:</span>
-        <img src="images/medio_07.png" alt="Transferencia" title="Transferencia">
-        <img src="images/medio_08.png" alt="Deposito Bancario" title="Deposito Bancario">
-        <img src="images/medio_01.png" alt="Mercado Pago" title="Mercado Pago">
-        <img src="images/medio_02.png" alt="Visa" title="Visa">
-        <img src="images/medio_03.png" alt="MasterCard" title="MasterCard">
-        <img src="images/medio_04.png" alt="American Express" title="American Express">
-        <img src="images/medio_05.png" alt="Pago Facil" title="Pago Facil">
-        <img src="images/medio_06.png" alt="Rapi Pago" title="Rapi Pago">
-    </div>
-</div>
-
-<div id="footer" class="parallax__group parallax__layer parallax__layer--base">
-
-    <div class="outer-center footer-outer">
-        <div class="inner-center footer-inner">
-            <div class="footer-container">
-                <div class="footer-upper">
-                    <img class="img-logo-footer" src="images/logofooter.png" alt=""/>
-                </div>
-                <div class="footer-lower">
-                    <div class="footer-lower-colum">
-                        <div class="footer-lower-title">NAVEGACI&Oacute;N</div>
-                        <br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.sucursalesForm();">SUCURSALES</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.ofertasForm();">OFERTAS</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.destacadosForm();">DESTACADOS</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.masVendidosForm();">+VENDIDOS</a><br/>
-                    </div>
-                    <div class="footer-lower-colum">
-                        <div class="footer-lower-title">REGISTRO</div>
-                        <br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.ingresarCliente();"
-                           href="">INGRESAR</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.crearCliente();"
-                           href="">REGISTRARSE</a><br/>
-                    </div>
-                    <div class="footer-lower-colum">
-                        <div class="footer-lower-title">CARRITO</div>
-                        <br/>
-                        <!--a class="footer-lower-link">COMPRAS</a><br/-->
-                        <a class="footer-lower-link" ng-click="mainCtrl.comprar();">CHECKOUT</a><br/>
-                    </div>
-                    <div class="footer-lower-colum">
-                        <div class="footer-lower-title">LEGALES</div>
-                        <br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.verLegales(1);">ENVIOS/DEVOLUCIONES</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.verLegales(2);">CONFIDENCIALIDAD</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.verLegales(3);">CONDICIONES DE USO</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.contacto(1);">CONTACTENOS</a><br/>
-                        <a class="footer-lower-link" ng-click="mainCtrl.verLegales(4);">&iquest;QUIENES SOMOS?</a><br/>
-                    </div>
-                    <div class="footer-lower-colum">
-                        <div class="footer-lower-title">REDES SOCIALES</div>
-                        <br/>
-                        <a href="https://m.facebook.com/bayresnoproblem.grow" style="color: #000">
-                            <img src="images/social_01.png" alt="facebook"/>
-                        </a>
-                        <a href="https://twitter.com/bayresnoproblem">
-                            <img src="images/social_02.png" alt="twitter"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="copyright font-color-text">
-                    <div >Bayres No Problem &copy; 2015 All Rights Reserved</div>
-                    <div >Power By <a href="http://ac-desarrollos.com/" class="ac-desarrollo">AC-Desarrollos</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

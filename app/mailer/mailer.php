@@ -46,16 +46,16 @@ function sendConsulta($contactoForm)
     $mail->Port = 465;
 
     $mail->From = $contacto->mail;
-    $mail->FromName = $contacto->apellido . ", " . $contacto->nombre;
+    $mail->FromName = $contacto->nombre;
     $mail->addAddress('mmaneff@gmail.com');     // Add a recipient
     $mail->addAddress('juan.dilello@gmail.com');               // Name is optional
     //$mail->addAddress('info@bayresnoproblem.com.ar');  //ESTE CORREO SOLO SE HABILITA EN PRODUCCION
     $mail->isHTML(true);    // Name is optional
 
-    $mail->Subject = "Consulta de " . $contacto->apellido . ", " . $contacto->nombre;
+    $mail->Subject = $contacto->asunto;
     $mail->Body = "<table>
                     <tr>
-                        <td>Consulta de " . $contacto->apellido . ", " . $contacto->nombre . "</td>
+                        <td>Consulta de " . $contacto->nombre . "</td>
                     </tr>
                     <tr>
                         <td></td>

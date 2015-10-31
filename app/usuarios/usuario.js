@@ -13,7 +13,7 @@ angular.module('bayres.usuarios', [
         $routeProvider.when('/usuarios', {
             templateUrl: 'usuarios/usuario.html',
             controller: 'UsuarioController',
-            data: {requiresLogin: true}
+            data: {requiresLogin: false}
         });
     }])
     .controller('UsuarioController', UsuarioController);

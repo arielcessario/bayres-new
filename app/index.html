@@ -16,9 +16,125 @@
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
 <body ng-controller="BayresController as bayresCtrl">
+  <div class="login">
+    <div>Bienvenido!</div>
+    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.createUsuario();" class="login-text">Nuevo usuario</a></div>
+    <div ng-if="!bayresCtrl.isLogged">o</div>
+    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.login();" class="login-text">Ya estoy registrado</a></div>
+    <div ng-if="bayresCtrl.isLogged" class="login-separator">{{bayresCtrl.usuario.nombre + ' ' + bayresCtrl.usuario.apellido}}</div>
+    <div ng-if="bayresCtrl.isLogged"><a href="" ng-click="bayresCtrl.logout();" class="login-text">Salir</a></div>
+  </div>
+
+  <div class="header">
+    <!--div class="menu-mobile menu-type-mobile">
+        <div class="nav-button"
+             ng-click="mainCtrl.menu_mobile_open = !mainCtrl.menu_mobile_open;"
+             ng-class="{'nav-button-transformed':mainCtrl.menu_mobile_open}">
+            <div ng-class="{'nav-button-top-transformed':mainCtrl.menu_mobile_open}"></div>
+            <div ng-class="{'nav-button-mid-transformed':mainCtrl.menu_mobile_open}"></div>
+            <div ng-class="{'nav-button-bot-transformed':mainCtrl.menu_mobile_open}"></div>
+        </div>
+        <div class="header-separator"></div>
+        <div class="bienvenidos">Bienvenidos</div>
+        <div class="logo">
+            <img src="images/logo_top.png" alt="logo" height="45px" width="45px">
+        </div>
+    </div-->
+    <div class="menu-desktop menu-type-desktop">
+      <div id="menu-desktop-logo" ng-click="bayresCtrl.goTo({nombre: 'INICIO', path: '/'});">
+        <img src="images/logo_top.png" alt="logo" height="60px" width="150px">
+      </div>
+      <div id="menu-desktop-right">
+        <div id="menu-desktop-upper"></div>
+        <div id="menu-desktop-lower">
+          <div id="menu-desktop-lower-inner">
+            <div class="menu-desktop-btn ac-ripple"
+                 ng-class="{'menu-desktop-btn-selected':bayresCtrl.selectedPage.indexOf(link.nombre) > -1 }"
+                 ripple-color="#ffffff"
+                 ng-repeat="link in bayresCtrl.links"
+                 ng-click="bayresCtrl.goTo(link);"> {{link.nombre}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div ng-view></div>
 
+  <div id="medios" class="parallax__group parallax__layer parallax__layer--base">
+    <div class="medio-pagos">
+      <span class="medio-pagos-text">MEDIOS DE PAGO:</span>
+      <img src="images/medio_07.png" alt="Transferencia" title="Transferencia">
+      <img src="images/medio_08.png" alt="Deposito Bancario" title="Deposito Bancario">
+      <img src="images/medio_01.png" alt="Mercado Pago" title="Mercado Pago">
+      <img src="images/medio_02.png" alt="Visa" title="Visa">
+      <img src="images/medio_03.png" alt="MasterCard" title="MasterCard">
+      <img src="images/medio_04.png" alt="American Express" title="American Express">
+      <img src="images/medio_05.png" alt="Pago Facil" title="Pago Facil">
+      <img src="images/medio_06.png" alt="Rapi Pago" title="Rapi Pago">
+    </div>
+  </div>
+
+  <div id="footer" class="parallax__group parallax__layer parallax__layer--base">
+
+    <div class="outer-center footer-outer">
+      <div class="inner-center footer-inner">
+        <div class="footer-container">
+          <div class="footer-upper">
+            <img class="img-logo-footer" src="images/logofooter.png" alt=""/>
+          </div>
+          <div class="footer-lower">
+            <div class="footer-lower-colum">
+              <div class="footer-lower-title">NAVEGACI&Oacute;N</div>
+              <br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'main', path: '/main'});">SUCURSALES</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.ofertasForm();">OFERTAS</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.destacadosForm();">DESTACADOS</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.masVendidosForm();">+VENDIDOS</a><br/>
+            </div>
+            <div class="footer-lower-colum">
+              <div class="footer-lower-title">REGISTRO</div>
+              <br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'login', path: '/login'});"
+                 href="">INGRESAR</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'usuario', path: '/usuarios'});"
+                 href="">REGISTRARSE</a><br/>
+            </div>
+            <div class="footer-lower-colum">
+              <div class="footer-lower-title">CARRITO</div>
+              <br/>
+              <!--a class="footer-lower-link">COMPRAS</a><br/-->
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'carrito', path: '/carrito'});">CHECKOUT</a><br/>
+            </div>
+            <div class="footer-lower-colum">
+              <div class="footer-lower-title">LEGALES</div>
+              <br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">ENVIOS/DEVOLUCIONES</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">CONFIDENCIALIDAD</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">CONDICIONES DE USO</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'contacto', path: '/contacto'});">CONTACTENOS</a><br/>
+              <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">&iquest;QUIENES SOMOS?</a><br/>
+            </div>
+            <div class="footer-lower-colum">
+              <div class="footer-lower-title">REDES SOCIALES</div>
+              <br/>
+              <a href="https://m.facebook.com/bayresnoproblem.grow" style="color: #000">
+                <img src="images/social_01.png" alt="facebook"/>
+              </a>
+              <a href="https://twitter.com/bayresnoproblem">
+                <img src="images/social_02.png" alt="twitter"/>
+              </a>
+            </div>
+          </div>
+          <div class="copyright font-color-text">
+            <div >Bayres No Problem &copy; 2015 All Rights Reserved</div>
+            <div >Power By <a href="http://ac-desarrollos.com/" class="ac-desarrollo">AC-Desarrollos</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
@@ -28,6 +144,7 @@
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
   <script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
   <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="bower_components/ac-angular-slider-manager/slider-manager.js"></script>
   <script src="bower_components/ac-angular-utils/ac-utils.js"></script>
   <script src="bower_components/ac-angular-usuarios/ac-usuarios.js"></script>
   <script src="bower_components/ac-angular-productos/ac-productos.js"></script>
@@ -39,5 +156,6 @@
   <script src="productos/producto.js"></script>
   <script src="carrito/carrito.js"></script>
   <script src="micuenta/micuenta.js"></script>
+  <script src="contacto/contacto.js"></script>
 </body>
 </html>

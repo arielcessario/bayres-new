@@ -368,6 +368,69 @@ CONTENEDORES
   align-items: center;
   padding: 10px 0;
 }
+.container-producto{
+  width: 180px;
+  margin: 5px 8px 0 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 190px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.container-producto-border{
+  border: 1px solid #8cc63f;
+  width: 170px;
+  height: 180px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.producto-nombre {
+  font-family: $myriad_pro_bold_condensed, serif;
+  font-size: 19px;
+  color: $font_color_title;
+  width: 96%;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  margin-left: 4%;
+  text-shadow: 1px 1px 1px #000000;
+}
+.producto-img{
+  height: 112px;
+  width: 112px;
+}
+.producto-botones{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.producto-peso, .producto-precio {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.producto-peso{
+  color: red;
+}
+.producto-precio {
+  color: $font_color_text;
+  margin-right: 25px;
+}
 /**
 CONTROLES
 */
@@ -382,6 +445,26 @@ CONTROLES
   @media (max-width: 360px) {
     margin-bottom: 30px;
   }
+}
+.btn-carrito{
+  width: 90px;
+  height: 40px;
+  background: url("../images/boton-oferta.png") 50% 50% no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+.btn-info{
+  width: 40px;
+  height: 40px;
+  background: url("../images/info_2.png") 50% 50% no-repeat;
+  background-size: 90%;
+  cursor: pointer;
 }
 button {
   width: 100px;
@@ -493,9 +576,41 @@ label {
   font-size: 18px;
   height: 20px;
 }
+.carrito-entrega {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
 .carrito-subtotal {
   font-size: 26px;
   font-weight: bold;
+}
+.container-contacto {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  width: 100%;
+}
+.container-contacto-1, .container-contacto-2 {
+  width: 40%;
+}
+.container-contacto-1 {
+  margin-right: 25px;
+}
+.container-contacto-2 {
+  margin-left: 30px;
+}
+textarea{
+  width: 250px;
+  height: 178px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 .container-buttons {
   display: flex;
