@@ -45,8 +45,8 @@ function BayresController($scope, $location, UserService, ProductService,
 
   vm.goTo = goTo;
   vm.logout = logout;
-  //vm.login = login;
-  //vm.createUsuario = createUsuario;
+  vm.login = login;
+  vm.createUsuario = createUsuario;
 
   $location.path('/agreement');
 
@@ -83,15 +83,15 @@ function BayresController($scope, $location, UserService, ProductService,
     $location.path(location.path);
     vm.selectedPage = location.nombre;
   }
-/*
+
   function login() {
     $location.path('/login');
   }
 
- function createUsuario() {
+  function createUsuario() {
     $location.path('/usuarios');
- }
-*/
+  }
+
   function logout() {
     UserService.logout(function (data) {
       console.log('logout');

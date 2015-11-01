@@ -146,18 +146,14 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
     function updatePwd() {
         if(vm.passwordForm.password.trim().length > 0 && vm.passwordForm.password_repeat.trim().length > 0) {
-            if(vm.passwordForm.password.trim() == vm.passwordForm.password_repeat.trim()) {
-                UserService.update(vm.passwordForm, function (data) {
-                    console.log(data);
-                    if(data != -1) {
-                        setMessageResponse(true, false, false, false, 'La contraseña se actualizo');
-                    } else {
-                        setMessageResponse(false, false, true, false, 'Error actualizando contraseña');
-                    }
-                });
-            } else {
-                setMessageResponse(false, false, true, false, 'Las contraseñas deben ser iguales');
-            }
+            UserService.changePassword(vm.passwordForm.usuario_id, vm.passwordForm.password, vm.passwordForm.password_repeat, function (data) {
+                console.log(data);
+                if(data != -1) {
+                    setMessageResponse(true, false, false, false, 'La contraseña se actualizo');
+                } else {
+                    setMessageResponse(false, false, true, false, 'Error actualizando contraseña');
+                }
+            });
         } else {
             setMessageResponse(false, false, true, false, 'Ingrese las contraseñas');
         }

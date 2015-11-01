@@ -36,9 +36,9 @@
                         <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
                     </div>
                     <button ng-click="cuentaCtrl.updateUser();">Ok</button>
-                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.userError == true">
-                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
-                    </div>
+                </div>
+                <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.userError == true">
+                    <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
                 </div>
             </div>
             <div class="container-pwd">
@@ -55,9 +55,9 @@
                 </div>
                 <div class="container-buttons">
                     <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
-                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.pwdError == true">
-                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
-                    </div>
+                </div>
+                <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.pwdError == true">
+                    <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
                 </div>
             </div>
         </div>
