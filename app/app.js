@@ -4,6 +4,8 @@
 angular.module('bayres', [
   'ngRoute',
   'ngCookies',
+  'angular-storage',
+  'angular-jwt',
   'bayres.agreement',
   'bayres.main',
   'bayres.login',
@@ -43,8 +45,8 @@ function BayresController($scope, $location, UserService, ProductService,
 
   vm.goTo = goTo;
   vm.logout = logout;
-  vm.login = login;
-  vm.createUsuario = createUsuario;
+  //vm.login = login;
+  //vm.createUsuario = createUsuario;
 
   $location.path('/agreement');
 
@@ -81,11 +83,15 @@ function BayresController($scope, $location, UserService, ProductService,
     $location.path(location.path);
     vm.selectedPage = location.nombre;
   }
-
+/*
   function login() {
     $location.path('/login');
   }
 
+ function createUsuario() {
+    $location.path('/usuarios');
+ }
+*/
   function logout() {
     UserService.logout(function (data) {
       console.log('logout');
@@ -93,10 +99,6 @@ function BayresController($scope, $location, UserService, ProductService,
       vm.isLogged = false;
       $location.path('/main');
     });
-  }
-
-  function createUsuario() {
-    $location.path('/usuarios');
   }
 
   ProductService.get(function(data){
@@ -123,6 +125,7 @@ function BayresController($scope, $location, UserService, ProductService,
 
 }
 
+/*ARMO UN SERVICIO PARA EL MENU*/
 function LinksService() {
   this.links = [
     {nombre: 'INICIO', path: '/main'},
