@@ -12,6 +12,7 @@
   <!--link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"-->
   <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="css/ac-parallax.css">
   <link rel="stylesheet" href="css/bayres.css">
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
@@ -70,7 +71,23 @@
     </div>
   </div>
 
+  <!-- SECCION VIEW-->
   <div ng-view></div>
+
+
+  <!-- SECCION PARALLAX-->
+  <div class="parallax" id="parallax">
+    <div id="sucursales" class="parallax__group">
+      <div id="sucursales-06" class="parallax__layer parallax__layer--deeper-4"></div>
+      <div id="sucursales-05" class="parallax__layer parallax__layer--deeper-4"></div>
+      <div id="sucursales-04" class="parallax__layer parallax__layer--deeper-3"></div>
+      <div id="sucursales-03" class="parallax__layer parallax__layer--deeper-3"></div>
+      <div id="sucursales-02" class="parallax__layer parallax__layer--deeper-2"></div>
+      <div id="sucursales-01" class="parallax__layer "></div>
+    </div>
+  </div>
+
+
 
   <div id="medios" class="parallax__group parallax__layer parallax__layer--base">
     <div class="medio-pagos">

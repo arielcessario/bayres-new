@@ -143,3 +143,62 @@
   -webkit-transform: translateZ(-620px) scale(1.77);
   transform: translateZ(-620px) scale(1.77);
 }
+
+/* line 161, ../sass/ac-parallax.scss */
+#sucursales {
+  height: 600px;
+  top: 75px;
+  right: 0px;
+  left: 0px;
+}
+/* line 176, ../sass/ac-parallax.scss */
+#sucursales #sucursales-01,
+#sucursales #sucursales-02,
+#sucursales #sucursales-03,
+#sucursales #sucursales-04,
+#sucursales #sucursales-05,
+#sucursales #sucursales-06 {
+  height: 600px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+@media (max-width: 601px) {
+  /* line 194, ../sass/ac-parallax.scss */
+  #sucursales #sucursales-01 {
+    background: url("../images/sucursales_01M.png") 50% 50% no-repeat;
+    image-rendering: pixelated;
+    /* Chrome (and Safari) */
+  }
+}
+@media (min-width: 602px) {
+  /* line 194, ../sass/ac-parallax.scss */
+  #sucursales #sucursales-01 {
+    background: url("../images/sucursales_01.png") 50% 50% no-repeat;
+  }
+}
+@media (min-width: 602px) {
+  /* line 212, ../sass/ac-parallax.scss */
+  #sucursales #sucursales-02 {
+    background: url("../images/sucursales_02.png") 50% 50% no-repeat;
+  }
+}
+/* line 217, ../sass/ac-parallax.scss */
+#sucursales #sucursales-03 {
+  background: url("../images/sucursales_03.png") 50% 50% no-repeat;
+}
+/* line 220, ../sass/ac-parallax.scss */
+#sucursales #sucursales-04 {
+  background: url("../images/sucursales_04.png") 50% 50% no-repeat;
+}
+/* line 223, ../sass/ac-parallax.scss */
+#sucursales #sucursales-05 {
+  background: url("../images/sucursales_05.png") 50% 50% no-repeat;
+  height: 1500px;
+}
+/* line 227, ../sass/ac-parallax.scss */
+#sucursales #sucursales-06 {
+  /*background: url("../img/sucursales_06.png") 50% 50% no-repeat;*/
+}
