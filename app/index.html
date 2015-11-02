@@ -38,9 +38,9 @@
             <div ng-class="{'nav-button-bot-transformed':bayresCtrl.menu_mobile_open}"></div>
         </div>
         <div class="header-separator"></div>
-        <div class="bienvenidos">Bienvenidos</div>
-        <div class="logo">
-            <img src="images/logo_top.png" alt="logo" height="45px" width="45px">
+        <div class="bienvenidos">
+          <div class="mi-carrito">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
+          <img src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
         </div>
     </div>
     <div class="menu-desktop menu-type-desktop">
