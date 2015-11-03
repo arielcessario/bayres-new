@@ -1,3 +1,7 @@
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .+
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>
 ExpiresActive On

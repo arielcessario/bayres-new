@@ -65,19 +65,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: "Myriad Pro Bold";
-  src: url('../fonts/MYRIADPRO-BOLD.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLD.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Bold Condensed";
-  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Condensed";
-  src: url('../fonts/MYRIADPRO-COND.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-COND.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Regular";
-  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446549555') format('woff');
 }
 /* line 33, ../sass/bayres.scss */
 body {
@@ -186,6 +186,7 @@ HEADER - MEDIOS DE PAGOS Y FOOTER
   align-items: center;
   height: 30px;
   width: 100%;
+  position: fixed;
   top: 0;
   padding-left: 20%;
   background-color: #000;
@@ -753,9 +754,8 @@ CONTENEDORES
   align-content: stretch;
   align-items: center;
   text-align: center;
+  width: 80%;
   min-width: 480px;
-  z-index: 1;
-  position: absolute;
 }
 
 /* line 612, ../sass/bayres.scss */
@@ -773,8 +773,6 @@ CONTENEDORES
   align-items: center;
   width: 800px;
   min-width: 480px;
-  z-index: 1;
-  position: absolute;
 }
 
 /**
