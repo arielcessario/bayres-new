@@ -460,6 +460,8 @@ CONTENEDORES
   justify-content: center;
   align-content: stretch;
   align-items: center;
+  top: 800px; //NUEVO
+  position: absolute; //NUEVO
   @media (max-width: 360px) {
     width: 340px;
   }
@@ -604,8 +606,10 @@ CONTENEDORES
   align-content: stretch;
   align-items: center;
   text-align: center;
-  width: 80%;
-  min-width: 480px;
+  top: 800px; //NUEVO
+  position: absolute; //NUEVO
+  //width: 80%;
+  //min-width: 480px;
   //z-index: 1;
   //position: absolute;
 }
@@ -969,3 +973,5 @@ textarea{
     background-size: contain;
   }
 }
+
+

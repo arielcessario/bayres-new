@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"-->
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="css/bayres.css">
+  <link rel="stylesheet" href="css/parallax.css">
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
 <body ng-controller="BayresController as bayresCtrl">
@@ -72,6 +73,17 @@
 
   <!-- SECCION VIEW-->
   <div ng-view></div>
+
+  <div id="parallax-1">
+    <div id="sucursal1"></div>
+    <div id="sucursal2"></div>
+    <div id="sucursal3"></div>
+    <div id="sucursal4"></div>
+
+    <div id="tierra1"></div>
+    <div id="tierra2"></div>
+    <div id="tierra3"></div>
+  </div>
 
 
   <div id="medios" class="parallax__group parallax__layer parallax__layer--base">
@@ -170,5 +182,41 @@
   <script src="carrito/carrito.js"></script>
   <script src="micuenta/micuenta.js"></script>
   <script src="contacto/contacto.js"></script>
+
+  <script type="text/javascript">
+
+    // Create cross browser requestAnimationFrame method:
+    window.requestAnimationFrame = window.requestAnimationFrame
+            || window.mozRequestAnimationFrame
+            || window.webkitRequestAnimationFrame
+            || window.msRequestAnimationFrame
+            || function(f){setTimeout(f, 1000/60)}
+
+    var sucursal1 = document.getElementById('sucursal1');
+    var sucursal2 = document.getElementById('sucursal2');
+    var sucursal3 = document.getElementById('sucursal3');
+    var sucursal4 = document.getElementById('sucursal4');
+
+    var tierra1 = document.getElementById('tierra1');
+    var tierra2 = document.getElementById('tierra2');
+    var tierra3 = document.getElementById('tierra3');
+
+    function parallaxbubbles(){
+      var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
+      sucursal1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
+      sucursal2.style.top = -scrolltop * .4 + 'px' // move bubble2 at 50% of scroll rate
+      sucursal3.style.top = -scrolltop * .6 + 'px' // move bubble2 at 50% of scroll rate
+      sucursal4.style.top = -scrolltop * .7 + 'px' // move bubble2 at 50% of scroll rate
+
+      tierra1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
+      tierra2.style.top = -scrolltop * .4 + 'px' // move bubble2 at 50% of scroll rate
+      tierra3.style.top = -scrolltop * .6 + 'px' // move bubble2 at 50% of scroll rate
+    }
+
+    window.addEventListener('scroll', function(){ // on page scroll
+      requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
+    }, false)
+
+  </script>
 </body>
 </html>

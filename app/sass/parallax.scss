@@ -1,0 +1,86 @@
+//Fonts Faces
+$myriad_pro_bold: "Myriad Pro Bold";
+$myriad_pro_bold_condensed: "Myriad Pro Bold Condensed";
+$myriad_pro_condensed: "Myriad Pro Condensed";
+$myriad_pro_regular: "Myriad Pro Regular";
+
+$font_color_title: #8cc63f;
+$font_color_secundary_title: #fff;
+$font_color_message: #8cc63f;
+$font_color_text: #fff;
+$font_color_text_hover: #ffff00;
+$font_color_input: #000;
+$font_color_login: #ffae00;
+
+
+$background_color: #00fefe;
+$background_color_menu: #bcbcbc;
+$background_color_secundary: #000;
+$background_color_menu_hover: darkgreen;
+
+$input_background_color: #fff;
+$border_color: #8CC63F;
+
+@import "compass";
+@import "compass/reset";
+@import "compass/css3/font-face";
+
+@include font-face($myriad_pro_bold, font-files("MYRIADPRO-BOLD.woff"));
+@include font-face($myriad_pro_bold_condensed, font-files("MYRIADPRO-BOLDCOND.woff"));
+@include font-face($myriad_pro_condensed, font-files("MYRIADPRO-COND.woff"));
+@include font-face($myriad_pro_regular, font-files("MYRIADPRO-REGULAR.woff"));
+
+
+body{
+  font-family: $myriad_pro_bold_condensed, serif;
+  height: 2000px;
+  background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
+  background-size: cover;
+}
+/*
+#parallax-1 {
+  height: 2000px;
+  //height: 500px;
+  background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
+  background-size: cover;
+  background-color: #00fefe;
+}
+*/
+#sucursal1, #sucursal2, #sucursal3, #sucursal4{
+  width: 100%;
+  //height: 100%;
+  height: 80%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/sucursales_04.png") 5% 50% no-repeat;
+}
+#sucursal2{
+  background: url("../images/sucursales_03.png") 95% 90% no-repeat;
+}
+#sucursal3{
+  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
+  background: url("../images/sucursales_02.png") 60% 110% no-repeat;
+}
+#sucursal4{
+  background: url("../images/sucursales_01.png") 95% 90% no-repeat;
+  //background: url("../images/sucursales_01.png") 95% 30% no-repeat;
+}
+#tierra1, #tierra2, #tierra3{
+  width: 100%;
+  //height: 100%;
+  //height: 80%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/tierra_01.png") 5% 50% no-repeat;
+}
+#tierra2{
+  background: url("../images/tierra_02.png") 95% 90% no-repeat;
+}
+#tierra3{
+  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
+  background: url("../images/tierra_03.png") 60% 110% no-repeat;
+}
