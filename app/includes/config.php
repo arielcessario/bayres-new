@@ -15,8 +15,7 @@ function checkSecurity()
 {
     $requestHeaders = apache_request_headers();
     $authorizationHeader = $requestHeaders['Authorization'];
-//    echo print_r(apache_request_headers());
-
+    //echo print_r(apache_request_headers());
 
     if ($authorizationHeader == null) {
         header('HTTP/1.0 401 Unauthorized');
