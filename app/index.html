@@ -45,7 +45,7 @@
     </div>
     <div class="menu-desktop menu-type-desktop">
       <div id="menu-desktop-logo" ng-click="bayresCtrl.goTo({nombre: 'INICIO', path: '/'});">
-        <img src="images/logo_top.png" alt="logo" height="60px" width="150px">
+        <img src="images/logo_top.png" alt="logo" height="60px" width="200px">
       </div>
       <div id="menu-desktop-right">
         <div id="menu-desktop-upper"></div>
@@ -54,8 +54,12 @@
             <div class="menu-desktop-btn ac-ripple"
                  ng-class="{'menu-desktop-btn-selected':bayresCtrl.selectedPage.indexOf(link.nombre) > -1 }"
                  ripple-color="#ffffff"
+                 ng-mouseover="(link.nombre == 'Categorias') ? bayresCtrl.showCategorias = true : bayresCtrl.showCategorias = false;"
                  ng-repeat="link in bayresCtrl.links"
                  ng-click="bayresCtrl.goTo(link);"> {{link.nombre}}
+                <div ng-if="link.tieneImagen">
+                  <img src="images/{{link.nombreImagen}}" alt="{{link.nombre}}" title="{{link.nombre}}" height="20"/>
+                </div>
             </div>
           </div>
         </div>
@@ -71,22 +75,43 @@
     </div>
   </div>
 
+  <div ng-if="bayresCtrl.showCategorias" id="menu-categorias-detalle" ng-mouseleave="bayresCtrl.showCategorias = false;">
+    <div class="menu-principal">
+      <div ng-click="bayresCtrl.inicio();" class="menu-pricipal-item">Inicio</div>
+      <div ng-click="bayresCtrl.comprar();" class="menu-pricipal-item">Mi Carrito</div>
+      <div ng-click="bayresCtrl.cuenta();" class="menu-pricipal-item">Mi Cuenta</div>
+      <div ng-click="bayresCtrl.comprar();" class="menu-pricipal-item">Finalizar Compra</div>
+    </div>
+    <div ng-repeat="categoria in bayresCtrl.categorias">
+      <div class="menu-subcategoria">
+        <div class="menu-categoria-titulo" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);">{{categoria.nombre}}</div>
+        <div class="menu-separator" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);">
+          <spam class="menu-subcategoria-item">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total_categoria}}</span>)</spam>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SECCION VIEW-->
   <div ng-view></div>
 
-  <div id="parallax-1">
-    <div id="sucursal1"></div>
-    <div id="sucursal2"></div>
-    <div id="sucursal3"></div>
-    <div id="sucursal4"></div>
-
-    <div id="tierra1"></div>
-    <div id="tierra2"></div>
-    <div id="tierra3"></div>
+  <div id="parallax">
+    <div id="section-1">
+    </div>
+    <div id="buscar">
+      <input type="text" class="form-control" ng-model="bayresCtrl.filtro" ng-keyup="bayresCtrl.buscarProducto($event);">
+      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.filtro = '';">
+    </div>
+    <div id="section-2">
+    </div>
+    <div id="section-3">
+    </div>
+    <div id="section-4">
+    </div>
   </div>
 
 
-  <div id="medios" class="parallax__group parallax__layer parallax__layer--base">
+  <div id="medios" >
     <div class="medio-pagos">
       <span class="medio-pagos-text">MEDIOS DE PAGO:</span>
       <img src="images/medio_07.png" alt="Transferencia" title="Transferencia">
@@ -100,7 +125,7 @@
     </div>
   </div>
 
-  <div id="footer" class="parallax__group parallax__layer parallax__layer--base">
+  <div id="footer" >
 
     <div class="outer-center footer-outer">
       <div class="inner-center footer-inner">
@@ -182,41 +207,8 @@
   <script src="carrito/carrito.js"></script>
   <script src="micuenta/micuenta.js"></script>
   <script src="contacto/contacto.js"></script>
+  <script src="detalle/detalle.js"></script>
+  <!--script src="js/parallax.js"></script-->
 
-  <script type="text/javascript">
-
-    // Create cross browser requestAnimationFrame method:
-    window.requestAnimationFrame = window.requestAnimationFrame
-            || window.mozRequestAnimationFrame
-            || window.webkitRequestAnimationFrame
-            || window.msRequestAnimationFrame
-            || function(f){setTimeout(f, 1000/60)}
-
-    var sucursal1 = document.getElementById('sucursal1');
-    var sucursal2 = document.getElementById('sucursal2');
-    var sucursal3 = document.getElementById('sucursal3');
-    var sucursal4 = document.getElementById('sucursal4');
-
-    var tierra1 = document.getElementById('tierra1');
-    var tierra2 = document.getElementById('tierra2');
-    var tierra3 = document.getElementById('tierra3');
-
-    function parallaxbubbles(){
-      var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
-      sucursal1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
-      sucursal2.style.top = -scrolltop * .4 + 'px' // move bubble2 at 50% of scroll rate
-      sucursal3.style.top = -scrolltop * .6 + 'px' // move bubble2 at 50% of scroll rate
-      sucursal4.style.top = -scrolltop * .7 + 'px' // move bubble2 at 50% of scroll rate
-
-      tierra1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
-      tierra2.style.top = -scrolltop * .4 + 'px' // move bubble2 at 50% of scroll rate
-      tierra3.style.top = -scrolltop * .6 + 'px' // move bubble2 at 50% of scroll rate
-    }
-
-    window.addEventListener('scroll', function(){ // on page scroll
-      requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
-    }, false)
-
-  </script>
 </body>
 </html>

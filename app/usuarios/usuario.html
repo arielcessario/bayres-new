@@ -1,10 +1,8 @@
-<div class="container-title">
-  <label class="title-font font-color-text">Registro</label>
-</div>
-
 <div ng-controller="UsuarioController as userCtrl" class="primary-form">
-  <div class="container-form">
-    <div class="container-form-2">
+  <div class="container-main">
+    <div class="title-font container-main-title">Registro</div>
+
+    <div class="container-main-content">
       <div class="form-group">
         <input type="text" class="form-control" ng-model="userCtrl.userForm.nombre" placeholder="Nombre...">
       </div>
@@ -34,9 +32,8 @@
       </div>
 
       <div class="botonera">
-        <button ng-click="userCtrl.create();">Aceptar</button>
-        <button ng-click="userCtrl.login();">Ingresar</button>
-        <button ng-click="userCtrl.home();">Home</button>
+        <button class="btn-big" ng-click="userCtrl.create();">Aceptar</button>
+        <button class="btn-big" ng-click="userCtrl.login();">Ingresar</button>
       </div>
 
       <div class="form-message">

@@ -30,7 +30,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
 
     //  VARIABLES
     var vm = this;
-
+    vm.message = '';
     vm.carritoDetalles = [];
     vm.tipoEnvios = [
         {'id':1, 'name': 'Envio a'},
@@ -197,7 +197,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
             }
         }
         else {
-            console.log('Carrito vacio');
+            vm.message = 'El Carrito esta vacio. Por favor agregue productos';
         }
     }
 

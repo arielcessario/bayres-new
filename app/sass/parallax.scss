@@ -30,22 +30,45 @@ $border_color: #8CC63F;
 @include font-face($myriad_pro_condensed, font-files("MYRIADPRO-COND.woff"));
 @include font-face($myriad_pro_regular, font-files("MYRIADPRO-REGULAR.woff"));
 
-
+/*
 body{
   font-family: $myriad_pro_bold_condensed, serif;
   height: 2000px;
   background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
   background-size: cover;
 }
-/*
-#parallax-1 {
-  height: 2000px;
-  //height: 500px;
-  background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
-  background-size: cover;
-  background-color: #00fefe;
-}
 */
+
+#parallax {
+  font-family: $myriad_pro_bold_condensed, serif;
+  height: 2000px;
+  //background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
+  background-color: $background_color;
+  background-size: cover;
+}
+#section-1, #section-2, #section-3, #section-4{
+  position: relative;
+  //background: $background_color url("../images/sucursales_05.png") top center no-repeat fixed;
+  //background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 600px;
+}
+#section-2 {
+  //background: #00fefe url("../images/tierra_04.jpg") top center no-repeat fixed;
+  background-color: #42210B;
+}
+#section-3 {
+  //background: #00fefe url("../images/destacados_04.jpg") top center no-repeat fixed;
+  background-color: darkgrey;
+}
+#section-4 {
+  //background: #00fefe url("../images/lava_01.png") top center no-repeat fixed;
+  background-color: darkred;
+}
+
 #sucursal1, #sucursal2, #sucursal3, #sucursal4{
   width: 100%;
   //height: 100%;
@@ -83,4 +106,38 @@ body{
 #tierra3{
   //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
   background: url("../images/tierra_03.png") 60% 110% no-repeat;
+}
+#roca1, #roca2, #roca3{
+  width: 100%;
+  //height: 100%;
+  //height: 80%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/destacados_01.png") 5% 50% no-repeat;
+}
+#roca2{
+  background: url("../images/destacados_02.png") 95% 90% no-repeat;
+}
+#roca3{
+  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
+  background: url("../images/destacados_03.png") 60% 110% no-repeat;
+}
+#lava1, #lava2, #lava3{
+  width: 100%;
+  //height: 100%;
+  //height: 80%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/lava_01.png") 5% 50% no-repeat;
+}
+#lava2{
+  background: url("../images/lava_02.png") 95% 90% no-repeat;
+}
+#lava3{
+  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
+  background: url("../images/lava_03.png") 60% 110% no-repeat;
 }

@@ -130,7 +130,9 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     }
 
     function showDetalle(id) {
-        $location.path('/productos/' + id);
+        console.log(id);
+        //$location.path('/detalle/' + id);
+        $location.path('/detalle');
     }
 
     function showSubCategoria(categoria_id) {

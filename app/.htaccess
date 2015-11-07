@@ -24,3 +24,4 @@ ExpiresDefault "access plus 1 week"
     Header append Vary: Accept-Encoding
   </FilesMatch>
 </IfModule>
+

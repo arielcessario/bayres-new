@@ -1,0 +1,21 @@
+<div ng-controller="DetalleController as detalleCtrl">
+    <div class="container-main">
+        <div class="title-font container-main-title">Detalle</div>
+
+        <div class="container-detalle-content">
+            <div class="container-detalle-1">
+                <img ng-src="images/{{detalleCtrl.producto.fotos[0].nombre}}"
+                     alt="{{detalleCtrl.producto.nombre}}"
+                     class="detalle-imagen"/>
+                <div class="detalle-titulo">{{detalleCtrl.producto.nombre}}</div>
+            </div>
+            <div class="container-detalle-2">
+                <div class="div-close"><img src="images/close.png" title="Cerrar detalle" ng-click="detalleCtrl.close();" class="btn-close"></div>
+                <div class="div-detalle">{{detalleCtrl.producto.descripcion}}</div>
+                <div class="btn-carrigo-big div-button" ng-click="detalleCtrl.addProducto(detalleCtrl.producto);">
+                    <span class="producto-peso-big">$</span><span class="producto-precio-big">{{detalleCtrl.producto.precios[0].precio}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

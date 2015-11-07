@@ -1,43 +1,43 @@
-<div class="container-title">
-    <label class="title-font font-color-text">Contacto</label>
-</div>
-
 <div ng-controller="ContactoController as contactoCtrl" class="primary-form">
-    <div class="container-form">
-        <div class="container-contacto">
-            <div class="container-contacto-1">
-                <div class="form-group">
-                    <label class="label-input">Nombre</label>
-                    <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.nombre"
-                            id="contacto-nombre">
+    <div class="container-main">
+        <label class="title-font font-color-text">Contacto</label>
+
+        <div class="container-main-content">
+            <div class="container-contacto">
+                <div class="container-contacto-1">
+                    <div class="form-group">
+                        <label class="label-input">Nombre</label>
+                        <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.nombre"
+                                id="contacto-nombre">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-input">Mail</label>
+                        <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.mail"
+                               id="contacto-mail">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-input">Asunto</label>
+                        <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.asunto"
+                               id="contacto-asunto">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="label-input">Mail</label>
-                    <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.mail"
-                           id="contacto-mail">
-                </div>
-                <div class="form-group">
-                    <label class="label-input">Asunto</label>
-                    <input type="text" class="form-control" ng-model="contactoCtrl.contactoForm.asunto"
-                           id="contacto-asunto">
+                <div class="container-contacto-2">
+                    <div class="form-group">
+                        <label class="label-input">Consulta</label>
+                        <textarea type="text" class="" rows="10" cols="50" id="contacto-consulta" ng-model="contactoCtrl.contactoForm.consulta">
+                            {{contactoCtrl.contactoForm.consulta}}</textarea>
+                    </div>
                 </div>
             </div>
-            <div class="container-contacto-2">
-                <div class="form-group">
-                    <label class="label-input">Consulta</label>
-                    <textarea type="text" class="" rows="10" cols="50" id="contacto-consulta" ng-model="contactoCtrl.contactoForm.consulta">
-                        {{contactoCtrl.contactoForm.consulta}}</textarea>
-                </div>
+
+            <div class="botonera">
+                <button class="btn-big" ng-click="contactoCtrl.sendConsulta();">Enviar Consulta</button>
+                <button class="btn-big" ng-click="contactoCtrl.home();">Home</button>
             </div>
-        </div>
 
-        <div class="botonera">
-            <button ng-click="contactoCtrl.sendConsulta();">Enviar Consulta</button>
-            <button ng-click="contactoCtrl.home();">Home</button>
-        </div>
-
-        <div class="form-message">
-            <div class="message">{{contactoCtrl.message}}</div>
+            <div class="form-message">
+                <div class="message">{{contactoCtrl.message}}</div>
+            </div>
         </div>
     </div>
 </div>

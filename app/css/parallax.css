@@ -65,38 +65,62 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: "Myriad Pro Bold";
-  src: url('../fonts/MYRIADPRO-BOLD.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLD.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Bold Condensed";
-  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Condensed";
-  src: url('../fonts/MYRIADPRO-COND.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-COND.woff?1446549555') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Regular";
-  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446168714') format('woff');
+  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446549555') format('woff');
 }
-/* line 34, ../sass/parallax.scss */
-body {
-  font-family: "Myriad Pro Bold Condensed", serif;
+/*
+body{
+  font-family: $myriad_pro_bold_condensed, serif;
   height: 2000px;
   background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
+  background-size: cover;
+}
+*/
+/* line 42, ../sass/parallax.scss */
+#parallax {
+  font-family: "Myriad Pro Bold Condensed", serif;
+  height: 2000px;
+  background-color: #00fefe;
   background-size: cover;
 }
 
-/*
-#parallax-1 {
-  height: 2000px;
-  //height: 500px;
-  background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
-  background-size: cover;
-  background-color: #00fefe;
-}
-*/
 /* line 49, ../sass/parallax.scss */
+#section-1, #section-2, #section-3, #section-4 {
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 600px;
+}
+
+/* line 59, ../sass/parallax.scss */
+#section-2 {
+  background-color: #42210B;
+}
+
+/* line 63, ../sass/parallax.scss */
+#section-3 {
+  background-color: darkgrey;
+}
+
+/* line 67, ../sass/parallax.scss */
+#section-4 {
+  background-color: darkred;
+}
+
+/* line 72, ../sass/parallax.scss */
 #sucursal1, #sucursal2, #sucursal3, #sucursal4 {
   width: 100%;
   height: 80%;
@@ -107,22 +131,22 @@ body {
   background: url("../images/sucursales_04.png") 5% 50% no-repeat;
 }
 
-/* line 59, ../sass/parallax.scss */
+/* line 82, ../sass/parallax.scss */
 #sucursal2 {
   background: url("../images/sucursales_03.png") 95% 90% no-repeat;
 }
 
-/* line 62, ../sass/parallax.scss */
+/* line 85, ../sass/parallax.scss */
 #sucursal3 {
   background: url("../images/sucursales_02.png") 60% 110% no-repeat;
 }
 
-/* line 66, ../sass/parallax.scss */
+/* line 89, ../sass/parallax.scss */
 #sucursal4 {
   background: url("../images/sucursales_01.png") 95% 90% no-repeat;
 }
 
-/* line 70, ../sass/parallax.scss */
+/* line 93, ../sass/parallax.scss */
 #tierra1, #tierra2, #tierra3 {
   width: 100%;
   top: 0;
@@ -132,12 +156,52 @@ body {
   background: url("../images/tierra_01.png") 5% 50% no-repeat;
 }
 
-/* line 80, ../sass/parallax.scss */
+/* line 103, ../sass/parallax.scss */
 #tierra2 {
   background: url("../images/tierra_02.png") 95% 90% no-repeat;
 }
 
-/* line 83, ../sass/parallax.scss */
+/* line 106, ../sass/parallax.scss */
 #tierra3 {
   background: url("../images/tierra_03.png") 60% 110% no-repeat;
+}
+
+/* line 110, ../sass/parallax.scss */
+#roca1, #roca2, #roca3 {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/destacados_01.png") 5% 50% no-repeat;
+}
+
+/* line 120, ../sass/parallax.scss */
+#roca2 {
+  background: url("../images/destacados_02.png") 95% 90% no-repeat;
+}
+
+/* line 123, ../sass/parallax.scss */
+#roca3 {
+  background: url("../images/destacados_03.png") 60% 110% no-repeat;
+}
+
+/* line 127, ../sass/parallax.scss */
+#lava1, #lava2, #lava3 {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  background: url("../images/lava_01.png") 5% 50% no-repeat;
+}
+
+/* line 137, ../sass/parallax.scss */
+#lava2 {
+  background: url("../images/lava_02.png") 95% 90% no-repeat;
+}
+
+/* line 140, ../sass/parallax.scss */
+#lava3 {
+  background: url("../images/lava_03.png") 60% 110% no-repeat;
 }

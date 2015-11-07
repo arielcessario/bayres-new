@@ -13,7 +13,8 @@ angular.module('bayres', [
   'bayres.productos',
   'bayres.carrito',
   'bayres.micuenta',
-  'bayres.contacto'
+  'bayres.contacto',
+  'bayres.detalle'
 ]).
 config(['$routeProvider', function($routeProvider) {
 
@@ -29,9 +30,11 @@ function BayresController($scope, $location, UserService, ProductService,
                           CategoryService, LinksService, CartVars) {
 
   var vm = this;
+  vm.filtro = '';
   vm.isLogged = false;
   vm.selectedPage = 'INICIO';
   vm.menu_mobile_open = false;
+  vm.showCategorias = false;
   vm.links = LinksService.links;
 
   var productosList = [];
@@ -47,6 +50,8 @@ function BayresController($scope, $location, UserService, ProductService,
   vm.logout = logout;
   vm.login = login;
   vm.createUsuario = createUsuario;
+  vm.getByCategoria = getByCategoria;
+  vm.buscarProducto = buscarProducto;
 
   $location.path('/agreement');
 
@@ -103,7 +108,7 @@ function BayresController($scope, $location, UserService, ProductService,
 
   ProductService.get(function(data){
     productosList = data;
-    console.log(productosList);
+    //console.log(productosList);
   });
 
   CategoryService.getByParams("parent_id", "-1", "true", function(data){
@@ -123,17 +128,26 @@ function BayresController($scope, $location, UserService, ProductService,
     });
   });
 
+  function getByCategoria(categoria_id) {
+    $location.path('#/productos/'+categoria_id);
+  }
+
+  function buscarProducto(event) {
+    if(event.keyCode == 13) {
+
+    }
+  }
+
 }
 
 /*ARMO UN SERVICIO PARA EL MENU*/
 function LinksService() {
   this.links = [
-    {nombre: 'INICIO', path: '/main'},
-    {nombre: 'Categorias', path: '/main'},
-    {nombre: 'Mi Carrito', path: '/carrito'},
-    {nombre: 'Mi Cuenta', path: '/micuenta'},
-    {nombre: 'Finalizar Compra', path: '/carrito'},
-    {nombre: 'Compras', path: '/revistas'},
-    {nombre: 'Contacto', path: '/contacto'}
+    {nombre: 'INICIO', path: '/main', tieneImagen: true, nombreImagen: 'home.png'},
+    {nombre: 'Categorias', path: '/main', tieneImagen: true, nombreImagen: 'categorias.png'},
+    {nombre: 'Mi Carrito', path: '/carrito', tieneImagen: false},
+    {nombre: 'Mi Cuenta', path: '/micuenta', tieneImagen: false},
+    {nombre: 'Finalizar Compra', path: '/carrito', tieneImagen: false},
+    {nombre: 'Contacto', path: '/contacto', tieneImagen: true, nombreImagen: 'contacto.png'}
   ];
 }

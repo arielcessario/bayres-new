@@ -28,6 +28,8 @@ function ProductoController($scope, $routeParams, $location, AcUtils, ProductSer
     vm.id = $routeParams.id;
     vm.hola = 'Hola';
 
+    console.log(vm.id);
+
     if(vm.id > 0) {
         console.log(vm.id);
         ProductService.getByParams("producto_id", vm.id.toString(), "true", function(data){

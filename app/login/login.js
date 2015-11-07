@@ -26,6 +26,7 @@ function LoginController($location, UserService, $timeout) {
   var vm = this;
 
   vm.message = '';
+  vm.screenWidth = screen.width;
 
   vm.login = login;
   vm.passwordEnter = passwordEnter;

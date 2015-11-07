@@ -1,55 +1,58 @@
-<div class="container-title">
-    <label class="title-font">Carrito</label>
-</div>
-
 <div ng-controller="CarritoController as carritoCtrl" class="primary-form">
-    <div class="container-form">
-        <div class="carrito-table-head">
-            <div class="carrito-table-row-name">Producto</div>
-            <div class="carrito-table-row">Precio U.</div>
-            <div class="carrito-table-row">Cant.</div>
-            <div class="carrito-table-row"><img src="images/lupa.png" title="" hidden/></div>
-            <div class="carrito-table-row"><img src="images/cruz.png" title="" hidden/></div>
-        </div>
-        <div ng-repeat="producto in carritoCtrl.carritoDetalles" class="carrito-table-body">
-            <div class="carrito-table-row-name font-color-text">{{producto.nombre}}</div>
-            <div class="carrito-table-row div-input">{{producto.precio_unitario}}</div>
-            <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
-                       type="number" ng-model="producto.cantidad" style=""/>
-            <div class="carrito-table-row">
-                <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
-                    <img src="images/lupa.png" title="Agregar Producto al Carrito" />
-                </a>
-            </div>
-            <div class="carrito-table-row div-input">
-                <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
-                    <img src="images/cruz.png" title="Agregar Producto al Carrito" />
-                </a>
-            </div>
-        </div>
-        <div class="carrito-totales">
-            <spa>Total: </spa><span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
-        </div>
-        <div class="carrito-entrega">
-            <select ng-model="carritoCtrl.tipoEnvioDefecto"
-                    ng-options="tipoEnvio.name for tipoEnvio in carritoCtrl.tipoEnvios track by tipoEnvio.id"
-                    class="form-control control-select">
-            </select>
-            <select ng-model="carritoCtrl.lugarDeEnvioDefecto"
-                    ng-options="lugarEnvio.name for lugarEnvio in carritoCtrl.lugarDeEnvios track by lugarEnvio.id"
-                    class="form-control control-select">
-            </select>
-        </div>
-        <div class="info-envios">
-            Los envios se realizan por medio de cadeteria, seg&uacute;n el tama&ntilde;o y peso del pedido. El costo del mismo es a cargo del comprador, previo coordinacion con el vendedor
-        </div>
-        <div class="botonera">
-            <button ng-click="carritoCtrl.confirmCarrito();">Confirmar Pedido</button>
-            <button ng-click="carritoCtrl.home();">Home</button>
-        </div>
+    <div class="container-main">
+        <div class="title-font container-main-title">Carrito</div>
 
-        <div class="form-message">
-            <div class="message">{{carritoCtrl.message}}</div>
+        <div class="container-main-content carrito-imagen">
+            <div class="container-carrito-1">
+                <div class="carrito-table-head" ng-if="carritoCtrl.carritoDetalles.length > 0">
+                    <div class="carrito-table-row-name">Producto</div>
+                    <div class="carrito-table-row">Precio U.</div>
+                    <div class="carrito-table-row">Cant.</div>
+                    <div class="carrito-table-row table-row-image"><img src="images/lupa.png" class="div-image-small" hidden/></div>
+                    <div class="carrito-table-row table-row-image"><img src="images/cruz.png" class="div-image-small" hidden/></div>
+                </div>
+                <div ng-repeat="producto in carritoCtrl.carritoDetalles" class="carrito-table-body">
+                    <div class="carrito-table-row-name font-color-text">{{producto.nombre}}</div>
+                    <div class="carrito-table-row div-input">{{producto.precio_unitario}}</div>
+                    <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
+                               type="number" ng-model="producto.cantidad" style=""/>
+                    <div class="carrito-table-row table-row-image">
+                        <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
+                            <img src="images/lupa.png" class="div-image-small" title="Agregar Producto al Carrito" />
+                        </a>
+                    </div>
+                    <div class="carrito-table-row table-row-image">
+                        <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
+                            <img src="images/cruz.png" class="div-image-small" title="Quitar Producto del Carrito" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container-carrito-2">
+                <div class="carrito-totales">
+                    <spa>Total: </spa><span>${{carritoCtrl.carritoInfo.totalAPagar}} </span><span>({{carritoCtrl.carritoInfo.cantidadDeProductos}})</span>
+                </div>
+                <div class="carrito-entrega">
+                    <select ng-model="carritoCtrl.tipoEnvioDefecto"
+                            ng-options="tipoEnvio.name for tipoEnvio in carritoCtrl.tipoEnvios track by tipoEnvio.id"
+                            class="form-control control-select">
+                    </select>
+                    <select ng-model="carritoCtrl.lugarDeEnvioDefecto"
+                            ng-options="lugarEnvio.name for lugarEnvio in carritoCtrl.lugarDeEnvios track by lugarEnvio.id"
+                            class="form-control control-select">
+                    </select>
+                </div>
+                <div class="info-envios">
+                    Los envios se realizan por medio de cadeteria, seg&uacute;n el tama&ntilde;o y peso del pedido. El costo del mismo es a cargo del comprador, previo coordinacion con el vendedor
+                </div>
+                <div class="botonera">
+                    <button class="btn-big" ng-click="carritoCtrl.confirmCarrito();">Pedido!</button>
+                </div>
+
+                <div class="form-message">
+                    <div class="message">{{carritoCtrl.message}}</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
