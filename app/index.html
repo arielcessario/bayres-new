@@ -99,7 +99,10 @@
     <div id="section-1">
     </div>
     <div id="buscar">
-      <input type="text" class="form-control" ng-model="bayresCtrl.filtro" ng-keyup="bayresCtrl.buscarProducto($event);">
+      <input type="text" class="form-control"
+             ac-search-panel service="ProductService" exact-match="false" visible="nombre,descripcion"
+             ng-model="bayresCtrl.producto.nombre" objeto="bayresCtrl.producto"
+             params="nombre,descripcion" ng-keyup="bayresCtrl.buscarProducto($event);">
       <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.filtro = '';">
     </div>
     <div id="section-2">

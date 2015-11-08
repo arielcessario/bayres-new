@@ -114,6 +114,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     function calcularCarritoTotal() {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        CartVars.broadcast();
 
         console.log(vm.carritoInfo);
     }

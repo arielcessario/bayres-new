@@ -1161,6 +1161,8 @@ textarea{
 .detalle-imagen{
   width: 220px;
   height: 220px;
+  border: $border_color 1px solid;
+  padding: 3px;
 }
 .detalle-titulo{
   color: $font_color_title;

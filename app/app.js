@@ -41,8 +41,8 @@ function BayresController($scope, $location, UserService, ProductService,
   vm.categorias = [];
   vm.usuario = {};
   vm.carritoInfo = {
-    cantidadDeProductos: CartVars.carrito_cantidad_productos(),
-    totalAPagar: CartVars.carrito_total(),
+    cantidadDeProductos: 0,
+    totalAPagar: 0.00,
     modified: false
   };
 
@@ -55,6 +55,9 @@ function BayresController($scope, $location, UserService, ProductService,
 
   $location.path('/agreement');
 
+  CartVars.broadcast();
+  vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+  vm.carritoInfo.totalAPagar = CartVars.carrito_total();
 
   $scope.$on('links', function (event, args) {
     vm.links = LinksService.links;

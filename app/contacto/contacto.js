@@ -30,6 +30,7 @@
         vm.enviado = false;
 
         vm.sendConsulta = sendConsulta;
+        vm.home = home;
 
         vm.contactoForm = {
             asunto:'',
@@ -40,6 +41,10 @@
 
         function hideMessage(){
             vm.enviado = false;
+            $location.path('/main');
+        }
+
+        function home() {
             $location.path('/main');
         }
 
