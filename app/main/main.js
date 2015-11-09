@@ -131,9 +131,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     }
 
     function showDetalle(id) {
-        console.log(id);
-        //$location.path('/detalle/' + id);
-        $location.path('/detalle');
+        $location.path('/detalle/' + id);
     }
 
     function showSubCategoria(categoria_id) {

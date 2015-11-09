@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"-->
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="css/bayres.css">
+  <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/parallax.css">
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
@@ -39,8 +40,8 @@
         </div>
         <div class="header-separator"></div>
         <div class="bienvenidos">
-          <div class="mi-carrito">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
-          <img src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
+          <div class="mi-carrito-mobile">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
+          <img class="mi-carrito-mobile-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
         </div>
     </div>
     <div class="menu-desktop menu-type-desktop">
@@ -72,6 +73,17 @@
          ripple-color="#ffffff"
          ng-repeat="link in bayresCtrl.links"
          ng-click="bayresCtrl.goTo(link); bayresCtrl.menu_mobile_open=false;"> {{link.nombre}}
+    </div>
+    <div ng-if="bayresCtrl.showCategorias" id="menu-categorias-mobile">
+      <div>CATEGORIAS</div>
+      <div ng-repeat="categoria in bayresCtrl.categorias">
+        <div class="">
+          <div class="" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);">{{categoria.nombre}}</div>
+          <div class="" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);">
+            <spam class="">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total_categoria}}</span>)</spam>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
