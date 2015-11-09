@@ -60,11 +60,19 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     });
 
     ProductService.getByParams("destacado", "1", "true", function(data){
-        vm.productosDestacados = data;
+        if(data != null || data != undefined) {
+            for(var i=0; i < 8; i++) {
+                vm.productosDestacados.push(data[i]);
+            }
+        }
     });
 
     ProductService.getMasVendidos(function (data) {
-        vm.productosMasVendidos = data;
+        if(data != null || data != undefined) {
+            for(var i=0; i < 8; i++) {
+                vm.productosMasVendidos.push(data[i]);
+            }
+        }
     });
 
 

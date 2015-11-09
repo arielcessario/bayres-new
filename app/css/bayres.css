@@ -1195,16 +1195,16 @@ textarea {
 /* line 893, ../sass/bayres.scss */
 .div-detalle {
   margin-top: 30px;
+  min-height: 250px;
 }
 
-/* line 896, ../sass/bayres.scss */
+/* line 897, ../sass/bayres.scss */
 .div-button {
   bottom: 10px;
-  position: absolute;
-  right: 15px;
+  float: right;
 }
 @media (max-width: 360px) {
-  /* line 896, ../sass/bayres.scss */
+  /* line 897, ../sass/bayres.scss */
   .div-button {
     position: relative;
     float: right;

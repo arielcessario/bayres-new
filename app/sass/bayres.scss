@@ -892,11 +892,13 @@ textarea{
 }
 .div-detalle {
   margin-top: 30px;
+  min-height: 250px;
 }
 .div-button {
   bottom: 10px;
-  position: absolute;
-  right: 15px;
+  //position: absolute;
+  //right: 15px;
+  float: right;
   @media (max-width: 360px) {
     position: relative;
     float: right;
