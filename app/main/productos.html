@@ -1,0 +1,20 @@
+<div ng-controller="MainController as mainCtrl">
+    <div class="title-font container-main-title">Destacados</div>
+    <div class="container-main-productos">
+        <div ng-repeat="producto in mainCtrl.productosDestacados">
+            <div class="container-producto">
+                <div class="container-producto-border">
+                    <div class="producto-nombre">{{producto.nombre}}</div>
+                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+
+                    <div class="producto-botones">
+                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -46,6 +46,7 @@ body{
   background-color: $background_color;
   background-size: cover;
 }
+
 #section-1, #section-2, #section-3, #section-4{
   position: relative;
   //background: $background_color url("../images/sucursales_05.png") top center no-repeat fixed;
@@ -77,8 +78,13 @@ body{
   position: fixed;
   text-align: right;
   background-color: #fff;
+}
+#sucursal1{
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
   background: url(../images/sucursales_03.png) top center no-repeat;
 }
+
 #sucursal2{
   background: url(../images/sucursales_02.png) top center no-repeat;
 }

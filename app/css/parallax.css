@@ -1,4 +1,4 @@
-/* line 5, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,64 +20,64 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
 @font-face {
   font-family: "Myriad Pro Bold";
-  src: url('../fonts/MYRIADPRO-BOLD.woff?1447016101') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLD.woff?1446553266') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Bold Condensed";
-  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1447016101') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446553266') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Condensed";
-  src: url('../fonts/MYRIADPRO-COND.woff?1447016101') format('woff');
+  src: url('../fonts/MYRIADPRO-COND.woff?1446553266') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Regular";
-  src: url('../fonts/MYRIADPRO-REGULAR.woff?1447016101') format('woff');
+  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446553266') format('woff');
 }
 /*
 body{
@@ -95,7 +95,7 @@ body{
   background-size: cover;
 }
 
-/* line 49, ../sass/parallax.scss */
+/* line 50, ../sass/parallax.scss */
 #section-1, #section-2, #section-3, #section-4 {
   position: relative;
   -webkit-background-size: cover;
@@ -105,52 +105,58 @@ body{
   min-height: 600px;
 }
 
-/* line 59, ../sass/parallax.scss */
+/* line 60, ../sass/parallax.scss */
 #section-1 {
   background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
 }
 
-/* line 62, ../sass/parallax.scss */
+/* line 63, ../sass/parallax.scss */
 #section-2 {
   background: #00fefe url("../images/tierra_04.jpg") top center no-repeat fixed;
 }
 
-/* line 65, ../sass/parallax.scss */
+/* line 66, ../sass/parallax.scss */
 #section-3 {
   background: #00fefe url("../images/destacados_04.jpg") top center no-repeat fixed;
 }
 
-/* line 69, ../sass/parallax.scss */
+/* line 70, ../sass/parallax.scss */
 #section-4 {
   background: #00fefe url("../images/lava_01.png") top center no-repeat fixed;
 }
 
-/* line 74, ../sass/parallax.scss */
+/* line 75, ../sass/parallax.scss */
 #sucursal1, #sucursal2, #sucursal3, #sucursal4 {
   width: 100%;
   height: 600px;
   position: fixed;
   text-align: right;
   background-color: #fff;
-  background: url(../images/sucursales_03.png) top center no-repeat;
 }
 
 /* line 82, ../sass/parallax.scss */
+#sucursal1 {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  background: url(../images/sucursales_03.png) top center no-repeat;
+}
+
+/* line 88, ../sass/parallax.scss */
 #sucursal2 {
   background: url(../images/sucursales_02.png) top center no-repeat;
 }
 
-/* line 85, ../sass/parallax.scss */
+/* line 91, ../sass/parallax.scss */
 #sucursal3 {
   background: url(../images/sucursales_01.png) top center no-repeat;
 }
 
-/* line 88, ../sass/parallax.scss */
+/* line 94, ../sass/parallax.scss */
 #sucursal4 {
   background: url("../images/sucursales_01.png") top center no-repeat;
 }
 
-/* line 91, ../sass/parallax.scss */
+/* line 97, ../sass/parallax.scss */
 #tierra1, #tierra2, #tierra3 {
   width: 100%;
   height: 600px;
@@ -160,17 +166,17 @@ body{
   background: url(../images/tierra_04.jpg) top center no-repeat;
 }
 
-/* line 99, ../sass/parallax.scss */
+/* line 105, ../sass/parallax.scss */
 #tierra2 {
   background: url(../images/tierra_03.png) top center no-repeat;
 }
 
-/* line 102, ../sass/parallax.scss */
+/* line 108, ../sass/parallax.scss */
 #tierra3 {
   background: url(../images/tierra_01.png) top center no-repeat;
 }
 
-/* line 105, ../sass/parallax.scss */
+/* line 111, ../sass/parallax.scss */
 #roca1, #roca2, #roca3 {
   width: 100%;
   height: 600px;
@@ -180,17 +186,17 @@ body{
   background: url(../images/destacados_03.png) top center no-repeat;
 }
 
-/* line 113, ../sass/parallax.scss */
+/* line 119, ../sass/parallax.scss */
 #roca2 {
   background: url(../images/destacados_02.png) top center no-repeat;
 }
 
-/* line 116, ../sass/parallax.scss */
+/* line 122, ../sass/parallax.scss */
 #roca3 {
   background: url(../images/destacados_01.png) top center no-repeat;
 }
 
-/* line 119, ../sass/parallax.scss */
+/* line 125, ../sass/parallax.scss */
 #lava1, #lava2, #lava3 {
   width: 100%;
   height: 600px;
@@ -200,12 +206,12 @@ body{
   background: url("../images/lava_01.png") top center no-repeat;
 }
 
-/* line 127, ../sass/parallax.scss */
+/* line 133, ../sass/parallax.scss */
 #lava2 {
   background: url("../images/lava_02.png") top center no-repeat;
 }
 
-/* line 130, ../sass/parallax.scss */
+/* line 136, ../sass/parallax.scss */
 #lava3 {
   background: url("../images/lava_03.png") top center no-repeat;
 }
