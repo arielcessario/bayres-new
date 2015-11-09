@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('bayres.main', [
-    'ngRoute',
-    'ngCookies',
-    'ngAnimate',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    'acUsuarios',
-    'acProductos'
-])
-    .config(['$routeProvider', function($routeProvider) {
+        'ngRoute',
+        'ngCookies',
+        'ngAnimate',
+        'angular-storage',
+        'angular-jwt',
+        'acUtils',
+        'acUsuarios',
+        'acProductos'
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/main', {
             templateUrl: 'main/main.html',
             controller: 'MainController',
@@ -55,26 +55,25 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.hideSubCategoria = hideSubCategoria;
 
 
-    ProductService.getByParams("en_oferta", "1", "true", function(data){
+    ProductService.getByParams("en_oferta", "1", "true", function (data) {
         vm.productosEnOfertas = data;
     });
 
-    ProductService.getByParams("destacado", "1", "true", function(data){
-        if(data != null || data != undefined) {
-            for(var i=0; i < 8; i++) {
+    ProductService.getByParams("destacado", "1", "true", function (data) {
+        if (data != null || data != undefined) {
+            for (var i = 0; i < 8; i++) {
                 vm.productosDestacados.push(data[i]);
             }
         }
     });
 
     ProductService.getMasVendidos(function (data) {
-        if(data != null || data != undefined) {
-            for(var i=0; i < 8; i++) {
+        if (data != null || data != undefined) {
+            for (var i = 0; i < 8; i++) {
                 vm.productosMasVendidos.push(data[i]);
             }
         }
     });
-
 
 
     function addProducto(producto) {
@@ -95,10 +94,10 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         var encontrado = false;
         var indexToDelete = 0;
 
-        if(CartVars.carrito.length > 0) {
+        if (CartVars.carrito.length > 0) {
             var index = 0;
-            CartVars.carrito.forEach(function(data){
-                if(data.producto_id == producto.producto_id) {
+            CartVars.carrito.forEach(function (data) {
+                if (data.producto_id == producto.producto_id) {
                     producto.cantidad = data.cantidad + producto.cantidad;
                     indexToDelete = index;
                     encontrado = true;
@@ -106,12 +105,12 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
                 index = index + 1;
             });
 
-            if(encontrado) {
-                CartVars.carrito.splice( indexToDelete, 1 );
+            if (encontrado) {
+                CartVars.carrito.splice(indexToDelete, 1);
             }
         }
         CartVars.carrito.push(producto);
-        CartVars.carrito.sort(function(a, b){
+        CartVars.carrito.sort(function (a, b) {
             return a.nombre - b.nombre;
         });
         console.log(CartVars.carrito);
@@ -129,7 +128,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
     function findProducto() {
         if (vm.productoBuscado.length > 2) {
-            ProductService.getByParams('nombre', vm.productoBuscado, 'true', function(data){
+            ProductService.getByParams('nombre', vm.productoBuscado, 'true', function (data) {
                 vm.productoResultado = (data.length > 0) ? 'RESULTADOS' : 'No se encontro resultado';
                 vm.productoList = data;
             });
@@ -153,14 +152,14 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     }
 
 
-
-
     // Create cross browser requestAnimationFrame method:
     window.requestAnimationFrame = window.requestAnimationFrame
         || window.mozRequestAnimationFrame
         || window.webkitRequestAnimationFrame
         || window.msRequestAnimationFrame
-        || function(f){setTimeout(f, 1000/60)};
+        || function (f) {
+            setTimeout(f, 1000 / 60)
+        };
 
 //var  scrollheight = document.body.scrollHeight; // altura de todo el documento
 //var  WindowHeight = window.innerHeight; // altura de la ventana del navegador
@@ -181,45 +180,54 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     var roca3 = document.getElementById('roca3');
 
 
-
-    var vista = document.getElementById('vista');
-    console.log(vista);
-
 //var lava1 = document.getElementById('lava1');
 //var lava2 = document.getElementById('lava2');
 //var lava3 = document.getElementById('lava3');
 
-    function parallaxbubbles(){
+    function parallaxbubbles() {
         var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
         //var scrollamount = (scrollTop / (scrollheight-WindowHeight)) * 100 // Obtener cantidad desplaza (en%)
         //console.log(scrollamount);
 
         console.log(scrolltop);
 
-        sucursal1.style.top = 50 -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-        sucursal2.style.top = 50 -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-        sucursal3.style.top = 50 -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+        sucursal1.style.top = 50 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
+        sucursal2.style.top = 50 - scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
+        sucursal3.style.top = 50 - scrolltop * 1 + 'px'; // move bubble2 at 50% of scroll rate
         //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
-        vista.style.top = 600 -scrolltop * .4 + 'px'; // move bubble1 at 20% of scroll rate
-        tierra1.style.top = 600 -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-        tierra2.style.top = 600 -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-        tierra3.style.top = 600 -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
 
-        roca1.style.top = 800 -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-        roca2.style.top = 800 -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-        roca3.style.top = 800 -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
 
+
+        tierra1.style.top = 600 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
+        tierra2.style.top = 600 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
+        tierra3.style.top = 600 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+
+        if (scrolltop < 550) {
+
+            roca1.style.opacity = 0;
+            roca2.style.opacity = 0;
+            roca3.style.opacity = 0;
+        }
+        else {
+
+            roca1.style.opacity = 1;
+            roca2.style.opacity = 1;
+            roca3.style.opacity = 1;
+
+            roca1.style.top = 800 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
+            roca2.style.top = 800 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
+            roca3.style.top = 800 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+        }
         $scope.$apply();
         //lava1.style.top = -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
         //lava2.style.top = -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
         //lava3.style.top = -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
     }
 
-    window.addEventListener('scroll', function(){ // on page scroll
+    window.addEventListener('scroll', function () { // on page scroll
         requestAnimationFrame(parallaxbubbles); // call parallaxbubbles() on next available screen paint
     }, false);
-
 
 
 }

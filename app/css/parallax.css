@@ -88,6 +88,11 @@ body{
 }
 */
 /* line 42, ../sass/parallax.scss */
+#main-productos {
+  position: absolute;
+}
+
+/* line 47, ../sass/parallax.scss */
 #parallax {
   font-family: "Myriad Pro Bold Condensed", serif;
   height: 2000px;
@@ -95,7 +100,7 @@ body{
   background-size: cover;
 }
 
-/* line 50, ../sass/parallax.scss */
+/* line 55, ../sass/parallax.scss */
 #section-1, #section-2, #section-3, #section-4 {
   position: relative;
   -webkit-background-size: cover;
@@ -105,27 +110,27 @@ body{
   min-height: 600px;
 }
 
-/* line 60, ../sass/parallax.scss */
+/* line 65, ../sass/parallax.scss */
 #section-1 {
   background: #00fefe url("../images/sucursales_05.png") top center no-repeat fixed;
 }
 
-/* line 63, ../sass/parallax.scss */
+/* line 68, ../sass/parallax.scss */
 #section-2 {
   background: #00fefe url("../images/tierra_04.jpg") top center no-repeat fixed;
 }
 
-/* line 66, ../sass/parallax.scss */
+/* line 71, ../sass/parallax.scss */
 #section-3 {
   background: #00fefe url("../images/destacados_04.jpg") top center no-repeat fixed;
 }
 
-/* line 70, ../sass/parallax.scss */
+/* line 75, ../sass/parallax.scss */
 #section-4 {
   background: #00fefe url("../images/lava_01.png") top center no-repeat fixed;
 }
 
-/* line 75, ../sass/parallax.scss */
+/* line 80, ../sass/parallax.scss */
 #sucursal1, #sucursal2, #sucursal3, #sucursal4 {
   width: 100%;
   height: 600px;
@@ -134,29 +139,29 @@ body{
   background-color: #fff;
 }
 
-/* line 82, ../sass/parallax.scss */
+/* line 87, ../sass/parallax.scss */
 #sucursal1 {
   -webkit-filter: blur(2px);
   filter: blur(2px);
   background: url(../images/sucursales_03.png) top center no-repeat;
 }
 
-/* line 88, ../sass/parallax.scss */
+/* line 93, ../sass/parallax.scss */
 #sucursal2 {
   background: url(../images/sucursales_02.png) top center no-repeat;
 }
 
-/* line 91, ../sass/parallax.scss */
+/* line 96, ../sass/parallax.scss */
 #sucursal3 {
   background: url(../images/sucursales_01.png) top center no-repeat;
 }
 
-/* line 94, ../sass/parallax.scss */
+/* line 99, ../sass/parallax.scss */
 #sucursal4 {
   background: url("../images/sucursales_01.png") top center no-repeat;
 }
 
-/* line 97, ../sass/parallax.scss */
+/* line 102, ../sass/parallax.scss */
 #tierra1, #tierra2, #tierra3 {
   width: 100%;
   height: 600px;
@@ -166,17 +171,17 @@ body{
   background: url(../images/tierra_04.jpg) top center no-repeat;
 }
 
-/* line 105, ../sass/parallax.scss */
+/* line 110, ../sass/parallax.scss */
 #tierra2 {
   background: url(../images/tierra_03.png) top center no-repeat;
 }
 
-/* line 108, ../sass/parallax.scss */
+/* line 113, ../sass/parallax.scss */
 #tierra3 {
   background: url(../images/tierra_01.png) top center no-repeat;
 }
 
-/* line 111, ../sass/parallax.scss */
+/* line 116, ../sass/parallax.scss */
 #roca1, #roca2, #roca3 {
   width: 100%;
   height: 600px;
@@ -186,17 +191,17 @@ body{
   background: url(../images/destacados_03.png) top center no-repeat;
 }
 
-/* line 119, ../sass/parallax.scss */
+/* line 124, ../sass/parallax.scss */
 #roca2 {
   background: url(../images/destacados_02.png) top center no-repeat;
 }
 
-/* line 122, ../sass/parallax.scss */
+/* line 127, ../sass/parallax.scss */
 #roca3 {
   background: url(../images/destacados_01.png) top center no-repeat;
 }
 
-/* line 125, ../sass/parallax.scss */
+/* line 130, ../sass/parallax.scss */
 #lava1, #lava2, #lava3 {
   width: 100%;
   height: 600px;
@@ -206,12 +211,12 @@ body{
   background: url("../images/lava_01.png") top center no-repeat;
 }
 
-/* line 133, ../sass/parallax.scss */
+/* line 138, ../sass/parallax.scss */
 #lava2 {
   background: url("../images/lava_02.png") top center no-repeat;
 }
 
-/* line 136, ../sass/parallax.scss */
+/* line 141, ../sass/parallax.scss */
 #lava3 {
   background: url("../images/lava_03.png") top center no-repeat;
 }
