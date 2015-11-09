@@ -29,7 +29,8 @@
                             <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
                                 <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
                             </div>
-                            <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                            <div class="btn-info" ng-click="window.location='#/customer/{{producto.producto_id}}';"></div>
+                            <!--div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div-->
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ angular.module('bayres.detalle', [
     'acProductos'
 ])
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/detalle', {
+        $routeProvider.when('/detalle/:id', {
             templateUrl: 'detalle/detalle.html',
             controller: 'DetalleController',
             data: {requiresLogin: false}
@@ -25,6 +25,7 @@ DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductSer
 function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout) {
     var vm = this;
     vm.id = $routeParams.id;
+    /*
     vm.producto = {
         descripcion: "Dise鎙do especialmente para balcones, patios, macetas jardineras, peque鎙s y grandes macetas, etc. Sistema de riego por goteo. Li要ea principal de 7,2 metros de largo con 24 goteros estaca auto compensados de 1,3 litros/hora cada uno en 6 sets de 4 goteros cada set (li要ea del set de 60 cms.) Riega hasta 24 macetas individuales. Kit expandible, puede agregar otros kits al final de la li要ea Trabaja con mi要ima presion (0,5 bar), solo conectelo a la canilla y funciona perfectamente. Sumamente versatil, puede utilizarse en peque鎙s o grandes macetas. Impresionante ahorro de agua y tiempo. Manual de instrucciones en espa隳l. Incorporando un timer (no incluido), automatiza el riego. Impresionante ahorro de agua. Este kit puede extenderse.",
         destacado: 1,
@@ -39,6 +40,21 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         status: 1,
         fotos:[{foto_id:1, nombre:'big_up_powder.png'}]
     };
+    */
+    vm.producto = {
+        descripcion: '',
+        destacado: 0,
+        en_oferta: 0,
+        en_slider: 0,
+        nombre: '',
+        precios: [],
+        producto_id: 0,
+        producto_tipo: 0,
+        pto_repo: 0,
+        sku: null,
+        status: 0,
+        fotos:[]
+    };
     vm.carritoInfo = {
         cantidadDeProductos: 0,
         totalAPagar: 0.00,
@@ -49,15 +65,11 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     vm.addProducto = addProducto;
 
 
-    //console.log(vm.id);
+    console.log(vm.id);
 
-    ProductService.getByParams("producto_id", "35", "true", function(data){
-        /*
-        $timeout(function () {
-            vm.producto = data;
-            console.log(vm.producto);
-        }, 2000);
-        */
+    ProductService.getByParams("producto_id", vm.id.toString(), "true", function(data){
+        console.log(data);
+        vm.producto = data;
     });
 
     function close() {

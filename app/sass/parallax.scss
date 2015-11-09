@@ -56,88 +56,77 @@ body{
   background-size: cover;
   min-height: 600px;
 }
+#section-1 {
+  background: $background_color url("../images/sucursales_05.png") top center no-repeat fixed;
+}
 #section-2 {
-  //background: #00fefe url("../images/tierra_04.jpg") top center no-repeat fixed;
-  background-color: #42210B;
+  background: #00fefe url("../images/tierra_04.jpg") top center no-repeat fixed;
 }
 #section-3 {
-  //background: #00fefe url("../images/destacados_04.jpg") top center no-repeat fixed;
-  background-color: darkgrey;
+  background: #00fefe url("../images/destacados_04.jpg") top center no-repeat fixed;
+  //background-color: darkgrey;
 }
 #section-4 {
-  //background: #00fefe url("../images/lava_01.png") top center no-repeat fixed;
-  background-color: darkred;
+  background: #00fefe url("../images/lava_01.png") top center no-repeat fixed;
+  //background-color: darkred;
 }
 
 #sucursal1, #sucursal2, #sucursal3, #sucursal4{
   width: 100%;
-  //height: 100%;
-  height: 80%;
-  top: 0;
-  left: 0;
+  height: 600px;
   position: fixed;
-  z-index: -1;
-  background: url("../images/sucursales_04.png") 5% 50% no-repeat;
+  text-align: right;
+  background-color: #fff;
+  background: url(../images/sucursales_03.png) top center no-repeat;
 }
 #sucursal2{
-  background: url("../images/sucursales_03.png") 95% 90% no-repeat;
+  background: url(../images/sucursales_02.png) top center no-repeat;
 }
 #sucursal3{
-  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
-  background: url("../images/sucursales_02.png") 60% 110% no-repeat;
+  background: url(../images/sucursales_01.png) top center no-repeat;
 }
 #sucursal4{
-  background: url("../images/sucursales_01.png") 95% 90% no-repeat;
-  //background: url("../images/sucursales_01.png") 95% 30% no-repeat;
+  background: url("../images/sucursales_01.png") top center no-repeat;
 }
 #tierra1, #tierra2, #tierra3{
   width: 100%;
-  //height: 100%;
-  //height: 80%;
-  top: 0;
-  left: 0;
+  height: 600px;
   position: fixed;
-  z-index: -1;
-  background: url("../images/tierra_01.png") 5% 50% no-repeat;
+  text-align: right;
+  background-color: #fff;
+  background: url(../images/tierra_04.jpg) top center no-repeat;
 }
 #tierra2{
-  background: url("../images/tierra_02.png") 95% 90% no-repeat;
+  background: url(../images/tierra_03.png) top center no-repeat;
 }
 #tierra3{
-  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
-  background: url("../images/tierra_03.png") 60% 110% no-repeat;
+  background: url(../images/tierra_01.png) top center no-repeat;
 }
 #roca1, #roca2, #roca3{
   width: 100%;
-  //height: 100%;
-  //height: 80%;
-  top: 0;
-  left: 0;
+  height: 600px;
   position: fixed;
-  z-index: -1;
-  background: url("../images/destacados_01.png") 5% 50% no-repeat;
+  text-align: right;
+  background-color: #fff;
+  background: url(../images/destacados_03.png) top center no-repeat;
 }
 #roca2{
-  background: url("../images/destacados_02.png") 95% 90% no-repeat;
+  background: url(../images/destacados_02.png) top center no-repeat;
 }
 #roca3{
-  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
-  background: url("../images/destacados_03.png") 60% 110% no-repeat;
+  background: url(../images/destacados_01.png) top center no-repeat;
 }
 #lava1, #lava2, #lava3{
   width: 100%;
-  //height: 100%;
-  //height: 80%;
-  top: 0;
-  left: 0;
+  height: 600px;
   position: fixed;
-  z-index: -1;
-  background: url("../images/lava_01.png") 5% 50% no-repeat;
+  text-align: right;
+  background-color: #fff;
+  background: url("../images/lava_01.png") top center no-repeat;
 }
 #lava2{
-  background: url("../images/lava_02.png") 95% 90% no-repeat;
+  background: url("../images/lava_02.png") top center no-repeat;
 }
 #lava3{
-  //background: url("../images/sucursales_02.png") 60% 40% no-repeat;
-  background: url("../images/lava_03.png") 60% 110% no-repeat;
+  background: url("../images/lava_03.png") top center no-repeat;
 }
