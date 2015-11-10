@@ -1328,3 +1328,21 @@ textarea {
   background-color: #8CC63F;
   border: 2px solid #8CC63F;
 }
+
+/* line 1002, ../sass/bayres.scss */
+.ac-item-list {
+  background-color: #8CC63F;
+  color: #fff;
+  padding: 5px 0 5px 15px;
+  cursor: pointer;
+}
+
+/* line 1008, ../sass/bayres.scss */
+.ac-item-list:hover {
+  color: #ffff00;
+}
+
+/* line 1011, ../sass/bayres.scss */
+.ac-item-selected-list {
+  cursor: pointer;
+}

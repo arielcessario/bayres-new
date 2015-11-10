@@ -999,3 +999,15 @@ textarea{
   background-color: $border_color;
   border: 2px solid $border_color;
 }
+.ac-item-list{
+  background-color: $border_color;
+  color:$font_color_text;
+  padding: 5px 0 5px 15px;
+  cursor: pointer;
+}
+.ac-item-list:hover{
+  color:$font_color_text_hover;
+}
+.ac-item-selected-list{
+  cursor: pointer;
+}
