@@ -905,3 +905,27 @@ textarea{
     margin-top: 20px;
   }
 }
+
+
+
+.transition-pane-animation.ng-enter,
+.transition-pane-animation.ng-leave {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+.transition-pane-animation.ng-enter {
+  z-index: 100;
+  opacity: 0;
+}
+.transition-pane-animation.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.transition-pane-animation.ng-leave {
+  z-index: 101;
+  opacity: 1;
+}
+.transition-pane-animation.ng-leave.ng-leave-active {
+  opacity: 0;
+}
