@@ -35,7 +35,7 @@
         vm.filtro = '';
         vm.isLogged = false;
         vm.selectedPage = 'INICIO';
-        vm.selectedIncludeTop = 'main/destacados.html';
+        vm.selectedIncludeTop = 'main/ofertas.html';
         vm.selectedIncludeMiddle = 'main/destacados.html';
         vm.selectedIncludeBottom = 'main/masvendidos.html';
         vm.menu_mobile_open = false;

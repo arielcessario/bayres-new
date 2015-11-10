@@ -1,19 +1,92 @@
 <div ng-controller="MainController as mainCtrl" id="main-ofertas">
     <div class="title-font container-main-title">Ofertas</div>
     <div class="container-main-productos">
-        <div ng-repeat="producto in mainCtrl.productosDestacados">
-            <div class="container-producto">
-                <div class="container-producto-border">
-                    <div class="producto-nombre">{{producto.nombre}}</div>
-                    <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
-                    <div class="producto-botones">
-                        <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
-                            <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
+        <div class="oferta-top">
+            <div class="container-oferta" ng-if="mainCtrl.slider_nro == 1;">
+                <div class="container-oferta-imagen">
+                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"/>
+                </div>
+                <div class="container-oferta-producto">
+                    <div class="oferta-titulo">{{mainCtrl.productosEnOfertas[0].nombre}}</div>
+                    <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[0].descripcion.substring(0, 160) + "..."}}</div>
+                    <div class="btn-oferta">
+                        <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[0]);">
+                            <span class="producto-peso-big">$</span>
+                            <span class="producto-precio-big" style="margin-right:25px;color:#fff">
+                                {{mainCtrl.productosEnOfertas[0].precios[0].precio}}</span>
                         </div>
-                        <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                        <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[0].producto_id);"></div>
                     </div>
                 </div>
             </div>
+
+            <div class="container-oferta" ng-if="mainCtrl.slider_nro == 2;">
+                <div class="container-oferta-imagen">
+                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"/>
+                </div>
+                <div class="container-oferta-producto">
+                    <div class="oferta-titulo">{{mainCtrl.productosEnOfertas[1].nombre}}</div>
+                    <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[1].descripcion.substring(0, 160) + "..."}}</div>
+                    <div class="btn-oferta">
+                        <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[1]);">
+                            <span class="producto-peso-big">$</span>
+                            <span class="producto-precio-big" style="margin-right:25px;color:#fff">
+                                {{mainCtrl.productosEnOfertas[1].precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[1].producto_id);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-oferta" ng-if="mainCtrl.slider_nro == 3;">
+                <div class="container-oferta-imagen">
+                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"/>
+                </div>
+                <div class="container-oferta-producto">
+                    <div class="oferta-titulo">{{mainCtrl.productosEnOfertas[2].nombre}}</div>
+                    <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[2].descripcion.substring(0, 160) + "..."}}</div>
+                    <div class="btn-oferta">
+                        <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[2]);">
+                            <span class="producto-peso-big">$</span>
+                            <span class="producto-precio-big" style="margin-right:25px;color:#fff">
+                                {{mainCtrl.productosEnOfertas[2].precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[2].producto_id);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-oferta" ng-if="mainCtrl.slider_nro == 4;">
+                <div class="container-oferta-imagen">
+                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"/>
+                </div>
+                <div class="container-oferta-producto">
+                    <div class="oferta-titulo">{{mainCtrl.productosEnOfertas[3].nombre}}</div>
+                    <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[3].descripcion.substring(0, 160) + "..."}}</div>
+                    <div class="btn-oferta">
+                        <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[3]);">
+                            <span class="producto-peso-big">$</span>
+                            <span class="producto-precio-big" style="margin-right:25px;color:#fff">
+                                {{mainCtrl.productosEnOfertas[3].precios[0].precio}}</span>
+                        </div>
+                        <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[3].producto_id);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="oferta-bottom">
+            <div class="slider_1" ng-class="{slider_selected:mainCtrl.slider_nro==1}"
+                 ng-click="mainCtrl.slider_nro=1;"></div>
+            <div class="slider_2" ng-class="{slider_selected:mainCtrl.slider_nro==2}"
+                 ng-click="mainCtrl.slider_nro=2;"></div>
+            <div class="slider_3" ng-class="{slider_selected:mainCtrl.slider_nro==3}"
+                 ng-click="mainCtrl.slider_nro=3;"></div>
+            <div class="slider_4" ng-class="{slider_selected:mainCtrl.slider_nro==4}"
+                 ng-click="mainCtrl.slider_nro=4;"></div>
         </div>
     </div>
 </div>

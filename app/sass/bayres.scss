@@ -929,3 +929,73 @@ textarea{
 .transition-pane-animation.ng-leave.ng-leave-active {
   opacity: 0;
 }
+.container-oferta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 390px;
+}
+.container-oferta-imagen, .container-oferta-producto{
+  margin: 0 15px;
+}
+.oferta-imagen{
+  width: 300px;
+  height: 300px;
+  border: 1px solid $border_color;
+  padding: 3px;
+}
+.oferta-titulo{
+  text-align: center;
+  font-size: 50px;
+  color: $font_color_title;
+  font-family: $myriad_pro_bold_condensed, serif;
+}
+.oferta-descripcion {
+  text-align: left;
+  font-family: $myriad_pro_condensed, serif;
+  color: $font_color_text;
+  font-size: 32px;
+  height: 170px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.btn-oferta{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.btn-info-big{
+  width: 50px;
+  height: 50px;
+  background: url("../images/info_2.png") 50% 50% no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+.btn-info-big:hover{
+  width: 50px;
+  height: 50px;
+  background: url("../images/info_2b.png") 50% 50% no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+.oferta-bottom{
+  display: flex;
+  //flex-direction: row;
+  //flex-wrap: nowrap;
+  justify-content: center;
+  //align-content: center;
+  //align-items: center;
+  width: 100%;
+}
+.slider_1, .slider_2, .slider_3, .slider_4 {
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  margin: 0px 5px 10px;
+}
+.slider_selected{
+  background-color: $border_color;
+  border: 2px solid $border_color;
+}

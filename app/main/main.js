@@ -40,7 +40,8 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.productoResultado = '';
     vm.productoBuscado = '';
     vm.showInfo = false;
-
+    vm.intervalo;
+    vm.slider_nro = 1;
 
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -54,6 +55,11 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.showSubCategoria = showSubCategoria;
     vm.hideSubCategoria = hideSubCategoria;
 
+    vm.intervalo = $interval(cambiarSlide, 7000);
+
+    function cambiarSlide(){
+        vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;
+    }
 
     ProductService.getByParams("en_oferta", "1", "true", function (data) {
         vm.productosEnOfertas = data;

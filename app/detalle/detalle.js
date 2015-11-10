@@ -58,7 +58,7 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
 
     function close() {
         $location.path('/main');
-        LinksService.selectedIncludeTop = 'main/destacados.html';
+        LinksService.selectedIncludeTop = 'main/ofertas.html';
         LinksService.broadcast();
     }
 
