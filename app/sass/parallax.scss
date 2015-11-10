@@ -109,7 +109,8 @@ body{
 #sucursal1, #sucursal2, #sucursal3, #sucursal4{
   width: 100%;
   height: 600px;
-  position: fixed;
+  position: absolute;
+  top:0;
   text-align: right;
   background-color: #fff;
 }

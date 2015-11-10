@@ -182,11 +182,9 @@
             //var scrollamount = (scrollTop / (scrollheight-WindowHeight)) * 100 // Obtener cantidad desplaza (en%)
             //console.log(scrollamount);
 
-            console.log(scrolltop);
-
-            sucursal1.style.top = 50 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-            sucursal2.style.top = 50 - scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
-            sucursal3.style.top = 50 - scrolltop * 1 + 'px'; // move bubble2 at 50% of scroll rate
+            sucursal1.style.transform = 'translateY(' + (200 - scrolltop * .2) + 'px)'; // move bubble1 at 20% of scroll rate
+            sucursal2.style.webkitTransform = 'translateY(' + (200 - scrolltop * .7) + 'px)'; // move bubble2 at 50% of scroll rate
+            sucursal3.style.webkitTransform = 'translateY(' + (200 - scrolltop * 1) + 'px)'; // move bubble2 at 50% of scroll rate
             //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
             tierra1.style.transform = 600 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
@@ -270,7 +268,6 @@
         var isMobile = mobileAndTabletcheck();
 
         if(isMobile == false){
-            console.log(mobileAndTabletcheck());
             window.addEventListener('scroll', onScroll, false);
         }
 
