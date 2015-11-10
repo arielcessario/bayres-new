@@ -18,9 +18,9 @@ angular.module('bayres.usuarios', [
     }])
     .controller('UsuarioController', UsuarioController);
 
-UsuarioController.$inject = ['$location', 'UserService', 'AcUtils'];
+UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService'];
 
-function UsuarioController($location, UserService, AcUtils) {
+function UsuarioController($location, UserService, AcUtils, LinksService) {
     var vm = this;
 
     vm.userForm = {
@@ -68,13 +68,21 @@ function UsuarioController($location, UserService, AcUtils) {
     }
 
     function login() {
-        $location.path('/login');
+        //$location.path('/login');
+        LinksService.selectedIncludeTop = 'login/login.html';
+        LinksService.selectedIncludeMiddle = '';
+        LinksService.selectedIncludeBottom = '';
+        LinksService.broadcast();
     }
 
     function create() {
         if(validateForm()) {
             UserService.create(vm.userForm, function (data) {
                 console.log(data);
+                LinksService.selectedIncludeTop = 'main/ofertas.html';
+                LinksService.selectedIncludeMiddle = 'main/destacados.html';
+                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+                LinksService.broadcast();
             });
         } else {
             vm.message = 'Complete todos los campos';

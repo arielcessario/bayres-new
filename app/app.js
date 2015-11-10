@@ -45,6 +45,8 @@
         var productosList = [];
         vm.categorias = [];
         vm.usuario = {};
+        vm.producto = {};
+        vm.productos = [];
         vm.carritoInfo = {
             cantidadDeProductos: 0,
             totalAPagar: 0.00,
@@ -57,6 +59,7 @@
         vm.createUsuario = createUsuario;
         vm.getByCategoria = getByCategoria;
         vm.buscarProducto = buscarProducto;
+        vm.buscarProductoEnter = buscarProductoEnter;
 
         $location.path('/agreement');
 
@@ -66,9 +69,9 @@
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
         });
 
-        CartVars.broadcast();
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        CartVars.broadcast();
 
         $scope.$on('links', function (event, args) {
             vm.links = LinksService.links;
@@ -99,16 +102,47 @@
         }
 
         function goTo(location) {
+            console.log(location);
+            if(location.path === '/main') {
+                LinksService.selectedIncludeTop = 'main/ofertas.html';
+                LinksService.selectedIncludeMiddle = 'main/destacados.html';
+                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+            } else if(location.path === '/categoria') {
+                LinksService.selectedIncludeTop = 'login/login.html';
+                LinksService.selectedIncludeMiddle = '';
+                LinksService.selectedIncludeBottom = '';
+            } else if(location.path === '/carrito') {
+                LinksService.selectedIncludeTop = 'carrito/carrito.html';
+                LinksService.selectedIncludeMiddle = '';
+                LinksService.selectedIncludeBottom = '';
+            } else if(location.path === '/micuenta') {
+                LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
+                LinksService.selectedIncludeMiddle = '';
+                LinksService.selectedIncludeBottom = '';
+            } else if(location.path === '/contacto') {
+                LinksService.selectedIncludeTop = 'contacto/contacto.html';
+                LinksService.selectedIncludeMiddle = '';
+                LinksService.selectedIncludeBottom = '';
+            }
+            LinksService.broadcast();
             $location.path(location.path);
             vm.selectedPage = location.nombre;
         }
 
         function login() {
             $location.path('/login');
+            LinksService.selectedIncludeTop = 'login/login.html';
+            LinksService.selectedIncludeMiddle = '';
+            LinksService.selectedIncludeBottom = '';
+            LinksService.broadcast();
         }
 
         function createUsuario() {
             $location.path('/usuarios');
+            LinksService.selectedIncludeTop = 'usuarios/usuario.html';
+            LinksService.selectedIncludeMiddle = '';
+            LinksService.selectedIncludeBottom = '';
+            LinksService.broadcast();
         }
 
         function logout() {
@@ -150,12 +184,19 @@
             $location.path('#/productos/' + categoria_id);
         }
 
-        function buscarProducto(event) {
-            if (event.keyCode == 13) {
-
-            }
+        function buscarProducto(producto) {
+          console.log(vm.producto);
         }
 
+        function buscarProductoEnter(event) {
+          if (event.keyCode == 13) {
+              console.log(vm.producto);
+              $location.path('/detalle/' + vm.producto.producto_id);
+              LinksService.selectedIncludeTop = 'detalle/detalle.html';
+              LinksService.productId = vm.producto.producto_id;
+              LinksService.broadcast();
+          }
+        }
 
 // Create cross browser requestAnimationFrame method:
         window.requestAnimationFrame = window.requestAnimationFrame
@@ -269,7 +310,7 @@
 
         this.links = [
             {nombre: 'INICIO', path: '/main', tieneImagen: true, nombreImagen: 'home.png'},
-            {nombre: 'Categorias', path: '/main', tieneImagen: true, nombreImagen: 'categorias.png'},
+            {nombre: 'Categorias', path: '/categoria', tieneImagen: true, nombreImagen: 'categorias.png'},
             {nombre: 'Mi Carrito', path: '/carrito', tieneImagen: false},
             {nombre: 'Mi Cuenta', path: '/micuenta', tieneImagen: false},
             {nombre: 'Finalizar Compra', path: '/carrito', tieneImagen: false},

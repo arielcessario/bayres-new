@@ -20,9 +20,9 @@ angular.module('bayres.login', [
 }])
 .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$location', 'UserService', '$timeout'];
+LoginController.$inject = ['$location', 'UserService', '$timeout', 'LinksService'];
 
-function LoginController($location, UserService, $timeout) {
+function LoginController($location, UserService, $timeout, LinksService) {
   var vm = this;
 
   vm.message = '';
@@ -42,12 +42,11 @@ function LoginController($location, UserService, $timeout) {
       UserService.login(vm.loginForm.mail.trim(), vm.loginForm.password.trim(), 1, function(data){
         console.log(data);
         if(data != -1) {
-          $timeout(function () {
-            vm.message = 'Usuario logueado';
-            $location.path('/main');
-          }, 2000);
-
           vm.message = '';
+          LinksService.selectedIncludeTop = 'main/ofertas.html';
+          LinksService.selectedIncludeMiddle = 'main/destacados.html';
+          LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+          LinksService.broadcast();
         } else {
           vm.message = 'Usuario o contraseña erroneo';
         }
@@ -64,6 +63,10 @@ function LoginController($location, UserService, $timeout) {
   }
 
   function createUsuario() {
-    $location.path('/usuarios');
+    //$location.path('/usuarios');
+    LinksService.selectedIncludeTop = 'usuarios/usuario.html';
+    LinksService.selectedIncludeMiddle = '';
+    LinksService.selectedIncludeBottom = '';
+    LinksService.broadcast();
   }
 }

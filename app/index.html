@@ -117,8 +117,8 @@
       <input type="text" class="form-control"
              ac-search-panel service="ProductService" exact-match="false" visible="nombre"
              ng-model="bayresCtrl.producto.nombre" objeto="bayresCtrl.producto"
-             params="nombre,descripcion" ng-keyup="bayresCtrl.buscarProducto($event);">
-      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.filtro = '';">
+             params="nombre,descripcion" ng-keyup="bayresCtrl.buscarProductoEnter($event);">
+      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.buscarProducto(bayresCtrl.producto);">
     </div>
     <div id="section-2">
       <div id="tierra1"></div>
