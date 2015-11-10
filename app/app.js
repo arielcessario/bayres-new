@@ -198,13 +198,13 @@
             tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)';
             tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
-            roca1.style.transform = 'translateY(' + scrolltop * .04 + 'px)';
-            roca2.style.transform = 'translateY(' + scrolltop * .07 + 'px)';
-            roca3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
+            roca1.style.transform = 'translateY(' + scrolltop * .07 + 'px)';
+            roca2.style.transform = 'translateY(' + scrolltop * .2 + 'px)';
+            //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
-            lava1.style.transform = 'translateY(' + scrolltop * .02 + 'px)';
+            lava1.style.transform = 'translateY(' + scrolltop * .15 + 'px)';
             lava2.style.transform = 'translateY(' + scrolltop * .04 + 'px)';
-            lava3.style.transform = 'translateY(' + scrolltop * .06 + 'px)';
+            lava3.style.transform = 'translateY(' + scrolltop * .005 + 'px)';
 
 
             $scope.$apply();
@@ -276,8 +276,8 @@
 
         this.productId = 0;
 
-        this.selectedIncludeTop = 'main/destacados.html';
-        this.selectedIncludeMiddle = 'main/masvendidos.html';
+        this.selectedIncludeTop = 'main/ofertas.html';
+        this.selectedIncludeMiddle = 'main/destacados.html';
         this.selectedIncludeBottom = 'main/masvendidos.html';
 
         this.broadcast = function () {
