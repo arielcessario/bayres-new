@@ -21,10 +21,10 @@ angular.module('bayres.main', [
 
 
 MainController.$inject = ['$interval', '$timeout', '$location', 'AcUtils', 'UserService',
-    'ProductService', 'CategoryService', 'CartVars', '$scope'];
+    'ProductService', 'CategoryService', 'CartVars', '$scope', 'LinksService'];
 
 function MainController($interval, $timeout, $location, AcUtils, UserService,
-                        ProductService, CategoryService, CartVars, $scope) {
+                        ProductService, CategoryService, CartVars, $scope, LinksService) {
     var vm = this;
 
     vm.productosEnOfertas = [];
@@ -139,6 +139,9 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
     function showDetalle(id) {
         $location.path('/detalle/' + id);
+        LinksService.selectedIncludeTop = 'detalle/detalle.html';
+        LinksService.productId = id;
+        LinksService.broadcast();
     }
 
     function showSubCategoria(categoria_id) {

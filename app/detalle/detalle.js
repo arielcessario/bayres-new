@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('bayres.detalle', [
-    'ngRoute',
-    'ngCookies',
-    'ngAnimate',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    'acUsuarios',
-    'acProductos'
-])
-    .config(['$routeProvider', function($routeProvider) {
+        'ngRoute',
+        'ngCookies',
+        'ngAnimate',
+        'angular-storage',
+        'angular-jwt',
+        'acUtils',
+        'acUsuarios',
+        'acProductos'
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/detalle/:id', {
             templateUrl: 'detalle/detalle.html',
             controller: 'DetalleController',
@@ -20,9 +20,9 @@ angular.module('bayres.detalle', [
     .controller('DetalleController', DetalleController);
 
 
-DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', '$timeout'];
+DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', '$timeout', 'LinksService'];
 
-function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout) {
+function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout, LinksService) {
     var vm = this;
     vm.id = $routeParams.id;
     vm.producto = {
@@ -37,7 +37,7 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         pto_repo: 0,
         sku: null,
         status: 0,
-        fotos:[]
+        fotos: []
     };
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -48,16 +48,21 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     vm.close = close;
     vm.addProducto = addProducto;
 
-    ProductService.getByParams("producto_id", vm.id.toString(), "true", function(data){
+
+    var id = vm.id == undefined ? LinksService.productId : vm.id;
+
+    ProductService.getByParams("producto_id", '' + id, "true", function (data) {
+
         vm.producto = data[0];
     });
 
     function close() {
         $location.path('/main');
+        LinksService.selectedIncludeTop = 'main/destacados.html';
+        LinksService.broadcast();
     }
 
     function addProducto(producto) {
-        console.log(producto);
         var miProducto = {
             producto_id: producto.producto_id,
             cantidad: 1,
@@ -74,10 +79,10 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         var encontrado = false;
         var indexToDelete = 0;
 
-        if(CartVars.carrito.length > 0) {
+        if (CartVars.carrito.length > 0) {
             var index = 0;
-            CartVars.carrito.forEach(function(data){
-                if(data.producto_id == producto.producto_id) {
+            CartVars.carrito.forEach(function (data) {
+                if (data.producto_id == producto.producto_id) {
                     producto.cantidad = data.cantidad + producto.cantidad;
                     indexToDelete = index;
                     encontrado = true;
@@ -85,12 +90,12 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
                 index = index + 1;
             });
 
-            if(encontrado) {
-                CartVars.carrito.splice( indexToDelete, 1 );
+            if (encontrado) {
+                CartVars.carrito.splice(indexToDelete, 1);
             }
         }
         CartVars.carrito.push(producto);
-        CartVars.carrito.sort(function(a, b){
+        CartVars.carrito.sort(function (a, b) {
             return a.nombre - b.nombre;
         });
         console.log(CartVars.carrito);
