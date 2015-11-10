@@ -131,9 +131,10 @@ body{
 #tierra1, #tierra2, #tierra3{
   width: 100%;
   height: 600px;
-  position: fixed;
-  text-align: right;
+  //position: fixed;
+  //text-align: right;
   background-color: #fff;
+  transform: translateY(50px);
 }
 #tierra1{
   background: url(../images/tierra_01.jpg) top center no-repeat;
@@ -147,8 +148,8 @@ body{
 #roca1, #roca2, #roca3{
   width: 100%;
   height: 600px;
-  position: fixed;
-  text-align: right;
+  //position: fixed;
+  //text-align: right;
   background-color: #fff;
 }
 #roca1 {
@@ -163,8 +164,8 @@ body{
 #lava1, #lava2, #lava3{
   width: 100%;
   height: 600px;
-  position: fixed;
-  text-align: right;
+  //position: fixed;
+  //text-align: right;
   background-color: #fff;
 }
 #lava1{

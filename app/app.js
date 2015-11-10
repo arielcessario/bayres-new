@@ -189,9 +189,9 @@
             sucursal3.style.top = 50 - scrolltop * 1 + 'px'; // move bubble2 at 50% of scroll rate
             //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
-            tierra1.style.top = 600 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-            tierra2.style.top = 600 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-            tierra3.style.top = 600 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+            tierra1.style.transform = 600 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
+            tierra2.style.transform = 600 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
+            tierra3.style.transform = 600 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
 
             //if (scrolltop < 550) {
             if (scrolltop < 601) {
