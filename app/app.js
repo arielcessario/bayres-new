@@ -187,54 +187,21 @@
             //sucursal3.style.webkitTransform = 'translateY(' + (200 - scrolltop * 1) + 'px)'; // move bubble2 at 50% of scroll rate
             //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
-            tierra1.style.transform = 'translateY(' + scrolltop * .2 + 'px)'; // move bubble1 at 20% of scroll rate
-            tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)'; // move bubble2 at 50% of scroll rate
-            tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)'; // move bubble2 at 50% of scroll rate
+            tierra1.style.transform = 'translateY(' + scrolltop * .2 + 'px)';
+            tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)';
+            tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
-            //if (scrolltop < 550) {
-            if (scrolltop < 601) {
-                roca1.style.opacity = 0;
-                roca2.style.opacity = 0;
-                roca3.style.opacity = 0;
-            }
-            else {
-                roca1.style.opacity = 1;
-                roca2.style.opacity = 1;
-                roca3.style.opacity = 1;
+            roca1.style.transform = 'translateY(' + scrolltop * .04 + 'px)';
+            roca2.style.transform = 'translateY(' + scrolltop * .07 + 'px)';
+            roca3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
-                var aux1 = 800 - scrolltop * .25;
-                var aux2 = 800 - scrolltop * .3;
-                var aux3 = 800 - scrolltop * .38;
+            lava1.style.transform = 'translateY(' + scrolltop * .02 + 'px)';
+            lava2.style.transform = 'translateY(' + scrolltop * .04 + 'px)';
+            lava3.style.transform = 'translateY(' + scrolltop * .06 + 'px)';
 
-                if (scrolltop >= 1000) {
-                    aux1 = 600 - scrolltop * .25;
-                    aux2 = 600 - scrolltop * .3;
-                    aux3 = 600 - scrolltop * .38;
-                }
-
-                roca1.style.top = aux1 + 'px'; // move bubble1 at 20% of scroll rate
-                roca2.style.top = aux2 + 'px'; // move bubble2 at 50% of scroll rate
-                roca3.style.top = aux3 + 'px'; // move bubble2 at 50% of scroll rate
-            }
-            if (scrolltop < 1201) {
-                lava1.style.opacity = 0;
-                lava2.style.opacity = 0;
-                lava2.style.opacity = 0;
-            }
-            else {
-                lava1.style.opacity = 1;
-                lava2.style.opacity = 1;
-                lava3.style.opacity = 1;
-
-                lava1.style.top = 800 - scrolltop * .21 + 'px'; // move bubble1 at 20% of scroll rate
-                lava2.style.top = 800 - scrolltop * .32 + 'px'; // move bubble2 at 50% of scroll rate
-                lava3.style.top = 800 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-            }
 
             $scope.$apply();
-            //lava1.style.top = -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-            //lava2.style.top = -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-            //lava3.style.top = -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+
         }
 
         //window.addEventListener('scroll', function () { // on page scroll
