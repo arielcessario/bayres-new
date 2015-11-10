@@ -1052,14 +1052,14 @@ textarea {
 
 /* line 780, ../sass/bayres.scss */
 #buscar {
-  background-color: #351e0b;
+  background-color: #8CC63F;
   position: relative;
-  background-color: #000;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
+  z-index: 1;
 }
 
 /* line 790, ../sass/bayres.scss */

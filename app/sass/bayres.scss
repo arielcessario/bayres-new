@@ -778,14 +778,14 @@ textarea{
 }
 
 #buscar{
-  background-color: #351e0b;
+  background-color: $border_color;
   position: relative;
-  background-color: #000;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
+  z-index: 1;
 }
 #buscar input[type="text"]{
   width: 60%;

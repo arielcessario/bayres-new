@@ -122,8 +122,12 @@ function BayresController($scope, $location, UserService, ProductService,
         vm.categorias[i].subcategorias = list;
         var j = 0;
         list.forEach(function(subcategoria){
-          var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
-          vm.categorias[i].subcategorias[j].total_categoria = count;
+          var listCount = [];
+          ProductService.getByCategoria(subcategoria.categoria_id, function(data){
+            listCount = data;
+          });
+          //var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
+          vm.categorias[i].subcategorias[j].total_categoria = listCount.length;
           j = j + 1;
         });
         i++;

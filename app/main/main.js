@@ -163,8 +163,6 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
 //var  scrollheight = document.body.scrollHeight; // altura de todo el documento
 //var  WindowHeight = window.innerHeight; // altura de la ventana del navegador
-//var bubble1 = document.getElementById('bubbles1');
-//var bubble2 = document.getElementById('bubbles2');
 
     var sucursal1 = document.getElementById('sucursal1');
     var sucursal2 = document.getElementById('sucursal2');
@@ -179,10 +177,9 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     var roca2 = document.getElementById('roca2');
     var roca3 = document.getElementById('roca3');
 
-
-//var lava1 = document.getElementById('lava1');
-//var lava2 = document.getElementById('lava2');
-//var lava3 = document.getElementById('lava3');
+    var lava1 = document.getElementById('lava1');
+    var lava2 = document.getElementById('lava2');
+    var lava3 = document.getElementById('lava3');
 
     function parallaxbubbles() {
         var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
@@ -196,29 +193,53 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         sucursal3.style.top = 50 - scrolltop * 1 + 'px'; // move bubble2 at 50% of scroll rate
         //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
-
-
-
         tierra1.style.top = 600 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
         tierra2.style.top = 600 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
         tierra3.style.top = 600 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
 
-        if (scrolltop < 550) {
-
+        //if (scrolltop < 550) {
+        if (scrolltop < 601) {
             roca1.style.opacity = 0;
             roca2.style.opacity = 0;
             roca3.style.opacity = 0;
         }
         else {
-
             roca1.style.opacity = 1;
             roca2.style.opacity = 1;
             roca3.style.opacity = 1;
 
-            roca1.style.top = 800 - scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-            roca2.style.top = 800 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
-            roca3.style.top = 800 - scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+            var aux1 = 800 - scrolltop * .25;
+            var aux2 = 800 - scrolltop * .3;
+            var aux3 = 800 - scrolltop * .38;
+
+            if(scrolltop >= 1000) {
+                aux1 = 600 - scrolltop * .25;
+                aux2 = 600 - scrolltop * .3;
+                aux3 = 600 - scrolltop * .38;
+                console.log(aux1);
+                console.log(aux2);
+            }
+
+            roca1.style.top = aux1 + 'px'; // move bubble1 at 20% of scroll rate
+            roca2.style.top = aux2 + 'px'; // move bubble2 at 50% of scroll rate
+            roca3.style.top = aux3 + 'px'; // move bubble2 at 50% of scroll rate
+            console.log(roca1.style.top);
         }
+        if (scrolltop < 1201) {
+            lava1.style.opacity = 0;
+            lava2.style.opacity = 0;
+            lava2.style.opacity = 0;
+        }
+        else {
+            lava1.style.opacity = 1;
+            lava2.style.opacity = 1;
+            lava3.style.opacity = 1;
+
+            lava1.style.top = 800 - scrolltop * .21 + 'px'; // move bubble1 at 20% of scroll rate
+            lava2.style.top = 800 - scrolltop * .32 + 'px'; // move bubble2 at 50% of scroll rate
+            lava3.style.top = 800 - scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
+        }
+
         $scope.$apply();
         //lava1.style.top = -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
         //lava2.style.top = -scrolltop * .4 + 'px'; // move bubble2 at 50% of scroll rate
