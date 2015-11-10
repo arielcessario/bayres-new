@@ -36,8 +36,8 @@
         vm.isLogged = false;
         vm.selectedPage = 'INICIO';
         vm.selectedIncludeTop = 'main/destacados.html';
-        vm.selectedIncludeMiddle = '';
-        vm.selectedIncludeBottom = '';
+        vm.selectedIncludeMiddle = 'main/destacados.html';
+        vm.selectedIncludeBottom = 'main/masvendidos.html';
         vm.menu_mobile_open = false;
         vm.showCategorias = false;
         vm.links = LinksService.links;
@@ -62,6 +62,8 @@
 
         LinksService.listen(function () {
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
+            vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;
+            vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
         });
 
         CartVars.broadcast();

@@ -132,7 +132,7 @@ CONTENEDORES
 .container-form, .container-main {
   z-index: 1;
   //margin-left: 18%;
-  top: 670px; //NUEVO
+  //top: 670px; //NUEVO
   position: absolute; //NUEVO
   @media (max-width: 700px) {
     margin: 0;
@@ -891,7 +891,7 @@ textarea{
   }
 }
 .div-detalle {
-  margin-top: 30px;
+  //margin-top: 30px;
   min-height: 250px;
 }
 .div-button {
