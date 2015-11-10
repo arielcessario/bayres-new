@@ -80,7 +80,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   src: url('../fonts/MYRIADPRO-REGULAR.woff?1447016101') format('woff');
 }
 /* line 34, ../sass/parallax.scss */
-#main-productos, #main-destacados, #main-mas-vendidos {
+#main-productos, #main-destacados, #main-mas-vendidos, #main-ofertas {
   position: absolute;
   width: 100%;
   display: flex;

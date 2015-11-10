@@ -31,7 +31,7 @@ $border_color: #8CC63F;
 @include font-face($myriad_pro_regular, font-files("MYRIADPRO-REGULAR.woff"));
 
 
-#main-productos, #main-destacados, #main-mas-vendidos{
+#main-productos, #main-destacados, #main-mas-vendidos, #main-ofertas{
   position: absolute;
   width: 100%;
   display: flex;
