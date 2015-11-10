@@ -269,11 +269,11 @@
 
         var isMobile = mobileAndTabletcheck();
 
-        if(isMobile == 'false'){
+        if(isMobile == false){
+            console.log(mobileAndTabletcheck());
             window.addEventListener('scroll', onScroll, false);
         }
 
-        console.log(mobileAndTabletcheck());
 
 
         /**
