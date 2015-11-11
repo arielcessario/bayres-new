@@ -148,14 +148,20 @@ $border_color: #8CC63F;
 
 #lava1{
   background: url("../images/lava_01.png") top center no-repeat;
+  //background-color: orange;
 }
 #lava2{
-  background: url("../images/lava_03.png") top center no-repeat;
+  //background: url("../images/lava_03.png") top center no-repeat;
+  //transform: translateY(-120px);
+  background-color: darkred;
 }
 #lava3{
-  background: url("../images/lava_04.png") top center no-repeat;
+  //background: url("../images/lava_04.png") top center no-repeat;
+  //transform: translateY(-80px);
+  background-color: orangered;
 }
 #lava4{
-  background: url("../images/lava_02.png") top center no-repeat;
-  transform: translateY(100px);
+  //background: url("../images/lava_02.png") top center no-repeat;
+  //transform: translateY(100px);
+  background-color: darkorange;
 }

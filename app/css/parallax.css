@@ -226,18 +226,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background: url("../images/lava_01.png") top center no-repeat;
 }
 
-/* line 152, ../sass/parallax.scss */
+/* line 153, ../sass/parallax.scss */
 #lava2 {
-  background: url("../images/lava_03.png") top center no-repeat;
-}
-
-/* line 155, ../sass/parallax.scss */
-#lava3 {
-  background: url("../images/lava_05.png") top center no-repeat;
+  background-color: darkred;
 }
 
 /* line 158, ../sass/parallax.scss */
+#lava3 {
+  background-color: orangered;
+}
+
+/* line 163, ../sass/parallax.scss */
 #lava4 {
-  background: url("../images/lava_02.png") top center no-repeat;
-  transform: translateY(100px);
+  background-color: darkorange;
 }

@@ -254,10 +254,13 @@ window.appName = 'bayres';
             //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
             //lava1.style.transform = 'translateY(' + ((scrolltop * .3)-300) + 'px)';
-            lava2.style.transform = 'translateY(' + ((scrolltop * .3)-400) + 'px)';
-            lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
+            //lava2.style.transform = 'translateY(' + ((scrolltop * .3)-400) + 'px)';
+            //lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
             //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
 
+            lava2.style.transform = 'translateY(' + ((scrolltop * .32)-390) + 'px)';
+            lava3.style.transform = 'translateY(' + ((scrolltop * .27)-200) + 'px)';
+            lava4.style.transform = 'translateY(' + ((scrolltop * .3)-180) + 'px)';
 
             $scope.$apply();
 
