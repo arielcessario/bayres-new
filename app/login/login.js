@@ -38,8 +38,6 @@ function LoginController($location, UserService, $timeout, LinksService) {
           vm.message = '';
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
-          LinksService.selectedIncludeMiddle = 'main/destacados.html';
-          LinksService.selectedIncludeBottom = 'main/masvendidos.html';
           LinksService.broadcast();
         } else {
           vm.message = 'Usuario o contrase�a erroneo';
@@ -59,8 +57,6 @@ function LoginController($location, UserService, $timeout, LinksService) {
   function createUsuario() {
     $location.path('/usuarios');
     LinksService.selectedIncludeTop = 'usuarios/usuario.html';
-    LinksService.selectedIncludeMiddle = '';
-    LinksService.selectedIncludeBottom = '';
     LinksService.broadcast();
   }
 }

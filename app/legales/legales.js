@@ -32,8 +32,6 @@ function LegalesController($routeParams, $location, LinksService) {
     function close() {
         $location.path('/main');
         LinksService.selectedIncludeTop = 'main/ofertas.html';
-        LinksService.selectedIncludeMiddle = 'main/destacados.html';
-        LinksService.selectedIncludeBottom = 'main/masvendidos.html';
         LinksService.broadcast();
     }
 

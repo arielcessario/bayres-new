@@ -119,31 +119,21 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeBottom = 'main/masvendidos.html';
             } else if(location.path === '/categoria') {
                 LinksService.selectedIncludeTop = 'login/login.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/carrito') {
                 LinksService.selectedIncludeTop = 'carrito/carrito.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/micuenta') {
                 LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/contacto') {
                 LinksService.selectedIncludeTop = 'contacto/contacto.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/legales') {
                 $location.path('/legales/1');
                 LinksService.productId = 1;
                 LinksService.selectedIncludeTop = 'legales/legales.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/login') {
                 $location.path('/login');
                 LinksService.selectedIncludeTop = 'login/login.html';
-                LinksService.selectedIncludeMiddle = 'main/destacados.html';
-                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+                //LinksService.selectedIncludeMiddle = 'main/destacados.html';
+                //LinksService.selectedIncludeBottom = 'main/masvendidos.html';
             }
             LinksService.broadcast();
             $location.path(location.path);
@@ -153,16 +143,12 @@ window.appName = 'bayres';
         function login() {
             $location.path('/login');
             LinksService.selectedIncludeTop = 'login/login.html';
-            LinksService.selectedIncludeMiddle = '';
-            LinksService.selectedIncludeBottom = '';
             LinksService.broadcast();
         }
 
         function createUsuario() {
             $location.path('/usuarios');
             LinksService.selectedIncludeTop = 'usuarios/usuario.html';
-            LinksService.selectedIncludeMiddle = '';
-            LinksService.selectedIncludeBottom = '';
             LinksService.broadcast();
         }
 

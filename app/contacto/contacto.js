@@ -36,16 +36,12 @@
             vm.enviado = false;
             $location.path('/main');
             LinksService.selectedIncludeTop = 'main/ofertas.html';
-            LinksService.selectedIncludeMiddle = 'main/destacados.html';
-            LinksService.selectedIncludeBottom = 'main/masvendidos.html';
             LinksService.broadcast();
         }
 
         function home() {
             $location.path('/main');
             LinksService.selectedIncludeTop = 'main/ofertas.html';
-            LinksService.selectedIncludeMiddle = 'main/destacados.html';
-            LinksService.selectedIncludeBottom = 'main/masvendidos.html';
             LinksService.broadcast();
         }
 

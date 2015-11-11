@@ -63,8 +63,6 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
     function login() {
         //$location.path('/login');
         LinksService.selectedIncludeTop = 'login/login.html';
-        LinksService.selectedIncludeMiddle = '';
-        LinksService.selectedIncludeBottom = '';
         LinksService.broadcast();
     }
 
@@ -73,8 +71,6 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
             UserService.create(vm.userForm, function (data) {
                 console.log(data);
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
-                LinksService.selectedIncludeMiddle = 'main/destacados.html';
-                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
                 LinksService.broadcast();
             });
         } else {
