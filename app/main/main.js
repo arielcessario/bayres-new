@@ -7,15 +7,25 @@ angular.module('bayres.main', [])
             controller: 'MainController',
             data: {requiresLogin: false}
         });
+
+        /*
+        $routeProvider.when('/main/:id', {
+            templateUrl: 'main/productos.html',
+            controller: 'MainController',
+            data: {requiresLogin: false}
+        });
+        */
     }])
     .controller('MainController', MainController);
 
 
 MainController.$inject = ['$interval', '$timeout', '$location', 'AcUtils', 'UserService',
-    'ProductService', 'CategoryService', 'CartVars', '$scope', 'LinksService'];
+    'ProductService', 'CategoryService', 'CartVars', '$scope', 'LinksService',
+    '$routeParams'];
 
 function MainController($interval, $timeout, $location, AcUtils, UserService,
-                        ProductService, CategoryService, CartVars, $scope, LinksService) {
+                        ProductService, CategoryService, CartVars, $scope, LinksService,
+                        $routeParams) {
     var vm = this;
 
     vm.productosEnOfertas = [];
@@ -23,13 +33,14 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.productosDestacados = [];
     //vm.carritoDetalles = [];
     vm.productoList = [];
+    vm.productos = [];
     vm.categorias = [];
     vm.subcategorias = [];
 
     vm.usuario = {};
 
     vm.productoResultado = '';
-    vm.productoBuscado = '';
+    vm.existenProductos = false;
     vm.showInfo = false;
     vm.intervalo;
     vm.slider_nro = 1;
@@ -39,6 +50,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         totalAPagar: 0.00,
         modified: false
     };
+
 
     vm.addProducto = addProducto;
     vm.showDetalle = showDetalle;
@@ -72,6 +84,21 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         }
     });
 
+    var filtro = LinksService.searchName+','+LinksService.searchName;
+    console.log(filtro);
+
+    ProductService.getByParams("nombre,descripcion", filtro , "false", function(data){
+        if(data === null || data === undefined || data.length == 0) {
+            vm.productoResultado = 'No hay resultados';
+            vm.existenProductos = false;
+        } else {
+            vm.productoResultado = 'Resultados';
+            vm.existenProductos = true;
+            vm.productos = data;
+        }
+        LinksService.searchName = '';
+        LinksService.broadcast();
+    });
 
     function addProducto(producto) {
         console.log(producto);

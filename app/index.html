@@ -114,11 +114,15 @@
       <div id="sucursal3"></div>
     </div>
     <div id="buscar">
-      <input type="text" class="form-control"
+      <!--input type="text" class="form-control"
              ac-search-panel service="ProductService" exact-match="false" visible="nombre"
              ng-model="bayresCtrl.producto.nombre" objeto="bayresCtrl.producto"
              params="nombre,descripcion" ng-keyup="bayresCtrl.buscarProductoEnter($event);">
-      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.buscarProducto(bayresCtrl.producto);">
+      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.buscarProducto(bayresCtrl.producto);"-->
+      <input type="text" class="form-control" ng-model="bayresCtrl.filtro" placeholder="Buscar..."
+             ng-change="bayresCtrl.buscarProducto();"
+             ng-keyup="bayresCtrl.buscarProductoEnter($event);">
+      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.clearFiltro();">
     </div>
     <div id="section-2">
       <div id="tierra1"></div>

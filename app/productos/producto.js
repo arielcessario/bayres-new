@@ -11,29 +11,21 @@ angular.module('bayres.productos', [])
     }])
     .controller('ProductoController', ProductoController);
 
-ProductoController.$inject = ['$scope', '$routeParams', '$location', 'AcUtils', 'ProductService'];
+ProductoController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'LinksService'];
 
-function ProductoController($scope, $routeParams, $location, AcUtils, ProductService) {
+function ProductoController($routeParams, $location, AcUtils, ProductService, LinksService) {
     var vm = this;
 
-    vm.producto = {};
+    vm.productos = [];
     vm.id = $routeParams.id;
-    vm.hola = 'Hola';
 
-    console.log(vm.id);
+    var id = vm.id == undefined ? LinksService.productId : vm.id;
+    console.log(id);
 
-    if(vm.id > 0) {
-        console.log(vm.id);
-        ProductService.getByParams("producto_id", vm.id.toString(), "true", function(data){
-            vm.producto = data;
+    ProductService.getByParams("nombre,descripcion", id+','+id , "false", function(data){
+            vm.productos = data;
             console.log(vm.producto);
-        });
-    }
+    });
 
-    vm.goToView = goToView;
-
-    function goToView(view) {
-        $location.path('/' + view);
-    }
 
 }

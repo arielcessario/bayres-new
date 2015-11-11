@@ -320,6 +320,11 @@ CONTENEDORES
   border-radius: 5px;
   border: $border_color 1px solid;
 }
+.container-main-productos {
+  max-height: 1500px;
+  overflow-y: auto;
+  z-index: 1;
+}
 @media (max-width: 700px) {
   .container-main-ofertas{
     flex-direction: column;
