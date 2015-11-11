@@ -1,15 +1,6 @@
 'use strict';
 
-angular.module('bayres.detalle', [
-        'ngRoute',
-        'ngCookies',
-        'ngAnimate',
-        'angular-storage',
-        'angular-jwt',
-        'acUtils',
-        'acUsuarios',
-        'acProductos'
-    ])
+angular.module('bayres.detalle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/detalle/:id', {
             templateUrl: 'detalle/detalle.html',

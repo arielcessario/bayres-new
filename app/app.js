@@ -1,3 +1,4 @@
+window.appName = 'bayres';
 (function () {
 
     'use strict';
@@ -6,8 +7,12 @@
     angular.module('bayres', [
         'ngRoute',
         'ngCookies',
+        'ngAnimate',
         'angular-storage',
         'angular-jwt',
+        'acUtils',
+        'acUsuarios',
+        'acProductos',
         'bayres.agreement',
         'bayres.main',
         'bayres.login',
@@ -20,17 +25,18 @@
         'bayres.legales'
     ]).
         config(['$routeProvider', function ($routeProvider) {
-
+            $routeProvider
+                .otherwise({redirectTo : '/agreement'})
         }])
         .controller('BayresController', BayresController)
         .service('LinksService', LinksService);
 
 
     BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService',
-        'CategoryService', 'LinksService', 'CartVars', 'AcUtils'];
+        'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope'];
 
     function BayresController($scope, $location, UserService, ProductService,
-                              CategoryService, LinksService, CartVars, AcUtils) {
+                              CategoryService, LinksService, CartVars, AcUtils, $rootScope) {
 
         var vm = this;
         vm.filtro = '';
@@ -61,7 +67,12 @@
         vm.buscarProducto = buscarProducto;
         vm.buscarProductoEnter = buscarProductoEnter;
 
-        $location.path('/agreement');
+
+        $rootScope.$on('$locationChangeStart', function (e, to) {
+            goTo({path:$location.$$path});
+            //goTo(location);
+        });
+
 
         LinksService.listen(function () {
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
@@ -102,7 +113,6 @@
         }
 
         function goTo(location) {
-            console.log(location);
             if(location.path === '/main') {
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
                 LinksService.selectedIncludeMiddle = 'main/destacados.html';
@@ -129,6 +139,11 @@
                 LinksService.selectedIncludeTop = 'legales/legales.html';
                 LinksService.selectedIncludeMiddle = '';
                 LinksService.selectedIncludeBottom = '';
+            } else if(location.path === '/login') {
+                $location.path('/login');
+                LinksService.selectedIncludeTop = 'login/login.html';
+                LinksService.selectedIncludeMiddle = 'main/destacados.html';
+                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
             }
             LinksService.broadcast();
             $location.path(location.path);

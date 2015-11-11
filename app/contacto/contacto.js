@@ -3,14 +3,7 @@
 
     window.appName = 'bayres';
 
-    angular.module('bayres.contacto', [
-        'ngRoute',
-        'ngCookies',
-        'angular-storage',
-        'angular-jwt',
-        'acUtils',
-        'acUsuarios'
-    ])
+    angular.module('bayres.contacto', [])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/contacto', {
             templateUrl: 'contacto/contacto.html',
@@ -60,7 +53,7 @@
             vm.message = '';
             var conErrores = false;
             if (vm.contactoForm.mail == undefined || vm.contactoForm.mail.trim().length == 0 || (!AcUtils.validateEmail(vm.contactoForm.mail.trim()))) {
-                AcUtils.validations('contacto-mail', 'El mail no es válido');
+                AcUtils.validations('contacto-mail', 'El mail no es vï¿½lido');
                 conErrores = true;
             }
 

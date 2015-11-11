@@ -1,13 +1,6 @@
 'use strict';
 
-angular.module('bayres.usuarios', [
-    'ngRoute',
-    'ngCookies',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    'acUsuarios'
-])
+angular.module('bayres.usuarios', [])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuarios', {

@@ -2,14 +2,7 @@
 
 window.appName = 'bayres';
 
-angular.module('bayres.login', [
-  'ngRoute',
-  'ngCookies',
-  'angular-storage',
-  'angular-jwt',
-  'acUtils',
-  'acUsuarios'
-])
+angular.module('bayres.login', [])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
@@ -49,11 +42,11 @@ function LoginController($location, UserService, $timeout, LinksService) {
           LinksService.selectedIncludeBottom = 'main/masvendidos.html';
           LinksService.broadcast();
         } else {
-          vm.message = 'Usuario o contraseña erroneo';
+          vm.message = 'Usuario o contraseï¿½a erroneo';
         }
       });
     } else {
-      vm.message = 'Ingrese una mail y contraseña';
+      vm.message = 'Ingrese una mail y contraseï¿½a';
     }
   }
 

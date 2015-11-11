@@ -1,15 +1,6 @@
 'use strict';
 
-angular.module('bayres.main', [
-        'ngRoute',
-        'ngCookies',
-        'ngAnimate',
-        'angular-storage',
-        'angular-jwt',
-        'acUtils',
-        'acUsuarios',
-        'acProductos'
-    ])
+angular.module('bayres.main', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/main', {
             templateUrl: 'main/main.html',

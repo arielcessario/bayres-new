@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('bayres.agreement', [
-    'ngRoute'
-])
+angular.module('bayres.agreement', [])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/agreement', {
             templateUrl: 'agreement/agreement.html',

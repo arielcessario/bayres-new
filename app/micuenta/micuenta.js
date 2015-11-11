@@ -1,14 +1,6 @@
 'use strict';
 
-angular.module('bayres.micuenta', [
-    'ngRoute',
-    'ngCookies',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    'acUsuarios',
-    'acProductos'
-])
+angular.module('bayres.micuenta', [])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/micuenta', {
@@ -149,13 +141,13 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
             UserService.changePassword(vm.passwordForm.usuario_id, vm.passwordForm.password, vm.passwordForm.password_repeat, function (data) {
                 console.log(data);
                 if(data != -1) {
-                    setMessageResponse(true, false, false, false, 'La contraseña se actualizo');
+                    setMessageResponse(true, false, false, false, 'La contraseï¿½a se actualizo');
                 } else {
-                    setMessageResponse(false, false, true, false, 'Error actualizando contraseña');
+                    setMessageResponse(false, false, true, false, 'Error actualizando contraseï¿½a');
                 }
             });
         } else {
-            setMessageResponse(false, false, true, false, 'Ingrese las contraseñas');
+            setMessageResponse(false, false, true, false, 'Ingrese las contraseï¿½as');
         }
     }
 
@@ -183,7 +175,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 setMessageResponse(false, false, false, true, 'El Pedido ya esta confirmado. No se puede cancelar');
             }
             else {
-                var result = confirm('¿Esta seguro que desea Cancelar el Pedido ' + carrito.carrito_id + '?');
+                var result = confirm('ï¿½Esta seguro que desea Cancelar el Pedido ' + carrito.carrito_id + '?');
                 if (result) {
                     carrito.status = 0;
                     CartService.update(carrito, function(data){
@@ -193,7 +185,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
                             CarritoService.sendMailCancelarCarritoComprador(usuario.mail, carrito, function(data){
                                 if(data) {
-                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmación');
+                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmaciï¿½n');
                                 } else {
                                     setMessageResponse(false, false, false, true, 'Error enviando el mail');
                                 }
@@ -201,7 +193,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             var usuarioNombre = usuario.apellido + ', ' + usuario.nombre;
                             CarritoService.sendMailCancelarCarritoVendedor(usuarioNombre, usuario.mail, carrito, function(data){
                                 if(data) {
-                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmación');
+                                    setMessageResponse(true, false, false, false, 'Se envio el mail con la confirmaciï¿½n');
                                 } else {
                                     setMessageResponse(false, false, false, true, 'Error enviando el mail');
                                 }

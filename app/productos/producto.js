@@ -1,14 +1,6 @@
 'use strict';
 
-angular.module('bayres.productos', [
-    'ngRoute',
-    'ngCookies',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    //'acUsuarios',
-    'acProductos'
-])
+angular.module('bayres.productos', [])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/productos/:id', {

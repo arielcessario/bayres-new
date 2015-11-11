@@ -1,14 +1,6 @@
 'use strict';
 
-angular.module('bayres.carrito', [
-    'ngRoute',
-    'ngCookies',
-    'angular-storage',
-    'angular-jwt',
-    'acUtils',
-    'acUsuarios',
-    'acProductos'
-])
+angular.module('bayres.carrito', [])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/carrito', {
@@ -74,7 +66,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
         if(CartVars.carrito.length > 0) {
             var producto = vm.carritoDetalles[index];
             var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
-            var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
+            var borrarOk = confirm('ï¿½Desea borrar el producto '+ detalle +'?');
             if(borrarOk){
                 CartVars.carrito.splice( index, 1 );
                 CartVars.carrito.sort(function(a, b){
