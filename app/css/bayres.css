@@ -1399,6 +1399,14 @@ textarea {
   cursor: pointer;
 }
 
+/* line 1045, ../sass/bayres.scss */
+.container-legales {
+  font-size: 18px;
+  font-family: "Myriad Pro Condensed";
+  color: #fff;
+  margin: 25px 10;
+}
+
 /*
 .container-main-ofertas .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;

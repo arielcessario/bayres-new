@@ -16,7 +16,8 @@
         'bayres.carrito',
         'bayres.micuenta',
         'bayres.contacto',
-        'bayres.detalle'
+        'bayres.detalle',
+        'bayres.legales'
     ]).
         config(['$routeProvider', function ($routeProvider) {
 
@@ -120,6 +121,12 @@
                 LinksService.selectedIncludeBottom = '';
             } else if(location.path === '/contacto') {
                 LinksService.selectedIncludeTop = 'contacto/contacto.html';
+                LinksService.selectedIncludeMiddle = '';
+                LinksService.selectedIncludeBottom = '';
+            } else if(location.path === '/legales') {
+                $location.path('/legales/1');
+                LinksService.productId = 1;
+                LinksService.selectedIncludeTop = 'legales/legales.html';
                 LinksService.selectedIncludeMiddle = '';
                 LinksService.selectedIncludeBottom = '';
             }

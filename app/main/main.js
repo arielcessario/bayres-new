@@ -55,7 +55,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.showSubCategoria = showSubCategoria;
     vm.hideSubCategoria = hideSubCategoria;
 
-    //vm.intervalo = $interval(cambiarSlide, 7000);
+    vm.intervalo = $interval(cambiarSlide, 7000);
 
     function cambiarSlide(){
         vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;
