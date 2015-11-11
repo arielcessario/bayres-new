@@ -233,7 +233,7 @@ window.appName = 'bayres';
         var lava1 = document.getElementById('lava1');
         var lava2 = document.getElementById('lava2');
         var lava3 = document.getElementById('lava3');
-        var lava4 = document.getElementById('lava4');
+        //var lava4 = document.getElementById('lava4');
 
         function parallaxbubbles() {
             var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
@@ -249,16 +249,14 @@ window.appName = 'bayres';
             tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)';
             tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
-            roca1.style.transform = 'translateY(' + scrolltop * .07 + 'px)';
-            roca2.style.transform = 'translateY(' + scrolltop * .2 + 'px)';
+            roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
+            roca2.style.transform = 'translateY(' + ((scrolltop * .6)-450) + 'px)';
             //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
-            lava1.style.transform = 'translateY(' + (250 - (scrolltop * .15)) + 'px)';
-            //console.log(50 - (scrolltop * .04));
-            lava2.style.transform = 'translateY(' + (190 - (scrolltop * .2)) + 'px)';
-            //lava3.style.transform = 'translateY(' + scrolltop * .005 + 'px)';
-            lava3.style.transform = 'translateY(' + (700 - (scrolltop * .3)) + 'px)';
-            lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
+            //lava1.style.transform = 'translateY(' + ((scrolltop * .3)-300) + 'px)';
+            lava2.style.transform = 'translateY(' + ((scrolltop * .3)-400) + 'px)';
+            lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
+            //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
 
 
             $scope.$apply();
