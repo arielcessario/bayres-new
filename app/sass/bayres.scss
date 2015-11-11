@@ -320,6 +320,15 @@ CONTENEDORES
   border-radius: 5px;
   border: $border_color 1px solid;
 }
+@media (max-width: 700px) {
+  .container-main-ofertas{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    min-width: 0;
+  }
+}
 .container-main-content{
   display: flex;
   flex-direction: column;
@@ -934,6 +943,9 @@ textarea{
   flex-direction: row;
   align-items: center;
   min-height: 390px;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 }
 .container-oferta-imagen, .container-oferta-producto{
   margin: 0 15px;
@@ -943,12 +955,20 @@ textarea{
   height: 300px;
   border: 1px solid $border_color;
   padding: 3px;
+  @media (max-width: 700px) {
+    width: 200px;
+    height: 200px;
+    margin-top: 15px;
+  }
 }
 .oferta-titulo{
   text-align: center;
   font-size: 50px;
   color: $font_color_title;
   font-family: $myriad_pro_bold_condensed, serif;
+  @media (max-width: 700px) {
+    font-size: 35px;
+  }
 }
 .oferta-descripcion {
   text-align: left;
@@ -958,11 +978,18 @@ textarea{
   height: 170px;
   margin-top: 20px;
   margin-bottom: 10px;
+  @media (max-width: 700px) {
+    font-size: 24px;
+    height: 90px;
+  }
 }
 .btn-oferta{
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  @media (max-width: 700px) {
+    justify-content: center;
+  }
 }
 .btn-info-big{
   width: 50px;
@@ -977,6 +1004,14 @@ textarea{
   background: url("../images/info_2b.png") 50% 50% no-repeat;
   background-size: 100%;
   cursor: pointer;
+}
+@media (max-width: 700px) {
+  .oferta-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .oferta-bottom{
   display: flex;
@@ -1007,7 +1042,7 @@ textarea{
 .ac-item-selected-list{
   cursor: pointer;
 }
-
+/*
 .container-main-ofertas .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
@@ -1034,3 +1069,4 @@ textarea{
     transform: translate(0px, 1500px);
   }
 }
+*/
