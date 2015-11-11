@@ -164,7 +164,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 #sucursal1, #sucursal2, #sucursal3,
 #tierra1, #tierra2, #tierra3,
 #roca1, #roca2, #roca3,
-#lava1, #lava2, #lava3 {
+#lava1, #lava2, #lava3, #lava4 {
   width: 100%;
   height: 600px;
   position: absolute;
@@ -213,19 +213,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 135, ../sass/parallax.scss */
 #roca3 {
   background: url(../images/destacados_01.png) top center no-repeat;
+  transform: translateY(100px);
 }
 
-/* line 139, ../sass/parallax.scss */
+/* line 140, ../sass/parallax.scss */
 #lava1 {
   background: url("../images/lava_06.png") top center no-repeat;
 }
 
-/* line 142, ../sass/parallax.scss */
+/* line 143, ../sass/parallax.scss */
 #lava2 {
   background: url("../images/lava_03.png") top center no-repeat;
 }
 
-/* line 145, ../sass/parallax.scss */
+/* line 146, ../sass/parallax.scss */
 #lava3 {
+  background: url("../images/lava_04.png") top center no-repeat;
+}
+
+/* line 149, ../sass/parallax.scss */
+#lava4 {
   background: url("../images/lava_02.png") top center no-repeat;
 }

@@ -1043,10 +1043,15 @@ textarea{
   cursor: pointer;
 }
 .container-legales{
-  font-size: 18px;
+  font-size: 20px;
   font-family: $myriad_pro_condensed;
   color: $font_color_text;
-  margin: 25px 10%;
+  margin: 25px 6%;
+  justify-content: flex-start;
+  text-align : justify;
+}
+.container-legales-btn{
+
 }
 /*
 .container-main-ofertas .container-oferta.ng-enter {

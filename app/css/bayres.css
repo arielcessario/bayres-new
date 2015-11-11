@@ -1401,10 +1401,12 @@ textarea {
 
 /* line 1045, ../sass/bayres.scss */
 .container-legales {
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Myriad Pro Condensed";
   color: #fff;
-  margin: 25px 10;
+  margin: 25px 6%;
+  justify-content: flex-start;
+  text-align: justify;
 }
 
 /*
