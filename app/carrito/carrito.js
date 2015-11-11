@@ -22,11 +22,11 @@ angular.module('bayres.carrito', [
 
 
 CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'CartVars', 'CartService',
-    '$timeout', '$location', 'CarritoService'];
+    '$timeout', '$location', 'CarritoService', 'LinksService'];
 CarritoService.$inject = ['$http'];
 
 function CarritoController($routeParams, AcUtils, UserService, CartVars, CartService,
-                           $timeout, $location, CarritoService) {
+                           $timeout, $location, CarritoService, LinksService) {
 
     //  VARIABLES
     var vm = this;
@@ -185,15 +185,18 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
                     console.log(data);
                 });
 
+                $location.path('/main');
+                LinksService.selectedIncludeTop = 'main/ofertas.html';
+                LinksService.selectedIncludeMiddle = 'main/destacados.html';
+                LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+                LinksService.broadcast();
+                /*
                 $timeout(function () {
-
                     $location.path('/main');
-
                     CartVars.carrito = [];
                     vm.carritoDetalles = [];
-
                 }, 2000);
-
+                */
             }
         }
         else {

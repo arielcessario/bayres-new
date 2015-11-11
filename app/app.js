@@ -46,7 +46,6 @@
         vm.categorias = [];
         vm.usuario = {};
         vm.producto = {};
-        vm.productos = [];
         vm.carritoInfo = {
             cantidadDeProductos: 0,
             totalAPagar: 0.00,

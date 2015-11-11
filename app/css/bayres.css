@@ -430,7 +430,7 @@ CONTENEDORES
 }
 
 /* line 307, ../sass/bayres.scss */
-.container-main-productos {
+.container-main-productos, .container-main-ofertas {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1313,7 +1313,7 @@ textarea {
   width: 100%;
 }
 
-/* line 990, ../sass/bayres.scss */
+/* line 986, ../sass/bayres.scss */
 .slider_1, .slider_2, .slider_3, .slider_4 {
   border: 2px solid #fff;
   border-radius: 10px;
@@ -1323,13 +1323,13 @@ textarea {
   margin: 0px 5px 10px;
 }
 
-/* line 998, ../sass/bayres.scss */
+/* line 994, ../sass/bayres.scss */
 .slider_selected {
   background-color: #8CC63F;
   border: 2px solid #8CC63F;
 }
 
-/* line 1002, ../sass/bayres.scss */
+/* line 998, ../sass/bayres.scss */
 .ac-item-list {
   background-color: #8CC63F;
   color: #fff;
@@ -1337,12 +1337,43 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1008, ../sass/bayres.scss */
+/* line 1004, ../sass/bayres.scss */
 .ac-item-list:hover {
   color: #ffff00;
 }
 
-/* line 1011, ../sass/bayres.scss */
+/* line 1007, ../sass/bayres.scss */
 .ac-item-selected-list {
   cursor: pointer;
+}
+
+/* line 1011, ../sass/bayres.scss */
+.container-main-ofertas .container-oferta.ng-enter {
+  -webkit-animation: ofertas-container-enter 1s;
+  -o-animation: ofertas-container-enter 1s;
+  animation: ofertas-container-enter 1s;
+}
+
+/* line 1016, ../sass/bayres.scss */
+.container-main-ofertas .container-oferta.ng-leave {
+  -webkit-animation: ofertas-container-leave 1s;
+  -o-animation: ofertas-container-leave 1s;
+  animation: ofertas-container-leave 1s;
+}
+
+@-webkit-keyframes ofertas-container-enter {
+  0% {
+    transform: translate(0px, -1500px);
+  }
+  100% {
+    transform: translate(0px, 0);
+  }
+}
+@-webkit-keyframes ofertas-container-leave {
+  0% {
+    transform: translate(0px, 0);
+  }
+  100% {
+    transform: translate(0px, 1500px);
+  }
 }

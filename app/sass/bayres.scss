@@ -304,7 +304,7 @@ CONTENEDORES
   color: $font_color_secundary_title;
   margin-bottom: 15px;
 }
-.container-main-productos{
+.container-main-productos, .container-main-ofertas{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -980,11 +980,7 @@ textarea{
 }
 .oferta-bottom{
   display: flex;
-  //flex-direction: row;
-  //flex-wrap: nowrap;
   justify-content: center;
-  //align-content: center;
-  //align-items: center;
   width: 100%;
 }
 .slider_1, .slider_2, .slider_3, .slider_4 {
@@ -1010,4 +1006,31 @@ textarea{
 }
 .ac-item-selected-list{
   cursor: pointer;
+}
+
+.container-main-ofertas .container-oferta.ng-enter {
+  -webkit-animation: ofertas-container-enter 1s;
+  -o-animation: ofertas-container-enter 1s;
+  animation: ofertas-container-enter 1s;
+}
+.container-main-ofertas  .container-oferta.ng-leave {
+  -webkit-animation: ofertas-container-leave 1s;
+  -o-animation: ofertas-container-leave 1s;
+  animation: ofertas-container-leave 1s;
+}
+@-webkit-keyframes ofertas-container-enter {
+  0% {
+    transform: translate(0px, -1500px);
+  }
+  100% {
+    transform: translate(0px, 0);
+  }
+}
+@-webkit-keyframes ofertas-container-leave {
+  0% {
+    transform: translate(0px, 0);
+  }
+  100% {
+    transform: translate(0px, 1500px);
+  }
 }

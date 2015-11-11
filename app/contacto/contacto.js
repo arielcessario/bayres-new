@@ -21,9 +21,9 @@
     .controller('ContactoController', ContactoController)
     .service('ContactoService', ContactoService);
 
-    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', ];
+    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService'];
 
-    function ContactoController($location, $timeout, AcUtils, ContactoService) {
+    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService) {
         var vm = this;
 
         vm.message = '';
@@ -42,10 +42,18 @@
         function hideMessage(){
             vm.enviado = false;
             $location.path('/main');
+            LinksService.selectedIncludeTop = 'main/ofertas.html';
+            LinksService.selectedIncludeMiddle = 'main/destacados.html';
+            LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+            LinksService.broadcast();
         }
 
         function home() {
             $location.path('/main');
+            LinksService.selectedIncludeTop = 'main/ofertas.html';
+            LinksService.selectedIncludeMiddle = 'main/destacados.html';
+            LinksService.selectedIncludeBottom = 'main/masvendidos.html';
+            LinksService.broadcast();
         }
 
         function sendConsulta() {

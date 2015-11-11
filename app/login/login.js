@@ -43,6 +43,7 @@ function LoginController($location, UserService, $timeout, LinksService) {
         console.log(data);
         if(data != -1) {
           vm.message = '';
+          $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
           LinksService.selectedIncludeMiddle = 'main/destacados.html';
           LinksService.selectedIncludeBottom = 'main/masvendidos.html';
@@ -63,7 +64,7 @@ function LoginController($location, UserService, $timeout, LinksService) {
   }
 
   function createUsuario() {
-    //$location.path('/usuarios');
+    $location.path('/usuarios');
     LinksService.selectedIncludeTop = 'usuarios/usuario.html';
     LinksService.selectedIncludeMiddle = '';
     LinksService.selectedIncludeBottom = '';
