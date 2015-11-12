@@ -11,11 +11,14 @@ angular.module('bayres.detalle', [])
     .controller('DetalleController', DetalleController);
 
 
-DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', '$timeout', 'LinksService'];
+DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', '$timeout',
+    'LinksService', 'BayresService'];
 
-function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout, LinksService) {
+function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout,
+                           LinksService, BayresService) {
     var vm = this;
     vm.id = $routeParams.id;
+    vm.search = false;
     vm.producto = {
         descripcion: '',
         destacado: 0,
@@ -39,17 +42,24 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     vm.close = close;
     vm.addProducto = addProducto;
 
+    vm.search = BayresService.search;
+    console.log(vm.search);
+    BayresService.listen(function(){
+        vm.search = BayresService.search;
+    });
 
     var id = vm.id == undefined ? LinksService.productId : vm.id;
 
     ProductService.getByParams("producto_id", '' + id, "true", function (data) {
-
         vm.producto = data[0];
     });
 
     function close() {
+        console.log((vm.search) ? 'main/productos.html' : 'main/ofertas.html');
         $location.path('/main');
-        LinksService.selectedIncludeTop = 'main/ofertas.html';
+        LinksService.selectedIncludeTop = (vm.search) ? 'main/productos.html' : 'main/ofertas.html';
+        LinksService.selectedIncludeMiddle = (vm.search) ? '' : 'main/destacados.html';
+        LinksService.selectedIncludeBottom = (vm.search) ? '' : 'main/masvendidos.html';
         LinksService.broadcast();
     }
 

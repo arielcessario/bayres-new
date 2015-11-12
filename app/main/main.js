@@ -53,16 +53,19 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
 
     vm.productos = BayresService.productos;
+    vm.search = BayresService.search;
     vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
     vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
 
     BayresService.listen(function(){
         vm.productos = BayresService.productos;
+        vm.search = BayresService.search;
         vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
         vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
     });
 
-    console.log(vm.productos);
+    //console.log(vm.productos);
+    console.log(vm.search);
 
     function cambiarSlide(){
         vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;
@@ -87,6 +90,13 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
             }
         }
     });
+
+    if(vm.search) {
+        LinksService.selectedIncludeTop = 'main/productos.html';
+        LinksService.selectedIncludeMiddle = '';
+        LinksService.selectedIncludeBottom = '';
+        LinksService.broadcast();
+    }
 
     function addProducto(producto) {
         console.log(producto);
@@ -154,6 +164,9 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         LinksService.selectedIncludeTop = 'detalle/detalle.html';
         LinksService.productId = id;
         LinksService.broadcast();
+
+        BayresService.search = vm.search;
+        BayresService.broadcast();
     }
 
     function showSubCategoria(categoria_id) {
