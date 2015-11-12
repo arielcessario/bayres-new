@@ -97,6 +97,7 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     function calcularCarritoTotal() {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        CartVars.broadcast();
 
         console.log(vm.carritoInfo);
     }

@@ -83,6 +83,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     function calcularCarritoTotal() {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        CartVars.broadcast();
 
         console.log(vm.carritoInfo);
     }
@@ -177,9 +178,12 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
                     console.log(data);
                 });
 
-                $location.path('/main');
+                //$location.path('/main');
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
                 LinksService.broadcast();
+
+                CartVars.carrito = [];
+                CartVars.broadcast();
                 /*
                 $timeout(function () {
                     $location.path('/main');
