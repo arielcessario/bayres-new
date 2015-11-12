@@ -161,7 +161,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 101, ../sass/parallax.scss */
-#sucursal1, #sucursal2, #sucursal3,
+#sucursal1, #sucursal2, #sucursal3, #sucursal4,
 #tierra1, #tierra2, #tierra3,
 #roca1, #roca2, #roca3, #roca4,
 #lava1, #lava2, #lava3, #lava4 {
@@ -173,70 +173,71 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 110, ../sass/parallax.scss */
 #sucursal1 {
   background: url(../images/sucursales_03.png) top center no-repeat;
+  background-color: lightblue;
 }
 
-/* line 115, ../sass/parallax.scss */
+/* line 116, ../sass/parallax.scss */
 #sucursal2 {
   background: url(../images/sucursales_02.png) top center no-repeat;
 }
 
-/* line 118, ../sass/parallax.scss */
+/* line 120, ../sass/parallax.scss */
 #sucursal3 {
   background: url(../images/sucursales_01.png) top center no-repeat;
 }
 
-/* line 122, ../sass/parallax.scss */
+/* line 128, ../sass/parallax.scss */
 #tierra1 {
   background: url(../images/tierra_01.png) top center no-repeat;
 }
 
-/* line 125, ../sass/parallax.scss */
+/* line 131, ../sass/parallax.scss */
 #tierra2 {
   background: url(../images/tierra_02.png) top center no-repeat;
 }
 
-/* line 128, ../sass/parallax.scss */
+/* line 134, ../sass/parallax.scss */
 #tierra3 {
   background: url(../images/tierra_03.png) top center no-repeat;
 }
 
-/* line 132, ../sass/parallax.scss */
+/* line 138, ../sass/parallax.scss */
 #roca1 {
   background: url(../images/destacados_03.png) top center no-repeat;
   transform: translateY(-100px);
 }
 
-/* line 137, ../sass/parallax.scss */
+/* line 143, ../sass/parallax.scss */
 #roca2 {
   background: url(../images/tierra_02.png) top center no-repeat;
 }
 
-/* line 140, ../sass/parallax.scss */
+/* line 146, ../sass/parallax.scss */
 #roca3 {
   background: url(../images/destacados_01.png) top center no-repeat;
 }
 
-/* line 145, ../sass/parallax.scss */
+/* line 151, ../sass/parallax.scss */
 #roca4 {
   background: url(../images/destacados_02.png) top center no-repeat;
 }
 
-/* line 149, ../sass/parallax.scss */
+/* line 155, ../sass/parallax.scss */
 #lava1 {
   background: url("../images/lava_01.png") top center no-repeat;
 }
 
-/* line 153, ../sass/parallax.scss */
+/* line 159, ../sass/parallax.scss */
 #lava2 {
   background-color: darkred;
 }
 
-/* line 158, ../sass/parallax.scss */
+/* line 164, ../sass/parallax.scss */
 #lava3 {
   background-color: orangered;
 }
 
-/* line 163, ../sass/parallax.scss */
+/* line 169, ../sass/parallax.scss */
 #lava4 {
   background-color: darkorange;
 }

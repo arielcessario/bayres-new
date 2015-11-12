@@ -7,25 +7,17 @@ angular.module('bayres.main', [])
             controller: 'MainController',
             data: {requiresLogin: false}
         });
-
-        /*
-        $routeProvider.when('/main/:id', {
-            templateUrl: 'main/productos.html',
-            controller: 'MainController',
-            data: {requiresLogin: false}
-        });
-        */
     }])
     .controller('MainController', MainController);
 
 
 MainController.$inject = ['$interval', '$timeout', '$location', 'AcUtils', 'UserService',
     'ProductService', 'CategoryService', 'CartVars', '$scope', 'LinksService',
-    '$routeParams'];
+    '$routeParams', 'BayresService'];
 
 function MainController($interval, $timeout, $location, AcUtils, UserService,
                         ProductService, CategoryService, CartVars, $scope, LinksService,
-                        $routeParams) {
+                        $routeParams, BayresService) {
     var vm = this;
 
     vm.productosEnOfertas = [];
@@ -33,10 +25,9 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.productosDestacados = [];
     //vm.carritoDetalles = [];
     vm.productoList = [];
-    vm.productos = [];
     vm.categorias = [];
     vm.subcategorias = [];
-
+    vm.productos = [];
     vm.usuario = {};
 
     vm.productoResultado = '';
@@ -60,6 +51,19 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
     vm.intervalo = $interval(cambiarSlide, 7000);
 
+
+    vm.productos = BayresService.productos;
+    vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
+    vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
+
+    BayresService.listen(function(){
+        vm.productos = BayresService.productos;
+        vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
+        vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
+    });
+
+    console.log(vm.productos);
+
     function cambiarSlide(){
         vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;
     }
@@ -82,22 +86,6 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
                 vm.productosMasVendidos.push(data[i]);
             }
         }
-    });
-
-    var filtro = LinksService.searchName+','+LinksService.searchName;
-    console.log(filtro);
-
-    ProductService.getByParams("nombre,descripcion", filtro , "false", function(data){
-        if(data === null || data === undefined || data.length == 0) {
-            vm.productoResultado = 'No hay resultados';
-            vm.existenProductos = false;
-        } else {
-            vm.productoResultado = 'Resultados';
-            vm.existenProductos = true;
-            vm.productos = data;
-        }
-        LinksService.searchName = '';
-        LinksService.broadcast();
     });
 
     function addProducto(producto) {

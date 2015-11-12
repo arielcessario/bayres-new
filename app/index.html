@@ -112,6 +112,7 @@
       <div id="sucursal1"></div>
       <div id="sucursal2"></div>
       <div id="sucursal3"></div>
+      <div id="sucursal4"></div>
     </div>
     <div id="buscar">
       <!--input type="text" class="form-control"
@@ -119,9 +120,9 @@
              ng-model="bayresCtrl.producto.nombre" objeto="bayresCtrl.producto"
              params="nombre,descripcion" ng-keyup="bayresCtrl.buscarProductoEnter($event);">
       <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.buscarProducto(bayresCtrl.producto);"-->
-      <input type="text" class="form-control" ng-model="bayresCtrl.filtro" placeholder="Buscar..."
-             ng-change="bayresCtrl.buscarProducto();"
-             ng-keyup="bayresCtrl.buscarProductoEnter($event);">
+      <input type="text" class="form-control" placeholder="Buscar..."
+             ng-model="bayresCtrl.filtro"
+             ng-keyup="bayresCtrl.buscarProducto(bayresCtrl.filtro);">
       <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.clearFiltro();">
     </div>
     <div id="section-2">

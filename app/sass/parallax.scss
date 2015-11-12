@@ -98,7 +98,7 @@ $border_color: #8CC63F;
   background-color: #000;
 }
 
-#sucursal1, #sucursal2, #sucursal3,
+#sucursal1, #sucursal2, #sucursal3, #sucursal4,
 #tierra1, #tierra2, #tierra3,
 #roca1, #roca2, #roca3, #roca4,
 #lava1, #lava2, #lava3, #lava4 {
@@ -111,12 +111,18 @@ $border_color: #8CC63F;
   //-webkit-filter: blur(2px);
   //filter: blur(2px);
   background: url(../images/sucursales_03.png) top center no-repeat;
+  //background-color: lightblue;
 }
 #sucursal2{
   background: url(../images/sucursales_02.png) top center no-repeat;
+  //background-color: yellow;
 }
 #sucursal3{
   background: url(../images/sucursales_01.png) top center no-repeat;
+  //background-color: lightgreen;
+}
+#sucursal4{
+  //background: url(../images/sucursales_01.png) top center no-repeat;
 }
 
 #tierra1{

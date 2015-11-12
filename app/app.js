@@ -29,14 +29,15 @@ window.appName = 'bayres';
                 .otherwise({redirectTo : '/agreement'})
         }])
         .controller('BayresController', BayresController)
-        .service('LinksService', LinksService);
+        .service('LinksService', LinksService)
+        .service('BayresService', BayresService);
 
 
     BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService',
-        'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope'];
+        'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope', 'BayresService'];
 
     function BayresController($scope, $location, UserService, ProductService,
-                              CategoryService, LinksService, CartVars, AcUtils, $rootScope) {
+                              CategoryService, LinksService, CartVars, AcUtils, $rootScope, BayresService) {
 
         var vm = this;
         vm.filtro = '';
@@ -51,9 +52,13 @@ window.appName = 'bayres';
 
         var productosList = [];
         vm.categorias = [];
+        ///vm.productos = [];
+
         vm.usuario = {};
         vm.producto = {};
         vm.filtro = '';
+        //vm.productoResultado = '';
+        //vm.existenProductos = false;
         vm.carritoInfo = {
             cantidadDeProductos: 0,
             totalAPagar: 0.00,
@@ -66,7 +71,6 @@ window.appName = 'bayres';
         vm.createUsuario = createUsuario;
         vm.getByCategoria = getByCategoria;
         vm.buscarProducto = buscarProducto;
-        vm.buscarProductoEnter = buscarProductoEnter;
         vm.clearFiltro = clearFiltro;
 
 
@@ -82,9 +86,10 @@ window.appName = 'bayres';
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
         });
 
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-        CartVars.broadcast();
+        CartVars.listen(function(){
+            vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+            vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        });
 
         $scope.$on('links', function (event, args) {
             vm.links = LinksService.links;
@@ -193,36 +198,26 @@ window.appName = 'bayres';
             $location.path('#/productos/' + categoria_id);
         }
 
-        function buscarProducto() {
-            if (vm.filtro.length > 2) {
-                //$location.path('/main/' + vm.filtro);
-                LinksService.selectedIncludeTop = 'main/productos.html';
-                LinksService.selectedIncludeMiddle = '';
-                LinksService.selectedIncludeBottom = '';
-                LinksService.searchName = vm.filtro;
-                LinksService.broadcast();
+        function buscarProducto(filtro) {
+            if (filtro.length > 2) {
+                ProductService.getByParams("nombre,descripcion", filtro , "false", function(data){
+                    console.log(data);
+                    console.log(data.length);
+                    BayresService.productos = data;
+                    BayresService.broadcast();
+
+                    LinksService.selectedIncludeTop = 'main/productos.html';
+                    LinksService.selectedIncludeMiddle = '';
+                    LinksService.selectedIncludeBottom = '';
+                    LinksService.broadcast();
+                });
             } else {
                 console.log('menor a 2');
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
                 LinksService.selectedIncludeMiddle = 'main/destacados.html';
                 LinksService.selectedIncludeBottom = 'main/masvendidos.html';
-                LinksService.searchName = '';
                 LinksService.broadcast();
             }
-        }
-
-
-        function buscarProductoEnter(event) {
-          if (event.keyCode == 13) {
-              console.log(vm.filtro);
-              if(vm.filtro.trim().length > 0) {
-                  $location.path('/main/' + vm.filtro);
-                  LinksService.selectedIncludeTop = 'main/productos.html';
-                  LinksService.searchName = vm.filtro;
-                  LinksService.broadcast();
-              }
-
-          }
         }
 
         function clearFiltro() {
@@ -230,7 +225,6 @@ window.appName = 'bayres';
             LinksService.selectedIncludeTop = 'main/ofertas.html';
             LinksService.selectedIncludeMiddle = 'main/destacados.html';
             LinksService.selectedIncludeBottom = 'main/masvendidos.html';
-            LinksService.searchName = '';
             LinksService.broadcast();
         }
 
@@ -359,11 +353,24 @@ window.appName = 'bayres';
         ];
 
         this.productId = 0;
-        this.searchName = '';
 
         this.selectedIncludeTop = 'main/ofertas.html';
         this.selectedIncludeMiddle = 'main/destacados.html';
         this.selectedIncludeBottom = 'main/masvendidos.html';
+
+        this.broadcast = function () {
+            $rootScope.$broadcast("refreshSelectedPage")
+        };
+
+        this.listen = function (callback) {
+            $rootScope.$on("refreshSelectedPage", callback)
+        };
+    }
+
+    BayresService.$inject = ['$rootScope'];
+    function BayresService($rootScope) {
+
+        this.productos = [];
 
         this.broadcast = function () {
             $rootScope.$broadcast("refreshSelectedPage")
