@@ -320,6 +320,10 @@ CONTENEDORES
   border-radius: 5px;
   border: $border_color 1px solid;
 }
+.container-main-ofertas{
+  background-color: transparent;
+  border: 0;
+}
 .container-main-productos {
   max-height: 1500px;
   overflow-y: auto;
@@ -948,6 +952,9 @@ textarea{
   flex-direction: row;
   align-items: center;
   min-height: 390px;
+  border: $border_color 1px solid;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-bottom: 5px;
   @media (max-width: 700px) {
     flex-direction: column;
   }
@@ -1029,7 +1036,7 @@ textarea{
   cursor: pointer;
   height: 14px;
   width: 14px;
-  margin: 0px 5px 10px;
+  margin: 10px;
 }
 .slider_selected{
   background-color: $border_color;
@@ -1061,7 +1068,7 @@ textarea{
 .form-control-carrito {
   width: 165px;
 }
-/*
+
 .container-main-ofertas .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
@@ -1088,4 +1095,4 @@ textarea{
     transform: translate(0px, 1500px);
   }
 }
-*/
+
