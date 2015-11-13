@@ -856,6 +856,7 @@ textarea{
   align-items: flex-start;
   justify-content: center;
   font-family: $myriad_pro_condensed;
+  z-index: 10;
 }
 .menu-separator {
   margin: 7px 0;
@@ -988,6 +989,25 @@ textarea{
 .container-oferta-imagen, .container-oferta-producto{
   margin: 0 15px;
 }
+
+.container-oferta-producto{
+  @media (max-width: 800px) {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .oferta-titulo,
+    .oferta-descripcion{
+      text-align: center;
+    }
+
+  }
+}
+
 .oferta-imagen{
   width: 300px;
   height: 300px;
