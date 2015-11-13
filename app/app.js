@@ -27,7 +27,7 @@ window.appName = 'bayres';
     ]).
         config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                .otherwise({redirectTo : '/agreement'})
+                .otherwise({redirectTo: '/agreement'})
         }])
         .controller('BayresController', BayresController)
         .service('LinksService', LinksService)
@@ -80,30 +80,30 @@ window.appName = 'bayres';
 
 
         $rootScope.$on('$locationChangeStart', function (e, to) {
-            goTo({path:$location.$$path});
+            goTo({path: $location.$$path});
             //goTo(location);
         });
 
 
         function goToAnchor(id, id_origen) {
-            $location.path('/main');
             vm.id_origen = id_origen != undefined ? id_origen : 'seccion-2';
-            $timeout(function(){
+            $timeout(function () {
                 var duration = 1000;
                 var offset = 30; //pixels; adjust for floating menu, context etc
                 //Scroll to #some-id with 30 px "padding"
                 //Note: Use this in a directive, not with document.getElementById
-                var someElement = angular.element(document.getElementById(id));
-                $document.scrollToElement(someElement, offset, duration);
-            },10);
+                if (document.getElementById(id) != undefined) {
+                    var someElement = angular.element(document.getElementById(id));
+                    $document.scrollToElement(someElement, offset, duration);
+                }
+            }, 10);
 
 
         }
 
-        LoginService.listen(function() {
+        LoginService.listen(function () {
             vm.usuario = LoginService.usuario;
             vm.isLogged = LoginService.isLogged;
-            console.log(vm.usuario);
         })
 
         LinksService.listen(function () {
@@ -112,7 +112,7 @@ window.appName = 'bayres';
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
         });
 
-        CartVars.listen(function(){
+        CartVars.listen(function () {
             vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
             vm.carritoInfo.totalAPagar = CartVars.carrito_total();
         });
@@ -146,23 +146,23 @@ window.appName = 'bayres';
         }
 
         function goTo(location) {
-            if(location.path === '/main') {
+            if (location.path === '/main') {
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
                 LinksService.selectedIncludeMiddle = 'main/destacados.html';
                 LinksService.selectedIncludeBottom = 'main/masvendidos.html';
-            } else if(location.path === '/categoria') {
+            } else if (location.path === '/categoria') {
                 LinksService.selectedIncludeTop = 'login/login.html';
-            } else if(location.path === '/carrito') {
+            } else if (location.path === '/carrito') {
                 LinksService.selectedIncludeTop = 'carrito/carrito.html';
-            } else if(location.path === '/micuenta') {
+            } else if (location.path === '/micuenta') {
                 LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
-            } else if(location.path === '/contacto') {
+            } else if (location.path === '/contacto') {
                 LinksService.selectedIncludeTop = 'contacto/contacto.html';
-            } else if(location.path === '/legales') {
+            } else if (location.path === '/legales') {
                 $location.path('/legales/1');
                 LinksService.productId = 1;
                 LinksService.selectedIncludeTop = 'legales/legales.html';
-            } else if(location.path === '/login') {
+            } else if (location.path === '/login') {
                 $location.path('/login');
                 LinksService.selectedIncludeTop = 'login/login.html';
                 //LinksService.selectedIncludeMiddle = 'main/destacados.html';
@@ -229,7 +229,7 @@ window.appName = 'bayres';
 
         function buscarProducto(filtro) {
             if (filtro.length > 2) {
-                ProductService.getByParams("nombre,descripcion", filtro , "false", function(data){
+                ProductService.getByParams("nombre,descripcion", filtro, "false", function (data) {
                     console.log(data);
                     console.log(data.length);
                     BayresService.productos = data;
@@ -311,8 +311,8 @@ window.appName = 'bayres';
             tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
             //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
-            roca1.style.transform = 'translateY(' + ((scrolltop * .4)-150) + 'px)';
-            roca2.style.transform = 'translateY(' + ((scrolltop * .6)-450) + 'px)';
+            roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 150) + 'px)';
+            roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 450) + 'px)';
             //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
             //lava1.style.transform = 'translateY(' + ((scrolltop * .3)-300) + 'px)';

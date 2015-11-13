@@ -66,7 +66,6 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     });
 
     //console.log(vm.productos);
-    console.log(vm.search);
 
     function cambiarSlide(){
         vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;

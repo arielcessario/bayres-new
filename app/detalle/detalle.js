@@ -43,7 +43,6 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     vm.addProducto = addProducto;
 
     vm.search = BayresService.search;
-    console.log(vm.search);
     BayresService.listen(function(){
         vm.search = BayresService.search;
     });
@@ -55,7 +54,6 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     });
 
     function close() {
-        console.log((vm.search) ? 'main/productos.html' : 'main/ofertas.html');
         $location.path('/main');
         LinksService.selectedIncludeTop = (vm.search) ? 'main/productos.html' : 'main/ofertas.html';
         LinksService.selectedIncludeMiddle = (vm.search) ? '' : 'main/destacados.html';
