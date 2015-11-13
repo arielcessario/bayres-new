@@ -26,7 +26,7 @@
     <div ng-if="bayresCtrl.isLogged" class="login-separator">{{bayresCtrl.usuario.nombre + ' ' + bayresCtrl.usuario.apellido}}</div>
     <div ng-if="bayresCtrl.isLogged"><a href="" ng-click="bayresCtrl.logout();" class="login-text">Salir</a></div>
     <div class="mi-carrito">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
-    <img src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
+    <img class="mi-carrito-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
   </div>
 
   <div class="header">

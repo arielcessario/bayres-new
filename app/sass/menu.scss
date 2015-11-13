@@ -65,6 +65,15 @@ $border_color: #8CC63F;
 .mi-carrito{
   margin-left: 30%;
 }
+
+.mi-carrito,
+.mi-carrito-img{
+  @media (max-width: 800px){
+    visibility: collapse;
+    display: none;
+  }
+}
+
 .header {
   width: 100%;
   height: 50px;
