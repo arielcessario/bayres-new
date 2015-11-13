@@ -292,7 +292,8 @@ window.appName = 'bayres';
             tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)';
             tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
-            roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
+            //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
+            roca1.style.transform = 'translateY(' + ((scrolltop * .4)-150) + 'px)';
             roca2.style.transform = 'translateY(' + ((scrolltop * .6)-450) + 'px)';
             //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
