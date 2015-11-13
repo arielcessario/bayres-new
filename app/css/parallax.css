@@ -226,7 +226,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 157, ../sass/parallax.scss */
 #lava0 {
-  background-color: darkorange;
+  background-color: orangered;
   transform: translateY(300px);
   -webkit-filter: blur(3px);
   filter: blur(4px);
@@ -235,7 +235,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 166, ../sass/parallax.scss */
 #lava1 {
-  background-color: orange;
+  background-color: darkorange;
   transform: translateY(350px);
   -webkit-filter: blur(2px);
   filter: blur(2px);
@@ -244,7 +244,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 174, ../sass/parallax.scss */
 #lava2 {
-  background-color: yellow;
+  background-color: orange;
   transform: translateY(400px);
   height: 50%;
 }

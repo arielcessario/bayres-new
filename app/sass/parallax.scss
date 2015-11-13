@@ -155,7 +155,7 @@ $border_color: #8CC63F;
 }
 
 #lava0{
-  background-color: darkorange;
+  background-color: orangered;
   transform: translateY(300px);
   -webkit-filter: blur(3px);
   filter: blur(4px);
@@ -164,7 +164,7 @@ $border_color: #8CC63F;
 }
 
 #lava1{
-  background-color: orange;
+  background-color: darkorange;
   transform: translateY(350px);
   -webkit-filter: blur(2px);
   filter: blur(2px);
@@ -174,7 +174,7 @@ $border_color: #8CC63F;
 #lava2{
 
   //background-color: #8f0222;
-  background-color: yellow;
+  background-color: orange;
   //background: url("../images/lava_03.png") top center no-repeat;
   transform: translateY(400px);
   height: 50%;
