@@ -34,10 +34,12 @@ window.appName = 'bayres';
 
 
     BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService',
-        'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope', 'BayresService'];
+        'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope',
+        'BayresService', 'LoginService'];
 
     function BayresController($scope, $location, UserService, ProductService,
-                              CategoryService, LinksService, CartVars, AcUtils, $rootScope, BayresService) {
+                              CategoryService, LinksService, CartVars, AcUtils,
+                              $rootScope, BayresService, LoginService) {
 
         var vm = this;
         vm.filtro = '';
@@ -79,6 +81,12 @@ window.appName = 'bayres';
             //goTo(location);
         });
 
+
+        LoginService.listen(function() {
+            vm.usuario = LoginService.usuario;
+            vm.isLogged = LoginService.isLogged;
+            console.log(vm.usuario);
+        })
 
         LinksService.listen(function () {
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
@@ -165,6 +173,9 @@ window.appName = 'bayres';
                 vm.usuario = {};
                 vm.isLogged = false;
                 $location.path('/main');
+
+                LoginService.usuario = vm.usuario;
+                LoginService.broadcast();
             });
         }
 
@@ -290,9 +301,9 @@ window.appName = 'bayres';
             //lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
             //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
 
-            lava2.style.transform = 'translateY(' + ((scrolltop * .32)-390) + 'px)';
-            lava3.style.transform = 'translateY(' + ((scrolltop * .27)-200) + 'px)';
-            lava4.style.transform = 'translateY(' + ((scrolltop * .3)-180) + 'px)';
+            //lava2.style.transform = 'translateY(' + ((scrolltop * .32)-390) + 'px)';
+            //lava3.style.transform = 'translateY(' + ((scrolltop * .27)-200) + 'px)';
+            //lava4.style.transform = 'translateY(' + ((scrolltop * .3)-180) + 'px)';
 
             $scope.$apply();
 

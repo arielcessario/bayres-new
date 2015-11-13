@@ -37,6 +37,7 @@ $border_color: #8CC63F;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 35px;
 }
 
 #parallax {
@@ -157,17 +158,17 @@ $border_color: #8CC63F;
   //background-color: orange;
 }
 #lava2{
-  //background: url("../images/lava_03.png") top center no-repeat;
-  //transform: translateY(-120px);
-  background-color: darkred;
+  background: url("../images/lava_03.png") top center no-repeat;
+  transform: translateY(-120px);
+  //background-color: darkred;
 }
 #lava3{
-  //background: url("../images/lava_04.png") top center no-repeat;
-  //transform: translateY(-80px);
-  background-color: orangered;
+  background: url("../images/lava_04.png") top center no-repeat;
+  transform: translateY(-80px);
+  //background-color: orangered;
 }
 #lava4{
-  //background: url("../images/lava_02.png") top center no-repeat;
-  //transform: translateY(100px);
-  background-color: darkorange;
+  background: url("../images/lava_02.png") top center no-repeat;
+  transform: translateY(100px);
+  //background-color: darkorange;
 }

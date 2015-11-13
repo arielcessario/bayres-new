@@ -11,11 +11,12 @@ angular.module('bayres.login', [])
     data: {requiresLogin: false}
   });
 }])
-.controller('LoginController', LoginController);
+.controller('LoginController', LoginController)
+    .service('LoginService', LoginService);
 
-LoginController.$inject = ['$location', 'UserService', '$timeout', 'LinksService'];
+LoginController.$inject = ['$location', 'UserService', '$timeout', 'LinksService', 'LoginService'];
 
-function LoginController($location, UserService, $timeout, LinksService) {
+function LoginController($location, UserService, $timeout, LinksService, LoginService) {
   var vm = this;
 
   vm.message = '';
@@ -36,6 +37,10 @@ function LoginController($location, UserService, $timeout, LinksService) {
         console.log(data);
         if(data != -1) {
           vm.message = '';
+          LoginService.usuario = data.user;
+          LoginService.isLogged = true;
+          LoginService.broadcast();
+
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
           LinksService.broadcast();
@@ -59,4 +64,19 @@ function LoginController($location, UserService, $timeout, LinksService) {
     LinksService.selectedIncludeTop = 'usuarios/usuario.html';
     LinksService.broadcast();
   }
+}
+
+LoginService.$inject = ['$rootScope'];
+function LoginService($rootScope) {
+
+  this.usuario = {};
+  this.isLogged = false;
+
+  this.broadcast = function () {
+    $rootScope.$broadcast("refreshSelectedPage")
+  };
+
+  this.listen = function (callback) {
+    $rootScope.$on("refreshSelectedPage", callback)
+  };
 }

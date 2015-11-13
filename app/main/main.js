@@ -50,6 +50,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.hideSubCategoria = hideSubCategoria;
 
     vm.intervalo = $interval(cambiarSlide, 7000);
+    //vm.intervalo = $interval(cambiarSlide, 100000);
 
 
     vm.productos = BayresService.productos;
