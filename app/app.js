@@ -79,6 +79,18 @@ window.appName = 'bayres';
         vm.goToAnchor = goToAnchor;
 
 
+        if(UserService.getFromToken() != false){
+
+            LoginService.isLogged = true;
+            LoginService.usuario = UserService.getFromToken().data;
+            LoginService.broadcast();
+        }else {
+            LoginService.isLogged = false;
+            LoginService.usuario = {};
+            LoginService.broadcast();
+        }
+
+
         $rootScope.$on('$locationChangeStart', function (e, to) {
             goTo({path: $location.$$path});
             //goTo(location);
@@ -104,7 +116,7 @@ window.appName = 'bayres';
         LoginService.listen(function () {
             vm.usuario = LoginService.usuario;
             vm.isLogged = LoginService.isLogged;
-        })
+        });
 
         LinksService.listen(function () {
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
@@ -121,10 +133,10 @@ window.appName = 'bayres';
             vm.links = LinksService.links;
         });
 
-        if (UserService.getLogged() != false) {
-            vm.usuario = UserService.getLogged();
-            vm.isLogged = true;
-        }
+        //if (UserService.getLogged() != false) {
+        //    vm.usuario = UserService.getLogged();
+        //    vm.isLogged = true;
+        //}
 
         for (var i = 0; i < vm.links.length; i++) {
             if (vm.links[i].path == $location.$$path) {
