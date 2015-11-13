@@ -1074,31 +1074,8 @@ textarea{
 .form-control-carrito {
   width: 165px;
 }
+
 /*
-.transition-oferta-animation.ng-enter,
-.transition-oferta-animation.ng-leave {
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  -o-transition: 1s;
-  transition: 1s;
-}
-.transition-oferta-animation.ng-enter {
-  -webkit-transform: translate(0, -500px);
-  -ms-transform: translate(0, -500px);
-  transform: translate(0, -500px);
-}
-.transition-oferta-animation.ng-enter.ng-enter-active,
-.transition-oferta-animation.ng-leave{
-  -webkit-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
-  transform: translate(0, 0);
-}
-.transition-oferta-animation.ng-leave.ng-leave-active {
-  -webkit-transform: translate(0, 1000);
-  -ms-transform: translate(0, 1000);
-  transform: translate(0, 1000);
-}
-*/
 .container-main-ofertas .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
@@ -1128,6 +1105,8 @@ textarea{
     transform: translate(0px, 1500px);
   }
 }
+*/
+
 
 
 
