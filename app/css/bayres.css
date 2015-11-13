@@ -79,7 +79,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-family: "Myriad Pro Regular";
   src: url('../fonts/MYRIADPRO-REGULAR.woff?1446553266') format('woff');
 }
-/* line 33, ../sass/bayres.scss */
+/* line 32, ../sass/bayres.scss */
 body {
   font-family: "Myriad Pro Bold Condensed", serif;
   overflow-x: hidden;
@@ -94,7 +94,7 @@ body {
 /*
 AGREEMENT
 */
-/* line 44, ../sass/bayres.scss */
+/* line 45, ../sass/bayres.scss */
 .agreement-form {
   position: fixed;
   height: 100%;
@@ -113,7 +113,7 @@ AGREEMENT
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575457', endColorstr='#474647', GradientType=1);
 }
 
-/* line 61, ../sass/bayres.scss */
+/* line 63, ../sass/bayres.scss */
 .agreement-form-container {
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@ AGREEMENT
 }
 
 @media (max-width: 360px) {
-  /* line 73, ../sass/bayres.scss */
+  /* line 77, ../sass/bayres.scss */
   .img-logo {
     width: 335px;
     height: 120px;
@@ -135,7 +135,7 @@ AGREEMENT
   }
 }
 
-/* line 82, ../sass/bayres.scss */
+/* line 87, ../sass/bayres.scss */
 .agreement-titulo {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 50px;
@@ -146,14 +146,14 @@ AGREEMENT
   text-align: center;
 }
 @media (max-width: 360px) {
-  /* line 82, ../sass/bayres.scss */
+  /* line 87, ../sass/bayres.scss */
   .agreement-titulo {
     font-size: 45px;
     margin-top: 0px;
   }
 }
 
-/* line 95, ../sass/bayres.scss */
+/* line 101, ../sass/bayres.scss */
 .agreement-text {
   font-family: "Myriad Pro Regular";
   font-size: 20px;
@@ -167,7 +167,7 @@ AGREEMENT
   text-align: center;
 }
 @media (max-width: 360px) {
-  /* line 95, ../sass/bayres.scss */
+  /* line 101, ../sass/bayres.scss */
   .agreement-text {
     font-size: 16px;
   }
@@ -176,21 +176,21 @@ AGREEMENT
 /*
 CONTENEDORES
 */
-/* line 114, ../sass/bayres.scss */
+/* line 120, ../sass/bayres.scss */
 .container-title {
   text-align: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* line 119, ../sass/bayres.scss */
+/* line 126, ../sass/bayres.scss */
 .title-font {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 71px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
 }
 
-/* line 124, ../sass/bayres.scss */
+/* line 132, ../sass/bayres.scss */
 .primary-form {
   display: flex;
   flex-direction: column;
@@ -200,19 +200,19 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 132, ../sass/bayres.scss */
+/* line 141, ../sass/bayres.scss */
 .container-form, .container-main {
   z-index: 1;
   position: absolute;
 }
 @media (max-width: 700px) {
-  /* line 132, ../sass/bayres.scss */
+  /* line 141, ../sass/bayres.scss */
   .container-form, .container-main {
     margin: 0;
   }
 }
 
-/* line 141, ../sass/bayres.scss */
+/* line 151, ../sass/bayres.scss */
 .container-main {
   display: flex;
   flex-direction: column;
@@ -223,7 +223,7 @@ CONTENEDORES
   padding-top: 35px;
 }
 
-/* line 152, ../sass/bayres.scss */
+/* line 163, ../sass/bayres.scss */
 .container-form {
   min-height: 370px;
   width: 690px;
@@ -239,13 +239,13 @@ CONTENEDORES
   padding-top: 35px;
 }
 @media (max-width: 360px) {
-  /* line 152, ../sass/bayres.scss */
+  /* line 163, ../sass/bayres.scss */
   .container-form {
     width: 340px;
   }
 }
 
-/* line 169, ../sass/bayres.scss */
+/* line 181, ../sass/bayres.scss */
 .container-form-2 {
   margin: 40px 0;
   display: flex;
@@ -256,13 +256,13 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 178, ../sass/bayres.scss */
+/* line 191, ../sass/bayres.scss */
 .container-1, .container-2 {
   width: 100%;
   margin-top: 15px;
 }
 
-/* line 182, ../sass/bayres.scss */
+/* line 196, ../sass/bayres.scss */
 .container-1 {
   display: flex;
   flex-direction: row;
@@ -272,54 +272,54 @@ CONTENEDORES
   align-items: flex-start;
 }
 
-/* line 190, ../sass/bayres.scss */
+/* line 205, ../sass/bayres.scss */
 .container-2 {
   margin-bottom: 15px;
 }
 
-/* line 193, ../sass/bayres.scss */
+/* line 209, ../sass/bayres.scss */
 .container-datos {
   order: 0;
   flex: 2 1 auto;
   align-self: auto;
 }
 
-/* line 198, ../sass/bayres.scss */
+/* line 215, ../sass/bayres.scss */
 .container-datos-1, .container-datos-2 {
   width: 165px;
   margin: 0 15px;
 }
 
-/* line 202, ../sass/bayres.scss */
+/* line 220, ../sass/bayres.scss */
 .container-pwd {
   order: 0;
   flex: 1 1 auto;
   align-self: auto;
 }
 
-/* line 207, ../sass/bayres.scss */
+/* line 226, ../sass/bayres.scss */
 .container-datos, .container-pwd, .container-carrito {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* line 210, ../sass/bayres.scss */
+/* line 230, ../sass/bayres.scss */
 .container-datos {
   margin-left: 15px;
   margin-right: 7px;
 }
 
-/* line 214, ../sass/bayres.scss */
+/* line 235, ../sass/bayres.scss */
 .container-pwd {
   margin-left: 7px;
   margin-right: 15px;
 }
 
-/* line 218, ../sass/bayres.scss */
+/* line 240, ../sass/bayres.scss */
 .container-carrito {
   margin: 0 15px;
 }
 
-/* line 221, ../sass/bayres.scss */
+/* line 244, ../sass/bayres.scss */
 .container-interno {
   display: flex;
   flex-direction: row;
@@ -329,7 +329,7 @@ CONTENEDORES
   align-items: flex-start;
 }
 
-/* line 229, ../sass/bayres.scss */
+/* line 253, ../sass/bayres.scss */
 .carrito-historico, .carrito-productos {
   display: flex;
   flex-direction: row;
@@ -340,7 +340,7 @@ CONTENEDORES
   padding: 10px 0;
 }
 
-/* line 238, ../sass/bayres.scss */
+/* line 263, ../sass/bayres.scss */
 .container-producto {
   width: 180px;
   margin: 5px 5px 10px 5px;
@@ -357,14 +357,14 @@ CONTENEDORES
 }
 
 @media (max-width: 800px) {
-  /* line 253, ../sass/bayres.scss */
+  /* line 278, ../sass/bayres.scss */
   .responsive-container {
     max-width: 100%;
     overflow-x: auto;
   }
 }
 
-/* line 260, ../sass/bayres.scss */
+/* line 285, ../sass/bayres.scss */
 .container-producto-border {
   border: 1px solid #8cc63f;
   width: 170px;
@@ -378,7 +378,7 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 272, ../sass/bayres.scss */
+/* line 298, ../sass/bayres.scss */
 .producto-nombre {
   font-family: "Myriad Pro Bold Condensed", serif;
   font-size: 19px;
@@ -394,13 +394,13 @@ CONTENEDORES
   text-shadow: 1px 1px 1px #000000;
 }
 
-/* line 286, ../sass/bayres.scss */
+/* line 313, ../sass/bayres.scss */
 .producto-img {
   height: 112px;
   width: 112px;
 }
 
-/* line 290, ../sass/bayres.scss */
+/* line 318, ../sass/bayres.scss */
 .producto-botones {
   display: flex;
   flex-direction: row;
@@ -410,36 +410,36 @@ CONTENEDORES
   align-items: center;
 }
 
-/* line 298, ../sass/bayres.scss */
+/* line 327, ../sass/bayres.scss */
 .producto-peso, .producto-precio {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-/* line 302, ../sass/bayres.scss */
+/* line 332, ../sass/bayres.scss */
 .producto-peso-big, .producto-precio-big {
   font-size: 28px;
   margin-bottom: 5px;
 }
 
-/* line 306, ../sass/bayres.scss */
+/* line 337, ../sass/bayres.scss */
 .producto-peso, .producto-peso-big {
   color: red;
 }
 
-/* line 309, ../sass/bayres.scss */
+/* line 341, ../sass/bayres.scss */
 .producto-precio {
   color: #fff;
   margin-right: 25px;
 }
 
-/* line 313, ../sass/bayres.scss */
+/* line 346, ../sass/bayres.scss */
 .container-main-title {
   color: #fff;
   margin-bottom: 15px;
 }
 
-/* line 317, ../sass/bayres.scss */
+/* line 351, ../sass/bayres.scss */
 .container-main-productos, .container-main-ofertas {
   display: flex;
   flex-direction: row;
@@ -455,7 +455,7 @@ CONTENEDORES
 }
 
 @media (max-width: 800px) {
-  /* line 335, ../sass/bayres.scss */
+  /* line 369, ../sass/bayres.scss */
   #inner-destacados,
   #inner-masvendidos {
     max-height: 410px !important;
@@ -463,7 +463,7 @@ CONTENEDORES
 }
 
 @media (max-width: 800px) {
-  /* line 341, ../sass/bayres.scss */
+  /* line 376, ../sass/bayres.scss */
   #inner-destacados,
   #inner-masvendidos,
   #main-productos {
@@ -474,7 +474,7 @@ CONTENEDORES
   }
 }
 
-/* line 353, ../sass/bayres.scss */
+/* line 388, ../sass/bayres.scss */
 .container-main-productos {
   max-height: 1500px;
   overflow-y: auto;
@@ -482,7 +482,7 @@ CONTENEDORES
 }
 
 @media (max-width: 700px) {
-  /* line 359, ../sass/bayres.scss */
+  /* line 395, ../sass/bayres.scss */
   .container-main-ofertas {
     flex-direction: column;
     justify-content: center;
@@ -491,7 +491,7 @@ CONTENEDORES
     min-width: 0;
   }
 }
-/* line 367, ../sass/bayres.scss */
+/* line 404, ../sass/bayres.scss */
 .container-main-content {
   display: flex;
   flex-direction: column;
@@ -509,13 +509,13 @@ CONTENEDORES
   padding: 25px 0;
 }
 @media (max-width: 700px) {
-  /* line 367, ../sass/bayres.scss */
+  /* line 404, ../sass/bayres.scss */
   .container-main-content {
     width: 95%;
   }
 }
 
-/* line 387, ../sass/bayres.scss */
+/* line 425, ../sass/bayres.scss */
 .container-detalle-content {
   display: flex;
   flex-direction: row;
@@ -530,19 +530,19 @@ CONTENEDORES
   padding: 25px 0;
 }
 @media (max-width: 360px) {
-  /* line 387, ../sass/bayres.scss */
+  /* line 425, ../sass/bayres.scss */
   .container-detalle-content {
     flex-direction: column;
     width: 350px;
   }
 }
 
-/* line 407, ../sass/bayres.scss */
+/* line 446, ../sass/bayres.scss */
 .container-detalle-1, .container-detalle-2 {
   margin: 0 15px;
 }
 
-/* line 410, ../sass/bayres.scss */
+/* line 450, ../sass/bayres.scss */
 .container-detalle-2 {
   color: #fff;
   text-align: justify;
@@ -554,7 +554,7 @@ CONTENEDORES
 /**
 CONTROLES
 */
-/* line 420, ../sass/bayres.scss */
+/* line 461, ../sass/bayres.scss */
 .botonera {
   margin: 20px;
   display: flex;
@@ -565,13 +565,13 @@ CONTROLES
   align-items: center;
 }
 @media (max-width: 360px) {
-  /* line 420, ../sass/bayres.scss */
+  /* line 461, ../sass/bayres.scss */
   .botonera {
     margin-bottom: 30px;
   }
 }
 
-/* line 432, ../sass/bayres.scss */
+/* line 474, ../sass/bayres.scss */
 .btn-carrito, .btn-carrigo-big {
   width: 90px;
   height: 40px;
@@ -586,14 +586,14 @@ CONTROLES
   align-items: center;
 }
 
-/* line 445, ../sass/bayres.scss */
+/* line 488, ../sass/bayres.scss */
 .btn-carrigo-big {
   width: 130px;
   height: 58px;
   background: url("../images/boton-oferta.png") 50% 50% no-repeat;
 }
 
-/* line 450, ../sass/bayres.scss */
+/* line 494, ../sass/bayres.scss */
 .btn-carrito:hover {
   width: 90px;
   height: 40px;
@@ -608,14 +608,14 @@ CONTROLES
   align-items: center;
 }
 
-/* line 463, ../sass/bayres.scss */
+/* line 508, ../sass/bayres.scss */
 .btn-carrigo-big:hover {
   width: 130px;
   height: 58px;
   background: url("../images/boton-oferta-hover.png") 50% 50% no-repeat;
 }
 
-/* line 468, ../sass/bayres.scss */
+/* line 514, ../sass/bayres.scss */
 .btn-info {
   width: 40px;
   height: 40px;
@@ -624,7 +624,7 @@ CONTROLES
   cursor: pointer;
 }
 
-/* line 475, ../sass/bayres.scss */
+/* line 522, ../sass/bayres.scss */
 .btn-info:hover {
   width: 40px;
   height: 40px;
@@ -633,12 +633,12 @@ CONTROLES
   cursor: pointer;
 }
 
-/* line 482, ../sass/bayres.scss */
+/* line 530, ../sass/bayres.scss */
 .btn-close {
   cursor: pointer;
 }
 
-/* line 485, ../sass/bayres.scss */
+/* line 534, ../sass/bayres.scss */
 button {
   width: 100px;
   height: 30px;
@@ -660,14 +660,14 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b4ddb4', endColorstr='#006200', GradientType=0);
 }
 
-/* line 505, ../sass/bayres.scss */
+/* line 555, ../sass/bayres.scss */
 .btn-big {
   width: 120px;
   height: 37px;
   font-size: 16px;
 }
 
-/* line 510, ../sass/bayres.scss */
+/* line 561, ../sass/bayres.scss */
 .form-control {
   display: block;
   width: 250px;
@@ -681,24 +681,24 @@ button {
   border-radius: 28px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-/* line 528, ../sass/bayres.scss */
+/* line 580, ../sass/bayres.scss */
 .form-message {
   margin-top: 20px;
   text-align: center;
 }
 
-/* line 532, ../sass/bayres.scss */
+/* line 585, ../sass/bayres.scss */
 .message {
   font-weight: bold;
   color: #8cc63f;
 }
 
-/* line 536, ../sass/bayres.scss */
+/* line 590, ../sass/bayres.scss */
 .datos-titulo, .pwd-titulo, .carrito-titulo {
   font-size: 24px;
   color: #8cc63f;
@@ -706,24 +706,24 @@ button {
   margin: 15px 0;
 }
 
-/* line 542, ../sass/bayres.scss */
+/* line 597, ../sass/bayres.scss */
 .carrito-titulo {
   margin-right: 5px;
 }
 
-/* line 545, ../sass/bayres.scss */
+/* line 601, ../sass/bayres.scss */
 .label-input {
   font-size: 20px;
   color: #fff;
   margin-left: 10px;
 }
 
-/* line 550, ../sass/bayres.scss */
+/* line 607, ../sass/bayres.scss */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* line 553, ../sass/bayres.scss */
+/* line 611, ../sass/bayres.scss */
 label {
   display: inline-block;
   max-width: 100%;
@@ -731,20 +731,20 @@ label {
   font-weight: 700;
 }
 
-/* line 560, ../sass/bayres.scss */
+/* line 618, ../sass/bayres.scss */
 .control-select {
   height: 38px;
   width: 300px;
   margin-left: 5px;
 }
 @media (max-width: 700px) {
-  /* line 560, ../sass/bayres.scss */
+  /* line 618, ../sass/bayres.scss */
   .control-select {
     margin: 10px 0;
   }
 }
 
-/* line 568, ../sass/bayres.scss */
+/* line 627, ../sass/bayres.scss */
 .carrito-table-head, .carrito-table-body {
   display: flex;
   flex-direction: row;
@@ -755,46 +755,46 @@ label {
   width: 100%;
 }
 
-/* line 577, ../sass/bayres.scss */
+/* line 637, ../sass/bayres.scss */
 .carrito-table-head {
   color: #8cc63f;
 }
 
 @media (max-width: 600px) {
-  /* line 582, ../sass/bayres.scss */
+  /* line 642, ../sass/bayres.scss */
   .carrito-table-body {
     font-family: "Myriad Pro Condensed";
   }
 }
-/* line 586, ../sass/bayres.scss */
+/* line 647, ../sass/bayres.scss */
 .carrito-table-row-name {
   width: 220px;
 }
 @media (max-width: 600px) {
-  /* line 586, ../sass/bayres.scss */
+  /* line 647, ../sass/bayres.scss */
   .carrito-table-row-name {
     width: 40%;
   }
 }
 
-/* line 592, ../sass/bayres.scss */
+/* line 654, ../sass/bayres.scss */
 .carrito-table-row {
   width: 85px;
   text-align: center;
 }
 @media (max-width: 600px) {
-  /* line 592, ../sass/bayres.scss */
+  /* line 654, ../sass/bayres.scss */
   .carrito-table-row {
     width: 18%;
   }
 }
 
-/* line 599, ../sass/bayres.scss */
+/* line 662, ../sass/bayres.scss */
 .table-row-image {
   width: 32px;
 }
 
-/* line 602, ../sass/bayres.scss */
+/* line 666, ../sass/bayres.scss */
 .div-input, .div-input-big {
   background-color: #fff;
   padding: 5px 10px;
@@ -804,27 +804,27 @@ label {
   text-align: right;
 }
 
-/* line 610, ../sass/bayres.scss */
+/* line 675, ../sass/bayres.scss */
 .div-input {
   width: 60px;
   font-size: 12px;
 }
 @media (max-width: 600px) {
-  /* line 610, ../sass/bayres.scss */
+  /* line 675, ../sass/bayres.scss */
   .div-input {
     width: 10%;
     font-size: 15px;
   }
 }
 
-/* line 618, ../sass/bayres.scss */
+/* line 684, ../sass/bayres.scss */
 .div-input-big {
   width: 90px;
   font-size: 18px;
   height: 20px;
 }
 
-/* line 623, ../sass/bayres.scss */
+/* line 690, ../sass/bayres.scss */
 .div-image-small {
   background-color: #fff;
   padding: 2px;
@@ -833,7 +833,7 @@ label {
   height: 24px;
 }
 
-/* line 633, ../sass/bayres.scss */
+/* line 701, ../sass/bayres.scss */
 .carrito-entrega {
   display: flex;
   flex-direction: row;
@@ -844,19 +844,19 @@ label {
   padding: 20px 0;
 }
 @media (max-width: 700px) {
-  /* line 633, ../sass/bayres.scss */
+  /* line 701, ../sass/bayres.scss */
   .carrito-entrega {
     flex-direction: column;
   }
 }
 
-/* line 645, ../sass/bayres.scss */
+/* line 714, ../sass/bayres.scss */
 .carrito-subtotal {
   font-size: 26px;
   font-weight: bold;
 }
 
-/* line 649, ../sass/bayres.scss */
+/* line 719, ../sass/bayres.scss */
 .container-contacto {
   display: flex;
   flex-direction: row;
@@ -866,23 +866,51 @@ label {
   align-items: center;
   width: 100%;
 }
+@media (max-width: 800px) {
+  /* line 719, ../sass/bayres.scss */
+  .container-contacto {
+    flex-direction: column;
+  }
+  /* line 730, ../sass/bayres.scss */
+  .container-contacto .container-contacto-1, .container-contacto .container-contacto-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  /* line 739, ../sass/bayres.scss */
+  .container-contacto .container-contacto-1 .form-group, .container-contacto .container-contacto-2 .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* line 745, ../sass/bayres.scss */
+  .container-contacto .container-contacto-1 .form-group .form-control, .container-contacto .container-contacto-2 .form-group .form-control {
+    width: 80%;
+  }
+}
 
-/* line 658, ../sass/bayres.scss */
+/* line 754, ../sass/bayres.scss */
 .container-contacto-1, .container-contacto-2 {
   width: 40%;
 }
 
-/* line 661, ../sass/bayres.scss */
+/* line 758, ../sass/bayres.scss */
 .container-contacto-1 {
   margin-right: 25px;
 }
 
-/* line 664, ../sass/bayres.scss */
+/* line 762, ../sass/bayres.scss */
 .container-contacto-2 {
   margin-left: 30px;
 }
 
-/* line 667, ../sass/bayres.scss */
+/* line 766, ../sass/bayres.scss */
 textarea {
   width: 250px;
   height: 178px;
@@ -890,7 +918,7 @@ textarea {
   border-radius: 10px;
 }
 
-/* line 673, ../sass/bayres.scss */
+/* line 773, ../sass/bayres.scss */
 .container-buttons {
   display: flex;
   flex-direction: row;
@@ -901,7 +929,7 @@ textarea {
   margin-bottom: 15px;
 }
 
-/* line 682, ../sass/bayres.scss */
+/* line 783, ../sass/bayres.scss */
 .btn-cancel {
   background: #a90329;
   background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
@@ -910,10 +938,10 @@ textarea {
   background: -o-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
   background: -ms-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
   background: linear-gradient(to bottom, #a90329 0%, #8f0222 44%, #6d0019 100%) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a90329', endColorstr='#6d0019', GradientType=0);
 }
 
-/* line 692, ../sass/bayres.scss */
+/* line 794, ../sass/bayres.scss */
 .carrito-totales {
   color: #fff;
   font-size: 54px;
@@ -921,13 +949,13 @@ textarea {
   text-align: center;
 }
 @media (max-width: 700px) {
-  /* line 692, ../sass/bayres.scss */
+  /* line 794, ../sass/bayres.scss */
   .carrito-totales {
     margin-top: 20px;
   }
 }
 
-/* line 701, ../sass/bayres.scss */
+/* line 804, ../sass/bayres.scss */
 .info-envios {
   font-family: "Myriad Pro Condensed", serif;
   font-size: 18px;
@@ -936,13 +964,13 @@ textarea {
   margin: 15px 10%;
 }
 @media (max-width: 600px) {
-  /* line 701, ../sass/bayres.scss */
+  /* line 804, ../sass/bayres.scss */
   .info-envios {
     margin: 0 10%;
   }
 }
 
-/* line 712, ../sass/bayres.scss */
+/* line 816, ../sass/bayres.scss */
 #medios {
   background-color: #FCFCFC;
   font-family: "Myriad Pro Bold Condensed", serif;
@@ -952,7 +980,7 @@ textarea {
   white-space: nowrap;
 }
 
-/* line 720, ../sass/bayres.scss */
+/* line 825, ../sass/bayres.scss */
 #medios {
   position: absolute;
   height: 50px;
@@ -962,7 +990,7 @@ textarea {
   z-index: 50;
 }
 
-/* line 728, ../sass/bayres.scss */
+/* line 834, ../sass/bayres.scss */
 .medio-pagos {
   display: flex;
   flex-direction: row;
@@ -972,14 +1000,14 @@ textarea {
   align-items: center;
 }
 
-/* line 736, ../sass/bayres.scss */
+/* line 843, ../sass/bayres.scss */
 .medio-pagos img {
   width: 40px;
   height: 30px;
   padding: 10px 5px 0 5px;
 }
 
-/* line 741, ../sass/bayres.scss */
+/* line 849, ../sass/bayres.scss */
 #footer {
   width: 100%;
   overflow-x: auto;
@@ -987,7 +1015,7 @@ textarea {
   font-family: "Myriad Pro Condensed", serif;
 }
 
-/* line 747, ../sass/bayres.scss */
+/* line 856, ../sass/bayres.scss */
 #footer {
   position: absolute;
   height: 450px;
@@ -998,7 +1026,7 @@ textarea {
   background-color: #000000;
 }
 
-/* line 756, ../sass/bayres.scss */
+/* line 866, ../sass/bayres.scss */
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -1008,12 +1036,12 @@ textarea {
   align-items: center;
 }
 
-/* line 764, ../sass/bayres.scss */
+/* line 875, ../sass/bayres.scss */
 .footer-upper {
   margin-top: 20px;
 }
 
-/* line 767, ../sass/bayres.scss */
+/* line 879, ../sass/bayres.scss */
 .footer-lower {
   display: flex;
   flex-direction: row;
@@ -1024,42 +1052,42 @@ textarea {
   margin-top: 50px;
 }
 @media (max-width: 360px) {
-  /* line 767, ../sass/bayres.scss */
+  /* line 879, ../sass/bayres.scss */
   .footer-lower {
     margin-top: 15px;
   }
 }
 
-/* line 779, ../sass/bayres.scss */
+/* line 892, ../sass/bayres.scss */
 .footer-lower-colum {
   width: 150px;
 }
 @media (max-width: 360px) {
-  /* line 779, ../sass/bayres.scss */
+  /* line 892, ../sass/bayres.scss */
   .footer-lower-colum {
     width: 75px;
     font-size: 14px;
   }
 }
 
-/* line 786, ../sass/bayres.scss */
+/* line 900, ../sass/bayres.scss */
 .footer-lower-title {
   color: #8cc63f;
 }
 
-/* line 789, ../sass/bayres.scss */
+/* line 904, ../sass/bayres.scss */
 .footer-lower-link {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
 }
 
-/* line 794, ../sass/bayres.scss */
+/* line 910, ../sass/bayres.scss */
 .footer-lower-link:hover {
   color: #ffff00;
 }
 
-/* line 797, ../sass/bayres.scss */
+/* line 914, ../sass/bayres.scss */
 .copyright {
   width: 100%;
   margin-top: 50px;
@@ -1067,26 +1095,26 @@ textarea {
   font-size: 14px;
 }
 
-/* line 803, ../sass/bayres.scss */
+/* line 921, ../sass/bayres.scss */
 .ac-desarrollo {
   text-decoration: none;
   color: #fff;
 }
 
-/* line 807, ../sass/bayres.scss */
+/* line 926, ../sass/bayres.scss */
 .ac-desarrollo:hover {
   color: #ffff00;
 }
 
 @media (max-width: 360px) {
-  /* line 810, ../sass/bayres.scss */
+  /* line 930, ../sass/bayres.scss */
   .medio-pagos-text {
     display: none;
   }
 }
 
 @media (max-width: 360px) {
-  /* line 815, ../sass/bayres.scss */
+  /* line 936, ../sass/bayres.scss */
   .img-logo-footer {
     width: 335px;
     height: 100px;
@@ -1095,7 +1123,7 @@ textarea {
   }
 }
 
-/* line 824, ../sass/bayres.scss */
+/* line 945, ../sass/bayres.scss */
 #buscar {
   background-color: #8CC63F;
   position: relative;
@@ -1107,18 +1135,18 @@ textarea {
   z-index: 1;
 }
 
-/* line 834, ../sass/bayres.scss */
+/* line 956, ../sass/bayres.scss */
 #buscar input[type="text"] {
   width: 60%;
 }
 @media (max-width: 360px) {
-  /* line 834, ../sass/bayres.scss */
+  /* line 956, ../sass/bayres.scss */
   #buscar input[type="text"] {
     width: 80%;
   }
 }
 
-/* line 842, ../sass/bayres.scss */
+/* line 963, ../sass/bayres.scss */
 #menu-categorias-detalle {
   position: fixed;
   width: 100%;
@@ -1136,13 +1164,13 @@ textarea {
   z-index: 10;
 }
 
-/* line 861, ../sass/bayres.scss */
+/* line 983, ../sass/bayres.scss */
 .menu-separator {
   margin: 7px 0;
   cursor: pointer;
 }
 
-/* line 865, ../sass/bayres.scss */
+/* line 988, ../sass/bayres.scss */
 .menu-principal {
   order: 0;
   flex: 0 1 auto;
@@ -1150,7 +1178,7 @@ textarea {
   margin-top: 40px !important;
 }
 
-/* line 871, ../sass/bayres.scss */
+/* line 995, ../sass/bayres.scss */
 .menu-pricipal-item {
   color: #ffff00;
   cursor: pointer;
@@ -1158,12 +1186,12 @@ textarea {
   font-size: 22px;
 }
 
-/* line 877, ../sass/bayres.scss */
+/* line 1002, ../sass/bayres.scss */
 .menu-pricipal-item:hover {
   color: #fff;
 }
 
-/* line 880, ../sass/bayres.scss */
+/* line 1006, ../sass/bayres.scss */
 .menu-categoria-titulo {
   color: #fff;
   margin-top: 40px !important;
@@ -1174,7 +1202,7 @@ textarea {
   font-family: "Myriad Pro Bold Condensed";
 }
 
-/* line 889, ../sass/bayres.scss */
+/* line 1016, ../sass/bayres.scss */
 .menu-subcategoria {
   order: 0;
   flex: 0 1 auto;
@@ -1184,7 +1212,7 @@ textarea {
   text-transform: capitalize;
 }
 
-/* line 898, ../sass/bayres.scss */
+/* line 1026, ../sass/bayres.scss */
 .menu-subcategoria-item {
   color: #fff;
   cursor: pointer;
@@ -1192,25 +1220,25 @@ textarea {
   font-size: 18px;
 }
 
-/* line 904, ../sass/bayres.scss */
+/* line 1033, ../sass/bayres.scss */
 .carrito-imagen {
   background: rgba(0, 0, 0, 0.7) url("../images/carritox2.png") 50% 50% no-repeat;
 }
 
-/* line 907, ../sass/bayres.scss */
+/* line 1037, ../sass/bayres.scss */
 .container-carrito-1 {
   max-height: 270px;
   overflow-y: scroll;
 }
 
-/* line 914, ../sass/bayres.scss */
+/* line 1046, ../sass/bayres.scss */
 .buscar-clear-image {
   position: relative;
   left: -30px;
   cursor: pointer;
 }
 
-/* line 919, ../sass/bayres.scss */
+/* line 1052, ../sass/bayres.scss */
 .detalle-imagen {
   width: 220px;
   height: 220px;
@@ -1218,38 +1246,45 @@ textarea {
   padding: 3px;
 }
 
-/* line 925, ../sass/bayres.scss */
+/* line 1059, ../sass/bayres.scss */
 .detalle-titulo {
   color: #8cc63f;
   font-size: 37px;
   text-align: center;
 }
 
-/* line 930, ../sass/bayres.scss */
+/* line 1065, ../sass/bayres.scss */
 .div-close {
   float: right;
   position: relative;
   top: -15px;
 }
 @media (max-width: 360px) {
-  /* line 930, ../sass/bayres.scss */
+  /* line 1065, ../sass/bayres.scss */
   .div-close {
     top: -325px;
   }
 }
 
-/* line 938, ../sass/bayres.scss */
+/* line 1074, ../sass/bayres.scss */
+.div-close-contacto {
+  position: absolute;
+  top: 115px;
+  right: 15px;
+}
+
+/* line 1080, ../sass/bayres.scss */
 .div-detalle {
   min-height: 250px;
 }
 
-/* line 942, ../sass/bayres.scss */
+/* line 1085, ../sass/bayres.scss */
 .div-button {
   bottom: 10px;
   float: right;
 }
 @media (max-width: 360px) {
-  /* line 942, ../sass/bayres.scss */
+  /* line 1085, ../sass/bayres.scss */
   .div-button {
     position: relative;
     float: right;
@@ -1257,7 +1292,7 @@ textarea {
   }
 }
 
-/* line 956, ../sass/bayres.scss */
+/* line 1097, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter,
 .transition-pane-animation.ng-leave {
   -webkit-transition: 0.5s linear all;
@@ -1266,29 +1301,29 @@ textarea {
   transition: 0.5s linear all;
 }
 
-/* line 963, ../sass/bayres.scss */
+/* line 1105, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter {
   z-index: 100;
   opacity: 0;
 }
 
-/* line 967, ../sass/bayres.scss */
+/* line 1110, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 970, ../sass/bayres.scss */
+/* line 1114, ../sass/bayres.scss */
 .transition-pane-animation.ng-leave {
   z-index: 101;
   opacity: 1;
 }
 
-/* line 974, ../sass/bayres.scss */
+/* line 1119, ../sass/bayres.scss */
 .transition-pane-animation.ng-leave.ng-leave-active {
   opacity: 0;
 }
 
-/* line 977, ../sass/bayres.scss */
+/* line 1123, ../sass/bayres.scss */
 .container-oferta {
   display: flex;
   flex-direction: row;
@@ -1299,19 +1334,19 @@ textarea {
   padding-bottom: 5px;
 }
 @media (max-width: 700px) {
-  /* line 977, ../sass/bayres.scss */
+  /* line 1123, ../sass/bayres.scss */
   .container-oferta {
     flex-direction: column;
   }
 }
 
-/* line 989, ../sass/bayres.scss */
+/* line 1136, ../sass/bayres.scss */
 .container-oferta-imagen, .container-oferta-producto {
   margin: 0 15px;
 }
 
 @media (max-width: 800px) {
-  /* line 993, ../sass/bayres.scss */
+  /* line 1140, ../sass/bayres.scss */
   .container-oferta-producto {
     width: 100%;
     height: 100%;
@@ -1322,14 +1357,14 @@ textarea {
     align-items: center;
     justify-content: space-between;
   }
-  /* line 1003, ../sass/bayres.scss */
+  /* line 1150, ../sass/bayres.scss */
   .container-oferta-producto .oferta-titulo,
   .container-oferta-producto .oferta-descripcion {
     text-align: center;
   }
 }
 
-/* line 1011, ../sass/bayres.scss */
+/* line 1158, ../sass/bayres.scss */
 .oferta-imagen {
   width: 300px;
   height: 300px;
@@ -1337,7 +1372,7 @@ textarea {
   padding: 3px;
 }
 @media (max-width: 700px) {
-  /* line 1011, ../sass/bayres.scss */
+  /* line 1158, ../sass/bayres.scss */
   .oferta-imagen {
     width: 200px;
     height: 200px;
@@ -1345,7 +1380,7 @@ textarea {
   }
 }
 
-/* line 1022, ../sass/bayres.scss */
+/* line 1170, ../sass/bayres.scss */
 .oferta-titulo {
   text-align: center;
   font-size: 50px;
@@ -1357,13 +1392,13 @@ textarea {
   display: flex;
 }
 @media (max-width: 700px) {
-  /* line 1022, ../sass/bayres.scss */
+  /* line 1170, ../sass/bayres.scss */
   .oferta-titulo {
     font-size: 35px;
   }
 }
 
-/* line 1035, ../sass/bayres.scss */
+/* line 1184, ../sass/bayres.scss */
 .oferta-descripcion {
   text-align: left;
   font-family: "Myriad Pro Condensed", serif;
@@ -1374,27 +1409,27 @@ textarea {
   margin-bottom: 10px;
 }
 @media (max-width: 700px) {
-  /* line 1035, ../sass/bayres.scss */
+  /* line 1184, ../sass/bayres.scss */
   .oferta-descripcion {
     font-size: 24px;
     height: 90px;
   }
 }
 
-/* line 1048, ../sass/bayres.scss */
+/* line 1198, ../sass/bayres.scss */
 .btn-oferta {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 @media (max-width: 700px) {
-  /* line 1048, ../sass/bayres.scss */
+  /* line 1198, ../sass/bayres.scss */
   .btn-oferta {
     justify-content: center;
   }
 }
 
-/* line 1056, ../sass/bayres.scss */
+/* line 1207, ../sass/bayres.scss */
 .btn-info-big {
   width: 50px;
   height: 50px;
@@ -1403,7 +1438,7 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1063, ../sass/bayres.scss */
+/* line 1215, ../sass/bayres.scss */
 .btn-info-big:hover {
   width: 50px;
   height: 50px;
@@ -1413,7 +1448,7 @@ textarea {
 }
 
 @media (max-width: 700px) {
-  /* line 1071, ../sass/bayres.scss */
+  /* line 1224, ../sass/bayres.scss */
   .oferta-top {
     display: flex;
     flex-direction: column;
@@ -1421,14 +1456,14 @@ textarea {
     align-items: center;
   }
 }
-/* line 1078, ../sass/bayres.scss */
+/* line 1232, ../sass/bayres.scss */
 .oferta-bottom {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* line 1083, ../sass/bayres.scss */
+/* line 1238, ../sass/bayres.scss */
 .slider_1, .slider_2, .slider_3, .slider_4 {
   border: 2px solid #fff;
   border-radius: 10px;
@@ -1438,13 +1473,13 @@ textarea {
   margin: 10px;
 }
 
-/* line 1091, ../sass/bayres.scss */
+/* line 1247, ../sass/bayres.scss */
 .slider_selected {
   background-color: #8CC63F;
   border: 2px solid #8CC63F;
 }
 
-/* line 1095, ../sass/bayres.scss */
+/* line 1252, ../sass/bayres.scss */
 .ac-item-list {
   background-color: #8CC63F;
   color: #fff;
@@ -1452,17 +1487,17 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1101, ../sass/bayres.scss */
+/* line 1259, ../sass/bayres.scss */
 .ac-item-list:hover {
   color: #ffff00;
 }
 
-/* line 1104, ../sass/bayres.scss */
+/* line 1263, ../sass/bayres.scss */
 .ac-item-selected-list {
   cursor: pointer;
 }
 
-/* line 1107, ../sass/bayres.scss */
+/* line 1267, ../sass/bayres.scss */
 .container-legales {
   font-size: 20px;
   font-family: "Myriad Pro Condensed";
@@ -1472,18 +1507,18 @@ textarea {
   text-align: justify;
 }
 
-/* line 1118, ../sass/bayres.scss */
+/* line 1280, ../sass/bayres.scss */
 .form-control-carrito {
   width: 165px;
 }
 
-/* line 1122, ../sass/bayres.scss */
+/* line 1284, ../sass/bayres.scss */
 #oferta-bottom {
   position: absolute;
   bottom: 0;
 }
 
-/* line 1127, ../sass/bayres.scss */
+/* line 1289, ../sass/bayres.scss */
 .oferta-top {
   position: relative;
   width: 100%;
@@ -1492,28 +1527,28 @@ textarea {
   overflow: hidden;
 }
 
-/* line 1135, ../sass/bayres.scss */
+/* line 1297, ../sass/bayres.scss */
 .container-oferta {
   width: 99%;
   position: absolute;
   top: 0;
 }
 
-/* line 1141, ../sass/bayres.scss */
+/* line 1303, ../sass/bayres.scss */
 .container-main-ofertas {
   background-color: transparent;
   border: 0;
   max-width: 800px;
 }
 
-/* line 1147, ../sass/bayres.scss */
+/* line 1309, ../sass/bayres.scss */
 .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
   animation: ofertas-container-enter 1s;
 }
 
-/* line 1152, ../sass/bayres.scss */
+/* line 1315, ../sass/bayres.scss */
 .container-oferta.ng-leave {
   -webkit-animation: ofertas-container-leave 1s;
   -o-animation: ofertas-container-leave 1s;
