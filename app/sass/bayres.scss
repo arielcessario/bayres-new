@@ -249,6 +249,14 @@ CONTENEDORES
   align-content: stretch;
   align-items: center;
 }
+
+.responsive-container{
+  @media(max-width: 800px){
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
 .container-producto-border{
   border: 1px solid #8cc63f;
   width: 170px;
@@ -311,7 +319,7 @@ CONTENEDORES
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: stretch;
+  //align-content: stretch;
   align-items: center;
   width: 800px;
   min-width: 480px;
@@ -321,6 +329,25 @@ CONTENEDORES
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   border: $border_color 1px solid;
+
+}
+
+#inner-destacados,
+#inner-masvendidos{
+  @media (max-width: 800px) {
+    max-height: 410px !important;
+  }
+}
+#inner-destacados,
+#inner-masvendidos,
+#main-productos{
+  @media (max-width: 800px) {
+    max-width: 800px !important;
+    min-width: 800px !important;
+    overflow-x: auto;
+    //overflow-y: hidden;
+    flex-direction: row;
+  }
 }
 
 .container-main-productos {

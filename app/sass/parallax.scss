@@ -38,6 +38,12 @@ $border_color: #8CC63F;
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
+  @media (max-width: 800px) {
+    max-width: 99% !important;
+    //overflow-x: auto;
+    //align-items: flex-start;
+
+  }
 }
 
 #parallax {
