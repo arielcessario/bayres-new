@@ -230,8 +230,7 @@ window.appName = 'bayres';
         function buscarProducto(filtro) {
             if (filtro.length > 2) {
                 ProductService.getByParams("nombre,descripcion", filtro, "false", function (data) {
-                    console.log(data);
-                    console.log(data.length);
+
                     BayresService.productos = data;
                     BayresService.search = true;
                     BayresService.broadcast();
@@ -242,7 +241,6 @@ window.appName = 'bayres';
                     LinksService.broadcast();
                 });
             } else {
-                console.log('menor a 2');
                 BayresService.productos = [];
                 BayresService.search = false;
                 BayresService.broadcast();
@@ -291,15 +289,18 @@ window.appName = 'bayres';
         var roca2 = document.getElementById('roca2');
         var roca3 = document.getElementById('roca3');
 
+        var lava0 = document.getElementById('lava0');
         var lava1 = document.getElementById('lava1');
         var lava2 = document.getElementById('lava2');
         var lava3 = document.getElementById('lava3');
         //var lava4 = document.getElementById('lava4');
 
         function parallaxbubbles() {
+
             var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
             //var scrollamount = (scrollTop / (scrollheight-WindowHeight)) * 100 // Obtener cantidad desplaza (en%)
             //console.log(scrollamount);
+
 
             sucursal1.style.transform = 'translateY(' + (scrolltop * .8) + 'px)'; // move bubble1 at 20% of scroll rate
             sucursal2.style.webkitTransform = 'translateY(' + (scrolltop * .6) + 'px)'; // move bubble2 at 50% of scroll rate
@@ -320,9 +321,16 @@ window.appName = 'bayres';
             //lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
             //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
 
-            //lava2.style.transform = 'translateY(' + ((scrolltop * .32)-390) + 'px)';
-            //lava3.style.transform = 'translateY(' + ((scrolltop * .27)-200) + 'px)';
-            //lava4.style.transform = 'translateY(' + ((scrolltop * .3)-180) + 'px)';
+            if (scrolltop > 1700) {
+                lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
+                lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
+                lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
+            } else {
+                lava2.style.transform = 'translateY(400px)';
+                lava1.style.transform = 'translateY(350px)';
+                lava0.style.transform = 'translateY(300px)';
+
+            }
 
             $scope.$apply();
 

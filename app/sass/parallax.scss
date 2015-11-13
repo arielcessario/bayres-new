@@ -102,7 +102,7 @@ $border_color: #8CC63F;
 
 #sucursal1, #sucursal2, #sucursal3, #sucursal4,
 #tierra1, #tierra2, #tierra3,
-#roca1, #roca2, #roca3, #roca4,
+#roca1, #roca2, #roca3, #roca4, #lava0,
 #lava1, #lava2, #lava3, #lava4 {
   width: 100%;
   height: 600px;
@@ -154,22 +154,40 @@ $border_color: #8CC63F;
   background: url(../images/destacados_02.png) top center no-repeat;
 }
 
+#lava0{
+  background-color: darkorange;
+  transform: translateY(300px);
+  -webkit-filter: blur(3px);
+  filter: blur(4px);
+  height: 50%;
+  //background-color: orange;
+}
+
 #lava1{
-  background: url("../images/lava_01.png") top center no-repeat;
+  background-color: orange;
+  transform: translateY(350px);
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  height: 50%;
   //background-color: orange;
 }
 #lava2{
-  background: url("../images/lava_03.png") top center no-repeat;
-  transform: translateY(-120px);
+
+  //background-color: #8f0222;
+  background-color: yellow;
+  //background: url("../images/lava_03.png") top center no-repeat;
+  transform: translateY(400px);
+  height: 50%;
   //background-color: darkred;
-}
-#lava3{
-  background: url("../images/lava_04.png") top center no-repeat;
-  transform: translateY(-80px);
-  //background-color: orangered;
 }
 #lava4{
   background: url("../images/lava_02.png") top center no-repeat;
+  //background: url("../images/lava_04.png") top center no-repeat;
   transform: translateY(100px);
+  //background-color: orangered;
+}
+#lava3{
+  background: url("../images/lava_01.png") top center no-repeat;
+  //transform: translateY(100px);
   //background-color: darkorange;
 }

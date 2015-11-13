@@ -85,7 +85,6 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     }
 
     function getHistoricoDePedidos(usuario) {
-        console.log(usuario);
         CartService.getByParams("status","1","true",usuario.usuario_id, function(data){
             vm.historico_pedidos = data.sort(function(a, b){
                 return b.carrito_id - a.carrito_id;

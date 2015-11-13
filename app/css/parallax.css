@@ -165,7 +165,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 103, ../sass/parallax.scss */
 #sucursal1, #sucursal2, #sucursal3, #sucursal4,
 #tierra1, #tierra2, #tierra3,
-#roca1, #roca2, #roca3, #roca4,
+#roca1, #roca2, #roca3, #roca4, #lava0,
 #lava1, #lava2, #lava3, #lava4 {
   width: 100%;
   height: 600px;
@@ -225,24 +225,37 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 157, ../sass/parallax.scss */
-#lava1 {
-  background: url("../images/lava_01.png") top center no-repeat;
-}
-
-/* line 161, ../sass/parallax.scss */
-#lava2 {
-  background: url("../images/lava_03.png") top center no-repeat;
-  transform: translateY(-120px);
+#lava0 {
+  background-color: darkorange;
+  transform: translateY(300px);
+  -webkit-filter: blur(3px);
+  filter: blur(4px);
+  height: 50%;
 }
 
 /* line 166, ../sass/parallax.scss */
-#lava3 {
-  background: url("../images/lava_04.png") top center no-repeat;
-  transform: translateY(-80px);
+#lava1 {
+  background-color: orange;
+  transform: translateY(350px);
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  height: 50%;
 }
 
-/* line 171, ../sass/parallax.scss */
+/* line 174, ../sass/parallax.scss */
+#lava2 {
+  background-color: yellow;
+  transform: translateY(400px);
+  height: 50%;
+}
+
+/* line 183, ../sass/parallax.scss */
 #lava4 {
   background: url("../images/lava_02.png") top center no-repeat;
   transform: translateY(100px);
+}
+
+/* line 189, ../sass/parallax.scss */
+#lava3 {
+  background: url("../images/lava_01.png") top center no-repeat;
 }
