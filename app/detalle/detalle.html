@@ -10,7 +10,7 @@
                 <div class="detalle-titulo">{{detalleCtrl.producto.nombre}}</div>
             </div>
             <div class="container-detalle-2">
-                <div class="div-close"><img src="images/close.png" title="Cerrar detalle" ng-click="detalleCtrl.close();" class="btn-close"></div>
+                <div class="div-close"><img src="images/close.png" title="Cerrar detalle" ng-click="detalleCtrl.close();bayresCtrl.goToAnchor(bayresCtrl.id_origen)" class="btn-close"></div>
                 <div class="div-detalle">{{detalleCtrl.producto.descripcion}}</div>
                 <div class="btn-carrigo-big div-button" ng-click="detalleCtrl.addProducto(detalleCtrl.producto);">
                     <span class="producto-peso-big">$</span><span class="producto-precio-big">{{detalleCtrl.producto.precios[0].precio}}</span>

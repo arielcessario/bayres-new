@@ -8,6 +8,7 @@ window.appName = 'bayres';
         'ngRoute',
         'ngCookies',
         'ngAnimate',
+        'duScroll',
         'angular-storage',
         'angular-jwt',
         'acUtils',
@@ -35,11 +36,11 @@ window.appName = 'bayres';
 
     BayresController.$inject = ['$scope', '$location', 'UserService', 'ProductService',
         'CategoryService', 'LinksService', 'CartVars', 'AcUtils', '$rootScope',
-        'BayresService', 'LoginService'];
+        'BayresService', 'LoginService', '$timeout', '$document'];
 
     function BayresController($scope, $location, UserService, ProductService,
                               CategoryService, LinksService, CartVars, AcUtils,
-                              $rootScope, BayresService, LoginService) {
+                              $rootScope, BayresService, LoginService, $timeout, $document) {
 
         var vm = this;
         vm.filtro = '';
@@ -51,6 +52,7 @@ window.appName = 'bayres';
         vm.menu_mobile_open = false;
         vm.showCategorias = false;
         vm.links = LinksService.links;
+        vm.id_origen = 'seccion-2';
 
         var productosList = [];
         vm.categorias = [];
@@ -74,6 +76,7 @@ window.appName = 'bayres';
         vm.getByCategoria = getByCategoria;
         vm.buscarProducto = buscarProducto;
         vm.clearFiltro = clearFiltro;
+        vm.goToAnchor = goToAnchor;
 
 
         $rootScope.$on('$locationChangeStart', function (e, to) {
@@ -81,6 +84,21 @@ window.appName = 'bayres';
             //goTo(location);
         });
 
+
+        function goToAnchor(id, id_origen) {
+            $location.path('/main');
+            vm.id_origen = id_origen != undefined ? id_origen : 'seccion-2';
+            $timeout(function(){
+                var duration = 1000;
+                var offset = 30; //pixels; adjust for floating menu, context etc
+                //Scroll to #some-id with 30 px "padding"
+                //Note: Use this in a directive, not with document.getElementById
+                var someElement = angular.element(document.getElementById(id));
+                $document.scrollToElement(someElement, offset, duration);
+            },10);
+
+
+        }
 
         LoginService.listen(function() {
             vm.usuario = LoginService.usuario;
