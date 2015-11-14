@@ -45,11 +45,11 @@ function LoginController($location, UserService, $timeout, LinksService, LoginSe
           LinksService.selectedIncludeTop = 'main/ofertas.html';
           LinksService.broadcast();
         } else {
-          vm.message = 'Usuario o contrase�a erroneo';
+          vm.message = 'Usuario o contraseña erroneo';
         }
       });
     } else {
-      vm.message = 'Ingrese una mail y contrase�a';
+      vm.message = 'Ingrese una mail y contraseña';
     }
   }
 
