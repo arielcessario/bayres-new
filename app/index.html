@@ -20,11 +20,11 @@
 <body ng-controller="BayresController as bayresCtrl">
   <div class="login">
     <div>Bienvenido!</div>
-    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.createUsuario();" class="login-text">Nuevo usuario</a></div>
+    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.createUsuario();bayresCtrl.goToAnchor('section-2', 'section-2');" class="login-text">Nuevo usuario</a></div>
     <div ng-if="!bayresCtrl.isLogged">o</div>
-    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.login();" class="login-text">Ya estoy registrado</a></div>
+    <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.login();bayresCtrl.goToAnchor('section-2', 'section-2');" class="login-text">Ya estoy registrado</a></div>
     <div ng-if="bayresCtrl.isLogged" class="login-separator">{{bayresCtrl.usuario.nombre + ' ' + bayresCtrl.usuario.apellido}}</div>
-    <div ng-if="bayresCtrl.isLogged"><a href="" ng-click="bayresCtrl.logout();" class="login-text">Salir</a></div>
+    <div ng-if="bayresCtrl.isLogged"><a href="" ng-click="bayresCtrl.logout();bayresCtrl.isLogged = false;" class="login-text">Salir</a></div>
     <div class="mi-carrito">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
     <img class="mi-carrito-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
   </div>
