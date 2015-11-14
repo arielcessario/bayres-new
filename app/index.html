@@ -78,9 +78,9 @@
       <div>CATEGORIAS</div>
       <div ng-repeat="categoria in bayresCtrl.categorias">
         <div class="">
-          <div class="" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);">{{categoria.nombre}}</div>
-          <div class="" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);">
-            <spam class="">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total_categoria}}</span>)</spam>
+          <div class="" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} (<span style="color: #ffff00;">{{categoria.total}}</span>)</div>
+          <div class="" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
+            <spam class="">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total}}</span>)</spam>
           </div>
         </div>
       </div>
@@ -96,9 +96,9 @@
     <!--</div>-->
     <div ng-repeat="categoria in bayresCtrl.categorias">
       <div class="menu-subcategoria">
-        <div class="menu-categoria-titulo" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);">{{categoria.nombre}}</div>
-        <div class="menu-separator" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);">
-          <spam class="menu-subcategoria-item">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total_categoria}}</span>)</spam>
+        <div class="menu-categoria-titulo" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} (<span style="color: #ffff00;">{{categoria.total}}</span>)</div>
+        <div class="menu-separator" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
+          <spam class="menu-subcategoria-item">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total}}</span>)</spam>
         </div>
       </div>
     </div>

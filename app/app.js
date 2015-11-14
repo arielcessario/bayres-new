@@ -79,12 +79,12 @@ window.appName = 'bayres';
         vm.goToAnchor = goToAnchor;
 
 
-        if(UserService.getFromToken() != false){
+        if (UserService.getFromToken() != false) {
 
             LoginService.isLogged = true;
             LoginService.usuario = UserService.getFromToken().data;
             LoginService.broadcast();
-        }else {
+        } else {
             LoginService.isLogged = false;
             LoginService.usuario = {};
             LoginService.broadcast();
@@ -226,24 +226,25 @@ window.appName = 'bayres';
             var i = 0;
             vm.categorias.forEach(function (categoria) {
                 CategoryService.getByParams("parent_id", categoria.categoria_id.toString(), "true", function (list) {
+                    console.log(list);
                     vm.categorias[i].subcategorias = list;
-                    var j = 0;
-                    list.forEach(function (subcategoria) {
-                        var listCount = [];
-                        ProductService.getByCategoria(subcategoria.categoria_id, function (data) {
-                            listCount = data;
-                        });
-                        //var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
-                        vm.categorias[i].subcategorias[j].total_categoria = listCount.length;
-                        j = j + 1;
-                    });
+                    //var j = 0;
+                    //        list.forEach(function (subcategoria) {
+                    //            var listCount = [];
+                    //            ProductService.getByCategoria(subcategoria.categoria_id, function (data) {
+                    //                listCount = data;
+                    //            });
+                    //            //var count = CategoryService.getItemsByCategory(subcategoria.categoria_id, productosList);
+                    //            vm.categorias[i].subcategorias[j].total_categoria = listCount.length;
+                    //            j = j + 1;
+                    //        });
                     i++;
                 });
             });
         });
 
         function getByCategoria(categoria_id) {
-            ProductService.getByCategoria(categoria_id, function(data){
+            ProductService.getByCategoria(categoria_id, function (data) {
                 BayresService.productos = data;
                 BayresService.search = true;
                 BayresService.broadcast();
