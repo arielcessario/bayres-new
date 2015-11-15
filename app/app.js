@@ -338,8 +338,8 @@ window.appName = 'bayres';
             //sucursal3.style.webkitTransform = 'translateY(' + (200 - scrolltop * 1) + 'px)'; // move bubble2 at 50% of scroll rate
             //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
-            tierra1.style.transform = 'translateY(' + scrolltop * .2 + 'px)';
-            tierra2.style.transform = 'translateY(' + scrolltop * .3 + 'px)';
+            tierra1.style.transform = 'translateY(' + scrolltop * .5 + 'px)';
+            tierra2.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
             tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
 
             //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
