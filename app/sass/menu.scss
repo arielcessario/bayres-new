@@ -389,7 +389,9 @@ $border_color: #8CC63F;
   margin-top: 15px;
 }
 .menu-categorias-mobile-scroll{
- overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 380px;
 }
 .categoria-separator{
   margin-top: 10px;

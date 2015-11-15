@@ -468,17 +468,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 391, ../sass/menu.scss */
 .menu-categorias-mobile-scroll {
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 380px;
 }
 
-/* line 394, ../sass/menu.scss */
+/* line 396, ../sass/menu.scss */
 .categoria-separator {
   margin-top: 10px;
   color: #fff;
   font-family: "Myriad Pro Regular";
 }
 
-/* line 399, ../sass/menu.scss */
+/* line 401, ../sass/menu.scss */
 .subcategoria-separator {
   font-size: 16px;
   margin-top: 7px;
