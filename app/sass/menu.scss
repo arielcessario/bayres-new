@@ -181,7 +181,7 @@ $border_color: #8CC63F;
 }
 
 .menu-mobile-panel {
-  width: 30%;
+  //width: 45%;
   color: $font_color_text_hover;
   //background-color: #17384B;
   font-family: $myriad_pro_bold_condensed;
@@ -383,4 +383,20 @@ $border_color: #8CC63F;
   left: 35%;
   position: fixed;
   top: 25%;
+}
+
+#menu-categorias-mobile{
+  margin-top: 15px;
+}
+.menu-categorias-mobile-scroll{
+ overflow-y: auto;
+}
+.categoria-separator{
+  margin-top: 10px;
+  color: $font_color_text;
+  font-family: $myriad_pro_regular;
+}
+.subcategoria-separator{
+  font-size: 16px;
+  margin-top: 7px;
 }

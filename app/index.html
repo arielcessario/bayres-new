@@ -72,15 +72,19 @@
          ng-class="{'menu-desktop-btn-selected':bayresCtrl.selectedPage.indexOf(link.nombre) > -1 }"
          ripple-color="#ffffff"
          ng-repeat="link in bayresCtrl.links"
+         ng-if="link.nombre != 'Categorias'"
          ng-click="bayresCtrl.goTo(link); bayresCtrl.menu_mobile_open=false;bayresCtrl.goToAnchor('section-2', 'section-2');"> {{link.nombre}}
     </div>
-    <div ng-if="bayresCtrl.showCategorias" id="menu-categorias-mobile">
+    <!--div ng-if="bayresCtrl.showCategorias" id="menu-categorias-mobile"-->
+    <div id="menu-categorias-mobile">
       <div>CATEGORIAS</div>
-      <div ng-repeat="categoria in bayresCtrl.categorias">
-        <div class="">
-          <div class="" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} (<span style="color: #ffff00;">{{categoria.total}}</span>)</div>
-          <div class="" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
-            <spam class="">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total}}</span>)</spam>
+      <div class="menu-categorias-mobile-scroll">
+        <div ng-repeat="categoria in bayresCtrl.categorias" >
+          <div class="categoria-separator">
+            <div class="" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} (<span style="color: #ffff00;">{{categoria.total}}</span>)</div>
+            <div class="subcategoria-separator" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
+              <spam class="">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total}}</span>)</spam>
+            </div>
           </div>
         </div>
       </div>

@@ -90,7 +90,6 @@ window.appName = 'bayres';
             LoginService.broadcast();
         }
 
-
         $rootScope.$on('$locationChangeStart', function (e, to) {
             goTo({path: $location.$$path});
             //goTo(location);
@@ -254,6 +253,9 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeBottom = '';
                 LinksService.broadcast();
             });
+
+            if(vm.menu_mobile_open)
+                vm.menu_mobile_open = false;
         }
 
         function buscarProducto(filtro) {
