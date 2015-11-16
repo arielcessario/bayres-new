@@ -334,43 +334,58 @@ window.appName = 'bayres';
             var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
             //var scrollamount = (scrollTop / (scrollheight-WindowHeight)) * 100 // Obtener cantidad desplaza (en%)
             //console.log(scrollamount);
-            console.log(scrolltop);
+            //console.log(scrolltop);
 
 
             sucursal1.style.transform = 'translateY(' + (scrolltop * .8) + 'px)'; // move bubble1 at 20% of scroll rate
             sucursal2.style.webkitTransform = 'translateY(' + (scrolltop * .6) + 'px)'; // move bubble2 at 50% of scroll rate
-            //sucursal3.style.webkitTransform = 'translateY(' + (200 - scrolltop * 1) + 'px)'; // move bubble2 at 50% of scroll rate
-            //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
+            // Para pantallas de 1920x1080 disparo las animaciones en otro momento del scroll
+            if(window.innerHeight > 1000){
+                if (scrolltop > 300) {
+                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 160) + 'px)';
+                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 240) + 'px)';
+                }
 
-            //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
-            //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
+                if (scrolltop > 1000) {
+                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 440) + 'px)';
+                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 660) + 'px)';
+                }
 
-            //lava1.style.transform = 'translateY(' + ((scrolltop * .3)-300) + 'px)';
-            //lava2.style.transform = 'translateY(' + ((scrolltop * .3)-400) + 'px)';
-            //lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
-            //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
+                if (scrolltop > 1500) {
+                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
+                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
+                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
+                } else {
+                    lava2.style.transform = 'translateY(400px)';
+                    lava1.style.transform = 'translateY(350px)';
+                    lava0.style.transform = 'translateY(300px)';
+                }
+            }else{
 
-            if (scrolltop > 700) {
-                tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px)';
-                tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
+                // Esto es para pantallas de alto menos a 1000
+                if (scrolltop > 700) {
+                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px)';
+                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
+                }
+
+                if (scrolltop > 1200) {
+                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 580) + 'px)';
+                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 780) + 'px)';
+                }
+
+                if (scrolltop > 1700) {
+                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
+                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
+                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
+                } else {
+                    lava2.style.transform = 'translateY(400px)';
+                    lava1.style.transform = 'translateY(350px)';
+                    lava0.style.transform = 'translateY(300px)';
+                }
             }
 
-            if (scrolltop > 1200) {
-                roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 580) + 'px)';
-                roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 780) + 'px)';
-            }
 
-            if (scrolltop > 1700) {
-                lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
-                lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
-                lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
-            } else {
-                lava2.style.transform = 'translateY(400px)';
-                lava1.style.transform = 'translateY(350px)';
-                lava0.style.transform = 'translateY(300px)';
-
-            }
 
             $scope.$apply();
 
