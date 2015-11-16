@@ -1,4 +1,4 @@
-/* line 5, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,64 +20,64 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
 @font-face {
   font-family: "Myriad Pro Bold";
-  src: url('../fonts/MYRIADPRO-BOLD.woff?1446553266') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLD.woff?1447514879') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Bold Condensed";
-  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1446553266') format('woff');
+  src: url('../fonts/MYRIADPRO-BOLDCOND.woff?1447514879') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Condensed";
-  src: url('../fonts/MYRIADPRO-COND.woff?1446553266') format('woff');
+  src: url('../fonts/MYRIADPRO-COND.woff?1447514879') format('woff');
 }
 @font-face {
   font-family: "Myriad Pro Regular";
-  src: url('../fonts/MYRIADPRO-REGULAR.woff?1446553266') format('woff');
+  src: url('../fonts/MYRIADPRO-REGULAR.woff?1447514879') format('woff');
 }
 /* line 32, ../sass/bayres.scss */
 body {
@@ -1283,16 +1283,16 @@ textarea {
   bottom: 10px;
   float: right;
 }
-@media (max-width: 360px) {
+@media (max-width: 700px) {
   /* line 1085, ../sass/bayres.scss */
   .div-button {
-    position: relative;
+    position: static;
     float: right;
-    margin-top: 20px;
+    margin-top: 7px;
   }
 }
 
-/* line 1097, ../sass/bayres.scss */
+/* line 1100, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter,
 .transition-pane-animation.ng-leave {
   -webkit-transition: 0.5s linear all;
@@ -1301,29 +1301,29 @@ textarea {
   transition: 0.5s linear all;
 }
 
-/* line 1105, ../sass/bayres.scss */
+/* line 1108, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter {
   z-index: 100;
   opacity: 0;
 }
 
-/* line 1110, ../sass/bayres.scss */
+/* line 1113, ../sass/bayres.scss */
 .transition-pane-animation.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 1114, ../sass/bayres.scss */
+/* line 1117, ../sass/bayres.scss */
 .transition-pane-animation.ng-leave {
   z-index: 101;
   opacity: 1;
 }
 
-/* line 1119, ../sass/bayres.scss */
+/* line 1122, ../sass/bayres.scss */
 .transition-pane-animation.ng-leave.ng-leave-active {
   opacity: 0;
 }
 
-/* line 1123, ../sass/bayres.scss */
+/* line 1126, ../sass/bayres.scss */
 .container-oferta {
   display: flex;
   flex-direction: row;
@@ -1334,37 +1334,37 @@ textarea {
   padding-bottom: 5px;
 }
 @media (max-width: 700px) {
-  /* line 1123, ../sass/bayres.scss */
+  /* line 1126, ../sass/bayres.scss */
   .container-oferta {
     flex-direction: column;
   }
 }
 
-/* line 1136, ../sass/bayres.scss */
+/* line 1139, ../sass/bayres.scss */
 .container-oferta-imagen, .container-oferta-producto {
   margin: 0 15px;
 }
 
 @media (max-width: 800px) {
-  /* line 1140, ../sass/bayres.scss */
+  /* line 1143, ../sass/bayres.scss */
   .container-oferta-producto {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: relative;
     top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
   }
-  /* line 1150, ../sass/bayres.scss */
+  /* line 1154, ../sass/bayres.scss */
   .container-oferta-producto .oferta-titulo,
   .container-oferta-producto .oferta-descripcion {
     text-align: center;
   }
 }
 
-/* line 1158, ../sass/bayres.scss */
+/* line 1162, ../sass/bayres.scss */
 .oferta-imagen {
   width: 300px;
   height: 300px;
@@ -1372,15 +1372,15 @@ textarea {
   padding: 3px;
 }
 @media (max-width: 700px) {
-  /* line 1158, ../sass/bayres.scss */
+  /* line 1162, ../sass/bayres.scss */
   .oferta-imagen {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin-top: 15px;
   }
 }
 
-/* line 1170, ../sass/bayres.scss */
+/* line 1176, ../sass/bayres.scss */
 .oferta-titulo {
   text-align: center;
   font-size: 50px;
@@ -1392,13 +1392,15 @@ textarea {
   display: flex;
 }
 @media (max-width: 700px) {
-  /* line 1170, ../sass/bayres.scss */
+  /* line 1176, ../sass/bayres.scss */
   .oferta-titulo {
-    font-size: 35px;
+    font-size: 28px;
+    min-height: 0px;
+    margin-top: 5px;
   }
 }
 
-/* line 1184, ../sass/bayres.scss */
+/* line 1193, ../sass/bayres.scss */
 .oferta-descripcion {
   text-align: left;
   font-family: "Myriad Pro Condensed", serif;
@@ -1409,27 +1411,29 @@ textarea {
   margin-bottom: 10px;
 }
 @media (max-width: 700px) {
-  /* line 1184, ../sass/bayres.scss */
+  /* line 1193, ../sass/bayres.scss */
   .oferta-descripcion {
-    font-size: 24px;
-    height: 90px;
+    font-size: 20px;
+    height: 75px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
 
-/* line 1198, ../sass/bayres.scss */
+/* line 1211, ../sass/bayres.scss */
 .btn-oferta {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 @media (max-width: 700px) {
-  /* line 1198, ../sass/bayres.scss */
+  /* line 1211, ../sass/bayres.scss */
   .btn-oferta {
     justify-content: center;
   }
 }
 
-/* line 1207, ../sass/bayres.scss */
+/* line 1220, ../sass/bayres.scss */
 .btn-info-big {
   width: 50px;
   height: 50px;
@@ -1438,7 +1442,7 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1215, ../sass/bayres.scss */
+/* line 1228, ../sass/bayres.scss */
 .btn-info-big:hover {
   width: 50px;
   height: 50px;
@@ -1448,7 +1452,7 @@ textarea {
 }
 
 @media (max-width: 700px) {
-  /* line 1224, ../sass/bayres.scss */
+  /* line 1237, ../sass/bayres.scss */
   .oferta-top {
     display: flex;
     flex-direction: column;
@@ -1456,14 +1460,14 @@ textarea {
     align-items: center;
   }
 }
-/* line 1232, ../sass/bayres.scss */
+/* line 1245, ../sass/bayres.scss */
 .oferta-bottom {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* line 1238, ../sass/bayres.scss */
+/* line 1251, ../sass/bayres.scss */
 .slider_1, .slider_2, .slider_3, .slider_4 {
   border: 2px solid #fff;
   border-radius: 10px;
@@ -1473,13 +1477,13 @@ textarea {
   margin: 10px;
 }
 
-/* line 1247, ../sass/bayres.scss */
+/* line 1260, ../sass/bayres.scss */
 .slider_selected {
   background-color: #8CC63F;
   border: 2px solid #8CC63F;
 }
 
-/* line 1252, ../sass/bayres.scss */
+/* line 1265, ../sass/bayres.scss */
 .ac-item-list {
   background-color: #8CC63F;
   color: #fff;
@@ -1487,17 +1491,17 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1259, ../sass/bayres.scss */
+/* line 1272, ../sass/bayres.scss */
 .ac-item-list:hover {
   color: #ffff00;
 }
 
-/* line 1263, ../sass/bayres.scss */
+/* line 1276, ../sass/bayres.scss */
 .ac-item-selected-list {
   cursor: pointer;
 }
 
-/* line 1267, ../sass/bayres.scss */
+/* line 1280, ../sass/bayres.scss */
 .container-legales {
   font-size: 20px;
   font-family: "Myriad Pro Condensed";
@@ -1507,18 +1511,18 @@ textarea {
   text-align: justify;
 }
 
-/* line 1280, ../sass/bayres.scss */
+/* line 1293, ../sass/bayres.scss */
 .form-control-carrito {
   width: 165px;
 }
 
-/* line 1284, ../sass/bayres.scss */
+/* line 1297, ../sass/bayres.scss */
 #oferta-bottom {
   position: absolute;
   bottom: 0;
 }
 
-/* line 1289, ../sass/bayres.scss */
+/* line 1302, ../sass/bayres.scss */
 .oferta-top {
   position: relative;
   width: 100%;
@@ -1527,28 +1531,28 @@ textarea {
   overflow: hidden;
 }
 
-/* line 1297, ../sass/bayres.scss */
+/* line 1310, ../sass/bayres.scss */
 .container-oferta {
   width: 99%;
   position: absolute;
   top: 0;
 }
 
-/* line 1303, ../sass/bayres.scss */
+/* line 1316, ../sass/bayres.scss */
 .container-main-ofertas {
   background-color: transparent;
   border: 0;
   max-width: 800px;
 }
 
-/* line 1309, ../sass/bayres.scss */
+/* line 1322, ../sass/bayres.scss */
 .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
   animation: ofertas-container-enter 1s;
 }
 
-/* line 1315, ../sass/bayres.scss */
+/* line 1328, ../sass/bayres.scss */
 .container-oferta.ng-leave {
   -webkit-animation: ofertas-container-leave 1s;
   -o-animation: ofertas-container-leave 1s;

@@ -45,7 +45,7 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
     vm.repeatMail = '';
     vm.message = '';
 
-    vm.home = home;
+    //vm.home = home;
     vm.login = login;
     vm.create = create;
     vm.update = update;
@@ -87,8 +87,9 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
             vm.message = 'Complete todos los campos';
         }
     }
-
+/*
     function home() {
         $location.path('/main');
     }
+    */
 }

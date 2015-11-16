@@ -384,7 +384,11 @@ $border_color: #8CC63F;
   position: fixed;
   top: 25%;
 }
-
+@media (max-width: 800px) {
+  .mi-carrito-mobile-img {
+    display: none;
+  }
+}
 #menu-categorias-mobile{
   margin-top: 15px;
 }
