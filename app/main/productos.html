@@ -1,6 +1,7 @@
 <div ng-controller="MainController as mainCtrl" id="main-productos">
     <div class="title-font container-main-title">{{mainCtrl.productoResultado}}</div>
     <div class="container-main-productos" ng-if="mainCtrl.existenProductos">
+        <div class="div-close-busqueda"><img src="images/close.png" title="Cerrar detalle" ng-click="bayresCtrl.clearFiltro();bayresCtrl.goToAnchor('section-2','section-2')" class="btn-close"></div>
         <div ng-repeat="producto in mainCtrl.productos">
             <div class="container-producto">
                 <div class="container-producto-border">
