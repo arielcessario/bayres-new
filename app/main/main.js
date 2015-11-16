@@ -34,7 +34,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.existenProductos = false;
     vm.showInfo = false;
     vm.intervalo;
-    vm.slider_nro = 2;
+    vm.slider_nro = 1;
 
     vm.carritoInfo = {
         cantidadDeProductos: 0,
@@ -49,7 +49,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.showSubCategoria = showSubCategoria;
     vm.hideSubCategoria = hideSubCategoria;
 
-    //vm.intervalo = $interval(cambiarSlide, 7000);
+    vm.intervalo = $interval(cambiarSlide, 7000);
     //vm.intervalo = $interval(cambiarSlide, 100000);
 
 
