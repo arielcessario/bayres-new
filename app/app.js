@@ -254,7 +254,7 @@ window.appName = 'bayres';
                 LinksService.broadcast();
             });
 
-            if(vm.menu_mobile_open)
+            if (vm.menu_mobile_open)
                 vm.menu_mobile_open = false;
         }
 
@@ -339,7 +339,6 @@ window.appName = 'bayres';
             //sucursal4.style.top = 50 -scrolltop * .7 + 'px'; // move bubble2 at 50% of scroll rate
 
 
-
             //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
             roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 150) + 'px)';
             roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 450) + 'px)';
@@ -353,7 +352,7 @@ window.appName = 'bayres';
             if (scrolltop > 700) {
                 tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px)';
                 tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
-             }
+            }
 
 
             if (scrolltop > 1700) {
@@ -401,9 +400,9 @@ window.appName = 'bayres';
 
         var isMobile = mobileAndTabletcheck();
 
-        //if(isMobile == false){
-        window.addEventListener('scroll', onScroll, false);
-        //}
+        if (isMobile == false) {
+            window.addEventListener('scroll', onScroll, false);
+        }
 
 
         /**
