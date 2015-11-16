@@ -350,11 +350,9 @@ window.appName = 'bayres';
             //lava3.style.transform = 'translateY(' + ((scrolltop * .3)-350) + 'px)';
             //lava4.style.transform = 'translateY(' + (450 - (scrolltop * .2)) + 'px)';
 
-            console.log(scrolltop);
-            if (scrolltop > 1000) {
-                tierra1.style.transform = 'translateY(' + scrolltop * .5 + 'px)';
-                tierra2.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
-                tierra3.style.transform = 'translateY(' + scrolltop * .1 + 'px)';
+            if (scrolltop > 700) {
+                tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px)';
+                tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
              }
 
 
