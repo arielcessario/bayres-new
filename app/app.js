@@ -331,6 +331,7 @@ window.appName = 'bayres';
             var scrolltop = window.pageYOffset; // get number of pixels document has scrolled vertically
             //var scrollamount = (scrollTop / (scrollheight-WindowHeight)) * 100 // Obtener cantidad desplaza (en%)
             //console.log(scrollamount);
+            console.log(scrolltop);
 
 
             sucursal1.style.transform = 'translateY(' + (scrolltop * .8) + 'px)'; // move bubble1 at 20% of scroll rate
@@ -340,8 +341,6 @@ window.appName = 'bayres';
 
 
             //roca1.style.transform = 'translateY(' + ((scrolltop * .4)-160) + 'px)';
-            roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 150) + 'px)';
-            roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 450) + 'px)';
             //roca3.style.transform = 'translateY(' + scrolltop * .09 + 'px)';
 
             //lava1.style.transform = 'translateY(' + ((scrolltop * .3)-300) + 'px)';
@@ -354,6 +353,10 @@ window.appName = 'bayres';
                 tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
             }
 
+            if (scrolltop > 1200) {
+                roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 580) + 'px)';
+                roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 780) + 'px)';
+            }
 
             if (scrolltop > 1700) {
                 lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
