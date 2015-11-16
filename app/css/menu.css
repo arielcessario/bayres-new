@@ -454,32 +454,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   top: 30%;
 }
 
+/* line 382, ../sass/menu.scss */
+.mi-carrito-mobile-img {
+  left: 35%;
+  position: fixed;
+  top: 25%;
+}
+
 @media (max-width: 800px) {
-  /* line 383, ../sass/menu.scss */
+  /* line 388, ../sass/menu.scss */
   .mi-carrito-mobile-img {
     display: none;
   }
 }
-/* line 387, ../sass/menu.scss */
+/* line 392, ../sass/menu.scss */
 #menu-categorias-mobile {
   margin-top: 15px;
 }
 
-/* line 390, ../sass/menu.scss */
+/* line 395, ../sass/menu.scss */
 .menu-categorias-mobile-scroll {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 380px;
 }
 
-/* line 395, ../sass/menu.scss */
+/* line 400, ../sass/menu.scss */
 .categoria-separator {
   margin-top: 10px;
   color: #fff;
   font-family: "Myriad Pro Regular";
 }
 
-/* line 400, ../sass/menu.scss */
+/* line 405, ../sass/menu.scss */
 .subcategoria-separator {
   font-size: 16px;
   margin-top: 7px;
