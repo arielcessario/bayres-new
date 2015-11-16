@@ -252,6 +252,9 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeMiddle = '';
                 LinksService.selectedIncludeBottom = '';
                 LinksService.broadcast();
+                if (vm.showCategorias) {
+                    vm.showCategorias = false;
+                }
             });
 
             if (vm.menu_mobile_open)
