@@ -99,7 +99,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 #parallax {
   font-family: "Myriad Pro Bold Condensed", serif;
   height: 2000px;
-  background-color: #00fefe;
   background-size: cover;
   margin-top: 80px;
 }
@@ -196,100 +195,106 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   position: fixed;
   width: 100%;
   height: 400px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: -10;
 }
 
-/* line 143, ../sass/parallax.scss */
+/* line 151, ../sass/parallax.scss */
 #sucursal1 {
   -webkit-filter: blur(2px);
   filter: blur(2px);
   background: url(../images/sucursales_03.png) top center no-repeat;
 }
 
-/* line 150, ../sass/parallax.scss */
+/* line 158, ../sass/parallax.scss */
 #sucursal2 {
   background: url(../images/sucursales_02.png) top center no-repeat;
 }
 
-/* line 155, ../sass/parallax.scss */
+/* line 163, ../sass/parallax.scss */
 #sucursal3 {
   background: url(../images/sucursales_01.png) top center no-repeat;
 }
 
-/* line 164, ../sass/parallax.scss */
+/* line 172, ../sass/parallax.scss */
 #tierra1 {
   background: url(../images/tierra_01.png) top center no-repeat;
   -webkit-filter: blur(4px);
   filter: blur(4px);
 }
 
-/* line 172, ../sass/parallax.scss */
+/* line 180, ../sass/parallax.scss */
 #tierra2 {
   background: url(../images/tierra_02.png) top center no-repeat;
 }
 
-/* line 176, ../sass/parallax.scss */
+/* line 184, ../sass/parallax.scss */
 #tierra3 {
   background: url(../images/tierra_03.png) top center no-repeat;
   -webkit-filter: blur(4px);
   filter: blur(4px);
 }
 
-/* line 183, ../sass/parallax.scss */
+/* line 191, ../sass/parallax.scss */
 #roca1 {
   position: absolute;
   top: 0;
   background: url(../images/piedra_01.png) top center no-repeat;
 }
 
-/* line 191, ../sass/parallax.scss */
+/* line 199, ../sass/parallax.scss */
 #roca2 {
   position: absolute;
   top: 0;
   background: url(../images/piedra_02.png.png) top center no-repeat;
 }
 
-/* line 197, ../sass/parallax.scss */
+/* line 205, ../sass/parallax.scss */
 #roca3 {
   background: url(../images/.png) top center no-repeat;
 }
 
-/* line 203, ../sass/parallax.scss */
+/* line 211, ../sass/parallax.scss */
 #roca4 {
   background: url(../images/piedra_04.png.png) top center no-repeat;
 }
 
-/* line 207, ../sass/parallax.scss */
+/* line 215, ../sass/parallax.scss */
 #lava0 {
   background: url("../images/lava_05.png") top center no-repeat;
-  transform: translateY(300px);
+  transform: translateY(300px) translateZ(0);
   -webkit-filter: blur(3px);
   filter: blur(4px);
   height: 300px;
 }
 
-/* line 217, ../sass/parallax.scss */
+/* line 225, ../sass/parallax.scss */
 #lava1 {
   background: url("../images/lava_04.png") top center no-repeat;
-  transform: translateY(350px);
+  transform: translateY(350px) translateZ(0);
   -webkit-filter: blur(2px);
   filter: blur(2px);
   height: 200px;
 }
 
-/* line 227, ../sass/parallax.scss */
+/* line 235, ../sass/parallax.scss */
 #lava2 {
   background: url("../images/lava_03.png") top center no-repeat;
-  transform: translateY(400px);
+  transform: translateY(400px) translateZ(0);
   height: 200px;
 }
 
-/* line 237, ../sass/parallax.scss */
+/* line 245, ../sass/parallax.scss */
 #lava4 {
   background: url("../images/lava_01.png") top center no-repeat;
 }
 
-/* line 244, ../sass/parallax.scss */
+/* line 252, ../sass/parallax.scss */
 #lava3 {
   background: url("../images/lava_02.png") top center no-repeat;
-  transform: translateY(100px);
+  transform: translateY(100px) translateZ(0);
 }

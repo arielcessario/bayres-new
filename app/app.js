@@ -337,51 +337,51 @@ window.appName = 'bayres';
             //console.log(scrolltop);
 
 
-            sucursal1.style.transform = 'translateY(' + (scrolltop * .8) + 'px)'; // move bubble1 at 20% of scroll rate
-            sucursal2.style.webkitTransform = 'translateY(' + (scrolltop * .6) + 'px)'; // move bubble2 at 50% of scroll rate
+            sucursal1.style.transform = 'translateY(' + (scrolltop * .8) + 'px) translateZ(0)'; // move bubble1 at 20% of scroll rate
+            sucursal2.style.webkitTransform = 'translateY(' + (scrolltop * .6) + 'px) translateZ(0)'; // move bubble2 at 50% of scroll rate
 
             // Para pantallas de 1920x1080 disparo las animaciones en otro momento del scroll
             if(window.innerHeight > 1000){
-                if (scrolltop > 300) {
-                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 160) + 'px)';
-                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 240) + 'px)';
+                if (scrolltop > 300) { 
+                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 160) + 'px) translateZ(0)';
+                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 240) + 'px) translateZ(0)';
                 }
 
                 if (scrolltop > 1000) {
-                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 440) + 'px)';
-                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 660) + 'px)';
+                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 440) + 'px) translateZ(0)';
+                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 660) + 'px) translateZ(0)';
                 }
 
                 if (scrolltop > 1500) {
-                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
-                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
-                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
+                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px) translateZ(0)';
+                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px) translateZ(0)';
+                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px) translateZ(0)';
                 } else {
-                    lava2.style.transform = 'translateY(400px)';
-                    lava1.style.transform = 'translateY(350px)';
-                    lava0.style.transform = 'translateY(300px)';
+                    lava2.style.transform = 'translateY(400px) translateZ(0)';
+                    lava1.style.transform = 'translateY(350px) translateZ(0)';
+                    lava0.style.transform = 'translateY(300px) translateZ(0)';
                 }
             }else{
 
                 // Esto es para pantallas de alto menos a 1000
                 if (scrolltop > 700) {
-                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px)';
-                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px)';
+                    tierra1.style.transform = 'translateY(' + (scrolltop * .4 - 350) + 'px) translateZ(0)';
+                    tierra2.style.transform = 'translateY(' + (scrolltop * .6 - 450) + 'px) translateZ(0)';
                 }
 
                 if (scrolltop > 1200) {
-                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 580) + 'px)';
-                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 780) + 'px)';
+                    roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 580) + 'px) translateZ(0)';
+                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 780) + 'px) translateZ(0)';
                 }
 
                 if (scrolltop > 1700) {
-                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px)';
-                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px)';
-                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px)';
+                    lava2.style.transform = 'translateY(' + ((scrolltop * .2 - 360) + 400) + 'px) translateZ(0)';
+                    lava1.style.transform = 'translateY(' + ((scrolltop * .3 - 540) + 350) + 'px) translateZ(0)';
+                    lava0.style.transform = 'translateY(' + ((scrolltop * .4 - 720) + 300) + 'px) translateZ(0)';
                 } else {
-                    lava2.style.transform = 'translateY(400px)';
-                    lava1.style.transform = 'translateY(350px)';
-                    lava0.style.transform = 'translateY(300px)';
+                    lava2.style.transform = 'translateY(400px) translateZ(0)';
+                    lava1.style.transform = 'translateY(350px) translateZ(0)';
+                    lava0.style.transform = 'translateY(300px) translateZ(0)';
                 }
             }
 
