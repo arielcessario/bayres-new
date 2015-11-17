@@ -65,6 +65,15 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
     });
 
+    CartVars.listen(function () {
+        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+    });
+
+    console.log(vm.carritoInfo);
+
+    CartVars.broadcast();
+
     //console.log(vm.productos);
 
     function cambiarSlide(){

@@ -44,23 +44,20 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
 
     //*******************************************************************
     //  FUNCIONES
-    //vm.carrito = $routeParams.carrito;
     vm.removeProducto = removeProducto;
     vm.refreshProducto = refreshProducto;
     vm.confirmCarrito = confirmCarrito;
-    vm.home = home;
 
     //*******************************************************************
     //  PROGRAMA
     vm.carritoDetalles = CartVars.carrito;
-    console.log(vm.carritoDetalles);
 
-    if(vm.carritoDetalles.length > 0) {
+    CartVars.listen(function () {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+    });
 
-        console.log(vm.carritoInfo);
-    }
+    console.log(vm.carritoDetalles);
 
     function removeProducto(index) {
         if(CartVars.carrito.length > 0) {
@@ -131,76 +128,64 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     }
 
     function confirmCarrito() {
+
         if(CartVars.carrito.length > 0) {
             var usuario = UserService.getLogged();
             var carrito = {
                 'usuario_id': usuario.usuario_id,
-                'total': vm.carritoInfo.totalAPagar,
+                'total': CartVars.carrito_total(),
                 'status': 1,
                 'fecha': getCurrentDate(),
                 'productos': []
-            }
+            };
 
             var error = false;
             CartService.create(carrito, function(carrito_id) {
                 if (carrito_id > 0) {
                     carrito.carrito_id = carrito_id;
-                    console.log(carrito);
-                    var i = 0;
-                    CartVars.carrito.forEach(function (producto) {
-                        CartService.addToCart(carrito_id, producto, function (data) {
+
+                    for(var i = 0; i < CartVars.carrito.length; i++) {
+                        CartService.addToCart(carrito_id, CartVars.carrito[i], function (data) {
+                            console.log(data);
                             if (data > 0) {
-                                console.log(data);
-                                carrito.productos[i] = producto;
-                                i = i + 1;
-                            }
-                            else {
-                                console.log('Error detalle carrito');
+                                carrito.productos[i] = CartVars.carrito[i];
+                            } else {
                                 error = true;
                             }
                         });
-                    });
+                    }
+
                 } else {
                     console.log('Error creando el carrito');
                     error = true;
                 }
-            });
+                if(!error) {
+                    console.log('Carrito Pedido');
+                    console.log('Envio los mails');
 
-            if(!error) {
-                console.log('Carrito Pedido');
-                console.log('Envio los mails');
+                    CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
+                        console.log(data);
+                    });
 
-                CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, CartVars.carrito, 1, 'Falta la direccion', function(data){
-                    console.log(data);
-                });
+                    CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
+                        console.log(data);
+                    });
 
-                CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, CartVars.carrito, 1, 'Falta la direccion', function(data){
-                    console.log(data);
-                });
-
-                //$location.path('/main');
-                LinksService.selectedIncludeTop = 'main/ofertas.html';
-                LinksService.broadcast();
-
-                CartVars.carrito = [];
-                CartVars.broadcast();
-                /*
-                $timeout(function () {
-                    $location.path('/main');
-                    CartVars.carrito = [];
                     vm.carritoDetalles = [];
-                }, 2000);
-                */
-            }
+                    CartVars.carrito = [];
+                    CartVars.broadcast();
+
+                    $location.path('/main');
+                    LinksService.selectedIncludeTop = 'main/ofertas.html';
+                    LinksService.broadcast();
+                }
+            });
         }
         else {
             vm.message = 'El Carrito esta vacio. Por favor agregue productos';
         }
     }
 
-    function home() {
-        $location.path('/main');
-    }
 
     function getCurrentDate() {
         var today = new Date();
