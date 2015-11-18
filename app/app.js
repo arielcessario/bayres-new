@@ -126,6 +126,9 @@ window.appName = 'bayres';
         CartVars.listen(function () {
             vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
             vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+
+            console.log(vm.carritoInfo);
+            console.log(CartVars.carrito);
         });
 
         $scope.$on('links', function (event, args) {

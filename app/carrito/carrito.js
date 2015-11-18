@@ -51,13 +51,14 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     //*******************************************************************
     //  PROGRAMA
     vm.carritoDetalles = CartVars.carrito;
+    console.log(vm.carritoDetalles);
 
+    /*
     CartVars.listen(function () {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
     });
-
-    console.log(vm.carritoDetalles);
+    */
 
     function removeProducto(index) {
         if(CartVars.carrito.length > 0) {
@@ -135,7 +136,6 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
                 'usuario_id': usuario.usuario_id,
                 'total': CartVars.carrito_total(),
                 'status': 1,
-                'fecha': getCurrentDate(),
                 'productos': []
             };
 
@@ -155,52 +155,36 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
                         });
                     }
 
-                } else {
-                    console.log('Error creando el carrito');
-                    error = true;
-                }
-                if(!error) {
-                    console.log('Carrito Pedido');
-                    console.log('Envio los mails');
-
-                    CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
-                        console.log(data);
-                    });
-
-                    CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
-                        console.log(data);
-                    });
-
                     vm.carritoDetalles = [];
                     CartVars.carrito = [];
                     CartVars.broadcast();
 
-                    $location.path('/main');
-                    LinksService.selectedIncludeTop = 'main/ofertas.html';
-                    LinksService.broadcast();
+                    if(!error) {
+                        console.log('Carrito Pedido');
+                        console.log('Envio los mails');
+
+                        CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
+                            console.log(data);
+                        });
+
+                        CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
+                            console.log(data);
+                        });
+
+                        $location.path('/main');
+                        LinksService.selectedIncludeTop = 'main/ofertas.html';
+                        LinksService.broadcast();
+                    }
+
+                } else {
+                    console.log('Error creando el carrito');
+                    error = true;
                 }
             });
         }
         else {
             vm.message = 'El Carrito esta vacio. Por favor agregue productos';
         }
-    }
-
-
-    function getCurrentDate() {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-
-        var yyyy = today.getFullYear();
-        if(dd<10){
-            dd='0'+dd
-        }
-        if(mm<10){
-            mm='0'+mm
-        }
-        var today = dd + '/' + mm + '/' + yyyy;
-        return today;
     }
 
 }

@@ -36,12 +36,13 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.intervalo;
     vm.slider_nro = 1;
 
+    /*
     vm.carritoInfo = {
         cantidadDeProductos: 0,
         totalAPagar: 0.00,
         modified: false
     };
-
+    */
 
     vm.addProducto = addProducto;
     vm.showDetalle = showDetalle;
@@ -65,14 +66,15 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
     });
 
+    /*
     CartVars.listen(function () {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+
+     console.log(vm.carritoInfo);
     });
-
-    console.log(vm.carritoInfo);
-
-    CartVars.broadcast();
+    */
+    //CartVars.broadcast();
 
     //console.log(vm.productos);
 
@@ -145,10 +147,11 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
             return a.nombre - b.nombre;
         });
         console.log(CartVars.carrito);
+        CartVars.broadcast();
 
-        calcularCarritoTotal();
+        //calcularCarritoTotal();
     }
-
+    /*
     function calcularCarritoTotal() {
         vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = CartVars.carrito_total();
@@ -156,7 +159,7 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
 
         console.log(vm.carritoInfo);
     }
-
+    */
     function findProducto() {
         if (vm.productoBuscado.length > 2) {
             ProductService.getByParams('nombre', vm.productoBuscado, 'true', function (data) {
