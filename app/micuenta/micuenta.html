@@ -93,8 +93,8 @@
                     </div>
                     <div class="container-buttons">
                         <div class="botonera" style="width: 100%">
-                            <button class="btn-big btn-cancel" ng-click="cuentaCtrl.cancelCarrito();">Cancelar Pedido</button>
-                            <button class="btn-big" style="margin-right: 20%;" ng-click="cuentaCtrl.repeatCarrito();">Pedilo!</button>
+                            <button class="btn-big btn-cancel" ng-click="cuentaCtrl.cancelCarrito(cuentaCtrl.carrito);">Cancelar Pedido</button>
+                            <button class="btn-big" style="margin-right: 20%;" ng-click="cuentaCtrl.repeatCarrito(cuentaCtrl.carrito);">Pedilo!</button>
                             <span class="carrito-subtotal font-color-text">Subtotal:</span>
                             <div class="div-input-big"  style="margin-bottom: 0;height: 27px">{{cuentaCtrl.carrito.total | currency}}</div>
                         </div>

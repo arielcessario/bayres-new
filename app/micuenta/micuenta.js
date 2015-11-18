@@ -104,6 +104,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 vm.showCarritoDetalle = true;
             vm.carrito = carrito;
         }
+        setMessageResponse(false, false, false, false, '');
     }
 
     function addProducto(producto) {
@@ -199,6 +200,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             });
 
                             getHistoricoDePedidos(usuario);
+                            getCarritoSelected(null);
                             setMessageResponse(true, false, false, false, 'Su pedido fue cancelado satisfactoriamente');
                         } else {
                             setMessageResponse(false, false, false, true, 'Error cancelando el pedido');
