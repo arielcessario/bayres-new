@@ -126,8 +126,13 @@ window.appName = 'bayres';
             vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
 
-            vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-            vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+            if(BayresService.carrito.length > 0) {
+                vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
+                vm.carritoInfo.totalAPagar = BayresService.carrito_total();
+            } else {
+                vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+                vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+            }
 
             console.log(vm.carritoInfo);
             console.log(CartVars.carrito);
@@ -143,21 +148,6 @@ window.appName = 'bayres';
                 vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
                 vm.carritoInfo.totalAPagar = BayresService.carrito_total();
 
-                /*
-                if(!BayresService.tieneCarrito){
-                    if(CartVars.carrito.length > 0) {
-                        BayresService.miCarrito = carritoEntity(BayresService.usuario.id, -1);
-                        createCarrito(BayresService.miCarrito);
-                    }
-                } else {
-                    if(BayresService.carrito.length > 0){
-                        for(var i=0; i < BayresService.carrito.length; i++){
-                            console.log(BayresService.carrito[i]);
-                            CartVars.carrito.push(BayresService.carrito[i]);
-                        }
-                    }
-                }
-                */
             } else {
                 CartVars.carrito = [];
 

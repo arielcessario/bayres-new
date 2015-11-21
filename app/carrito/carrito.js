@@ -14,10 +14,10 @@ angular.module('bayres.carrito', [])
 
 
 CarritoController.$inject = ['AcUtils', 'UserService', 'CartVars', 'CartService',
-    '$timeout', '$location', 'CarritoService', 'LinksService'];
+    '$timeout', '$location', 'CarritoService', 'LinksService', 'BayresService'];
 
 function CarritoController(AcUtils, UserService, CartVars, CartService,
-                           $timeout, $location, CarritoService, LinksService) {
+                           $timeout, $location, CarritoService, LinksService, BayresService) {
 
     //  VARIABLES
     var vm = this;
@@ -49,7 +49,17 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
     //*******************************************************************
     //  PROGRAMA
-    vm.carritoDetalles = CartVars.carrito;
+    if(BayresService.carrito.length > 0) {
+        vm.carritoDetalles = BayresService.carrito;
+
+        vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = BayresService.carrito_total();
+    } else {
+        vm.carritoDetalles = CartVars.carrito;
+
+        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+    }
     console.log(vm.carritoDetalles);
 
     
@@ -72,8 +82,8 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
     }
 
     function calcularCarritoTotal() {
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
+        vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
+        vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
         CartVars.broadcast();
 
         console.log(vm.carritoInfo);
@@ -123,56 +133,45 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
     function confirmCarrito() {
 
-        if(CartVars.carrito.length > 0) {
-            var usuario = UserService.getFromToken().data;
-            var carrito = {
-                'usuario_id': usuario.id,
-                'total': CartVars.carrito_total(),
-                'status': 1,
-                'productos': []
-            };
+        if(CartVars.carrito.length > 0 || BayresService.carrito.length > 0) {
+            BayresService.miCarrito.total = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
+            BayresService.miCarrito.status = 1;
+            console.log(BayresService.miCarrito);
 
-            var error = false;
-            CartService.create(carrito, function(carrito_id) {
-                if (carrito_id > 0) {
-                    carrito.carrito_id = carrito_id;
+            CartService.update(BayresService.miCarrito, function(carrito){
+               if(carrito) {
+                   console.log('Carrito Pedido');
+                   console.log('Envio los mails');
 
-                    CartService.addToCart(carrito_id, CartVars.carrito, function (carrito_detalle) {
-                        console.log(carrito_detalle);
-                        if (carrito_detalle != -1) {
-                            console.log('Carrito Pedido');
-                            console.log('Envio los mails');
+                   var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
 
-                            CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito_detalle, 1, 'Falta la direccion', function(data){
-                                console.log(data);
-                            });
+                   CarritoService.sendMailCarritoComprador(BayresService.usuario.mail,
+                       BayresService.usuario.nombre,
+                       carritoAux, 1,
+                       'Falta la direccion', function(data){
+                           console.log(data);
+                       });
 
-                            CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito_detalle, 1, 'Falta la direccion', function(data){
-                                console.log(data);
-                            });
+                   CarritoService.sendMailCarritoVendedor(BayresService.usuario.mail,
+                       BayresService.usuario.nombre,
+                       carritoAux, 1,
+                       'Falta la direccion', function(data){
+                           console.log(data);
+                       });
 
-                            vm.carritoDetalles = [];
-                            CartVars.carrito = [];
+                   CartVars.carrito = BayresService.carrito = [];
 
-                            $location.path('/main');
-                            LinksService.selectedIncludeTop = 'main/ofertas.html';
-
-                            CartVars.broadcast();
-                        } else {
-                            console.log('Error creando el carrito');
-                            error = true;
-                        }
-                    });
-
-                } else {
-                    console.log('Error creando el carrito');
-                    error = true;
-                }
+                   //CartVars.broadcast();
+                   LinksService.broadcast();
+               } else {
+                   vm.message = 'Error confirmando el carrito';
+               }
             });
-        }
-        else {
+
+        } else {
             vm.message = 'El Carrito esta vacio. Por favor agregue productos';
         }
+
     }
 
 }
