@@ -112,12 +112,13 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precios[0].precio,
             //carrito_id: carrito_id,
-            nombre: producto.nombre,
-            categoria_id: producto.categorias[0].categoria_id
+            nombre: producto.nombre
         };
 
         if(carrito_id != -1)
             miProducto.carrito_id = carrito_id;
+        if(producto.categorias.length > 0)
+            categoria_id: producto.categorias[0].categoria_id
 
         console.log(miProducto);
 
@@ -135,12 +136,15 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                 console.log(BayresService.miCarrito);
 
                 if(BayresService.carrito.length > 0){
+                    console.log(BayresService.carrito);
+
                     var existe = false;
                     for(var i=0; i < BayresService.carrito.length; i++){
                         if(BayresService.carrito[i].producto_id == producto.producto_id){
                             BayresService.carrito[i].cantidad = BayresService.carrito[i].cantidad + 1;
                             BayresService.carrito[i].en_oferta = producto.en_oferta;
-                            var miProducto = productoEntityToUpdate(BayresService.carrito[i], producto.categorias[0].categoria_id);
+                            var categoria_id = (producto.categorias.length > 0) ? producto.categorias[0].categoria_id : -1;
+                            var miProducto = productoEntityToUpdate(BayresService.carrito[i], categoria_id);
 
                             CartService.updateProductInCart(miProducto, function(data){
                                 console.log(data);

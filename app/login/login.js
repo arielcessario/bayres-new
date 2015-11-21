@@ -57,15 +57,19 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
 
                 CartService.create(carrito, function(carrito_id) {
                     if (carrito_id > 0) {
+                        //BayresService.miCarrito.carrito_id = carrito_id;
+                        BayresService.tieneCarrito = true;
+                        BayresService.miCarrito = carrito;
                         BayresService.miCarrito.carrito_id = carrito_id;
-                        console.log(BayresService.miCarrito);
-
                         BayresService.carrito = CartVars.carrito;
-                        CartVars.carrito = [];
+
+                        console.log(BayresService.miCarrito);
 
                         CartService.addToCart(carrito_id, BayresService.carrito, function(data){
                             console.log(data);
                             if(data != -1) {
+                                CartVars.carrito = BayresService.carrito = [];
+                                BayresService.carrito = data;
                                 CartVars.broadcast();
                             }
                         });
