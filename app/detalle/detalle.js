@@ -11,11 +11,9 @@ angular.module('bayres.detalle', [])
     .controller('DetalleController', DetalleController);
 
 
-DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', '$timeout',
-    'LinksService', 'BayresService'];
+DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars', 'LinksService', 'BayresService'];
 
-function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, $timeout,
-                           LinksService, BayresService) {
+function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars, LinksService, BayresService) {
     var vm = this;
     vm.id = $routeParams.id;
     vm.search = false;
@@ -33,17 +31,14 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         status: 0,
         fotos: []
     };
-    vm.carritoInfo = {
-        cantidadDeProductos: 0,
-        totalAPagar: 0.00,
-        modified: false
-    };
 
+    //METODOS
     vm.close = close;
     vm.addProducto = addProducto;
 
     vm.search = BayresService.search;
-    BayresService.listen(function(){
+
+    CartVars.listen(function(){
         vm.search = BayresService.search;
     });
 
@@ -58,7 +53,8 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         LinksService.selectedIncludeTop = (vm.search) ? 'main/productos.html' : 'main/ofertas.html';
         LinksService.selectedIncludeMiddle = (vm.search) ? '' : 'main/destacados.html';
         LinksService.selectedIncludeBottom = (vm.search) ? '' : 'main/masvendidos.html';
-        LinksService.broadcast();
+
+        CartVars.broadcast();
     }
 
     function addProducto(producto) {
@@ -99,15 +95,7 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
         });
         console.log(CartVars.carrito);
 
-        calcularCarritoTotal();
-    }
-
-    function calcularCarritoTotal() {
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
         CartVars.broadcast();
-
-        console.log(vm.carritoInfo);
     }
 
 

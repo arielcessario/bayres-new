@@ -13,11 +13,10 @@ angular.module('bayres.carrito', [])
     .service('CarritoService', CarritoService);
 
 
-CarritoController.$inject = ['$routeParams', 'AcUtils', 'UserService', 'CartVars', 'CartService',
+CarritoController.$inject = ['AcUtils', 'UserService', 'CartVars', 'CartService',
     '$timeout', '$location', 'CarritoService', 'LinksService'];
-CarritoService.$inject = ['$http'];
 
-function CarritoController($routeParams, AcUtils, UserService, CartVars, CartService,
+function CarritoController(AcUtils, UserService, CartVars, CartService,
                            $timeout, $location, CarritoService, LinksService) {
 
     //  VARIABLES
@@ -53,13 +52,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     vm.carritoDetalles = CartVars.carrito;
     console.log(vm.carritoDetalles);
 
-    /*
-    CartVars.listen(function () {
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-    });
-    */
-
+    
     function removeProducto(index) {
         if(CartVars.carrito.length > 0) {
             var producto = vm.carritoDetalles[index];
@@ -131,9 +124,9 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
     function confirmCarrito() {
 
         if(CartVars.carrito.length > 0) {
-            var usuario = UserService.getLogged();
+            var usuario = UserService.getFromToken().data;
             var carrito = {
-                'usuario_id': usuario.usuario_id,
+                'usuario_id': usuario.id,
                 'total': CartVars.carrito_total(),
                 'status': 1,
                 'productos': []
@@ -144,37 +137,32 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
                 if (carrito_id > 0) {
                     carrito.carrito_id = carrito_id;
 
-                    for(var i = 0; i < CartVars.carrito.length; i++) {
-                        CartService.addToCart(carrito_id, CartVars.carrito[i], function (data) {
-                            console.log(data);
-                            if (data > 0) {
-                                carrito.productos[i] = CartVars.carrito[i];
-                            } else {
-                                error = true;
-                            }
-                        });
-                    }
+                    CartService.addToCart(carrito_id, CartVars.carrito, function (carrito_detalle) {
+                        console.log(carrito_detalle);
+                        if (carrito_detalle != -1) {
+                            console.log('Carrito Pedido');
+                            console.log('Envio los mails');
 
-                    vm.carritoDetalles = [];
-                    CartVars.carrito = [];
-                    CartVars.broadcast();
+                            CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito_detalle, 1, 'Falta la direccion', function(data){
+                                console.log(data);
+                            });
 
-                    if(!error) {
-                        console.log('Carrito Pedido');
-                        console.log('Envio los mails');
+                            CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito_detalle, 1, 'Falta la direccion', function(data){
+                                console.log(data);
+                            });
 
-                        CarritoService.sendMailCarritoComprador(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
-                            console.log(data);
-                        });
+                            vm.carritoDetalles = [];
+                            CartVars.carrito = [];
 
-                        CarritoService.sendMailCarritoVendedor(usuario.mail, usuario.nombre, carrito.productos, 1, 'Falta la direccion', function(data){
-                            console.log(data);
-                        });
+                            $location.path('/main');
+                            LinksService.selectedIncludeTop = 'main/ofertas.html';
 
-                        $location.path('/main');
-                        LinksService.selectedIncludeTop = 'main/ofertas.html';
-                        LinksService.broadcast();
-                    }
+                            CartVars.broadcast();
+                        } else {
+                            console.log('Error creando el carrito');
+                            error = true;
+                        }
+                    });
 
                 } else {
                     console.log('Error creando el carrito');
@@ -190,6 +178,7 @@ function CarritoController($routeParams, AcUtils, UserService, CartVars, CartSer
 }
 
 //*******************************************************************
+CarritoService.$inject = ['$http'];
 function CarritoService($http) {
 
     //Variables

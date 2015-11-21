@@ -11,17 +11,17 @@ angular.module('bayres.login', [])
     data: {requiresLogin: false}
   });
 }])
-.controller('LoginController', LoginController)
-    .service('LoginService', LoginService);
+.controller('LoginController', LoginController);
 
-LoginController.$inject = ['$location', 'UserService', '$timeout', 'LinksService', 'LoginService'];
+LoginController.$inject = ['$location', 'UserService', 'LinksService', 'BayresService', 'CartVars', 'CartService'];
 
-function LoginController($location, UserService, $timeout, LinksService, LoginService) {
+function LoginController($location, UserService, LinksService, BayresService, CartVars, CartService) {
   var vm = this;
 
   vm.message = '';
   vm.screenWidth = screen.width;
 
+  //METODOS
   vm.login = login;
   vm.passwordEnter = passwordEnter;
   vm.createUsuario = createUsuario;
@@ -34,16 +34,26 @@ function LoginController($location, UserService, $timeout, LinksService, LoginSe
   function login() {
     if(vm.loginForm.mail.trim().length > 0 && vm.loginForm.password.trim().length > 0) {
       UserService.login(vm.loginForm.mail.trim(), vm.loginForm.password.trim(), 1, function(data){
-        console.log(data);
         if(data != -1) {
           vm.message = '';
-          LoginService.usuario = data.user;
-          LoginService.isLogged = true;
-          LoginService.broadcast();
+          BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
+          BayresService.isLogged = true;
+
+          console.log(data);
+          console.log(BayresService.usuario);
+
+            CartService.reloadLastCart(BayresService.usuario.id, function(carrito) {
+                console.log(carrito);
+                if (carrito.length > 0) {
+                    BayresService.tieneCarrito = true;
+                    BayresService.carrito = carrito[0].productos;
+                    BayresService.miCarrito = carritoEntity(BayresService.usuario.id, carrito[0].carrito_id);
+                }
+                CartVars.broadcast();
+            });
 
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
-          LinksService.broadcast();
         } else {
           vm.message = 'Usuario o contraseña erroneo';
         }
@@ -52,6 +62,19 @@ function LoginController($location, UserService, $timeout, LinksService, LoginSe
       vm.message = 'Ingrese una mail y contraseña';
     }
   }
+
+    function carritoEntity(usuario_id, carrito_id) {
+        var carrito = {
+            'usuario_id': usuario_id,
+            'total': CartVars.carrito_total(),
+            'status': 0
+        };
+
+        if(carrito_id != -1)
+            carrito.carrito_id = carrito_id;
+
+        return carrito;
+    }
 
   function passwordEnter(event) {
     if(event.keyCode == 13) {
@@ -62,21 +85,5 @@ function LoginController($location, UserService, $timeout, LinksService, LoginSe
   function createUsuario() {
     $location.path('/usuarios');
     LinksService.selectedIncludeTop = 'usuarios/usuario.html';
-    LinksService.broadcast();
   }
-}
-
-LoginService.$inject = ['$rootScope'];
-function LoginService($rootScope) {
-
-  this.usuario = {};
-  this.isLogged = false;
-
-  this.broadcast = function () {
-    $rootScope.$broadcast("refreshSelectedPage")
-  };
-
-  this.listen = function (callback) {
-    $rootScope.$on("refreshSelectedPage", callback)
-  };
 }

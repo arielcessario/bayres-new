@@ -10,9 +10,10 @@ angular.module('bayres.legales', [])
     .controller('LegalesController', LegalesController);
 
 
-LegalesController.$inject = ['$routeParams', '$location', 'LinksService'];
+LegalesController.$inject = ['$routeParams', '$location', 'LinksService', 'CartVars'];
 
-function LegalesController($routeParams, $location, LinksService) {
+function LegalesController($routeParams, $location, LinksService, CartVars) {
+
     var vm = this;
     vm.id = $routeParams.id;
     vm.legal = {
@@ -20,6 +21,7 @@ function LegalesController($routeParams, $location, LinksService) {
         contenido: ''
     };
 
+    //METODOS
     vm.close = close;
 
     var id = vm.id == undefined ? LinksService.productId : vm.id;
@@ -32,7 +34,7 @@ function LegalesController($routeParams, $location, LinksService) {
     function close() {
         $location.path('/main');
         LinksService.selectedIncludeTop = 'main/ofertas.html';
-        LinksService.broadcast();
+        CartVars.broadcast();
     }
 
 
