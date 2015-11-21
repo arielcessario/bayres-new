@@ -121,7 +121,6 @@ window.appName = 'bayres';
             //BayresService.carrito_id = -1;
             //CartVars.carrito = [];
 
-
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
             vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;

@@ -145,6 +145,7 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
                    var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
 
+
                    CarritoService.sendMailCarritoComprador(BayresService.usuario.mail,
                        BayresService.usuario.nombre,
                        carritoAux, 1,
