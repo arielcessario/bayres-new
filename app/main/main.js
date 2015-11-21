@@ -111,10 +111,14 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             cantidad: 1,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precios[0].precio,
-            carrito_id: carrito_id,
+            //carrito_id: carrito_id,
             nombre: producto.nombre,
             categoria_id: producto.categorias[0].categoria_id
         };
+
+        if(carrito_id != -1)
+            miProducto.carrito_id = carrito_id;
+
         console.log(miProducto);
 
         return miProducto;
@@ -186,37 +190,10 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             }
         } else {
             console.log('No Estoy logueado');
-            var miProducto = productoEntity(producto, -1);
-            console.log(miProducto);
+            var miProducto = productoEntityToAdd(producto, -1);
 
             actualizarMiCarrito(miProducto);
         }
-
-
-        /*
-        var miProducto = createProducto(producto);
-
-        CartVars.carrito.push(miProducto);
-        console.log(CartVars.carrito);
-
-        if (UserService.getFromToken() != false) {
-            //Si no tiene carrito lo creo
-            if(!BayresService.tieneCarrito) {
-                createCarrito(producto);
-                BayresService.tieneCarrito = true;
-                //CartVars.broadcast();
-            }
-
-            /*
-            if(CartVars.carrito.length > 0) {
-                console.log('actualizo el carrito');
-                updateProductInCart(producto);
-            } else {
-                console.log('agrego un producto');
-            }
-
-        }*/
-        //actualizarMiCarrito(miProducto);
     }
 
     function actualizarMiCarrito(producto) {
@@ -226,24 +203,22 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
         console.log(CartVars.carrito.length);
 
         if (CartVars.carrito.length > 0) {
-            var index = 0;
-            CartVars.carrito.forEach(function (data) {
-                if (data.producto_id == producto.producto_id) {
-                    producto.cantidad = data.cantidad + producto.cantidad;
-                    indexToDelete = index;
+            for(var i=0; i < CartVars.carrito.length; i++){
+                if (CartVars.carrito[i].producto_id == producto.producto_id) {
+                    CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + producto.cantidad;
                     encontrado = true;
                 }
-                index =+ 1;
-            });
-
-            if (encontrado) {
-                CartVars.carrito.splice(indexToDelete, 1);
             }
+            if(!encontrado)
+                CartVars.carrito.push(producto);
+        } else {
+            CartVars.carrito.push(producto);
         }
-        CartVars.carrito.push(producto);
+
         console.log(CartVars.carrito);
         console.log('actualizarMiCarrito');
-        //CartVars.broadcast();
+
+        LinksService.broadcast();
     }
 
 

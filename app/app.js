@@ -116,10 +116,10 @@ window.appName = 'bayres';
             console.log('LinksService.listen');
             vm.usuario = BayresService.usuario;
             vm.isLogged = BayresService.isLogged;
-            BayresService.productos = [];
-            BayresService.miCarrito = [];
-            BayresService.carrito_id = -1;
-            CartVars.carrito = [];
+            //BayresService.productos = [];
+            //BayresService.miCarrito = [];
+            //BayresService.carrito_id = -1;
+            //CartVars.carrito = [];
 
 
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
@@ -169,45 +169,6 @@ window.appName = 'bayres';
             console.log(CartVars.carrito);
         });
 
-
-
-        function carritoEntity(usuario_id, carrito_id) {
-            var carrito = {
-                'usuario_id': usuario_id,
-                'total': CartVars.carrito_total(),
-                'status': 0
-            };
-
-            if(carrito_id != -1)
-                carrito.carrito_id = carrito_id;
-
-            return carrito;
-        }
-
-        function createCarrito(carrito){
-            console.log('Creo carrito');
-
-            CartService.create(carrito, function(carrito_id) {
-                if (carrito_id > 0) {
-                    BayresService.carrito_id = carrito_id;
-                    BayresService.miCarrito.carrito_id = carrito_id;
-                    console.log(BayresService.miCarrito);
-
-                    addToCart(carrito_id, CartVars.carrito);
-                }
-            });
-        }
-
-
-
-        function addToCart(carrito_id, productos) {
-            CartService.addToCart(carrito_id, productos, function(data){
-                console.log(data);
-                if(data != -1) {
-                    console.log('Insert Ok');
-                }
-            });
-        }
 
         $scope.$on('links', function (event, args) {
             vm.links = LinksService.links;

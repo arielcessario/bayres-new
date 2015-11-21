@@ -52,6 +52,27 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                 CartVars.broadcast();
             });
 
+            if(!BayresService.tieneCarrito && CartVars.carrito.length > 0){
+                var carrito = {'usuario_id': BayresService.usuario.id, 'total': CartVars.carrito_total(), 'status': 0};
+
+                CartService.create(carrito, function(carrito_id) {
+                    if (carrito_id > 0) {
+                        BayresService.miCarrito.carrito_id = carrito_id;
+                        console.log(BayresService.miCarrito);
+
+                        BayresService.carrito = CartVars.carrito;
+                        CartVars.carrito = [];
+
+                        CartService.addToCart(carrito_id, BayresService.carrito, function(data){
+                            console.log(data);
+                            if(data != -1) {
+                                CartVars.broadcast();
+                            }
+                        });
+                    }
+                });
+            }
+
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
         } else {
