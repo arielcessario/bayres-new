@@ -135,7 +135,7 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                     for(var i=0; i < BayresService.carrito.length; i++){
                         if(BayresService.carrito[i].producto_id == producto.producto_id){
                             BayresService.carrito[i].cantidad = BayresService.carrito[i].cantidad + 1;
-
+                            BayresService.carrito[i].en_oferta = producto.en_oferta;
                             var miProducto = productoEntityToUpdate(BayresService.carrito[i], producto.categorias[0].categoria_id);
 
                             CartService.updateProductInCart(miProducto, function(data){
@@ -158,8 +158,11 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                             if(data != -1) {
                                 BayresService.carrito.push(data[0]);
                                 BayresService.miCarrito.total = BayresService.carrito_total();
+                                console.log(BayresService.carrito);
+                                console.log(BayresService.miCarrito);
                                 CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                     console.log(carritoActualizado);
+                                    CartVars.broadcast();
                                 });
                             }
                         });
