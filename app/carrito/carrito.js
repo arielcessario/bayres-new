@@ -64,72 +64,57 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
     
     function removeProducto(index) {
-        if(CartVars.carrito.length > 0) {
-            var producto = vm.carritoDetalles[index];
-            var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
-            var borrarOk = confirm('�Desea borrar el producto '+ detalle +'?');
-            if(borrarOk){
-                CartVars.carrito.splice( index, 1 );
-                CartVars.carrito.sort(function(a, b){
-                    return a.nombre - b.nombre;
-                });
+        var producto = (CartVars.carrito.length > 0) ? CartVars.carrito[index] : BayresService.carrito[index];
+        var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
+        var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
+        if(borrarOk){
+            CartService.removeFromCart(producto.carrito_detalle_id, function(data){
+                if(data != -1) {
+                    BayresService.carrito.splice( index, 1 );
 
-                calcularCarritoTotal();
-            } else {
-                return;
-            }
+                    calcularCarritoTotal();
+                } else {
+                    console.log('Error borrando el producto');
+                }
+            });
+        } else {
+            return;
         }
     }
 
     function calcularCarritoTotal() {
         vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
         vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
-        CartVars.broadcast();
 
-        console.log(vm.carritoInfo);
+        CartVars.broadcast();
     }
 
     function refreshProducto(producto) {
-        console.log(producto);
         var miProducto = {
             producto_id: producto.producto_id,
-            cantidad: 0,
-            en_oferta: 1,
+            cantidad: producto.cantidad,
+            en_oferta: producto.en_oferta,
             precio_unitario: producto.precio_unitario,
-            carrito_id: -1,
-            nombre: producto.nombre
+            carrito_id: producto.carrito_id,
+            nombre: producto.nombre,
+            carrito_detalle_id: producto.carrito_detalle_id
         };
 
-        actualizarMiCarrito(miProducto);
-    }
+        console.log(miProducto);
 
-    function actualizarMiCarrito(producto) {
-        var encontrado = false;
-        var indexToDelete = 0;
+        CartService.updateProductInCart(miProducto, function(data){
+            if(data) {
+                //Fijarme si puedo recueprar el index
+                //if(CartVars.carrito.length > 0)
+                //CartVars.carrito[index].cantidad = miProducto.cantidad;
+                //if(BayresService.carrito.length > 0)
+                //BayresService.carrito[index].cantidad = miProducto.cantidad;
 
-        if(CartVars.carrito.length > 0) {
-            var index = 0;
-            CartVars.carrito.forEach(function(data){
-                if(data.producto_id == producto.producto_id) {
-                    producto.cantidad = data.cantidad + producto.cantidad;
-                    indexToDelete = index;
-                    encontrado = true;
-                }
-                index = index + 1;
-            });
-
-            if(encontrado) {
-                CartVars.carrito.splice( indexToDelete, 1 );
+                calcularCarritoTotal();
             }
-        }
-        CartVars.carrito.push(producto);
-        CartVars.carrito.sort(function(a, b){
-            return a.nombre - b.nombre;
         });
-        console.log(CartVars.carrito);
-
-        calcularCarritoTotal();
     }
+
 
     function confirmCarrito() {
 
@@ -145,24 +130,12 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
                    var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
 
-
-                   CarritoService.sendMailCarritoComprador(BayresService.usuario.mail,
-                       BayresService.usuario.nombre,
-                       carritoAux, 1,
-                       'Falta la direccion', function(data){
+                   CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
+                       BayresService.usuario.nombre, carritoAux, 1, 'Falta la direccion', function(data){
                            console.log(data);
-                       });
+                           CartVars.carrito = BayresService.carrito = [];
+                    });
 
-                   CarritoService.sendMailCarritoVendedor(BayresService.usuario.mail,
-                       BayresService.usuario.nombre,
-                       carritoAux, 1,
-                       'Falta la direccion', function(data){
-                           console.log(data);
-                       });
-
-                   CartVars.carrito = BayresService.carrito = [];
-
-                   //CartVars.broadcast();
                    LinksService.broadcast();
                } else {
                    vm.message = 'Error confirmando el carrito';
@@ -189,7 +162,11 @@ function CarritoService($http) {
     service.sendMailCarritoComprador = sendMailCarritoComprador;
     service.sendMailCarritoVendedor = sendMailCarritoVendedor;
 
+    service.sendMailConfirmarCarrito = sendMailConfirmarCarrito;
+
     return service;
+
+
 
 
     /**
@@ -291,6 +268,18 @@ function CarritoService($http) {
             .error(function (data) {
                 callback(data);
             });
+    }
+
+    function sendMailConfirmarCarrito(mail, nombre, carrito, sucursal, direccion, callback) {
+        sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, function(mailComprador){
+           if(mailComprador) {
+               sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, function(mailVendedor){
+                   callback(mailVendedor);
+               });
+           } else {
+               callback(false);
+           }
+        });
     }
 }
 
