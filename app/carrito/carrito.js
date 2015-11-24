@@ -49,29 +49,36 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
     //*******************************************************************
     //  PROGRAMA
-    if(BayresService.carrito.length > 0) {
-        vm.carritoDetalles = BayresService.carrito;
+    vm.carritoDetalles = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
 
-        vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = BayresService.carrito_total();
-    } else {
-        vm.carritoDetalles = CartVars.carrito;
+    vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
+    vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
 
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-    }
     console.log(vm.carritoDetalles);
 
-    
+
     function removeProducto(index) {
         var producto = (CartVars.carrito.length > 0) ? CartVars.carrito[index] : BayresService.carrito[index];
         var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
         var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
         if(borrarOk){
+            console.log(CartVars.carrito);
+            if(CartVars.carrito.length == 0) {
+                CartVars.carrito = BayresService.carrito;
+            }
+            console.log(CartVars.carrito);
             CartService.removeFromCart(producto.carrito_detalle_id, function(data){
                 if(data != -1) {
                     BayresService.carrito.splice( index, 1 );
-
+                    BayresService.miCarrito.total = BayresService.carrito_total();
+                    console.log(BayresService.miCarrito);
+                    CartService.update(BayresService.miCarrito, function(miCarrito){
+                        if(miCarrito) {
+                            console.log('Update Ok');
+                        } else {
+                            console.log('Update Error');
+                        }
+                    });
                     calcularCarritoTotal();
                 } else {
                     console.log('Error borrando el producto');
@@ -104,11 +111,15 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
         CartService.updateProductInCart(miProducto, function(data){
             if(data) {
-                //Fijarme si puedo recueprar el index
-                //if(CartVars.carrito.length > 0)
-                //CartVars.carrito[index].cantidad = miProducto.cantidad;
-                //if(BayresService.carrito.length > 0)
-                //BayresService.carrito[index].cantidad = miProducto.cantidad;
+                BayresService.miCarrito.total = CartVars.carrito_total();
+                console.log(BayresService.miCarrito);
+                CartService.update(BayresService.miCarrito, function(miCarrito){
+                    if(miCarrito) {
+                        console.log('Update Ok');
+                    } else {
+                        console.log('Update Error');
+                    }
+                });
 
                 calcularCarritoTotal();
             }
@@ -124,22 +135,22 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
             console.log(BayresService.miCarrito);
 
             CartService.update(BayresService.miCarrito, function(carrito){
-               if(carrito) {
-                   console.log('Carrito Pedido');
-                   console.log('Envio los mails');
+                if(carrito) {
+                    console.log('Carrito Pedido');
+                    console.log('Envio los mails');
 
-                   var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
+                    var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
 
-                   CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
-                       BayresService.usuario.nombre, carritoAux, 1, 'Falta la direccion', function(data){
-                           console.log(data);
-                           CartVars.carrito = BayresService.carrito = [];
-                    });
+                    CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
+                        BayresService.usuario.nombre, carritoAux, 1, 'Falta la direccion', function(data){
+                            console.log(data);
+                            CartVars.carrito = BayresService.carrito = [];
+                        });
 
-                   LinksService.broadcast();
-               } else {
-                   vm.message = 'Error confirmando el carrito';
-               }
+                    LinksService.broadcast();
+                } else {
+                    vm.message = 'Error confirmando el carrito';
+                }
             });
 
         } else {
@@ -165,9 +176,6 @@ function CarritoService($http) {
     service.sendMailConfirmarCarrito = sendMailConfirmarCarrito;
 
     return service;
-
-
-
 
     /**
      *

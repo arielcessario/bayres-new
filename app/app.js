@@ -125,13 +125,8 @@ window.appName = 'bayres';
             vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;
             vm.selectedIncludeBottom = LinksService.selectedIncludeBottom;
 
-            if(BayresService.carrito.length > 0) {
-                vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
-                vm.carritoInfo.totalAPagar = BayresService.carrito_total();
-            } else {
-                vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-                vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-            }
+            vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
+            vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
 
             console.log(vm.carritoInfo);
             console.log(CartVars.carrito);
@@ -144,8 +139,8 @@ window.appName = 'bayres';
                 console.log('Listen - recupero un carrito');
                 console.log(BayresService.usuario);
 
-                vm.carritoInfo.cantidadDeProductos = BayresService.carrito_cantidad_productos();
-                vm.carritoInfo.totalAPagar = BayresService.carrito_total();
+                vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
+                vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
 
             } else {
                 CartVars.carrito = [];
@@ -237,6 +232,9 @@ window.appName = 'bayres';
                 $location.path('/main');
                 BayresService.usuario = null;
                 BayresService.isLogged = false;
+                BayresService.miCarrito = {};
+                BayresService.carrito = [];
+                CartVars.carrtio = [];
 
                 console.log(BayresService.isLogged);
                 CartVars.broadcast();
