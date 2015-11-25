@@ -238,8 +238,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             } else {
                 var productArray = [];
                 productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
-                //CartVars.carrito.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
-                //var carrito = {'usuario_id': BayresService.usuario.id, 'total': CartVars.carrito_total(), 'status': 0};
                 var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
                 console.log(carrito);
                 CartService.create(carrito, function(carrito_id) {
@@ -250,7 +248,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
                         console.log(BayresService.miCarrito);
 
-                        //CartService.addToCart(carrito_id, CartVars.carrito, function(data){
                         CartService.addToCart(carrito_id, productArray, function(data){
                             console.log(data);
                             if(data != -1) {

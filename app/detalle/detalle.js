@@ -196,8 +196,6 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
             } else {
                 var productArray = [];
                 productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
-                //CartVars.carrito.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
-                //var carrito = {'usuario_id': BayresService.usuario.id, 'total': CartVars.carrito_total(), 'status': 0};
                 var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
                 console.log(carrito);
                 CartService.create(carrito, function(carrito_id) {
@@ -208,7 +206,6 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
 
                         console.log(BayresService.miCarrito);
 
-                        //CartService.addToCart(carrito_id, CartVars.carrito, function(data){
                         CartService.addToCart(carrito_id, productArray, function(data){
                             console.log(data);
                             if(data != -1) {
@@ -221,7 +218,6 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
                                         }
                                     }
                                 }
-                                //CartVars.broadcast();
                                 carrito.total = CartVars.carrito_total();
                                 CartService.update(carrito, function(carritoUpdate){
                                     if(carritoUpdate) {

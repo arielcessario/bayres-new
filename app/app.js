@@ -116,10 +116,6 @@ window.appName = 'bayres';
             console.log('LinksService.listen');
             vm.usuario = BayresService.usuario;
             vm.isLogged = BayresService.isLogged;
-            //BayresService.productos = [];
-            //BayresService.miCarrito = [];
-            //BayresService.carrito_id = -1;
-            //CartVars.carrito = [];
 
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
             vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;

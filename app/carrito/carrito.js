@@ -76,10 +76,6 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
         var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
         if(borrarOk){
             console.log(CartVars.carrito);
-            //if(CartVars.carrito.length == 0) {
-            //    CartVars.carrito = BayresService.carrito;
-            //}
-            //console.log(CartVars.carrito);
             var carrito_detalle_ids = [];
             carrito_detalle_ids.push(producto.carrito_detalle_id);
             CartService.removeFromCart(carrito_detalle_ids, function(data){
@@ -156,14 +152,11 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
                     console.log('Carrito Pedido');
                     console.log('Envio los mails');
 
-                    //var carritoAux = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
                     BayresService.miCarrito.productos = CartVars.carrito;
 
                     CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
                         BayresService.usuario.nombre, BayresService.miCarrito, 1, 'Falta la direccion', function(data){
                             console.log(data);
-                            //CartVars.carrito = BayresService.carrito = [];
-                            //LinksService.broadcast();
                         });
 
                     BayresService.tieneCarrito = false;
