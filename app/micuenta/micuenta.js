@@ -70,25 +70,25 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     vm.getCarritoSelected = getCarritoSelected;
 
 
-    if(UserService.getLogged() != false) {
-        var user = UserService.getLogged();
+    if (UserService.getFromToken() != false) {
+        //console.log(UserService.getFromToken().data);
 
-        vm.userForm.usuario_id = user.usuario_id;
-        vm.userForm.apellido = user.apellido;
-        vm.userForm.nombre = user.nombre;
-        vm.userForm.mail = user.mail;
-        vm.userForm.news_letter = user.news_letter;
+        vm.userForm.usuario_id = UserService.getFromToken().data.id;
+        vm.userForm.apellido = UserService.getFromToken().data.apellido;
+        vm.userForm.nombre = UserService.getFromToken().data.nombre;
+        vm.userForm.mail = UserService.getFromToken().data.mail;
+        vm.userForm.news_letter = UserService.getFromToken().data.news_letter;
 
-        vm.passwordForm.usuario_id = user.usuario_id;
+        vm.passwordForm.usuario_id = UserService.getFromToken().data.id;
 
-        getHistoricoDePedidos(user);
+        getHistoricoDePedidos(UserService.getFromToken().data.id);
     }
 
-    function getHistoricoDePedidos(usuario) {
-        CartService.getByParams("status","1","true",usuario.usuario_id, function(data){
-            vm.historico_pedidos = data.sort(function(a, b){
-                return b.carrito_id - a.carrito_id;
-            });
+    function getHistoricoDePedidos(usuario_id) {
+        CartVars.clearCache = true;
+        CartService.getByParams("status","1","true",usuario_id, function(data){
+            vm.historico_pedidos = data;
+
             var select_one = { pedido_id:-1, fecha:'Seleccione un pedido' };
             vm.historico_pedidos.unshift(select_one);
             vm.carrito = vm.historico_pedidos[0];

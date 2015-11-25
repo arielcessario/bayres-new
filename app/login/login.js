@@ -62,7 +62,6 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                     }
                   }
                 }
-                //CartVars.carrito = carrito[0].productos;
                 for(var i=0; i < carrito[0].productos.length; i++) {
                   BayresService.carrito.push(carrito[0].productos[i]);
                 }
@@ -73,18 +72,22 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                   if(data) {
                     CartService.addToCart(BayresService.miCarrito.carrito_id, BayresService.carrito, function(data){
                       if(data != -1) {
-                        for(var i=0; i < productArray.length; i++) {
+                        for(var i=0; i < BayresService.carrito.length; i++) {
                           for(var j=0; j < CartVars.carrito.length; j++){
-                            if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                            if(CartVars.carrito[j].producto_id == BayresService.carrito[i].producto_id){
                               if(CartVars.carrito[j].nombre === undefined)
-                                CartVars.carrito[j].nombre = productArray[i].nombre;
+                                CartVars.carrito[j].nombre = BayresService.carrito[i].nombre;
                             }
                           }
                         }
                         BayresService.miCarrito = {carrito_id: carrito[0].carrito_id, status: 0, usuario_id: BayresService.usuario.id, total:CartVars.carrito_total()};
                         CartService.update(BayresService.miCarrito, function(miCarrito){
                           console.log(miCarrito);
-                          //LinksService.broadcast();
+                          if(miCarrito) {
+                            console.log('Update Ok');
+                          } else {
+                            console.log('Update Error');
+                          }
                         });
                       }
                     });
@@ -99,39 +102,36 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                   CartVars.broadcast();
               }
             }
-            console.log(BayresService.carrito);
-            if(!BayresService.tieneCarrito && BayresService.carrito.length > 0) {
-              var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
-              console.log(carrito);
-              CartService.create(carrito, function(carrito_id) {
-                if (carrito_id > 0) {
-                  BayresService.tieneCarrito = true;
-                  BayresService.miCarrito = carrito;
-                  BayresService.miCarrito.carrito_id = carrito_id;
+          });
+          console.log(BayresService.carrito);
+          if(!BayresService.tieneCarrito && BayresService.carrito.length > 0) {
+            var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
+            console.log(carrito);
+            CartService.create(carrito, function(carrito_id) {
+              if (carrito_id > 0) {
+                BayresService.tieneCarrito = true;
+                BayresService.miCarrito = carrito;
+                BayresService.miCarrito.carrito_id = carrito_id;
 
-                  console.log(BayresService.miCarrito);
+                console.log(BayresService.miCarrito);
 
-                  CartService.addToCart(carrito_id, BayresService.carrito, function(data){
-                    console.log(data);
-                    if(data != -1) {
-                      for(var i=0; i < productArray.length; i++) {
-                        for(var j=0; j < CartVars.carrito.length; j++){
-                          if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
-                            if(CartVars.carrito[j].nombre === undefined)
-                              CartVars.carrito[j].nombre = productArray[i].nombre;
-                          }
+                CartService.addToCart(carrito_id, BayresService.carrito, function(data){
+                  console.log(data);
+                  if(data != -1) {
+                    for(var i=0; i < BayresService.carrito.length; i++) {
+                      for(var j=0; j < CartVars.carrito.length; j++){
+                        if(CartVars.carrito[j].producto_id == BayresService.carrito[i].producto_id){
+                          if(CartVars.carrito[j].nombre === undefined)
+                            CartVars.carrito[j].nombre = BayresService.carrito[i].nombre;
                         }
                       }
-                      BayresService.carrito = [];
-                      //CartVars.carrito = BayresService.carrito = [];
-                      //BayresService.carrito = data;
-                      //CartVars.broadcast();
                     }
-                  });
-                }
-              });
-            }
-          });
+                    BayresService.carrito = [];
+                  }
+                });
+              }
+            });
+          }
 
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
