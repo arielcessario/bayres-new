@@ -11,19 +11,18 @@ angular.module('bayres.main', [])
     .controller('MainController', MainController);
 
 
-MainController.$inject = ['$interval', '$timeout', '$location', 'AcUtils', 'UserService',
-    'ProductService', 'CategoryService', 'CartVars', '$scope', 'LinksService',
-    '$routeParams', 'BayresService'];
+MainController.$inject = ['$scope', '$interval', '$location', 'AcUtils', 'UserService',
+    'ProductService', 'CartVars', 'LinksService',
+    '$routeParams', 'BayresService', 'CartService'];
 
-function MainController($interval, $timeout, $location, AcUtils, UserService,
-                        ProductService, CategoryService, CartVars, $scope, LinksService,
-                        $routeParams, BayresService) {
+function MainController($scope, $interval, $location, AcUtils, UserService,
+                        ProductService, CartVars, LinksService,
+                        $routeParams, BayresService, CartService) {
     var vm = this;
 
     vm.productosEnOfertas = [];
     vm.productosMasVendidos = [];
     vm.productosDestacados = [];
-    //vm.carritoDetalles = [];
     vm.productoList = [];
     vm.categorias = [];
     vm.subcategorias = [];
@@ -36,22 +35,12 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.intervalo;
     vm.slider_nro = 1;
 
-    /*
-    vm.carritoInfo = {
-        cantidadDeProductos: 0,
-        totalAPagar: 0.00,
-        modified: false
-    };
-    */
-
+    //METODOS
     vm.addProducto = addProducto;
     vm.showDetalle = showDetalle;
     vm.findProducto = findProducto;
-    vm.showSubCategoria = showSubCategoria;
-    vm.hideSubCategoria = hideSubCategoria;
 
     vm.intervalo = $interval(cambiarSlide, 7000);
-    //vm.intervalo = $interval(cambiarSlide, 100000);
 
 
     vm.productos = BayresService.productos;
@@ -59,24 +48,22 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
     vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
     vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
 
-    BayresService.listen(function(){
+
+    /*
+    CartVars.listen(function(){
         vm.productos = BayresService.productos;
         vm.search = BayresService.search;
         vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
         vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
     });
-
-    /*
-    CartVars.listen(function () {
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-
-     console.log(vm.carritoInfo);
-    });
     */
-    //CartVars.broadcast();
 
-    //console.log(vm.productos);
+    LinksService.listen(function(){
+        vm.productos = BayresService.productos;
+        vm.search = BayresService.search;
+        vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
+        vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
+    });
 
     function cambiarSlide(){
         vm.slider_nro = (vm.slider_nro == 4) ? vm.slider_nro = 1 : vm.slider_nro += 1;
@@ -106,60 +93,277 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         LinksService.selectedIncludeTop = 'main/productos.html';
         LinksService.selectedIncludeMiddle = '';
         LinksService.selectedIncludeBottom = '';
+
+        //CartVars.broadcast();
         LinksService.broadcast();
+    }
+
+    //function productoEntityToUpdate(producto, categoria_id) {
+    function productoEntityToUpdate(producto) {
+        var miProducto = {
+            producto_id: producto.producto_id,
+            cantidad: producto.cantidad,
+            en_oferta: producto.en_oferta,
+            precio_unitario: producto.precio_unitario,
+            carrito_id: producto.carrito_id,
+            nombre: producto.nombre,
+            carrito_detalle_id: producto.carrito_detalle_id
+            //categoria_id: categoria_id
+        };
+        console.log(miProducto);
+
+        return miProducto;
+    }
+
+    function productoEntityToAdd(producto, carrito_id) {
+        var miProducto = {
+            producto_id: producto.producto_id,
+            cantidad: 1,
+            en_oferta: producto.en_oferta,
+            precio_unitario: producto.precios[0].precio,
+            //carrito_id: carrito_id,
+            nombre: producto.nombre
+        };
+
+        if(carrito_id != -1)
+            miProducto.carrito_id = carrito_id;
+        //if(producto.categorias.length > 0)
+        //    categoria_id: producto.categorias[0].categoria_id
+
+        console.log(miProducto);
+
+        return miProducto;
     }
 
     function addProducto(producto) {
         console.log(producto);
-        var miProducto = {
-            producto_id: producto.producto_id,
-            cantidad: 1,
-            en_oferta: 1,
-            precio_unitario: producto.precios[0].precio,
-            carrito_id: -1,
-            nombre: producto.nombre
-        };
 
-        actualizarMiCarrito(miProducto);
+        if (UserService.getFromToken() != false) {
+            console.log('Estoy logueado');
+            //var miProducto = productoEntity(producto, BayresService.carrito_id);
+            if(BayresService.tieneCarrito) {
+
+                console.log(BayresService.miCarrito);
+
+                if(CartVars.carrito.length > 0){
+                    console.log(CartVars.carrito);
+                    //console.log(BayresService.carrito);
+
+                    var existe = false;
+                    for(var i=0; i < CartVars.carrito.length; i++){
+                        if(CartVars.carrito[i].producto_id == producto.producto_id){
+                            //CartVars.carrito[i].cantidad = BayresService.carrito[i].cantidad + 1;
+                            CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + 1;
+                            CartVars.carrito[i].en_oferta = producto.en_oferta;
+                            CartVars.carrito[i].nombre = producto.nombre;
+                            //var categoria_id = (producto.categorias.length > 0) ? producto.categorias[0].categoria_id : -1;
+                            //var miProducto = productoEntityToUpdate(CartVars.carrito[i], categoria_id);
+                            var miProducto = productoEntityToUpdate(CartVars.carrito[i]);
+
+                            CartService.updateProductInCart(miProducto, function(data){
+                                console.log(data);
+                                if(data){
+                                    BayresService.miCarrito.total = CartVars.carrito_total();
+                                    CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                                        console.log(carritoActualizado);
+                                        if(carritoActualizado) {
+                                            console.log('Carrito update ok');
+                                            CartVars.broadcast();
+                                        } else {
+                                            console.log('Carrito update error');
+                                        }
+                                    });
+                                }
+                            });
+                            existe =  true;
+                        }
+                    }
+                    if(!existe) {
+                        var productArray = [];
+                        productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                        CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
+                            console.log(data);
+                            if(data != -1) {
+                                for(var i=0; i < productArray.length; i++) {
+                                    for(var j=0; j < CartVars.carrito.length; j++){
+                                        if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                                            if(CartVars.carrito[j].nombre === undefined)
+                                                CartVars.carrito[j].nombre = productArray[i].nombre;
+                                        }
+                                    }
+                                }
+                                //BayresService.carrito.push(data[0]);
+                                BayresService.miCarrito.total = CartVars.carrito_total();
+                                console.log(CartVars.carrito);
+                                console.log(BayresService.miCarrito);
+                                CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                                    console.log(carritoActualizado);
+                                    if(carritoActualizado) {
+                                        console.log('Carrito update ok');
+                                        CartVars.broadcast();
+                                    } else {
+                                        console.log('Carrito update error');
+                                    }
+                                });
+                            }
+                        });
+                    }
+                } else {
+                    var productArray = [];
+                    productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                    CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
+                        console.log(data);
+                        if(data != -1) {
+                            for(var i=0; i < productArray.length; i++) {
+                                for(var j=0; j < CartVars.carrito.length; j++){
+                                    if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                                        if(CartVars.carrito[j].nombre === undefined)
+                                            CartVars.carrito[j].nombre = productArray[i].nombre;
+                                    }
+                                }
+                            }
+                            CartVars.carrito.push(data[0]);
+                            BayresService.miCarrito.total = CartVars.carrito_total();
+                            CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                                if(carritoActualizado) {
+                                    console.log('Carrito update ok');
+                                    CartVars.broadcast();
+                                } else {
+                                    console.log('Carrito update error');
+                                }
+                            });
+                        }
+                    });
+                }
+            } else {
+                var productArray = [];
+                productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                //CartVars.carrito.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                //var carrito = {'usuario_id': BayresService.usuario.id, 'total': CartVars.carrito_total(), 'status': 0};
+                var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
+                console.log(carrito);
+                CartService.create(carrito, function(carrito_id) {
+                    if (carrito_id > 0) {
+                        BayresService.tieneCarrito = true;
+                        BayresService.miCarrito = carrito;
+                        BayresService.miCarrito.carrito_id = carrito_id;
+
+                        console.log(BayresService.miCarrito);
+
+                        //CartService.addToCart(carrito_id, CartVars.carrito, function(data){
+                        CartService.addToCart(carrito_id, productArray, function(data){
+                            console.log(data);
+                            if(data != -1) {
+                                console.log('AddToCart Ok');
+                                for(var i=0; i < productArray.length; i++) {
+                                    for(var j=0; j < CartVars.carrito.length; j++){
+                                        if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                                            if(CartVars.carrito[j].nombre === undefined)
+                                                CartVars.carrito[j].nombre = productArray[i].nombre;
+                                        }
+                                    }
+                                }
+                                carrito.total = CartVars.carrito_total();
+                                CartService.update(carrito, function(carritoUpdate){
+                                    if(carritoUpdate) {
+                                        console.log('Ok');
+                                    } else {
+                                        console.log('Error');
+                                    }
+                                });
+                            } else {
+                                console.log('AddToCart Error');
+                            }
+                        });
+                    }
+                });
+            }
+        } else {
+            console.log('No Estoy logueado');
+            var miProducto = productoEntityToAdd(producto, -1);
+
+            actualizarMiCarrito(miProducto);
+        }
     }
 
     function actualizarMiCarrito(producto) {
         var encontrado = false;
         var indexToDelete = 0;
 
-        if (CartVars.carrito.length > 0) {
-            var index = 0;
-            CartVars.carrito.forEach(function (data) {
-                if (data.producto_id == producto.producto_id) {
-                    producto.cantidad = data.cantidad + producto.cantidad;
-                    indexToDelete = index;
+        //console.log(CartVars.carrito.length);
+        console.log(BayresService.carrito.length);
+
+        if (BayresService.carrito.length > 0) {
+            for(var i=0; i < BayresService.carrito.length; i++){
+                if (BayresService.carrito[i].producto_id == producto.producto_id) {
+                    BayresService.carrito[i].cantidad = BayresService.carrito[i].cantidad + producto.cantidad;
                     encontrado = true;
                 }
-                index = index + 1;
-            });
+            }
+            if(!encontrado)
+                BayresService.carrito.push(producto);
+        } else {
+            BayresService.carrito.push(producto);
+        }
 
-            if (encontrado) {
-                CartVars.carrito.splice(indexToDelete, 1);
+        console.log(BayresService.carrito);
+        console.log('actualizarMiCarrito');
+
+        LinksService.broadcast();
+    }
+
+/*
+
+    function updateProductInCart(producto){
+        console.log(CartVars.carrito);
+        var exist = false;
+        var i = 0;
+        for(var i=0; i < CartVars.carrito.length; i++) {
+            if(CartVars.carrito[i].producto_id == producto.producto_id) {
+                var productToUpdate = createProductToUpdate(producto, CartVars.carrito[i].cantidad + 1);
+
+                CartService.updateProductInCart(productToUpdate, function(data){
+                    console.log(data);
+                    if(data != -1) {
+                        console.log('Update Ok');
+                        exist = true;
+                    }
+                });
             }
         }
-        CartVars.carrito.push(producto);
-        CartVars.carrito.sort(function (a, b) {
-            return a.nombre - b.nombre;
+        if(!exist) {
+            console.log('no existe');
+            addToCart(producto)
+        }
+    }
+
+    function addToCart(producto) {
+        var productToUpdate = createProductToUpdate(producto, 1);
+
+        CartService.addToCart(BayresService.carrito_id, productToUpdate, function(data){
+            console.log(data);
+            if(data != -1) {
+                console.log('Insert Ok');
+            }
         });
-        console.log(CartVars.carrito);
-        CartVars.broadcast();
-
-        //calcularCarritoTotal();
     }
-    /*
-    function calcularCarritoTotal() {
-        vm.carritoInfo.cantidadDeProductos = CartVars.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = CartVars.carrito_total();
-        CartVars.broadcast();
 
-        console.log(vm.carritoInfo);
+    function createProductToUpdate(producto, cantidad) {
+        var productToUpdate = {
+            producto_id: producto.producto_id,
+            cantidad: cantidad,
+            en_oferta: producto.en_oferta,
+            precio_unitario: producto.precios[0].precio,
+            carrito_id: BayresService.carrito_id,
+            nombre: producto.nombre,
+            categoria_id: producto.categorias[0].categoria_id
+        };
+
+        return productToUpdate;
     }
-    */
+
+*/
+
     function findProducto() {
         if (vm.productoBuscado.length > 2) {
             ProductService.getByParams('nombre', vm.productoBuscado, 'true', function (data) {
@@ -175,23 +379,11 @@ function MainController($interval, $timeout, $location, AcUtils, UserService,
         $location.path('/detalle/' + id);
         LinksService.selectedIncludeTop = 'detalle/detalle.html';
         LinksService.productId = id;
-        LinksService.broadcast();
 
         BayresService.search = vm.search;
-        BayresService.broadcast();
+        console.log('------');
+        CartVars.broadcast();
     }
-
-    function showSubCategoria(categoria_id) {
-        console.log(categoria_id);
-        vm.showInfo = true;
-    }
-
-    function hideSubCategoria(categoria_id) {
-        console.log(categoria_id);
-        vm.showInfo = false;
-    }
-
-
 
 
 }

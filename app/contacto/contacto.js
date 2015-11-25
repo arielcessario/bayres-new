@@ -14,9 +14,9 @@
     .controller('ContactoController', ContactoController)
     .service('ContactoService', ContactoService);
 
-    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService'];
+    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService', 'CartVars'];
 
-    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService) {
+    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService, CartVars) {
         var vm = this;
 
         vm.message = '';
@@ -36,13 +36,13 @@
             vm.enviado = false;
             $location.path('/main');
             LinksService.selectedIncludeTop = 'main/ofertas.html';
-            LinksService.broadcast();
+            CartVars.broadcast();
         }
 
         function home() {
             $location.path('/main');
             LinksService.selectedIncludeTop = 'main/ofertas.html';
-            LinksService.broadcast();
+            CartVars.broadcast();
         }
 
         function sendConsulta() {

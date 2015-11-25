@@ -11,9 +11,9 @@ angular.module('bayres.usuarios', [])
     }])
     .controller('UsuarioController', UsuarioController);
 
-UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService'];
+UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService', 'CartVars'];
 
-function UsuarioController($location, UserService, AcUtils, LinksService) {
+function UsuarioController($location, UserService, AcUtils, LinksService, CartVars) {
     var vm = this;
 
     vm.userForm = {
@@ -45,10 +45,9 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
     vm.repeatMail = '';
     vm.message = '';
 
-    //vm.home = home;
+    //METODOS
     vm.login = login;
     vm.create = create;
-    vm.update = update;
 
     function validateForm() {
         if(vm.userForm.nombre.trim().length > 0 && vm.userForm.apellido.trim().length > 0
@@ -61,9 +60,10 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
     }
 
     function login() {
-        //$location.path('/login');
+        $location.path('/login');
         LinksService.selectedIncludeTop = 'login/login.html';
-        LinksService.broadcast();
+
+        CartVars.broadcast();
     }
 
     function create() {
@@ -71,25 +71,12 @@ function UsuarioController($location, UserService, AcUtils, LinksService) {
             UserService.create(vm.userForm, function (data) {
                 console.log(data);
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
-                LinksService.broadcast();
+
+                CartVars.broadcast();
             });
         } else {
             vm.message = 'Complete todos los campos';
         }
     }
 
-    function update() {
-        if(validateForm()) {
-            UserService.update(vm.userForm, function (data) {
-                console.log(data);
-            });
-        } else {
-            vm.message = 'Complete todos los campos';
-        }
-    }
-/*
-    function home() {
-        $location.path('/main');
-    }
-    */
 }
