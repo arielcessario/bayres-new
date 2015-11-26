@@ -268,11 +268,13 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeMiddle = '';
                 LinksService.selectedIncludeBottom = '';
 
-                CartVars.broadcast();
+                //CartVars.broadcast();
 
                 if (vm.showCategorias) {
                     vm.showCategorias = false;
                 }
+
+                LinksService.broadcast();
             });
 
             if (vm.menu_mobile_open)
