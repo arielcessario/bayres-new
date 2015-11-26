@@ -60,7 +60,7 @@ function DetalleController($location, AcUtils, ProductService, CartVars,
         LinksService.selectedIncludeMiddle = (vm.search) ? '' : 'main/destacados.html';
         LinksService.selectedIncludeBottom = (vm.search) ? '' : 'main/masvendidos.html';
 
-        CartVars.broadcast();
+        //CartVars.broadcast();
     }
 
     function productoEntityToUpdate(producto) {
