@@ -14,7 +14,9 @@
                        ng-keyup="loginCtrl.passwordEnter($event);"
                        placeholder="Contrase&ntilde;a...">
             </div>
-
+            <div ng-if="loginCtrl.recoveryPassword">
+                <a ng-click="loginCtrl.recoveryPwd();" href="" class="recovery-pwd">Recuperar Contrase&ntilde;a</a>
+            </div>
             <div class="botonera">
                 <button class="btn-big" ng-click="loginCtrl.login();">Aceptar</button>
                 <button class="btn-big" ng-click="loginCtrl.createUsuario();">Nuevo Usuario</button>

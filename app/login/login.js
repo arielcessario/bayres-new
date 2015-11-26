@@ -13,18 +13,22 @@ angular.module('bayres.login', [])
     }])
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$location', 'UserService', 'LinksService', 'BayresService', 'CartVars', 'CartService'];
+LoginController.$inject = ['$location', 'UserService', 'LinksService', 'BayresService', 'CartVars',
+  'CartService', 'AcUtils'];
 
-function LoginController($location, UserService, LinksService, BayresService, CartVars, CartService) {
+function LoginController($location, UserService, LinksService, BayresService, CartVars,
+                         CartService, AcUtils) {
   var vm = this;
 
   vm.message = '';
+  vm.recoveryPassword = false;
   vm.screenWidth = screen.width;
 
   //METODOS
   vm.login = login;
   vm.passwordEnter = passwordEnter;
   vm.createUsuario = createUsuario;
+  vm.recoveryPwd = recoveryPwd;
 
   vm.loginForm = {
     mail:'',
@@ -132,11 +136,12 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
               }
             });
           }
-
+          vm.recoveryPassword = false;
           $location.path('/main');
           LinksService.selectedIncludeTop = 'main/ofertas.html';
         } else {
           vm.message = 'Usuario o contraseña erroneo';
+          vm.recoveryPassword = true;
         }
       });
     } else {
@@ -167,4 +172,37 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
     $location.path('/usuarios');
     LinksService.selectedIncludeTop = 'usuarios/usuario.html';
   }
+
+  function recoveryPwd() {
+    if(vm.loginForm.mail != undefined) {
+      if (vm.loginForm.mail.trim().length > 0) {
+        if (AcUtils.validateEmail(vm.loginForm.mail.trim())) {
+          UserService.userExist(vm.loginForm.mail.trim(), function (data) {
+            console.log(data);
+            if (data != -1) {
+              UserService.forgotPassword(vm.loginForm.mail.trim(), function (data) {
+                console.log(data);
+                vm.recoveryPassword = false;
+                $location.path('/main');
+                LinksService.selectedIncludeTop = 'main/ofertas.html';
+              });
+            }
+            else {
+              vm.message = 'El mail ingresado no existe';
+            }
+          });
+        }
+        else {
+          vm.message = 'El mail no tiene un formato valido';
+        }
+      }
+      else {
+        vm.message = 'Ingrese un mail';
+      }
+    }
+    else {
+      vm.message = 'Ingrese un mail';
+    }
+  }
+
 }
