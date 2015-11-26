@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    window.appName = 'bayres';
+    //window.appName = 'bayres';
 
     angular.module('bayres.contacto', [])
     .config(['$routeProvider', function($routeProvider) {

@@ -11,9 +11,9 @@ angular.module('bayres.usuarios', [])
     }])
     .controller('UsuarioController', UsuarioController);
 
-UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService', 'CartVars'];
+UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService', 'CartVars', 'BayresService'];
 
-function UsuarioController($location, UserService, AcUtils, LinksService, CartVars) {
+function UsuarioController($location, UserService, AcUtils, LinksService, CartVars, BayresService) {
     var vm = this;
 
     vm.userForm = {
@@ -29,7 +29,7 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
         'fecha_nacimiento': '',
         'profesion_id': 0,
         'saldo': '',
-        'rol_id': 0,
+        'rol_id': 3,    //Revisar si es 1:usuario o 3:Cliente
         'news_letter': 0,
         'password': ''
     };
@@ -70,9 +70,20 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
         if(validateForm()) {
             UserService.create(vm.userForm, function (data) {
                 console.log(data);
-                LinksService.selectedIncludeTop = 'main/ofertas.html';
+                if(data != -1) {
+                    UserService.login(vm.userForm.mail.trim(), vm.userForm.password.trim(), 1, function(data) {
+                        if (data != -1) {
+                            BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
+                            BayresService.isLogged = true;
 
-                CartVars.broadcast();
+                            $location.path('/main');
+                            LinksService.selectedIncludeTop = 'main/ofertas.html';
+                        }
+                    });
+                } else {
+                    vm.message = 'Error creando el usuario';
+                }
+                //CartVars.broadcast();
             });
         } else {
             vm.message = 'Complete todos los campos';

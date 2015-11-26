@@ -170,33 +170,33 @@
               <div class="footer-lower-colum">
                 <div class="footer-lower-title">NAVEGACIÓN</div>
                 <br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'main', path: '/main'});">SUCURSALES</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.ofertasForm();">OFERTAS</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.destacadosForm();">DESTACADOS</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.masVendidosForm();">+VENDIDOS</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'main', path: '/main'});bayresCtrl.goToAnchor('section-1', 'section-1');">SUCURSALES</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.ofertasForm();bayresCtrl.goToAnchor('section-2', 'section-2');">OFERTAS</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.destacadosForm();bayresCtrl.goToAnchor('section-3', 'section-3');">DESTACADOS</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.masVendidosForm();bayresCtrl.goToAnchor('section-4', 'section-4');">+VENDIDOS</a><br/>
               </div>
               <div class="footer-lower-colum">
                 <div class="footer-lower-title">REGISTRO</div>
                 <br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'login', path: '/login'});"
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'login', path: '/login'});bayresCtrl.goToAnchor('section-2', 'section-2');"
                    href="">INGRESAR</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'usuario', path: '/usuarios'});"
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'usuario', path: '/usuarios'});bayresCtrl.goToAnchor('section-2', 'section-2');"
                    href="">REGISTRARSE</a><br/>
               </div>
               <div class="footer-lower-colum">
                 <div class="footer-lower-title">CARRITO</div>
                 <br/>
                 <!--a class="footer-lower-link">COMPRAS</a><br/-->
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'carrito', path: '/carrito'});">CHECKOUT</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'carrito', path: '/carrito'});bayresCtrl.goToAnchor('section-2', 'section-2');">CHECKOUT</a><br/>
               </div>
               <div class="footer-lower-colum">
                 <div class="footer-lower-title">LEGALES</div>
                 <br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">ENVIOS/RETORNOS</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">CONFIDENCIALIDAD</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">CONDICIONES DE USO</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'contacto', path: '/contacto'});">CONTACTENOS</a><br/>
-                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales', path: '/legales'});">&iquest;QUIENES SOMOS?</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales2', path: '/legales/2'});bayresCtrl.goToAnchor('section-2', 'section-2');">ENVIOS/RETORNOS</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales3', path: '/legales/3'});bayresCtrl.goToAnchor('section-2', 'section-2');">CONFIDENCIALIDAD</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales4', path: '/legales/4'});bayresCtrl.goToAnchor('section-2', 'section-2');">CONDICIONES DE USO</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'contacto', path: '/contacto'});bayresCtrl.goToAnchor('section-2', 'section-2');">CONTACTENOS</a><br/>
+                <a class="footer-lower-link" ng-click="bayresCtrl.goTo({nombre: 'legales1', path: '/legales/1'});bayresCtrl.goToAnchor('section-2', 'section-2');">&iquest;QUIENES SOMOS?</a><br/>
               </div>
               <div class="footer-lower-colum">
                 <div class="footer-lower-title">REDES SOCIALES</div>

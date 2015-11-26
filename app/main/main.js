@@ -309,57 +309,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
         LinksService.broadcast();
     }
 
-/*
-
-    function updateProductInCart(producto){
-        console.log(CartVars.carrito);
-        var exist = false;
-        var i = 0;
-        for(var i=0; i < CartVars.carrito.length; i++) {
-            if(CartVars.carrito[i].producto_id == producto.producto_id) {
-                var productToUpdate = createProductToUpdate(producto, CartVars.carrito[i].cantidad + 1);
-
-                CartService.updateProductInCart(productToUpdate, function(data){
-                    console.log(data);
-                    if(data != -1) {
-                        console.log('Update Ok');
-                        exist = true;
-                    }
-                });
-            }
-        }
-        if(!exist) {
-            console.log('no existe');
-            addToCart(producto)
-        }
-    }
-
-    function addToCart(producto) {
-        var productToUpdate = createProductToUpdate(producto, 1);
-
-        CartService.addToCart(BayresService.carrito_id, productToUpdate, function(data){
-            console.log(data);
-            if(data != -1) {
-                console.log('Insert Ok');
-            }
-        });
-    }
-
-    function createProductToUpdate(producto, cantidad) {
-        var productToUpdate = {
-            producto_id: producto.producto_id,
-            cantidad: cantidad,
-            en_oferta: producto.en_oferta,
-            precio_unitario: producto.precios[0].precio,
-            carrito_id: BayresService.carrito_id,
-            nombre: producto.nombre,
-            categoria_id: producto.categorias[0].categoria_id
-        };
-
-        return productToUpdate;
-    }
-
-*/
 
     function findProducto() {
         if (vm.productoBuscado.length > 2) {
@@ -373,12 +322,12 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
     }
 
     function showDetalle(id) {
-        $location.path('/detalle/' + id);
-        LinksService.selectedIncludeTop = 'detalle/detalle.html';
         LinksService.productId = id;
+        console.log(LinksService.productId);
+        $location.path('/detalle');
+        LinksService.selectedIncludeTop = 'detalle/detalle.html';
 
         BayresService.search = vm.search;
-        console.log('------');
         CartVars.broadcast();
     }
 

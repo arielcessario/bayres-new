@@ -2,7 +2,7 @@
 
 angular.module('bayres.detalle', [])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/detalle/:id', {
+        $routeProvider.when('/detalle', {
             templateUrl: 'detalle/detalle.html',
             controller: 'DetalleController',
             data: {requiresLogin: false}
@@ -11,13 +11,12 @@ angular.module('bayres.detalle', [])
     .controller('DetalleController', DetalleController);
 
 
-DetalleController.$inject = ['$routeParams', '$location', 'AcUtils', 'ProductService', 'CartVars',
+DetalleController.$inject = ['$location', 'AcUtils', 'ProductService', 'CartVars',
     'LinksService', 'BayresService', 'UserService', 'CartService'];
 
-function DetalleController($routeParams, $location, AcUtils, ProductService, CartVars,
+function DetalleController($location, AcUtils, ProductService, CartVars,
                            LinksService, BayresService, UserService, CartService) {
     var vm = this;
-    vm.id = $routeParams.id;
     vm.search = false;
     vm.producto = {
         descripcion: '',
@@ -39,12 +38,17 @@ function DetalleController($routeParams, $location, AcUtils, ProductService, Car
     vm.addProducto = addProducto;
 
     vm.search = BayresService.search;
+    var id = LinksService.productId;
 
     CartVars.listen(function(){
         vm.search = BayresService.search;
-    });
+        id = LinksService.productId;
+        console.log(id);
 
-    var id = vm.id == undefined ? LinksService.productId : vm.id;
+        ProductService.getByParams("producto_id", '' + id, "true", function (data) {
+            vm.producto = data[0];
+        });
+    });
 
     ProductService.getByParams("producto_id", '' + id, "true", function (data) {
         vm.producto = data[0];

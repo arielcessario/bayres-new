@@ -192,14 +192,25 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
             } else if (location.path === '/contacto') {
                 LinksService.selectedIncludeTop = 'contacto/contacto.html';
-            } else if (location.path === '/legales') {
-                $location.path('/legales/1');
-                LinksService.productId = 1;
+            } else if (location.path === '/legales/1') {
+                LinksService.legalesId = 1;
+                LinksService.selectedIncludeTop = 'legales/legales.html';
+            } else if (location.path === '/legales/2') {
+                LinksService.legalesId = 2;
+                LinksService.selectedIncludeTop = 'legales/legales.html';
+            } else if (location.path === '/legales/3') {
+                LinksService.legalesId = 3;
+                LinksService.selectedIncludeTop = 'legales/legales.html';
+            } else if (location.path === '/legales/4') {
+                LinksService.legalesId = 4;
                 LinksService.selectedIncludeTop = 'legales/legales.html';
             } else if (location.path === '/login') {
-                $location.path('/login');
+                //$location.path('/login');
                 LinksService.selectedIncludeTop = 'login/login.html';
+            } else if (location.path === '/usuarios') {
+                LinksService.selectedIncludeTop = 'usuarios/usuario.html';
             }
+
             console.log('goTo:');
             console.log(location);
             vm.selectedPage = location.nombre;
@@ -459,6 +470,7 @@ window.appName = 'bayres';
         ];
 
         this.productId = 0;
+        this.legalesId = 1;
 
         this.selectedIncludeTop = 'main/ofertas.html';
         this.selectedIncludeMiddle = 'main/destacados.html';
@@ -505,7 +517,7 @@ window.appName = 'bayres';
             return precio;
         };
 
-        /*
+
         this.broadcast = function () {
             console.log('Bayres - broadcast');
             $rootScope.$broadcast("refreshSelectedPage")
@@ -514,7 +526,7 @@ window.appName = 'bayres';
         this.listen = function (callback) {
             $rootScope.$on("refreshSelectedPage", callback)
         };
-        */
+
     }
 
 })();

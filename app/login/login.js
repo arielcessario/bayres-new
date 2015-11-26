@@ -1,6 +1,6 @@
 'use strict';
 
-window.appName = 'bayres';
+//window.appName = 'uiglp';
 
 angular.module('bayres.login', [])
 
