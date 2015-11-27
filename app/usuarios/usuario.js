@@ -11,9 +11,9 @@ angular.module('bayres.usuarios', [])
     }])
     .controller('UsuarioController', UsuarioController);
 
-UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService', 'CartVars', 'BayresService'];
+UsuarioController.$inject = ['$location', 'UserService', 'AcUtils', 'LinksService', 'CartVars', 'BayresService', 'CartService'];
 
-function UsuarioController($location, UserService, AcUtils, LinksService, CartVars, BayresService) {
+function UsuarioController($location, UserService, AcUtils, LinksService, CartVars, BayresService, CartService) {
     var vm = this;
 
     vm.userForm = {
@@ -31,7 +31,9 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
         'saldo': '',
         'rol_id': 3,    //Revisar si es 1:usuario o 3:Cliente
         'news_letter': 0,
-        'password': ''
+        'password': '',
+        'calle': '',
+        'nro': ''
     };
     vm.dirForm = {
         'usuario_id': 0,
@@ -53,7 +55,7 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
         if(vm.userForm.nombre.trim().length > 0 && vm.userForm.apellido.trim().length > 0
             && vm.userForm.fecha_nacimiento.trim().length > 0 && vm.userForm.telefono.trim().length > 0
             && vm.userForm.mail.trim().length > 0 && vm.userForm.password.trim().length > 0
-            && vm.repeatMail.trim().length > 0)
+            && vm.repeatMail.trim().length > 0 && vm.userForm.calle.trim().length > 0 && vm.userForm.nro.trim().length > 0)
             return true;
 
         return false;
@@ -79,6 +81,34 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
                                         if (data != -1) {
                                             BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
                                             BayresService.isLogged = true;
+
+                                            if(BayresService.carrito.length > 0) {
+                                                var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
+                                                console.log(carrito);
+                                                CartService.create(carrito, function(carritoCreado) {
+                                                    if (carritoCreado != -1) {
+                                                        BayresService.tieneCarrito = true;
+                                                        BayresService.miCarrito = carritoCreado;
+
+                                                        console.log(BayresService.miCarrito);
+
+                                                        CartService.addToCart(carritoCreado.carrito_id, BayresService.carrito, function(data){
+                                                            console.log(data);
+                                                            if(data != -1) {
+                                                                for(var i=0; i < BayresService.carrito.length; i++) {
+                                                                    for(var j=0; j < CartVars.carrito.length; j++){
+                                                                        if(CartVars.carrito[j].producto_id == BayresService.carrito[i].producto_id){
+                                                                            if(CartVars.carrito[j].nombre === undefined)
+                                                                                CartVars.carrito[j].nombre = BayresService.carrito[i].nombre;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                BayresService.carrito = [];
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
 
                                             $location.path('/main');
                                             LinksService.selectedIncludeTop = 'main/ofertas.html';

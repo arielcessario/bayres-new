@@ -12,10 +12,10 @@ angular.module('bayres.micuenta', [])
     .controller('MiCuentaController', MiCuentaController);
 
 MiCuentaController.$inject = ['$location', 'UserService', 'CartVars', 'CartService', 'AcUtils',
-    'CarritoService', 'BayresService'];
+    'CarritoService', 'BayresService', 'UserVars'];
 
 function MiCuentaController($location, UserService, CartVars, CartService, AcUtils,
-                            CarritoService, BayresService) {
+                            CarritoService, BayresService, UserVars) {
     var vm = this;
 
     vm.userForm = {
@@ -34,7 +34,8 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         'saldo': '',
         'rol_id': 0,
         'news_letter': 0,
-        'password': ''
+        'password': '',
+        'calle': ''
     };
     vm.passwordForm = {
         'usuario_id': -1,
@@ -73,13 +74,23 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
 
     if (UserService.getFromToken() != false) {
-        //console.log(UserService.getFromToken().data);
-
+        console.log(UserService.getFromToken().data);
         vm.userForm.usuario_id = UserService.getFromToken().data.id;
         vm.userForm.apellido = UserService.getFromToken().data.apellido;
         vm.userForm.nombre = UserService.getFromToken().data.nombre;
         vm.userForm.mail = UserService.getFromToken().data.mail;
         vm.userForm.news_letter = UserService.getFromToken().data.news_letter;
+
+        UserVars.clearCache = true;
+        UserService.getById(UserService.getFromToken().data.id, function(data){
+            if(data != -1) {
+                console.log(data);
+                vm.userForm.calle = data.direcciones[0].calle;
+                //vm.userForm.nro = data.direcciones[0].nro;
+            } else {
+                console.log('Error recuperando el usuario');
+            }
+        });
 
         vm.passwordForm.usuario_id = UserService.getFromToken().data.id;
 
@@ -87,14 +98,24 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     }
 
     function getHistoricoDePedidos(usuario_id) {
+        console.log(usuario_id);
         CartVars.clearCache = true;
+        var tieneCarrito = false;
         CartService.getByParams("status","1","true",usuario_id, function(data){
-            vm.historico_pedidos = data;
-
+            console.log(data);
+            if(data != -1) {
+                tieneCarrito = true;
+                vm.historico_pedidos = data;
+            }
             var select_one = { pedido_id:-1, fecha:'Seleccione un pedido' };
             vm.historico_pedidos.unshift(select_one);
             vm.carrito = vm.historico_pedidos[0];
         });
+        if(!tieneCarrito) {
+            var select_one = { pedido_id:-1, fecha:'Seleccione un pedido' };
+            vm.historico_pedidos.unshift(select_one);
+            vm.carrito = vm.historico_pedidos[0];
+        }
     }
 
     function getCarritoSelected(carrito) {
@@ -112,7 +133,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     function productoEntityToAdd(producto, carrito_id) {
         var miProducto = {
             producto_id: producto.producto_id,
-            cantidad: 1,
+            cantidad: producto.cantidad,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precio_unitario,
             nombre: producto.nombre
@@ -336,8 +357,8 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 if(BayresService.tieneCarrito) {
                     if(CartVars.carrito.length > 0) {
                         var carritoToDelete = [];
-                        for(var i=0; i < carrito[0].productos.length; i++){
-                            carritoToDelete.push(carrito[0].productos[i].carrito_detalle_id);
+                        for(var i=0; i < carrito.productos.length; i++){
+                            carritoToDelete.push(carrito.productos[i].carrito_detalle_id);
                         }
 
                         var existe = false;
@@ -393,12 +414,45 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                 }
                             });
                         }
+                    } else {
+                        var productArray = [];
+                        for(var i=0; i < carrito.productos.length; i++) {
+                            productArray.push(productoEntityToAdd(carrito.productos[i], BayresService.miCarrito.carrito_id));
+                        }
 
+                        BayresService.miCarrito = carritoCreado;
+
+                        console.log(BayresService.miCarrito);
+
+                        CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
+                            console.log(data);
+                            if(data != -1) {
+                                console.log('AddToCart Ok');
+                                for(var i=0; i < productArray.length; i++) {
+                                    for(var j=0; j < CartVars.carrito.length; j++){
+                                        if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                                            if(CartVars.carrito[j].nombre === undefined)
+                                                CartVars.carrito[j].nombre = productArray[i].nombre;
+                                        }
+                                    }
+                                }
+                                carritoCreado.total = CartVars.carrito_total();
+                                CartService.update(carritoCreado, function(carritoUpdate){
+                                    if(carritoUpdate) {
+                                        console.log('Ok');
+                                    } else {
+                                        console.log('Error');
+                                    }
+                                });
+                            } else {
+                                console.log('AddToCart Error');
+                            }
+                        });
                     }
                 } else {
                     var productArray = [];
-                    for(var i=0; i < carrito[0].productos.length; i++) {
-                        productArray.push(productoEntityToAdd(carrito[0].productos[i], BayresService.miCarrito.carrito_id));
+                    for(var i=0; i < carrito.productos.length; i++) {
+                        productArray.push(productoEntityToAdd(carrito.productos[i], BayresService.miCarrito.carrito_id));
                     }
                     var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
                     console.log(carrito);
