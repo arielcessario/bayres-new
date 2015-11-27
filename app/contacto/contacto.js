@@ -49,22 +49,26 @@
             vm.message = '';
             var conErrores = false;
             if (vm.contactoForm.mail == undefined || vm.contactoForm.mail.trim().length == 0 || (!AcUtils.validateEmail(vm.contactoForm.mail.trim()))) {
-                AcUtils.validations('contacto-mail', 'El mail no es v�lido');
+                //AcUtils.validations('contacto-mail', 'El mail no es v�lido');
+                vm.message = 'El mail no es valido';
                 conErrores = true;
             }
 
             if (vm.contactoForm.nombre == undefined || vm.contactoForm.nombre.trim().length == 0) {
-                AcUtils.validations('contacto-nombre', 'Debe ingrear su nombre');
+                //AcUtils.validations('contacto-nombre', 'Debe ingrear su nombre');
+                vm.message = 'Debe ingresar su nombre';
                 conErrores = true;
             }
 
             if (vm.contactoForm.consulta == undefined || vm.contactoForm.consulta.trim().length == 0) {
-                AcUtils.validations('contacto-consulta', 'Debe ingresar un mensaje');
+                //AcUtils.validations('contacto-consulta', 'Debe ingresar un mensaje');
+                vm.message = 'Debe ingresar un mensaje';
                 conErrores = true;
             }
 
             if (vm.contactoForm.asunto == undefined || vm.contactoForm.asunto.trim().length == 0) {
-                AcUtils.validations('contacto-asunto', 'Debe ingresar un asunto');
+                //AcUtils.validations('contacto-asunto', 'Debe ingresar un asunto');
+                vm.message = 'Debe ingresar un asunto';
                 conErrores = true;
             }
 

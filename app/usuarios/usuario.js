@@ -51,9 +51,9 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
 
     function validateForm() {
         if(vm.userForm.nombre.trim().length > 0 && vm.userForm.apellido.trim().length > 0
-        && vm.userForm.fecha_nacimiento.trim().length > 0 && vm.userForm.telefono.trim().length > 0
-        && vm.userForm.mail.trim().length > 0 && vm.userForm.password.trim().length > 0
-        && vm.repeatMail.trim().length > 0)
+            && vm.userForm.fecha_nacimiento.trim().length > 0 && vm.userForm.telefono.trim().length > 0
+            && vm.userForm.mail.trim().length > 0 && vm.userForm.password.trim().length > 0
+            && vm.repeatMail.trim().length > 0)
             return true;
 
         return false;
@@ -68,23 +68,37 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
 
     function create() {
         if(validateForm()) {
-            UserService.create(vm.userForm, function (data) {
-                console.log(data);
-                if(data != -1) {
-                    UserService.login(vm.userForm.mail.trim(), vm.userForm.password.trim(), 1, function(data) {
-                        if (data != -1) {
-                            BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
-                            BayresService.isLogged = true;
+            if(AcUtils.validateEmail(vm.userForm.mail.trim()) && AcUtils.validateEmail(vm.repeatMail.trim())) {
+                if(vm.userForm.mail.trim() === vm.repeatMail.trim()) {
+                    UserService.userExist(vm.userForm.mail, function(exist){
+                        if(exist == -1) {
+                            UserService.create(vm.userForm, function (data) {
+                                console.log(data);
+                                if(data != -1) {
+                                    UserService.login(vm.userForm.mail.trim(), vm.userForm.password.trim(), 1, function(data) {
+                                        if (data != -1) {
+                                            BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
+                                            BayresService.isLogged = true;
 
-                            $location.path('/main');
-                            LinksService.selectedIncludeTop = 'main/ofertas.html';
+                                            $location.path('/main');
+                                            LinksService.selectedIncludeTop = 'main/ofertas.html';
+                                        }
+                                    });
+                                } else {
+                                    vm.message = 'Error creando el usuario';
+                                }
+                                //CartVars.broadcast();
+                            });
+                        } else {
+                            vm.message = 'El mail ingresado ya existe. Por favor ingrese otro mail';
                         }
                     });
                 } else {
-                    vm.message = 'Error creando el usuario';
+                    vm.message = 'Los mails deben ser iguales';
                 }
-                //CartVars.broadcast();
-            });
+            } else {
+                vm.message = 'El mail ingresado no tiene un formato valido';
+            }
         } else {
             vm.message = 'Complete todos los campos';
         }

@@ -61,12 +61,12 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
     });
 
     /*
-    LinksService.listen(function () {
-        console.log('Carrito-LinksService.listen');
-        vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
-        vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
-    });
-*/
+     LinksService.listen(function () {
+     console.log('Carrito-LinksService.listen');
+     vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
+     vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
+     });
+     */
     console.log(vm.carritoDetalles);
 
 
@@ -78,6 +78,7 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
             console.log(CartVars.carrito);
             var carrito_detalle_ids = [];
             carrito_detalle_ids.push(producto.carrito_detalle_id);
+            console.log(carrito_detalle_ids);
             CartService.removeFromCart(carrito_detalle_ids, function(data){
                 if(data != -1) {
                     //BayresService.carrito.splice( index, 1 );
@@ -189,6 +190,7 @@ function CarritoService($http) {
     service.sendMailCarritoVendedor = sendMailCarritoVendedor;
 
     service.sendMailConfirmarCarrito = sendMailConfirmarCarrito;
+    service.sendMailCancelarCarrito = sendMailCancelarCarrito;
 
     return service;
 
@@ -295,13 +297,25 @@ function CarritoService($http) {
 
     function sendMailConfirmarCarrito(mail, nombre, carrito, sucursal, direccion, callback) {
         sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, function(mailComprador){
-           if(mailComprador) {
-               sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, function(mailVendedor){
-                   callback(mailVendedor);
-               });
-           } else {
-               callback(false);
-           }
+            if(mailComprador) {
+                sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, function(mailVendedor){
+                    callback(mailVendedor);
+                });
+            } else {
+                callback(false);
+            }
+        });
+    }
+
+    function sendMailCancelarCarrito(usuario, email, carrito, callback) {
+        sendMailCancelarCarritoComprador(usuario, carrito, function(mailComprador){
+            if(mailComprador) {
+                sendMailCancelarCarritoVendedor(usuario, email, carrito, function(mailVendedor){
+                    callback(mailVendedor);
+                })
+            } else {
+                callback(mailComprador);
+            }
         });
     }
 }

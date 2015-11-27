@@ -127,8 +127,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
         if(carrito_id != -1)
             miProducto.carrito_id = carrito_id;
-        //if(producto.categorias.length > 0)
-        //    categoria_id: producto.categorias[0].categoria_id
 
         console.log(miProducto);
 
@@ -140,24 +138,20 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
         if (UserService.getFromToken() != false) {
             console.log('Estoy logueado');
-            //var miProducto = productoEntity(producto, BayresService.carrito_id);
             if(BayresService.tieneCarrito) {
 
                 console.log(BayresService.miCarrito);
 
                 if(CartVars.carrito.length > 0){
                     console.log(CartVars.carrito);
-                    //console.log(BayresService.carrito);
 
                     var existe = false;
                     for(var i=0; i < CartVars.carrito.length; i++){
                         if(CartVars.carrito[i].producto_id == producto.producto_id){
-                            //CartVars.carrito[i].cantidad = BayresService.carrito[i].cantidad + 1;
                             CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + 1;
                             CartVars.carrito[i].en_oferta = producto.en_oferta;
                             CartVars.carrito[i].nombre = producto.nombre;
-                            //var categoria_id = (producto.categorias.length > 0) ? producto.categorias[0].categoria_id : -1;
-                            //var miProducto = productoEntityToUpdate(CartVars.carrito[i], categoria_id);
+
                             var miProducto = productoEntityToUpdate(CartVars.carrito[i]);
 
                             CartService.updateProductInCart(miProducto, function(data){
@@ -192,7 +186,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                         }
                                     }
                                 }
-                                //BayresService.carrito.push(data[0]);
                                 BayresService.miCarrito.total = CartVars.carrito_total();
                                 console.log(CartVars.carrito);
                                 console.log(BayresService.miCarrito);
@@ -240,6 +233,7 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                 productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                 var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
                 console.log(carrito);
+                /*
                 CartService.create(carrito, function(carrito_id) {
                     if (carrito_id > 0) {
                         BayresService.tieneCarrito = true;
@@ -249,6 +243,15 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                         console.log(BayresService.miCarrito);
 
                         CartService.addToCart(carrito_id, productArray, function(data){
+                            */
+                CartService.create(carrito, function(carritoCreado) {
+                    if (carritoCreado != -1) {
+                        BayresService.tieneCarrito = true;
+                        BayresService.miCarrito = carritoCreado;
+
+                        console.log(BayresService.miCarrito);
+
+                        CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
                             console.log(data);
                             if(data != -1) {
                                 console.log('AddToCart Ok');
@@ -260,8 +263,8 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                         }
                                     }
                                 }
-                                carrito.total = CartVars.carrito_total();
-                                CartService.update(carrito, function(carritoUpdate){
+                                carritoCreado.total = CartVars.carrito_total();
+                                CartService.update(carritoCreado, function(carritoUpdate){
                                     if(carritoUpdate) {
                                         console.log('Ok');
                                     } else {

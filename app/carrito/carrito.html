@@ -18,7 +18,7 @@
                                type="number" ng-model="producto.cantidad" style=""/>
                     <div class="carrito-table-row table-row-image">
                         <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
-                            <img src="images/lupa.png" class="div-image-small" title="Agregar Producto al Carrito" />
+                            <img src="images/lupa.png" class="div-image-small" title="SubTotal: ${{producto.precio_unitario * producto.cantidad}}" />
                         </a>
                     </div>
                     <div class="carrito-table-row table-row-image">

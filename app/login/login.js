@@ -50,7 +50,7 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
             console.log(carrito);
             if (carrito.length > 0) {
               BayresService.tieneCarrito = true;
-              BayresService.miCarrito = carritoEntity(BayresService.usuario.id, carrito[0].carrito_id);
+              BayresService.miCarrito = carritoEntity(BayresService.usuario.id, carrito[0].carrito_id, carrito[0].fecha);
 
               if(BayresService.carrito.length > 0) {
                 var carritoToDelete = [];
@@ -111,15 +111,14 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
           if(!BayresService.tieneCarrito && BayresService.carrito.length > 0) {
             var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
             console.log(carrito);
-            CartService.create(carrito, function(carrito_id) {
-              if (carrito_id > 0) {
+            CartService.create(carrito, function(carritoCreado) {
+              if (carritoCreado != -1) {
                 BayresService.tieneCarrito = true;
-                BayresService.miCarrito = carrito;
-                BayresService.miCarrito.carrito_id = carrito_id;
+                BayresService.miCarrito = carritoCreado;
 
                 console.log(BayresService.miCarrito);
 
-                CartService.addToCart(carrito_id, BayresService.carrito, function(data){
+                CartService.addToCart(carritoCreado.carrito_id, BayresService.carrito, function(data){
                   console.log(data);
                   if(data != -1) {
                     for(var i=0; i < BayresService.carrito.length; i++) {
@@ -149,7 +148,7 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
     }
   }
 
-  function carritoEntity(usuario_id, carrito_id) {
+  function carritoEntity(usuario_id, carrito_id, fecha) {
     var carrito = {
       'usuario_id': usuario_id,
       'total': CartVars.carrito_total(),
@@ -158,6 +157,9 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
 
     if(carrito_id != -1)
       carrito.carrito_id = carrito_id;
+
+    if(fecha !== null && fecha !== undefined)
+      carrito.fecha = fecha;
 
     return carrito;
   }
