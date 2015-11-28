@@ -36,7 +36,7 @@
                         </div>
                         <button ng-click="cuentaCtrl.updateUser();">Ok</button>
                     </div>
-                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.userError == true">
+                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.userMsg">
                         <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="container-buttons">
                         <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
                     </div>
-                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.pwdError == true">
+                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.pwdMsg">
                         <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                             <div class="div-input-big"  style="margin-bottom: 0;height: 27px">{{cuentaCtrl.carrito.total | currency}}</div>
                         </div>
 
-                        <div class="form-message" ng-if="cuentaCtrl.messageResponse.success == true || cuentaCtrl.messageResponse.carritoError == true">
+                        <div class="form-message" ng-if="cuentaCtrl.messageResponse.carritoMsg">
                             <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
                         </div>
                     </div>

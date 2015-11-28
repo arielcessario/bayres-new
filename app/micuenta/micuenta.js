@@ -76,17 +76,26 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     if (UserService.getFromToken() != false) {
         console.log(UserService.getFromToken().data);
         vm.userForm.usuario_id = UserService.getFromToken().data.id;
-        vm.userForm.apellido = UserService.getFromToken().data.apellido;
-        vm.userForm.nombre = UserService.getFromToken().data.nombre;
-        vm.userForm.mail = UserService.getFromToken().data.mail;
-        vm.userForm.news_letter = UserService.getFromToken().data.news_letter;
 
         UserVars.clearCache = true;
         UserService.getById(UserService.getFromToken().data.id, function(data){
             if(data != -1) {
                 console.log(data);
+                vm.userForm.apellido = data.apellido;
+                vm.userForm.nombre = data.nombre;
+                vm.userForm.mail = data.mail;
+                vm.userForm.news_letter = (data.news_letter == 1) ? true : false;
+                vm.userForm.fecha_nacimiento = data.fecha_nacimiento;
+                vm.userForm.rol_id = data.rol_id;
+                vm.userForm.saldo = data.saldo;
+                vm.userForm.telefono = data.telefono;
+                vm.userForm.tipo_doc = data.tipo_doc;
+                vm.userForm.nro_doc = data.nro_doc;
+
                 vm.userForm.calle = data.direcciones[0].calle;
                 //vm.userForm.nro = data.direcciones[0].nro;
+
+                console.log(vm.userForm);
             } else {
                 console.log('Error recuperando el usuario');
             }
@@ -250,9 +259,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
     function validateForm() {
         if(vm.userForm.nombre.trim().length > 0 && vm.userForm.apellido.trim().length > 0
-            && vm.userForm.fecha_nacimiento.trim().length > 0 && vm.userForm.telefono.trim().length > 0
-            && vm.userForm.mail.trim().length > 0 && vm.userForm.password.trim().length > 0
-            && vm.repeatMail.trim().length > 0)
+            && vm.userForm.mail.trim().length > 0 && vm.userForm.calle.trim().length > 0)
             return true;
 
         return false;
@@ -260,16 +267,40 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
     function updateUser() {
         if(validateForm()) {
-            UserService.update(vm.userForm, function (data) {
-                console.log(data);
-                if(data != -1) {
-                    setMessageResponse(true, false, false, false, 'Datos actualizados');
-                } else {
-                    setMessageResponse(false, true, false, false, 'Error actualizando usuario');
-                }
-            });
+            var mailOld = UserService.getFromToken().data.mail;
+            var mailNew = vm.userForm.mail.trim();
+            console.log(mailOld);
+            console.log(mailNew);
+            if(mailOld !== mailNew) {
+                console.log('verifico el mail');
+                UserService.userExist(vm.userForm.mail.trim(), function(existe){
+                    console.log(existe);
+                    if(existe == -1) {
+                        vm.userForm.news_letter = (vm.userForm.news_letter) ? 1 : 0;
+                        UserService.update(vm.userForm, function (data) {
+                            console.log(data);
+                            if(data != -1) {
+                                setMessageResponse(true, false, false, 'Datos actualizados');
+                            } else {
+                                setMessageResponse(true, false, false, 'Error actualizando usuario');
+                            }
+                        });
+                    } else {
+                        setMessageResponse(true, false, false, 'El mail ingresado ya existe');
+                    }
+                });
+            } else {
+                UserService.update(vm.userForm, function (data) {
+                    console.log(data);
+                    if(data != -1) {
+                        setMessageResponse(true, false, false, 'Datos actualizados');
+                    } else {
+                        setMessageResponse(true, false, false, 'Error actualizando usuario');
+                    }
+                });
+            }
         } else {
-            setMessageResponse(false, true, false, false, 'Complete todos los campos');
+            setMessageResponse(true, false, false, 'Complete todos los campos');
         }
     }
 
@@ -278,13 +309,15 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
             UserService.changePassword(vm.passwordForm.usuario_id, vm.passwordForm.password, vm.passwordForm.password_repeat, function (data) {
                 console.log(data);
                 if(data != -1) {
-                    setMessageResponse(true, false, false, false, 'La contrase�a se actualizo');
+                    vm.passwordForm.password = '';
+                    vm.passwordForm.password_repeat = '';
+                    setMessageResponse(false, true, false, 'La contrase�a se actualizo');
                 } else {
-                    setMessageResponse(false, false, true, false, 'Error actualizando contrase�a');
+                    setMessageResponse(false, true, false, 'Error actualizando contrase�a');
                 }
             });
         } else {
-            setMessageResponse(false, false, true, false, 'Ingrese las contrase�as');
+            setMessageResponse(false, true, false, 'Ingrese las contrase�as');
         }
     }
 
@@ -296,20 +329,19 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
      * @param carritoError
      * @param message
      */
-    function setMessageResponse(success, userError, pwdError, carritoError, message) {
-        vm.messageResponse.success = success;
-        vm.messageResponse.userError = userError;
-        vm.messageResponse.pwdError = pwdError;
-        vm.messageResponse.carritoError = carritoError;
+    function setMessageResponse(userError, pwdError, carritoError, message) {
+        vm.messageResponse.userMsg = userError;
+        vm.messageResponse.pwdMsg = pwdError;
+        vm.messageResponse.carritoMsg = carritoError;
         vm.messageResponse.message = message;
     }
 
     function cancelCarrito(carrito) {
         if(carrito.pedido_id != undefined) {
-            setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+            setMessageResponse(false, false, true, 'Seleccione un pedido');
         } else {
             if (carrito.status == 3) {
-                setMessageResponse(false, false, false, true, 'El Pedido ya esta confirmado. No se puede cancelar');
+                setMessageResponse(false, false, true, 'El Pedido ya esta confirmado. No se puede cancelar');
             }
             else {
                 var result = confirm('�Esta seguro que desea Cancelar el Pedido ' + carrito.carrito_id + '?');
@@ -325,9 +357,9 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
                             CarritoService.sendMailCancelarCarrito(usuarioNombre, usuario.mail, carrito, function(data){
                                 if(data) {
-                                    setMessageResponse(true, false, false, false, 'Se envio el mail');
+                                    setMessageResponse(false, false, true, 'Se envio el mail');
                                 } else {
-                                    setMessageResponse(false, false, false, true, 'Error enviando el mail');
+                                    setMessageResponse(false, false, true, 'Error enviando el mail');
                                 }
                             });
 
@@ -335,9 +367,9 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             var carritoAux = {pedido_id: -1};
                             getCarritoSelected(carritoAux);
                             //getCarritoSelected(null);
-                            setMessageResponse(true, false, false, false, 'Su pedido fue cancelado satisfactoriamente');
+                            setMessageResponse(false, false, true, 'Su pedido fue cancelado satisfactoriamente');
                         } else {
-                            setMessageResponse(false, false, false, true, 'Error cancelando el pedido');
+                            setMessageResponse(false, false, true, 'Error cancelando el pedido');
                         }
                     });
                 }
@@ -349,45 +381,40 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         console.log(carrito);
 
         if(carrito === undefined) {
-            setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+            setMessageResponse(false, false, true, 'Seleccione un pedido');
         } else {
             if(carrito.carrito_id == -1) {
-                setMessageResponse(false, false, false, true, 'Seleccione un pedido');
+                setMessageResponse(false, false, true, 'Seleccione un pedido');
             } else {
                 if(BayresService.tieneCarrito) {
                     if(CartVars.carrito.length > 0) {
                         var carritoToDelete = [];
+                        var carritoToAdd = [];
+                        var carritoAux = {};
+                        var agregado = false;
                         for(var i=0; i < carrito.productos.length; i++){
-                            carritoToDelete.push(carrito.productos[i].carrito_detalle_id);
-                        }
-
-                        var existe = false;
-                        for(var i=0; i < CartVars.carrito.length; i++) {
-                            if(CartVars.carrito[i].producto_id == producto.producto_id) {
-                                CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + producto.cantidad;
-                                existe = true;
-                                CartService.updateProductInCart(CartVars.carrito[i], function(data){
-                                    if(data != -1) {
-                                        console.log('Update Ok');
-                                        BayresService.miCarrito.total = CartVars.carrito_total();
-                                        CartService.update(BayresService.miCarrito, function(carritoActualizado){
-                                            console.log(carritoActualizado);
-                                            if(carritoActualizado) {
-                                                console.log('Carrito update ok');
-                                                CartVars.broadcast();
-                                            } else {
-                                                console.log('Carrito update error');
-                                            }
-                                        });
-                                    } else {
-                                        console.log('Update Error');
-                                    }
-                                });
+                            for(var j=0; j < CartVars.carrito.length; j++) {
+                                if(carrito.productos[i].producto_id == CartVars.carrito[j].producto_id) {
+                                    carritoAux = carrito.productos[i];
+                                    carritoAux.carrito_id = BayresService.miCarrito.carrito_id;
+                                    carritoAux.cantidad = carrito.productos[i].cantidad + CartVars.carrito[j].cantidad;
+                                    carritoToDelete.push(CartVars.carrito[j].carrito_detalle_id);
+                                    carritoToAdd.push(carritoAux);
+                                    agregado = true;
+                                }
                             }
+                            if(!agregado)
+                                carritoToAdd.push(carrito.productos[i]);
+
+                            agregado = false;
                         }
-                        if(!existe) {
+                        console.log(carritoToDelete);
+                        console.log(carritoToAdd);
+                        if(carritoToDelete.length == 0) {
                             var productArray = [];
-                            productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                            for(var i=0; i < carritoToAdd.length; i++) {
+                                productArray.push(productoEntityToAdd(carritoToAdd[i], BayresService.miCarrito.carrito_id));
+                            }
                             CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
                                 console.log(data);
                                 if(data != -1) {
@@ -409,6 +436,36 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                             CartVars.broadcast();
                                         } else {
                                             console.log('Carrito update error');
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            CartService.removeFromCart(carritoToDelete, function(data) {
+                                if (data != -1) {
+                                    CartService.addToCart(BayresService.miCarrito.carrito_id, carritoToAdd, function(data){
+                                        console.log(data);
+                                        if(data != -1) {
+                                            for(var i=0; i < carritoToAdd.length; i++) {
+                                                for(var j=0; j < CartVars.carrito.length; j++){
+                                                    if(CartVars.carrito[j].producto_id == carritoToAdd[i].producto_id){
+                                                        if(CartVars.carrito[j].nombre === undefined)
+                                                            CartVars.carrito[j].nombre = carritoToAdd[i].nombre;
+                                                    }
+                                                }
+                                            }
+                                            BayresService.miCarrito.total = CartVars.carrito_total();
+                                            console.log(CartVars.carrito);
+                                            console.log(BayresService.miCarrito);
+                                            CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                                                console.log(carritoActualizado);
+                                                if(carritoActualizado) {
+                                                    console.log('Carrito update ok');
+                                                    CartVars.broadcast();
+                                                } else {
+                                                    console.log('Carrito update error');
+                                                }
+                                            });
                                         }
                                     });
                                 }
