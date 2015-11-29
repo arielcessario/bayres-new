@@ -43,11 +43,9 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
           BayresService.usuario = {id:data.user.usuario_id, nombre: data.user.nombre, apellido: data.user.apellido, mail:data.user.mail, rol:data.user.rol_id};
           BayresService.isLogged = true;
 
-          console.log(data);
-
           CartVars.clearCache = true;
           CartService.reloadLastCart(BayresService.usuario.id, function(carrito) {
-            console.log(carrito);
+            //console.log(carrito);
             if (carrito.length > 0) {
               BayresService.tieneCarrito = true;
               BayresService.miCarrito = carritoEntity(BayresService.usuario.id, carrito[0].carrito_id, carrito[0].fecha);
@@ -69,10 +67,10 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                 for(var i=0; i < carrito[0].productos.length; i++) {
                   BayresService.carrito.push(carrito[0].productos[i]);
                 }
-                console.log(carritoToDelete);
-                console.log(BayresService.carrito);
+                //console.log(carritoToDelete);
+                //console.log(BayresService.carrito);
                 CartService.removeFromCart(carritoToDelete, function(data){
-                  console.log(data);
+                  //console.log(data);
                   if(data) {
                     CartService.addToCart(BayresService.miCarrito.carrito_id, BayresService.carrito, function(data){
                       if(data != -1) {
@@ -86,7 +84,7 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                         }
                         BayresService.miCarrito = {carrito_id: carrito[0].carrito_id, status: 0, usuario_id: BayresService.usuario.id, total:CartVars.carrito_total()};
                         CartService.update(BayresService.miCarrito, function(miCarrito){
-                          console.log(miCarrito);
+                          //console.log(miCarrito);
                           if(miCarrito) {
                             console.log('Update Ok');
                           } else {
@@ -101,25 +99,25 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                 });
               } else {
                 CartVars.carrito = carrito[0].productos;
-                console.log(CartVars.carrito);
+                //console.log(CartVars.carrito);
                 if(CartVars.carrito.length > 0 && BayresService.carrito.length == 0)
                   CartVars.broadcast();
               }
             }
           });
-          console.log(BayresService.carrito);
+          //console.log(BayresService.carrito);
           if(!BayresService.tieneCarrito && BayresService.carrito.length > 0) {
             var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
-            console.log(carrito);
+            //console.log(carrito);
             CartService.create(carrito, function(carritoCreado) {
               if (carritoCreado != -1) {
                 BayresService.tieneCarrito = true;
                 BayresService.miCarrito = carritoCreado;
 
-                console.log(BayresService.miCarrito);
+                //console.log(BayresService.miCarrito);
 
                 CartService.addToCart(carritoCreado.carrito_id, BayresService.carrito, function(data){
-                  console.log(data);
+                  //console.log(data);
                   if(data != -1) {
                     for(var i=0; i < BayresService.carrito.length; i++) {
                       for(var j=0; j < CartVars.carrito.length; j++){
@@ -180,10 +178,10 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
       if (vm.loginForm.mail.trim().length > 0) {
         if (AcUtils.validateEmail(vm.loginForm.mail.trim())) {
           UserService.userExist(vm.loginForm.mail.trim(), function (data) {
-            console.log(data);
+            //console.log(data);
             if (data != -1) {
               UserService.forgotPassword(vm.loginForm.mail.trim(), function (data) {
-                console.log(data);
+                //console.log(data);
                 vm.recoveryPassword = false;
                 $location.path('/main');
                 LinksService.selectedIncludeTop = 'main/ofertas.html';

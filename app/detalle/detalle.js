@@ -184,7 +184,7 @@ function DetalleController($location, AcUtils, ProductService, CartVars,
                                     }
                                 }
                             }
-                            CartVars.carrito.push(data[0]);
+
                             BayresService.miCarrito.total = CartVars.carrito_total();
                             CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                 if(carritoActualizado) {

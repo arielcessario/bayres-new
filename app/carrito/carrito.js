@@ -67,8 +67,6 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
      vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
      });
      */
-    console.log(vm.carritoDetalles);
-
 
     function removeProducto(index) {
         var producto = (CartVars.carrito.length > 0) ? CartVars.carrito[index] : BayresService.carrito[index];
@@ -78,12 +76,10 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
             console.log(CartVars.carrito);
             var carrito_detalle_ids = [];
             carrito_detalle_ids.push(producto.carrito_detalle_id);
-            console.log(carrito_detalle_ids);
+            //console.log(carrito_detalle_ids);
             CartService.removeFromCart(carrito_detalle_ids, function(data){
                 if(data != -1) {
-                    //BayresService.carrito.splice( index, 1 );
                     BayresService.miCarrito.total = CartVars.carrito_total();
-                    console.log(BayresService.miCarrito);
                     CartService.update(BayresService.miCarrito, function(miCarrito){
                         if(miCarrito) {
                             console.log('Update Ok');
@@ -124,7 +120,6 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
         CartService.updateProductInCart(miProducto, function(data){
             if(data) {
                 BayresService.miCarrito.total = CartVars.carrito_total();
-                console.log(BayresService.miCarrito);
                 CartService.update(BayresService.miCarrito, function(miCarrito){
                     if(miCarrito) {
                         console.log('Update Ok');
@@ -140,13 +135,9 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
 
 
     function confirmCarrito() {
-
-        //if(CartVars.carrito.length > 0 || BayresService.carrito.length > 0) {
         if(CartVars.carrito.length > 0) {
-            //BayresService.miCarrito.total = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
             BayresService.miCarrito.total = CartVars.carrito_total();
             BayresService.miCarrito.status = 1;
-            console.log(BayresService.miCarrito);
 
             CartService.update(BayresService.miCarrito, function(carrito){
                 if(carrito) {
@@ -154,18 +145,21 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     console.log('Envio los mails');
 
                     BayresService.miCarrito.productos = CartVars.carrito;
+                    var carritoMail = {carrito: BayresService.miCarrito, sucursal:'Siempre Sucursal Once'};
 
                     UserVars.clearCache = true;
                     UserService.getById(UserService.getFromToken().data.id, function(data) {
                         if (data != -1) {
-                            console.log(data);
-                            var direccion = data.direcciones[0].calle + ' ' + data.direcciones[0].nro;
-                            var cliente = BayresService.usuario.nombre + BayresService.usuario.apellido;
+                            carritoMail.direccion = data.direcciones[0].calle + ' ' + data.direcciones[0].nro;
+                            carritoMail.cliente = BayresService.usuario.nombre + ' ' + BayresService.usuario.apellido;
+                            carritoMail.mail = data.mail;
 
-                            CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
-                                cliente, BayresService.miCarrito, 1, direccion, function(data){
+                            console.log(carritoMail);
+
+                            CarritoService.sendMailConfirmarCarrito(carritoMail, function(data){
                                     console.log(data);
                             });
+
                         }
                     });
 
@@ -304,10 +298,12 @@ function CarritoService($http) {
             });
     }
 
-    function sendMailConfirmarCarrito(mail, nombre, carrito, sucursal, direccion, callback) {
-        sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, function(mailComprador){
+    function sendMailConfirmarCarrito(carritoMail, callback) {
+        console.log(carritoMail);
+        sendMailCarritoComprador(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal, carritoMail.direccion, function(mailComprador){
             if(mailComprador) {
-                sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, function(mailVendedor){
+                console.log(carritoMail);
+                sendMailCarritoVendedor(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal, carritoMail.direccion, function(mailVendedor){
                     callback(mailVendedor);
                 });
             } else {

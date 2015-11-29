@@ -74,7 +74,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
 
 
     CartVars.listen(function(){
-        vm.userForm.news_letter = (data.news_letter == 1) ? true : false;
+        vm.userForm.news_letter = (vm.userForm.news_letter == 1) ? true : false;
     });
 
 
@@ -221,7 +221,24 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                         }
                     });
                 }
-
+            } else {
+                console.log('no tiene carrito');
+                var productArray = [];
+                productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
+                CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
+                    console.log(data);
+                    if(data != -1) {
+                        BayresService.miCarrito.total = CartVars.carrito_total();
+                        CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                            if(carritoActualizado) {
+                                console.log('Carrito update ok');
+                                CartVars.broadcast();
+                            } else {
+                                console.log('Carrito update error');
+                            }
+                        });
+                    }
+                });
             }
         } else {
             var productArray = [];
@@ -486,10 +503,9 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                         for(var i=0; i < carrito.productos.length; i++) {
                             productArray.push(productoEntityToAdd(carrito.productos[i], BayresService.miCarrito.carrito_id));
                         }
-
                         console.log(BayresService.miCarrito);
 
-                        CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
+                        CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
                             console.log(data);
                             if(data != -1) {
                                 console.log('AddToCart Ok');
@@ -501,8 +517,8 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                         }
                                     }
                                 }
-                                carritoCreado.total = CartVars.carrito_total();
-                                CartService.update(carritoCreado, function(carritoUpdate){
+                                BayresService.miCarrito.total = CartVars.carrito_total();
+                                CartService.update(BayresService.miCarrito, function(carritoUpdate){
                                     if(carritoUpdate) {
                                         console.log('Ok');
                                         CartVars.broadcast();
