@@ -46,6 +46,7 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
 
     vm.repeatMail = '';
     vm.message = '';
+    vm.showError = false;
 
     //METODOS
     vm.login = login;
@@ -103,6 +104,7 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
                                                                         }
                                                                     }
                                                                 }
+                                                                vm.showError = false;
                                                                 BayresService.carrito = [];
                                                             }
                                                         });
@@ -115,22 +117,118 @@ function UsuarioController($location, UserService, AcUtils, LinksService, CartVa
                                         }
                                     });
                                 } else {
+                                    vm.showError = true;
                                     vm.message = 'Error creando el usuario';
+                                    vm.error_code = 1;
                                 }
                                 //CartVars.broadcast();
                             });
                         } else {
+                            vm.showError = true;
                             vm.message = 'El mail ingresado ya existe. Por favor ingrese otro mail';
+                            vm.error_code = 6;
                         }
                     });
                 } else {
+                    vm.showError = true;
                     vm.message = 'Los mails deben ser iguales';
+                    vm.error_code = 6;
                 }
             } else {
+                vm.showError = true;
                 vm.message = 'El mail ingresado no tiene un formato valido';
+                vm.error_code = 6;
             }
         } else {
-            vm.message = 'Complete todos los campos';
+            vm.showError = true;
+            if(vm.userForm.nombre.trim().length == 0) {
+                vm.message = "El Nombre es Obligatorio";
+                vm.error_code = 1;
+                return;
+            }
+            if(vm.userForm.apellido.trim().length == 0) {
+                vm.message = "El Apellido es Obligatorio";
+                vm.error_code = 2;
+                return;
+            }
+            if(vm.userForm.fecha_nacimiento.trim().length == 0) {
+                vm.message = "La Fecha de Nacimiento es Obligatoria";
+                vm.error_code = 3;
+                return;
+            }
+            if(!validarFormatoFecha(vm.userForm.fecha_nacimiento)) {
+                vm.message = "La Fecha de Nacimiento no tiene el formato correcto dd/mm/aaaa";
+                vm.error_code = 3;
+                return;
+            }
+            if(vm.userForm.telefono.trim().length == 0) {
+                vm.message = "El Teléfono es Obligatorio";
+                vm.error_code = 4;
+                return;
+            }
+            if(!validatePhoneNumber(vm.userForm.telefono.trim())) {
+                vm.message = "El Teléfono no tiene un formato valido";
+                vm.error_code = 4;
+                return;
+            }
+            if(vm.userForm.calle.trim().length == 0 || vm.userForm.nro.trim().length == 0) {
+                vm.message = "La dirección y el numero son Obligatorias";
+                vm.error_code = 5;
+                return;
+            }
+            if(vm.userForm.mail == undefined) {
+                vm.message = "El Mail es Obligatorio";
+                vm.error_code = 6;
+                return;
+            }
+            if(vm.userForm.mail.trim().length == 0) {
+                vm.message = "El Mail es Obligatorio";
+                vm.error_code = 6;
+                return;
+            }
+            if(vm.repeatMail == undefined) {
+                vm.message = "El Mail es Obligatorio";
+                vm.error_code = 6;
+                return;
+            }
+            if(vm.repeatMail.trim().length == 0) {
+                vm.message = "Debe Repetir el mismo mail";
+                vm.error_code = 7;
+                return;
+            }
+            if(vm.userForm.password.trim().length == 0) {
+                vm.message = "La Contraseña es Obligatoria";
+                vm.error_code = 8;
+                return;
+            }
+            if (!AcUtils.validateEmail(vm.userForm.mail.trim())) {
+                vm.message = "El mail ingresado no es valido";
+                vm.error_code = 6;
+                return;
+            }
+            if (!AcUtils.validateEmail(vm.repeatMail.trim())) {
+                vm.message = "El segundo mail ingresado no es valido";
+                vm.error_code = 7;
+                return;
+            }
+        }
+    }
+
+    function validatePhoneNumber(phoneno) {
+        //var RegExPattern = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
+        var RegExPattern = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
+        if(phoneno.match(RegExPattern)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function validarFormatoFecha(campo) {
+        var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+        if ((campo.match(RegExPattern)) && (campo!='')) {
+            return true;
+        } else {
+            return false;
         }
     }
 

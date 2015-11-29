@@ -12,10 +12,10 @@ angular.module('bayres.micuenta', [])
     .controller('MiCuentaController', MiCuentaController);
 
 MiCuentaController.$inject = ['$location', 'UserService', 'CartVars', 'CartService', 'AcUtils',
-    'CarritoService', 'BayresService', 'UserVars'];
+    'CarritoService', 'BayresService', 'UserVars', 'LinksService'];
 
 function MiCuentaController($location, UserService, CartVars, CartService, AcUtils,
-                            CarritoService, BayresService, UserVars) {
+                            CarritoService, BayresService, UserVars, LinksService) {
     var vm = this;
 
     vm.userForm = {
@@ -73,6 +73,11 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     vm.getCarritoSelected = getCarritoSelected;
 
 
+    CartVars.listen(function(){
+        vm.userForm.news_letter = (data.news_letter == 1) ? true : false;
+    });
+
+
     if (UserService.getFromToken() != false) {
         console.log(UserService.getFromToken().data);
         vm.userForm.usuario_id = UserService.getFromToken().data.id;
@@ -125,6 +130,8 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
             vm.historico_pedidos.unshift(select_one);
             vm.carrito = vm.historico_pedidos[0];
         }
+        console.log(vm.historico_pedidos);
+        console.log(vm.carrito);
     }
 
     function getCarritoSelected(carrito) {
@@ -397,9 +404,12 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                 if(carrito.productos[i].producto_id == CartVars.carrito[j].producto_id) {
                                     carritoAux = carrito.productos[i];
                                     carritoAux.carrito_id = BayresService.miCarrito.carrito_id;
+                                    console.log(carrito.productos[i]);
+                                    console.log(CartVars.carrito[j]);
                                     carritoAux.cantidad = carrito.productos[i].cantidad + CartVars.carrito[j].cantidad;
                                     carritoToDelete.push(CartVars.carrito[j].carrito_detalle_id);
                                     carritoToAdd.push(carritoAux);
+                                    console.log(carritoAux);
                                     agregado = true;
                                 }
                             }
@@ -477,8 +487,6 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             productArray.push(productoEntityToAdd(carrito.productos[i], BayresService.miCarrito.carrito_id));
                         }
 
-                        BayresService.miCarrito = carritoCreado;
-
                         console.log(BayresService.miCarrito);
 
                         CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
@@ -497,6 +505,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                 CartService.update(carritoCreado, function(carritoUpdate){
                                     if(carritoUpdate) {
                                         console.log('Ok');
+                                        CartVars.broadcast();
                                     } else {
                                         console.log('Error');
                                     }
@@ -536,6 +545,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                     CartService.update(carritoCreado, function(carritoUpdate){
                                         if(carritoUpdate) {
                                             console.log('Ok');
+                                            CartVars.broadcast();
                                         } else {
                                             console.log('Error');
                                         }

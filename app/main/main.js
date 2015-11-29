@@ -202,11 +202,13 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                         });
                     }
                 } else {
+                    console.log('no tiene carrito');
                     var productArray = [];
                     productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                     CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
                         console.log(data);
                         if(data != -1) {
+                            /*
                             for(var i=0; i < productArray.length; i++) {
                                 for(var j=0; j < CartVars.carrito.length; j++){
                                     if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
@@ -214,8 +216,7 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                             CartVars.carrito[j].nombre = productArray[i].nombre;
                                     }
                                 }
-                            }
-                            CartVars.carrito.push(data[0]);
+                            }*/
                             BayresService.miCarrito.total = CartVars.carrito_total();
                             CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                 if(carritoActualizado) {

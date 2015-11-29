@@ -14,10 +14,10 @@ angular.module('bayres.carrito', [])
 
 
 CarritoController.$inject = ['AcUtils', 'UserService', 'CartVars', 'CartService',
-    '$timeout', '$location', 'CarritoService', 'LinksService', 'BayresService'];
+    '$timeout', '$location', 'CarritoService', 'LinksService', 'BayresService', 'UserVars'];
 
-function CarritoController(AcUtils, UserService, CartVars, CartService,
-                           $timeout, $location, CarritoService, LinksService, BayresService) {
+function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout,
+                           $location, CarritoService, LinksService, BayresService, UserVars) {
 
     //  VARIABLES
     var vm = this;
@@ -155,10 +155,19 @@ function CarritoController(AcUtils, UserService, CartVars, CartService,
 
                     BayresService.miCarrito.productos = CartVars.carrito;
 
-                    CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
-                        BayresService.usuario.nombre, BayresService.miCarrito, 1, 'Falta la direccion', function(data){
+                    UserVars.clearCache = true;
+                    UserService.getById(UserService.getFromToken().data.id, function(data) {
+                        if (data != -1) {
                             console.log(data);
-                        });
+                            var direccion = data.direcciones[0].calle + ' ' + data.direcciones[0].nro;
+                            var cliente = BayresService.usuario.nombre + BayresService.usuario.apellido;
+
+                            CarritoService.sendMailConfirmarCarrito(BayresService.usuario.mail,
+                                cliente, BayresService.miCarrito, 1, direccion, function(data){
+                                    console.log(data);
+                            });
+                        }
+                    });
 
                     BayresService.tieneCarrito = false;
                     BayresService.miCarrito = {};

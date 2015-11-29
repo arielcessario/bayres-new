@@ -20,6 +20,7 @@
         var vm = this;
 
         vm.message = '';
+        vm.showError = false;
         vm.enviado = false;
 
         vm.sendConsulta = sendConsulta;
@@ -46,39 +47,41 @@
         }
 
         function sendConsulta() {
-            vm.message = '';
-            var conErrores = false;
-            if (vm.contactoForm.mail == undefined || vm.contactoForm.mail.trim().length == 0 || (!AcUtils.validateEmail(vm.contactoForm.mail.trim()))) {
-                //AcUtils.validations('contacto-mail', 'El mail no es v�lido');
-                vm.message = 'El mail no es valido';
-                conErrores = true;
-            }
-
+            vm.showError = true;
             if (vm.contactoForm.nombre == undefined || vm.contactoForm.nombre.trim().length == 0) {
-                //AcUtils.validations('contacto-nombre', 'Debe ingrear su nombre');
-                vm.message = 'Debe ingresar su nombre';
-                conErrores = true;
+                vm.message = "El Nombre es Obligatorio";
+                vm.error_code = 1;
+                return;
             }
 
-            if (vm.contactoForm.consulta == undefined || vm.contactoForm.consulta.trim().length == 0) {
-                //AcUtils.validations('contacto-consulta', 'Debe ingresar un mensaje');
-                vm.message = 'Debe ingresar un mensaje';
-                conErrores = true;
+            if (vm.contactoForm.mail == undefined || vm.contactoForm.mail.trim().length == 0) {
+                vm.message = "El Mail es Obligatorio";
+                vm.error_code = 2;
+                return;
+            }
+
+            if(!AcUtils.validateEmail(vm.contactoForm.mail.trim())) {
+                vm.message = "El Mail no tiene un formato valido";
+                vm.error_code = 2;
+                return;
             }
 
             if (vm.contactoForm.asunto == undefined || vm.contactoForm.asunto.trim().length == 0) {
-                //AcUtils.validations('contacto-asunto', 'Debe ingresar un asunto');
-                vm.message = 'Debe ingresar un asunto';
-                conErrores = true;
+                vm.message = "El asunto es Obligatorio";
+                vm.error_code = 3;
+                return;
             }
 
-            if (conErrores) {
+            if (vm.contactoForm.consulta == undefined || vm.contactoForm.consulta.trim().length == 0) {
+                vm.message = "La consulta es Obligatoria";
+                vm.error_code = 4;
                 return;
             }
 
             ContactoService.sendMailConsulta(vm.contactoForm, function(data){
                 if(data) {
                     vm.enviado = true;
+                    vm.message = 'El mail fue enviado';
                     $timeout(hideMessage, 3000);
                     vm.contactoForm = {
                         asunto:'',
@@ -86,6 +89,7 @@
                         mail:'',
                         consulta:''
                     };
+                    //vm.message = '';
                 } else {
                     vm.message = 'Error enviando el mail';
                 }
