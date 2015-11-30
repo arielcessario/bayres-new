@@ -1399,3 +1399,31 @@ input[type='checkbox'] {
 .news-letter{
 
 }
+.container-legales-content{
+  min-height: 370px;
+  width: 690px;
+  font-family: $myriad_pro_regular, serif;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  border: #8CC63F 1px solid;
+  padding: 25px 0;
+  @media (max-width: 700px) {
+    width: 95%;
+  }
+}
+
+.div-legal-close{
+  float: right;
+  position: relative;
+  top: -15px;
+  right: 10px;
+}
+
+.title-font-legales{
+  font-family: $myriad_pro_bold_condensed;
+  font-size: 71px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+  @media (max-width: 700px) {
+    font-size: 60px;
+  }
+}

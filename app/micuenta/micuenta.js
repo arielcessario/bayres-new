@@ -77,15 +77,17 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         vm.userForm.news_letter = (vm.userForm.news_letter == 1) ? true : false;
     });
 
+    LinksService.listen(function(){
+        vm.userForm.news_letter = true;
+    });
 
     if (UserService.getFromToken() != false) {
-        console.log(UserService.getFromToken().data);
+        //console.log(UserService.getFromToken().data);
         vm.userForm.usuario_id = UserService.getFromToken().data.id;
 
         UserVars.clearCache = true;
         UserService.getById(UserService.getFromToken().data.id, function(data){
             if(data != -1) {
-                console.log(data);
                 vm.userForm.apellido = data.apellido;
                 vm.userForm.nombre = data.nombre;
                 vm.userForm.mail = data.mail;
@@ -98,7 +100,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 vm.userForm.nro_doc = data.nro_doc;
 
                 vm.userForm.calle = data.direcciones[0].calle;
-                //vm.userForm.nro = data.direcciones[0].nro;
+                vm.userForm.nro = data.direcciones[0].nro;
 
                 console.log(vm.userForm);
             } else {
@@ -112,7 +114,6 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     }
 
     function getHistoricoDePedidos(usuario_id) {
-        console.log(usuario_id);
         CartVars.clearCache = true;
         var tieneCarrito = false;
         CartService.getByParams("status","1","true",usuario_id, function(data){
@@ -414,16 +415,20 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                     if(CartVars.carrito.length > 0) {
                         var carritoToDelete = [];
                         var carritoToAdd = [];
-                        var carritoAux = {};
                         var agregado = false;
                         for(var i=0; i < carrito.productos.length; i++){
                             for(var j=0; j < CartVars.carrito.length; j++) {
                                 if(carrito.productos[i].producto_id == CartVars.carrito[j].producto_id) {
-                                    carritoAux = carrito.productos[i];
-                                    carritoAux.carrito_id = BayresService.miCarrito.carrito_id;
                                     console.log(carrito.productos[i]);
                                     console.log(CartVars.carrito[j]);
+                                    var carritoAux = {};
                                     carritoAux.cantidad = carrito.productos[i].cantidad + CartVars.carrito[j].cantidad;
+                                    carritoAux.carrito_id = BayresService.miCarrito.carrito_id;
+                                    carritoAux.en_oferta = carrito.productos[i].en_oferta;
+                                    carritoAux.nombre = carrito.productos[i].nombre;
+                                    carritoAux.precio_unitario = carrito.productos[i].precio_unitario;
+                                    carritoAux.producto_id = carrito.productos[i].producto_id;
+
                                     carritoToDelete.push(CartVars.carrito[j].carrito_detalle_id);
                                     carritoToAdd.push(carritoAux);
                                     console.log(carritoAux);
@@ -433,6 +438,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             if(!agregado)
                                 carritoToAdd.push(carrito.productos[i]);
 
+                            console.log(carritoToAdd);
                             agregado = false;
                         }
                         console.log(carritoToDelete);
@@ -537,13 +543,13 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                         productArray.push(productoEntityToAdd(carrito.productos[i], BayresService.miCarrito.carrito_id));
                     }
                     var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
-                    console.log(carrito);
+                    //console.log(carrito);
                     CartService.create(carrito, function(carritoCreado) {
                         if (carritoCreado != -1) {
                             BayresService.tieneCarrito = true;
                             BayresService.miCarrito = carritoCreado;
 
-                            console.log(BayresService.miCarrito);
+                            //console.log(BayresService.miCarrito);
 
                             CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
                                 console.log(data);

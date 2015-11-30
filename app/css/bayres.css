@@ -1631,3 +1631,41 @@ input[type='checkbox'] {
 .input-error {
   border: 2px solid orange;
 }
+
+/* line 1402, ../sass/bayres.scss */
+.container-legales-content {
+  min-height: 370px;
+  width: 690px;
+  font-family: "Myriad Pro Regular", serif;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  border: #8CC63F 1px solid;
+  padding: 25px 0;
+}
+@media (max-width: 700px) {
+  /* line 1402, ../sass/bayres.scss */
+  .container-legales-content {
+    width: 95%;
+  }
+}
+
+/* line 1415, ../sass/bayres.scss */
+.div-legal-close {
+  float: right;
+  position: relative;
+  top: -15px;
+  right: 10px;
+}
+
+/* line 1422, ../sass/bayres.scss */
+.title-font-legales {
+  font-family: "Myriad Pro Bold Condensed";
+  font-size: 71px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+}
+@media (max-width: 700px) {
+  /* line 1422, ../sass/bayres.scss */
+  .title-font-legales {
+    font-size: 60px;
+  }
+}

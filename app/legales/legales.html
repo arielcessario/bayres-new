@@ -1,9 +1,9 @@
 <div ng-controller="LegalesController as legalCtrl" class="primary-form">
     <div class="container-main">
-        <label class="title-font font-color-text">{{legalCtrl.legal.titulo}}</label>
+        <label class="title-font-legales font-color-text">{{legalCtrl.legal.titulo}}</label>
 
-        <div class="container-main-content">
-            <div class="div-close"><img src="images/close.png" title="Cerrar Legales" ng-click="legalCtrl.close();bayresCtrl.goToAnchor(bayresCtrl.id_origen)" class="btn-close"></div>
+        <div class="container-legales-content">
+            <div class="div-legal-close"><img src="images/close.png" title="Cerrar Legales" ng-click="legalCtrl.close();bayresCtrl.goToAnchor(bayresCtrl.id_origen)" class="btn-close"></div>
             <div class="container-legales">
                 {{legalCtrl.legal.contenido}}
             </div>

@@ -133,7 +133,7 @@ window.appName = 'bayres';
 
             if(BayresService.isLogged) {
                 console.log('Listen - recupero un carrito');
-                console.log(BayresService.usuario);
+                //console.log(BayresService.usuario);
 
                 vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
                 vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
@@ -211,8 +211,6 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeTop = 'usuarios/usuario.html';
             }
 
-            console.log('goTo:');
-            console.log(location);
             vm.selectedPage = location.nombre;
             $location.path(location.path);
             //CartVars.broadcast();
@@ -222,14 +220,12 @@ window.appName = 'bayres';
         function login() {
             $location.path('/login');
             LinksService.selectedIncludeTop = 'login/login.html';
-            console.log('login');
             //CartVars.broadcast();
         }
 
         function createUsuario() {
             $location.path('/usuarios');
             LinksService.selectedIncludeTop = 'usuarios/usuario.html';
-            console.log('createUsuario');
             //CartVars.broadcast();
         }
 
@@ -243,7 +239,6 @@ window.appName = 'bayres';
                 BayresService.carrito = [];
                 CartVars.carrtio = [];
 
-                console.log(BayresService.isLogged);
                 CartVars.broadcast();
             });
         }
