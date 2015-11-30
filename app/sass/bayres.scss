@@ -438,10 +438,17 @@ CONTENEDORES
   border-radius: 5px;
   border: $border_color 1px solid;
   padding: 25px 0;
+/*
   @media (max-width: 360px) {
     flex-direction: column;
     width: 350px;
   }
+*/
+  @media (max-width: 800px) {
+    flex-direction: column;
+    width: 95%;
+  }
+
 }
 
 .container-detalle-1, .container-detalle-2 {
@@ -1079,6 +1086,9 @@ textarea {
   top: -15px;
   @media (max-width: 360px) {
     top: -325px;
+  }
+  @media (min-width: 361px) and (max-width: 800px) {
+    top: -280px;
   }
 }
 
