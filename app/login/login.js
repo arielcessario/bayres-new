@@ -87,6 +87,7 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
                           //console.log(miCarrito);
                           if(miCarrito) {
                             console.log('Update Ok');
+                            BayresService.carrito = [];
                           } else {
                             console.log('Update Error');
                           }
