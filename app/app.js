@@ -188,9 +188,9 @@ window.appName = 'bayres';
                 LinksService.selectedIncludeMiddle = 'main/destacados.html';
                 LinksService.selectedIncludeBottom = 'main/masvendidos.html';
 
-                vm.filtro = '';
-                BayresService.productos = [];
-                BayresService.search = false;
+                //vm.filtro = '';
+                //BayresService.productos = [];
+                //BayresService.search = false;
 
             } else if (location.path === '/categoria') {
                 LinksService.selectedIncludeTop = 'login/login.html';
@@ -307,6 +307,7 @@ window.appName = 'bayres';
 
         function clearFiltro() {
             vm.filtro = '';
+            $location.path('/main');
             BayresService.productos = [];
             BayresService.search = false;
 
