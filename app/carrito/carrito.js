@@ -145,7 +145,7 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     console.log('Envio los mails');
 
                     BayresService.miCarrito.productos = CartVars.carrito;
-                    var carritoMail = {carrito: BayresService.miCarrito, sucursal:'Siempre Sucursal Once'};
+                    var carritoMail = {carrito: BayresService.miCarrito, sucursal:'Sucursal Once'};
 
                     UserVars.clearCache = true;
                     UserService.getById(UserService.getFromToken().data.id, function(data) {

@@ -1,5 +1,5 @@
 <div ng-controller="MiCuentaController as cuentaCtrl" class="primary-form">
-    <div class="container-main">
+    <div class="container-main contacto-content">
         <div class="title-font container-main-title">Mi Cuenta</div>
 
         <div class="container-main-content">
@@ -12,27 +12,33 @@
                         <div class="container-datos-1">
                             <div class="form-group">
                                 <label class="label-input">Apellido</label>
-                                <input type="text" class="form-control form-control-carrito" ng-model="cuentaCtrl.userForm.apellido" placeholder="Apellido...">
+                                <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.apellido" placeholder="Apellido...">
                             </div>
                             <div class="form-group">
                                 <label class="label-input">Nombre</label>
-                                <input type="text" class="form-control form-control-carrito" ng-model="cuentaCtrl.userForm.nombre" placeholder="Nombre...">
+                                <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.nombre" placeholder="Nombre...">
                             </div>
                         </div>
                         <div class="container-datos-2">
                             <div class="form-group">
                                 <label class="label-input">Direcci&oacute;n</label>
-                                <input type="text" class="form-control form-control-carrito" ng-model="cuentaCtrl.userForm.calle" placeholder="Direcci&oacute;n">
+                                <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.calle" placeholder="Direcci&oacute;n">
                             </div>
                             <div class="form-group">
+                                <label class="label-input">Numero</label>
+                                <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.nro" placeholder="Numero">
+                            </div>
+                        </div>
+                        <div class="container-datos-3">
+                            <div class="form-group">
                                 <label class="label-input">Mail</label>
-                                <input type="text" class="form-control form-control-carrito" ng-model="cuentaCtrl.userForm.mail" placeholder="Mail...">
+                                <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.mail" placeholder="Mail...">
                             </div>
                         </div>
                     </div>
                     <div class="container-buttons">
                         <div class="">
-                            <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
+                            <input type="checkbox" ng-model="cuentaCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
                         </div>
                         <button ng-click="cuentaCtrl.updateUser();">Ok</button>
                     </div>
@@ -44,19 +50,21 @@
                     <div class="pwd-titulo">
                         Modificar Contrase&ntilde;a
                     </div>
-                    <div class="form-group">
-                        <label class="label-input">Contrase&ntilde;a vieja</label>
-                        <input type="password" class="form-control form-control-carrito" ng-model="cuentaCtrl.passwordForm.password" placeholder="Contrase&ntilde;a...">
-                    </div>
-                    <div class="form-group">
-                        <label class="label-input">Contrase&ntilde;a nueva</label>
-                        <input type="password" class="form-control form-control-carrito" ng-model="cuentaCtrl.passwordForm.password_repeat" placeholder="Contrase&ntilde;a...">
-                    </div>
-                    <div class="container-buttons">
-                        <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
-                    </div>
-                    <div class="form-message" ng-if="cuentaCtrl.messageResponse.pwdMsg">
-                        <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
+                    <div class="pwd-interno">
+                        <div class="form-group">
+                            <label class="label-input">Contrase&ntilde;a vieja</label>
+                            <input type="password" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.passwordForm.password" placeholder="Contrase&ntilde;a...">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-input">Contrase&ntilde;a nueva</label>
+                            <input type="password" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.passwordForm.password_repeat" placeholder="Contrase&ntilde;a...">
+                        </div>
+                        <div class="container-buttons">
+                            <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
+                        </div>
+                        <div class="form-message" ng-if="cuentaCtrl.messageResponse.pwdMsg">
+                            <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,7 +89,7 @@
                         </div>
                         <div ng-repeat="producto in cuentaCtrl.productos" class="carrito-table-body">
                             <div class="carrito-table-row-name font-color-text">{{producto.nombre}} </div>
-                            <div class="carrito-table-row div-input">{{producto.cantidad}}</div>
+                            <div class="carrito-table-row div-input div-input-cantidad">{{producto.cantidad}}</div>
                             <div class="carrito-table-row div-input">{{producto.precio_unitario | currency}}</div>
                             <div class="carrito-table-row div-input">{{producto.precio_unitario * producto.cantidad | currency}}</div>
                             <div class="carrito-table-row">
@@ -94,7 +102,7 @@
                     <div class="container-buttons">
                         <div class="botonera" style="width: 100%">
                             <button class="btn-big btn-cancel" ng-click="cuentaCtrl.cancelCarrito(cuentaCtrl.carrito);">Cancelar Pedido</button>
-                            <button class="btn-big" style="margin-right: 20%;" ng-click="cuentaCtrl.repeatCarrito(cuentaCtrl.carrito);">Pedilo!</button>
+                            <button class="btn-big btn-margin-right" ng-click="cuentaCtrl.repeatCarrito(cuentaCtrl.carrito);">Pedilo!</button>
                             <span class="carrito-subtotal font-color-text">Subtotal:</span>
                             <div class="div-input-big"  style="margin-bottom: 0;height: 27px">{{cuentaCtrl.carrito.total | currency}}</div>
                         </div>
