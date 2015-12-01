@@ -1826,3 +1826,8 @@ input[type='checkbox'] {
   align-content: center;
   align-items: center;
 }
+
+/* line 1545, ../sass/bayres.scss */
+.bayres-display {
+  display: inline !important;
+}

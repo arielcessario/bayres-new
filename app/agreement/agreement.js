@@ -9,9 +9,9 @@ angular.module('bayres.agreement', [])
     }])
     .controller('AgreementController', AgreementController);
 
-AgreementController.$inject = ['$location', '$window'];
+AgreementController.$inject = ['$location', '$window', 'LinksService'];
 
-function AgreementController($location, $window) {
+function AgreementController($location, $window, LinksService) {
     var vm = this;
 
     vm.acepto = acepto;
@@ -19,6 +19,10 @@ function AgreementController($location, $window) {
 
     function acepto() {
         $location.path('/main');
+        LinksService.agreement = false;
+        LinksService.showPage = true;
+
+        LinksService.broadcast();
     }
 
     function noAcepto() {

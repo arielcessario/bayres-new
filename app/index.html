@@ -18,6 +18,14 @@
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
 <body ng-controller="BayresController as bayresCtrl">
+
+<!-- SECCION VIEW-->
+<div style="visibility: collapse; display: none" id="vista" ng-if="false" ng-view></div>
+
+<div ng-if="bayresCtrl.agreement" ng-include="bayresCtrl.selectedAgreement"></div>
+
+<div ng-class="{'bayres-display':bayresCtrl.showPage}" style="display: none">
+  <!--div ng-if="!bayresCtrl.agreement"-->
   <div class="login">
     <div>Bienvenido!</div>
     <div ng-if="!bayresCtrl.isLogged" class="login-separator"><a href="" ng-click="bayresCtrl.createUsuario();bayresCtrl.goToAnchor('section-2', 'section-2');" class="login-text">Nuevo usuario</a></div>
@@ -31,18 +39,18 @@
 
   <div class="header">
     <div class="menu-mobile menu-type-mobile">
-        <div class="nav-button"
-             ng-click="bayresCtrl.menu_mobile_open = !bayresCtrl.menu_mobile_open;"
-             ng-class="{'nav-button-transformed':bayresCtrl.menu_mobile_open}">
-            <div ng-class="{'nav-button-top-transformed':bayresCtrl.menu_mobile_open}"></div>
-            <div ng-class="{'nav-button-mid-transformed':bayresCtrl.menu_mobile_open}"></div>
-            <div ng-class="{'nav-button-bot-transformed':bayresCtrl.menu_mobile_open}"></div>
-        </div>
-        <div class="header-separator"></div>
-        <div class="bienvenidos">
-          <div class="mi-carrito-mobile">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
-          <img class="mi-carrito-mobile-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
-        </div>
+      <div class="nav-button"
+           ng-click="bayresCtrl.menu_mobile_open = !bayresCtrl.menu_mobile_open;"
+           ng-class="{'nav-button-transformed':bayresCtrl.menu_mobile_open}">
+        <div ng-class="{'nav-button-top-transformed':bayresCtrl.menu_mobile_open}"></div>
+        <div ng-class="{'nav-button-mid-transformed':bayresCtrl.menu_mobile_open}"></div>
+        <div ng-class="{'nav-button-bot-transformed':bayresCtrl.menu_mobile_open}"></div>
+      </div>
+      <div class="header-separator"></div>
+      <div class="bienvenidos">
+        <div class="mi-carrito-mobile">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
+        <img class="mi-carrito-mobile-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
+      </div>
     </div>
     <div class="menu-desktop menu-type-desktop">
       <div id="menu-desktop-logo" ng-click="bayresCtrl.goTo({nombre: 'INICIO', path: '/'});">
@@ -58,9 +66,9 @@
                  ng-mouseover="(link.nombre == 'Categorias') ? bayresCtrl.showCategorias = true : bayresCtrl.showCategorias = false;"
                  ng-repeat="link in bayresCtrl.links"
                  ng-click="bayresCtrl.goTo(link);link.nombre !== 'Categorias' ? bayresCtrl.goToAnchor('section-2', 'section-2'):'';"> {{link.nombre}}
-                <div ng-if="link.tieneImagen">
-                  <img src="images/{{link.nombreImagen}}" alt="{{link.nombre}}" title="{{link.nombre}}" height="20"/>
-                </div>
+              <div ng-if="link.tieneImagen">
+                <img src="images/{{link.nombreImagen}}" alt="{{link.nombre}}" title="{{link.nombre}}" height="20"/>
+              </div>
             </div>
           </div>
         </div>
@@ -93,10 +101,10 @@
 
   <div ng-if="bayresCtrl.showCategorias" id="menu-categorias-detalle" ng-mouseleave="bayresCtrl.showCategorias = false;">
     <!--<div class="menu-principal">-->
-      <!--<div ng-click="bayresCtrl.inicio();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Inicio</div>-->
-      <!--<div ng-click="bayresCtrl.comprar();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Mi Carrito</div>-->
-      <!--<div ng-click="bayresCtrl.cuenta();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Mi Cuenta</div>-->
-      <!--<div ng-click="bayresCtrl.comprar();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Finalizar Compra</div>-->
+    <!--<div ng-click="bayresCtrl.inicio();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Inicio</div>-->
+    <!--<div ng-click="bayresCtrl.comprar();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Mi Carrito</div>-->
+    <!--<div ng-click="bayresCtrl.cuenta();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Mi Cuenta</div>-->
+    <!--<div ng-click="bayresCtrl.comprar();bayresCtrl.goToAnchor('section-2', 'section-2');" class="menu-pricipal-item">Finalizar Compra</div>-->
     <!--</div>-->
     <div ng-repeat="categoria in bayresCtrl.categorias">
       <div class="menu-subcategoria">
@@ -109,7 +117,7 @@
   </div>
 
   <!-- SECCION VIEW-->
-  <div style="visibility: collapse; display: none" id="vista" ng-if="false" ng-view></div>
+  <!--div style="visibility: collapse; display: none" id="vista" ng-if="false" ng-view></div-->
 
   <div id="parallax">
     <div id="section-1">
@@ -218,32 +226,31 @@
       </div>
     </div>
   </div>
+</div>
 
-
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
-  <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
-  <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
-  <script src="bower_components/ac-angular-utils/ac-utils.js"></script>
-  <script src="bower_components/ac-angular-usuarios/ac-usuarios.js"></script>
-  <script src="bower_components/ac-angular-productos/ac-productos.js"></script>
-  <script src="app.js"></script>
-  <script src="agreement/agreement.js"></script>
-  <script src="main/main.js"></script>
-  <script src="login/login.js"></script>
-  <script src="usuarios/usuario.js"></script>
-  <script src="carrito/carrito.js"></script>
-  <script src="micuenta/micuenta.js"></script>
-  <script src="contacto/contacto.js"></script>
-  <script src="detalle/detalle.js"></script>
-  <script src="legales/legales.js"></script>
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
+<script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+<script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+<script src="bower_components/ac-angular-utils/ac-utils.js"></script>
+<script src="bower_components/ac-angular-usuarios/ac-usuarios.js"></script>
+<script src="bower_components/ac-angular-productos/ac-productos.js"></script>
+<script src="app.js"></script>
+<script src="agreement/agreement.js"></script>
+<script src="main/main.js"></script>
+<script src="login/login.js"></script>
+<script src="usuarios/usuario.js"></script>
+<script src="carrito/carrito.js"></script>
+<script src="micuenta/micuenta.js"></script>
+<script src="contacto/contacto.js"></script>
+<script src="detalle/detalle.js"></script>
+<script src="legales/legales.js"></script>
 
 </body>
 </html>

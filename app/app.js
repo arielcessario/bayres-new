@@ -26,8 +26,8 @@ window.appName = 'bayres';
     ]).
         config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                //.otherwise({redirectTo: '/agreement'})
-                .otherwise({redirectTo: '/main'})
+                .otherwise({redirectTo: '/agreement'})
+                //.otherwise({redirectTo: '/main'})
         }])
         .controller('BayresController', BayresController)
         .service('LinksService', LinksService)
@@ -49,6 +49,8 @@ window.appName = 'bayres';
         vm.selectedIncludeTop = 'main/ofertas.html';
         vm.selectedIncludeMiddle = 'main/destacados.html';
         vm.selectedIncludeBottom = 'main/masvendidos.html';
+        vm.selectedAgreement = '/agreement/agreement.html';
+        vm.agreement = LinksService.agreement;
         vm.menu_mobile_open = false;
         vm.showCategorias = false;
         vm.links = LinksService.links;
@@ -116,6 +118,12 @@ window.appName = 'bayres';
             console.log('LinksService.listen');
             vm.usuario = BayresService.usuario;
             vm.isLogged = BayresService.isLogged;
+
+            vm.agreement = LinksService.agreement;
+            vm.showPage = LinksService.showPage;
+
+            vm.selectedAgreement = LinksService.selectedAgreement;
+            console.log(vm.selectedAgreement);
 
             vm.selectedIncludeTop = LinksService.selectedIncludeTop;
             vm.selectedIncludeMiddle = LinksService.selectedIncludeMiddle;
@@ -472,6 +480,9 @@ window.appName = 'bayres';
         this.selectedIncludeTop = 'main/ofertas.html';
         this.selectedIncludeMiddle = 'main/destacados.html';
         this.selectedIncludeBottom = 'main/masvendidos.html';
+        this.selectedAgreement = 'agreement/agreement.html';
+        this.agreement = true;
+        this.showPage = false;
 
 
         this.broadcast = function () {

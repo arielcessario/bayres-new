@@ -150,7 +150,8 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     function productoEntityToAdd(producto, carrito_id) {
         var miProducto = {
             producto_id: producto.producto_id,
-            cantidad: producto.cantidad,
+            //cantidad: producto.cantidad,
+            cantidad: (producto.cantidad == 0) ? 1 : producto.cantidad,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precio_unitario,
             nombre: producto.nombre
@@ -167,12 +168,15 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     function addProducto(producto) {
         console.log(producto);
 
+        var cantidad = (producto.cantidad == 0) ? 1 : producto.cantidad;
+
         if(BayresService.tieneCarrito) {
             if(CartVars.carrito.length > 0) {
                 var existe = false;
                 for(var i=0; i < CartVars.carrito.length; i++) {
                     if(CartVars.carrito[i].producto_id == producto.producto_id) {
-                        CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + producto.cantidad;
+                        //CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + producto.cantidad;
+                        CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + cantidad;
                         existe = true;
                         CartService.updateProductInCart(CartVars.carrito[i], function(data){
                             if(data != -1) {
@@ -479,6 +483,13 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                     CartService.addToCart(BayresService.miCarrito.carrito_id, carritoToAdd, function(data){
                                         console.log(data);
                                         if(data != -1) {
+                                            for (var i = 0; i<CartVars.carrito.length; i++){
+                                                for(var j=0; j < carritoToDelete.length; j++){
+                                                    if(CartVars.carrito[i].carrito_detalle_id == carritoToDelete[j]){
+                                                        CartVars.carrito.splice(i, 1);
+                                                    }
+                                                }
+                                            }
                                             for(var i=0; i < carritoToAdd.length; i++) {
                                                 for(var j=0; j < CartVars.carrito.length; j++){
                                                     if(CartVars.carrito[j].producto_id == carritoToAdd[i].producto_id){

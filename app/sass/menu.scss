@@ -46,7 +46,7 @@ $border_color: #8CC63F;
   color: $font_color_text;
   font-size: 1em;
   font-family: $myriad_pro_bold_condensed, serif;
-  z-index: 1000;
+  z-index: 10000 !important;
   margin-top: 0;
   @media (max-width: 360px) {
     padding-left: 10%;
