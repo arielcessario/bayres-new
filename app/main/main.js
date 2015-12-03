@@ -3,7 +3,7 @@
 angular.module('bayres.main', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/main', {
-            templateUrl: 'main/main.html',
+            templateUrl: 'main/ofertas.html',
             controller: 'MainController',
             data: {requiresLogin: false}
         });

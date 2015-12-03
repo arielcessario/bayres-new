@@ -6,44 +6,69 @@
       <div class="form-message" ng-if="userCtrl.showError">
         <div class="message-error">{{userCtrl.message}}</div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.nombre" placeholder="Nombre..."
-               ng-class="{'input-error' : userCtrl.error_code == '1'}">
+      <div class="control-group">
+        <div class="form-group">
+          <label class="label-input">Nombre</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.nombre" placeholder="Nombre..."
+                 ng-class="{'input-error' : userCtrl.error_code == '1'}">
+        </div>
+        <div class="form-group">
+          <label class="label-input">Apellido</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.apellido" placeholder="Apellido..."
+                 ng-class="{'input-error' : userCtrl.error_code == '2'}">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.apellido" placeholder="Apellido..."
-               ng-class="{'input-error' : userCtrl.error_code == '2'}">
+
+      <div class="control-group">
+        <div class="form-group">
+          <label class="label-input">Fecha Nacimiento</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.fecha_nacimiento" placeholder="Fecha Nacimiento..."
+                 ng-class="{'input-error' : userCtrl.error_code == '3'}">
+        </div>
+        <div class="form-group">
+          <label class="label-input">Telefono</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.telefono" placeholder="Tel&eacute;fono..."
+                 ng-class="{'input-error' : userCtrl.error_code == '4'}">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.fecha_nacimiento" placeholder="Fecha Nacimiento..."
-               ng-class="{'input-error' : userCtrl.error_code == '3'}">
+
+      <div class="control-group">
+        <div class="form-group">
+          <label class="label-input">Direcci&oacute;n</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.calle" placeholder="Direcci&oacute;n..."
+                 ng-class="{'input-error' : userCtrl.error_code == '5'}">
+        </div>
+        <div class="form-group">
+          <label class="label-input">Numero</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.nro" placeholder="Numero..."
+                 ng-class="{'input-error' : userCtrl.error_code == '5'}">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.telefono" placeholder="Tel&eacute;fono..."
-               ng-class="{'input-error' : userCtrl.error_code == '4'}">
+
+      <div class="control-group">
+        <div class="form-group">
+          <label class="label-input">Mail</label>
+          <input type="text" class="form-control" ng-model="userCtrl.userForm.mail" placeholder="Mail..."
+                 ng-class="{'input-error' : userCtrl.error_code == '6'}">
+        </div>
+        <div class="form-group">
+          <label class="label-input">Repetir Mail</label>
+          <input type="text" class="form-control" ng-model="userCtrl.repeatMail" placeholder="Repetir Mail..."
+                 ng-class="{'input-error' : userCtrl.error_code == '7'}">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.calle" placeholder="Direcci&oacute;n..."
-               ng-class="{'input-error' : userCtrl.error_code == '5'}">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.nro" placeholder="Numero..."
-               ng-class="{'input-error' : userCtrl.error_code == '5'}">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.userForm.mail" placeholder="Mail..."
-               ng-class="{'input-error' : userCtrl.error_code == '6'}">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="userCtrl.repeatMail" placeholder="Repetir Mail..."
-               ng-class="{'input-error' : userCtrl.error_code == '7'}">
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control" ng-model="userCtrl.userForm.password" placeholder="Contrase&ntilde;a..."
-               ng-class="{'input-error' : userCtrl.error_code == '8'}">
-      </div>
-      <div class="form-group">
-        <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span class="news-letter">Suscribirse a Newsletter</span>
+
+      <div class="control-group">
+        <div class="form-group">
+          <label class="label-input">Contrase&ntilde;a</label>
+          <input type="password" class="form-control" ng-model="userCtrl.userForm.password" placeholder="Contrase&ntilde;a..."
+                 ng-class="{'input-error' : userCtrl.error_code == '8'}">
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox">
+            <input type="checkbox" ng-model="userCtrl.userForm.news_letter" ><span class="news-letter">Suscribirse a Newsletter</span>
+          </div>
+        </div>
       </div>
 
       <div class="botonera">

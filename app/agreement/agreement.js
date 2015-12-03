@@ -1,31 +1,35 @@
-'use strict';
+(function () {
 
-angular.module('bayres.agreement', [])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/agreement', {
-            templateUrl: 'agreement/agreement.html',
-            controller: 'AgreementController'
-        });
-    }])
-    .controller('AgreementController', AgreementController);
+    'use strict';
 
-AgreementController.$inject = ['$location', '$window', 'LinksService'];
+    angular.module('bayres.agreement', [])
+        .config(['$routeProvider', function($routeProvider) {
+            $routeProvider.when('/agreement', {
+                templateUrl: 'agreement/agreement.html',
+                controller: 'AgreementController'
+            });
+        }])
+        .controller('AgreementController', AgreementController);
 
-function AgreementController($location, $window, LinksService) {
-    var vm = this;
+    AgreementController.$inject = ['$scope', '$location', '$window', 'LinksService'];
 
-    vm.acepto = acepto;
-    vm.noAcepto = noAcepto;
+    function AgreementController($scope, $location, $window, LinksService) {
+        var vm = this;
 
-    function acepto() {
-        $location.path('/main');
-        LinksService.agreement = false;
-        LinksService.showPage = true;
+        vm.acepto = acepto;
+        vm.noAcepto = noAcepto;
 
-        LinksService.broadcast();
+        function acepto() {
+            $location.path('/main');
+            LinksService.agreement = false;
+            LinksService.showPage = true;
+
+            LinksService.broadcast();
+        }
+
+        function noAcepto() {
+            $window.location.href = 'http://www.google.com';
+        }
     }
 
-    function noAcepto() {
-        $window.location.href = 'http://www.google.com';
-    }
-}
+})();
