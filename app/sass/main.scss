@@ -1124,9 +1124,11 @@ CONTROLES
   @media (max-width: 360px) {
     margin-bottom: 30px;
   }
+  /*
   @media (max-width: 480px) {
     flex-direction: column;
   }
+  */
 }
 
 .btn-carrito, .btn-carrigo-big {
@@ -1315,7 +1317,7 @@ label {
   width: 85px;
   text-align: center;
   @media (max-width: 600px) {
-    width: 18%;
+    width: 15%;
   }
 }
 
@@ -2189,3 +2191,13 @@ input[type='checkbox'] {
   align-items: center;
   margin-top: 20px;
 }
+@media (max-width: 360px) {
+  .botonera.botonera-micuenta > button {
+    font-size: 14px;
+  }
+  .botonera.botonera-micuenta > span {
+    font-size: 20px;
+  }
+}
+
+
