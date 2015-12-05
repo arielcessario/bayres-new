@@ -117,6 +117,12 @@
   <!-- SECCION VIEW-->
   <!--div style="visibility: collapse; display: none" id="vista" ng-if="false" ng-view></div-->
 
+    <div class="message-confirm">
+        <div class="confirm-container no-show-message" ng-class="{'show-message animated fadeInLeft': bayresCtrl.showMessageConfirm == true}">
+            {{bayresCtrl.messageConfirm}}
+        </div>
+    </div>
+
   <div id="parallax">
     <div id="section-1">
       <div id="sucursal0"></div>

@@ -11,20 +11,22 @@
                     <div class="carrito-table-row table-row-image"><img src="images/lupa.png" class="div-image-small" hidden/></div>
                     <div class="carrito-table-row table-row-image"><img src="images/cruz.png" class="div-image-small" hidden/></div>
                 </div>
-                <div ng-repeat="producto in carritoCtrl.carritoDetalles" class="carrito-table-body">
-                    <div class="carrito-table-row-name font-color-text">{{producto.nombre}}</div>
-                    <div class="carrito-table-row div-input">{{producto.precio_unitario}}</div>
-                    <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
+                <div class="micarrito-container">
+                    <div ng-repeat="producto in carritoCtrl.carritoDetalles" class="carrito-table-body">
+                        <div class="carrito-table-row-name font-color-text">{{producto.nombre}}</div>
+                        <div class="carrito-table-row div-input">{{producto.precio_unitario}}</div>
+                        <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
                                type="number" ng-model="producto.cantidad" style=""/>
-                    <div class="carrito-table-row table-row-image">
-                        <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
-                            <img src="images/lupa.png" class="div-image-small" title="SubTotal: ${{producto.precio_unitario * producto.cantidad}}" />
-                        </a>
-                    </div>
-                    <div class="carrito-table-row table-row-image">
-                        <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
-                            <img src="images/cruz.png" class="div-image-small" title="Quitar Producto del Carrito" />
-                        </a>
+                        <div class="carrito-table-row table-row-image">
+                            <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
+                                <img src="images/lupa.png" class="div-image-small" title="SubTotal: ${{producto.precio_unitario * producto.cantidad}}" />
+                            </a>
+                        </div>
+                        <div class="carrito-table-row table-row-image">
+                            <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
+                                <img src="images/cruz.png" class="div-image-small" title="Quitar Producto del Carrito" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,11 +36,11 @@
                 </div>
                 <div class="carrito-entrega">
                     <select ng-model="carritoCtrl.tipoEnvioDefecto"
-                            ng-options="tipoEnvio.name for tipoEnvio in carritoCtrl.tipoEnvios track by tipoEnvio.id"
+                            ng-options="tipoEnvioDefecto.name for tipoEnvioDefecto in carritoCtrl.tipoEnvios"
                             class="form-control control-select">
                     </select>
                     <select ng-model="carritoCtrl.lugarDeEnvioDefecto"
-                            ng-options="lugarEnvio.name for lugarEnvio in carritoCtrl.lugarDeEnvios track by lugarEnvio.id"
+                            ng-options="lugarDeEnvioDefecto.name for lugarDeEnvioDefecto in carritoCtrl.lugarDeEnvios"
                             class="form-control control-select">
                     </select>
                 </div>

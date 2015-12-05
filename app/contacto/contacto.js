@@ -4,19 +4,21 @@
     //window.appName = 'bayres';
 
     angular.module('bayres.contacto', [])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/contacto', {
-            templateUrl: 'contacto/contacto.html',
-            controller: 'ContactoController',
-            data: {requiresLogin: false}
-        });
-    }])
-    .controller('ContactoController', ContactoController)
-    .service('ContactoService', ContactoService);
+        .config(['$routeProvider', function($routeProvider) {
+            $routeProvider.when('/contacto', {
+                templateUrl: 'contacto/contacto.html',
+                controller: 'ContactoController',
+                data: {requiresLogin: false}
+            });
+        }])
+        .controller('ContactoController', ContactoController)
+        .service('ContactoService', ContactoService);
 
-    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService', 'CartVars'];
+    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService',
+        'CartVars', 'BayresService'];
 
-    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService, CartVars) {
+    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService,
+                                CartVars, BayresService) {
         var vm = this;
 
         vm.message = '';
@@ -81,7 +83,9 @@
             ContactoService.sendMailConsulta(vm.contactoForm, function(data){
                 if(data) {
                     vm.enviado = true;
-                    vm.message = 'El mail fue enviado';
+                    //vm.message = 'El mail fue enviado';
+                    BayresService.messageConfirm = 'El mail fue enviado';
+
                     $timeout(hideMessage, 3000);
                     vm.contactoForm = {
                         asunto:'',
@@ -91,8 +95,10 @@
                     };
                     //vm.message = '';
                 } else {
-                    vm.message = 'Error enviando el mail';
+                    //vm.message = 'Error enviando el mail';
+                    BayresService.messageConfirm = 'Error enviando el mail';
                 }
+                BayresService.showMessageConfirm = true;
             });
         }
 

@@ -2,7 +2,7 @@
     <div class="container-main contacto-content">
         <div class="title-font container-main-title">Mi Cuenta</div>
 
-        <div class="container-main-content">
+        <div class="container-main-content" style="padding: 0px">
             <div class="container-1">
                 <div class="container-datos">
                     <div class="datos-titulo">
@@ -34,13 +34,14 @@
                                 <label class="label-input">Mail</label>
                                 <input type="text" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.userForm.mail" placeholder="Mail...">
                             </div>
+                            <div class="form-group bottom-control">
+                                <input type="checkbox" ng-model="cuentaCtrl.userForm.news_letter" >
+                                <span>Newsletter</span>
+                            </div>
+                            <div class="form-group bottom-control">
+                                <button ng-click="cuentaCtrl.updateUser();">Ok</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-buttons">
-                        <div class="">
-                            <input type="checkbox" ng-model="cuentaCtrl.userForm.news_letter" ><span>Suscribirse a Newsletter</span>
-                        </div>
-                        <button ng-click="cuentaCtrl.updateUser();">Ok</button>
                     </div>
                     <div class="form-message" ng-if="cuentaCtrl.messageResponse.userMsg">
                         <div class="message">{{cuentaCtrl.messageResponse.message}}</div>
@@ -59,7 +60,8 @@
                             <label class="label-input">Contrase&ntilde;a nueva</label>
                             <input type="password" class="form-control form-control-carrito form-control-space" ng-model="cuentaCtrl.passwordForm.password_repeat" placeholder="Contrase&ntilde;a...">
                         </div>
-                        <div class="container-buttons">
+                        <!--div class="container-buttons"-->
+                        <div class="form-group bottom-control">
                             <button ng-click="cuentaCtrl.updatePwd();">Ok</button>
                         </div>
                         <div class="form-message" ng-if="cuentaCtrl.messageResponse.pwdMsg">
@@ -87,15 +89,17 @@
                             <div class="carrito-table-row">Precio</div>
                             <div class="carrito-table-row"><img src="images/cart.png" title="" hidden/></div>
                         </div>
-                        <div ng-repeat="producto in cuentaCtrl.productos" class="carrito-table-body">
-                            <div class="carrito-table-row-name font-color-text">{{producto.nombre}} </div>
-                            <div class="carrito-table-row div-input div-input-cantidad">{{producto.cantidad}}</div>
-                            <div class="carrito-table-row div-input">{{producto.precio_unitario | currency}}</div>
-                            <div class="carrito-table-row div-input">{{producto.precio_unitario * producto.cantidad | currency}}</div>
-                            <div class="carrito-table-row">
-                                <a href="" ng-click="cuentaCtrl.addProducto(producto);">
-                                    <img src="images/cart.png" title="Agregar Producto al Carrito" />
-                                </a>
+                        <div class="micarrito-container">
+                            <div ng-repeat="producto in cuentaCtrl.productos" class="carrito-table-body">
+                                <div class="carrito-table-row-name font-color-text">{{producto.nombre}} </div>
+                                <div class="carrito-table-row div-input div-input-cantidad">{{producto.cantidad}}</div>
+                                <div class="carrito-table-row div-input">{{producto.precio_unitario | currency}}</div>
+                                <div class="carrito-table-row div-input">{{producto.precio_unitario * producto.cantidad | currency}}</div>
+                                <div class="carrito-table-row">
+                                    <a href="" ng-click="cuentaCtrl.addProducto(producto);">
+                                        <img src="images/cart.png" title="Agregar Producto al Carrito" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

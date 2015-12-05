@@ -49,15 +49,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
     vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
 
 
-    /*
-    CartVars.listen(function(){
-        vm.productos = BayresService.productos;
-        vm.search = BayresService.search;
-        vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
-        vm.existenProductos = (BayresService.productos.length > 0) ? true : false;
-    });
-    */
-
     LinksService.listen(function(){
         vm.productos = BayresService.productos;
         vm.search = BayresService.search;
@@ -94,11 +85,9 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
         LinksService.selectedIncludeMiddle = '';
         LinksService.selectedIncludeBottom = '';
 
-        //CartVars.broadcast();
         LinksService.broadcast();
     }
 
-    //function productoEntityToUpdate(producto, categoria_id) {
     function productoEntityToUpdate(producto) {
         var miProducto = {
             producto_id: producto.producto_id,
@@ -108,11 +97,8 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             carrito_id: producto.carrito_id,
             nombre: producto.nombre,
             carrito_detalle_id: producto.carrito_detalle_id
-            //categoria_id: categoria_id
         };
         console.log(miProducto);
-
-        return miProducto;
     }
 
     function productoEntityToAdd(producto, carrito_id) {
@@ -121,14 +107,11 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             cantidad: 1,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precios[0].precio,
-            //carrito_id: carrito_id,
             nombre: producto.nombre
         };
 
         if(carrito_id != -1)
             miProducto.carrito_id = carrito_id;
-
-        console.log(miProducto);
 
         return miProducto;
     }
@@ -139,7 +122,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
         if (UserService.getFromToken() != false) {
             console.log('Estoy logueado');
             if(BayresService.tieneCarrito) {
-
                 console.log(BayresService.miCarrito);
 
                 if(CartVars.carrito.length > 0){
@@ -162,14 +144,22 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                         console.log(carritoActualizado);
                                         if(carritoActualizado) {
                                             console.log('Carrito update ok');
+                                            BayresService.messageConfirm = 'Se agrego el producto';
+                                            BayresService.showMessageConfirm = true;
                                             CartVars.broadcast();
                                         } else {
+                                            BayresService.messageConfirm = 'Error agregando el producto';
+                                            BayresService.showMessageConfirm = true;
                                             console.log('Carrito update error');
                                         }
                                     });
+                                } else {
+                                    BayresService.messageConfirm = 'Error agregando el producto';
+                                    BayresService.showMessageConfirm = true;
+                                    console.log('Update Error');
                                 }
                             });
-                            existe =  true;
+                            existe = true;
                         }
                     }
                     if(!existe) {
@@ -193,8 +183,12 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                     console.log(carritoActualizado);
                                     if(carritoActualizado) {
                                         console.log('Carrito update ok');
+                                        BayresService.messageConfirm = 'Se agrego el producto';
+                                        BayresService.showMessageConfirm = true;
                                         CartVars.broadcast();
                                     } else {
+                                        BayresService.messageConfirm = 'Error agregando el producto';
+                                        BayresService.showMessageConfirm = true;
                                         console.log('Carrito update error');
                                     }
                                 });
@@ -216,12 +210,17 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                     }
                                 }
                             }
+
                             BayresService.miCarrito.total = CartVars.carrito_total();
                             CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                 if(carritoActualizado) {
                                     console.log('Carrito update ok');
+                                    BayresService.messageConfirm = 'Se agrego el producto';
+                                    BayresService.showMessageConfirm = true;
                                     CartVars.broadcast();
                                 } else {
+                                    BayresService.messageConfirm = 'Error agregando el producto';
+                                    BayresService.showMessageConfirm = true;
                                     console.log('Carrito update error');
                                 }
                             });
@@ -233,17 +232,7 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                 productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                 var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
                 console.log(carrito);
-                /*
-                CartService.create(carrito, function(carrito_id) {
-                    if (carrito_id > 0) {
-                        BayresService.tieneCarrito = true;
-                        BayresService.miCarrito = carrito;
-                        BayresService.miCarrito.carrito_id = carrito_id;
 
-                        console.log(BayresService.miCarrito);
-
-                        CartService.addToCart(carrito_id, productArray, function(data){
-                            */
                 CartService.create(carrito, function(carritoCreado) {
                     if (carritoCreado != -1) {
                         BayresService.tieneCarrito = true;
@@ -267,7 +256,11 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                 CartService.update(carritoCreado, function(carritoUpdate){
                                     if(carritoUpdate) {
                                         console.log('Ok');
+                                        BayresService.messageConfirm = 'Se agrego el producto';
+                                        BayresService.showMessageConfirm = true;
                                     } else {
+                                        BayresService.messageConfirm = 'Error agregando el producto';
+                                        BayresService.showMessageConfirm = true;
                                         console.log('Error');
                                     }
                                 });
@@ -288,9 +281,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
     function actualizarMiCarrito(producto) {
         var encontrado = false;
-        var indexToDelete = 0;
-
-        //console.log(CartVars.carrito.length);
         console.log(BayresService.carrito.length);
 
         if (BayresService.carrito.length > 0) {

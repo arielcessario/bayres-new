@@ -38,8 +38,8 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
         modified: false
     };
 
-    vm.tipoEnvioDefecto = {'id':1, 'name': 'Envio a'};
-    vm.lugarDeEnvioDefecto = {'id':1, 'name': 'Gran Buenos Aires'};
+    vm.tipoEnvioDefecto = vm.tipoEnvios[0];
+    vm.lugarDeEnvioDefecto = vm.lugarDeEnvios[0];
 
     //*******************************************************************
     //  FUNCIONES
@@ -60,14 +60,6 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
         vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
     });
 
-    /*
-     LinksService.listen(function () {
-     console.log('Carrito-LinksService.listen');
-     vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
-     vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
-     });
-     */
-
     function removeProducto(index) {
         var producto = (CartVars.carrito.length > 0) ? CartVars.carrito[index] : BayresService.carrito[index];
         var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
@@ -83,13 +75,18 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     CartService.update(BayresService.miCarrito, function(miCarrito){
                         if(miCarrito) {
                             console.log('Update Ok');
+                            BayresService.messageConfirm = 'Se quito el producto';
                         } else {
                             console.log('Update Error');
+                            BayresService.messageConfirm = 'Error borrando el producto';
                         }
+                        BayresService.showMessageConfirm = true;
                     });
                     calcularCarritoTotal();
                 } else {
                     console.log('Error borrando el producto');
+                    BayresService.messageConfirm = 'Error borrando el producto';
+                    BayresService.showMessageConfirm = true;
                 }
             });
         } else {
@@ -138,12 +135,11 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
         if(CartVars.carrito.length > 0) {
             BayresService.miCarrito.total = CartVars.carrito_total();
             BayresService.miCarrito.status = 1;
+            BayresService.miCarrito.origen = vm.tipoEnvioDefecto.id;
+            BayresService.miCarrito.destino = vm.lugarDeEnvioDefecto.id;
 
             CartService.update(BayresService.miCarrito, function(carrito){
                 if(carrito) {
-                    console.log('Carrito Pedido');
-                    console.log('Envio los mails');
-
                     BayresService.miCarrito.productos = CartVars.carrito;
                     var carritoMail = {carrito: BayresService.miCarrito, sucursal:'Sucursal Once'};
 
@@ -153,11 +149,19 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                             carritoMail.direccion = data.direcciones[0].calle + ' ' + data.direcciones[0].nro;
                             carritoMail.cliente = BayresService.usuario.nombre + ' ' + BayresService.usuario.apellido;
                             carritoMail.mail = data.mail;
+                            carritoMail.tipoEnvio = vm.tipoEnvioDefecto.name;
+                            carritoMail.lugarDeEnvio = vm.lugarDeEnvioDefecto.name;
 
                             console.log(carritoMail);
 
                             CarritoService.sendMailConfirmarCarrito(carritoMail, function(data){
-                                    console.log(data);
+                                console.log(data);
+                                if(data) {
+                                    BayresService.messageConfirm = 'Su pedido fue enviado';
+                                } else {
+                                    BayresService.messageConfirm = 'Error confirmando el carrito';
+                                }
+                                BayresService.showMessageConfirm = true;
                             });
 
                         }
@@ -168,12 +172,14 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     CartVars.carrito = [];
                     $location.path('/main');
                 } else {
-                    vm.message = 'Error confirmando el carrito';
+                    BayresService.messageConfirm = 'Error confirmando el carrito';
+                    BayresService.showMessageConfirm = true;
                 }
             });
 
         } else {
-            vm.message = 'El Carrito esta vacio. Por favor agregue productos';
+            BayresService.messageConfirm = 'El Carrito esta vacio. Por favor agregue productos';
+            BayresService.showMessageConfirm = true;
         }
 
     }
@@ -252,7 +258,7 @@ function CarritoService($http) {
      * @param direccion
      * @param callback
      */
-    function sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, callback) {
+    function sendMailCarritoComprador(mail, nombre, carrito, sucursal, direccion, tipoEnvio, lugarDeEnvio, callback) {
         return $http.post('mailer/mailer.php',
             {
                 function: 'sendCarritoComprador',
@@ -260,7 +266,9 @@ function CarritoService($http) {
                 'nombre': nombre,
                 'carrito': JSON.stringify(carrito),
                 'sucursal': sucursal,
-                'direccion': direccion
+                'direccion': direccion,
+                'tipoEnvio': tipoEnvio,
+                'lugarDeEnvio': lugarDeEnvio
             })
             .success(function (data) {
                 callback(data);
@@ -280,7 +288,7 @@ function CarritoService($http) {
      * @param callback
      * @returns {*}
      */
-    function sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, callback) {
+    function sendMailCarritoVendedor(mail, nombre, carrito, sucursal, direccion, tipoEnvio, lugarDeEnvio, callback) {
         return $http.post('mailer/mailer.php',
             {
                 function: 'sendCarritoVendedor',
@@ -288,7 +296,9 @@ function CarritoService($http) {
                 'nombre': nombre,
                 'carrito': JSON.stringify(carrito),
                 'sucursal': sucursal,
-                'direccion': direccion
+                'direccion': direccion,
+                'tipoEnvio': tipoEnvio,
+                'lugarDeEnvio': lugarDeEnvio
             })
             .success(function (data) {
                 callback(data);
@@ -300,16 +310,18 @@ function CarritoService($http) {
 
     function sendMailConfirmarCarrito(carritoMail, callback) {
         console.log(carritoMail);
-        sendMailCarritoComprador(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal, carritoMail.direccion, function(mailComprador){
-            if(mailComprador) {
-                console.log(carritoMail);
-                sendMailCarritoVendedor(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal, carritoMail.direccion, function(mailVendedor){
-                    callback(mailVendedor);
-                });
-            } else {
-                callback(false);
-            }
-        });
+        sendMailCarritoComprador(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal,
+            carritoMail.direccion, carritoMail.tipoEnvio, carritoMail.lugarDeEnvio, function(mailComprador){
+                if(mailComprador) {
+                    console.log(carritoMail);
+                    sendMailCarritoVendedor(carritoMail.mail, carritoMail.cliente, carritoMail.carrito, carritoMail.sucursal,
+                        carritoMail.direccion, carritoMail.tipoEnvio, carritoMail.lugarDeEnvio, function(mailVendedor){
+                            callback(mailVendedor);
+                        });
+                } else {
+                    callback(false);
+                }
+            });
     }
 
     function sendMailCancelarCarrito(usuario, email, carrito, callback) {

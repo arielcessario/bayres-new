@@ -23,9 +23,9 @@ if ($decoded != null) {
     } else if ($decoded->function == 'sendCancelarCarritoVendedor') {
         sendCancelarCarritoVendedor($decoded->usuario, $decoded->email, $decoded->carrito);
     } else if ($decoded->function == 'sendCarritoComprador') {
-        sendCarritoComprador($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->direccion);
+        sendCarritoComprador($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->tipoEnvio, $decoded->lugarDeEnvio, $decoded->direccion);
     } else if ($decoded->function == 'sendCarritoVendedor') {
-        sendCarritoVendedor($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->direccion);
+        sendCarritoVendedor($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->tipoEnvio, $decoded->lugarDeEnvio, $decoded->direccion);
     }
 }
 
@@ -201,7 +201,7 @@ function sendCancelarCarritoVendedor($usuario, $email, $carrito)
  * @param $sucursal
  * @param $direccion
  */
-function sendCarritoComprador($email, $nombre, $carrito, $sucursal, $direccion)
+function sendCarritoComprador($email, $nombre, $carrito, $sucursal, $direccion, $tipoEnvio, $lugarDeEnvio)
 {
     $micarrito = json_decode($carrito);
     $detalles = '';
@@ -238,6 +238,8 @@ function sendCarritoComprador($email, $nombre, $carrito, $sucursal, $direccion)
     $message .= '<div style="font-size:16px; margin-left:10px;">'. $nombre .'</div>';
     $message .= '<div style="font-size:16px; margin-left:10px;">'. $direccion .'</div>';
     $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">'. $sucursal .'</div>';
+    $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">Tipo Envio: '. $tipoEnvio .'</div>';
+    $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">Lugar de Envio: '. $lugarDeEnvio .'</div>';
     $message .= '</div><div style="text-align:center;font-weight: bold;margin-top: 15px;">Gracias por su compra</div></div></div>';
     $message .= '</table>';
     $message .= '</div></body></html>';
@@ -277,7 +279,7 @@ function sendCarritoComprador($email, $nombre, $carrito, $sucursal, $direccion)
  * @param $sucursal
  * @param $direccion
  */
-function sendCarritoVendedor($email, $nombre, $carrito, $sucursal, $direccion)
+function sendCarritoVendedor($email, $nombre, $carrito, $sucursal, $direccion, $tipoEnvio, $lugarDeEnvio)
 {
     $micarrito = json_decode($carrito);
     $detalles = '';
@@ -307,6 +309,8 @@ function sendCarritoVendedor($email, $nombre, $carrito, $sucursal, $direccion)
     $message .= '<div style="font-size:16px; margin-left:10px;">'. $nombre .'</div>';
     $message .= '<div style="font-size:16px; margin-left:10px;">'. $direccion .'</div>';
     $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">'. $sucursal .'</div>';
+    $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">Tipo Envio: '. $tipoEnvio .'</div>';
+    $message .= '<div style="font-size:16px; margin:0 0 10px 10px;">Lugar de Envio: '. $lugarDeEnvio .'</div>';
     $message .= '</div></div></div>';
     $message .= '</table>';
     $message .= '</div></body></html>';

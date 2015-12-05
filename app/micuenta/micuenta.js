@@ -150,7 +150,6 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
     function productoEntityToAdd(producto, carrito_id) {
         var miProducto = {
             producto_id: producto.producto_id,
-            //cantidad: producto.cantidad,
             cantidad: (producto.cantidad == 0) ? 1 : producto.cantidad,
             en_oferta: producto.en_oferta,
             precio_unitario: producto.precio_unitario,
@@ -160,41 +159,49 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         if(carrito_id != -1)
             miProducto.carrito_id = carrito_id;
 
-        console.log(miProducto);
-
         return miProducto;
     }
 
     function addProducto(producto) {
         console.log(producto);
 
-        var cantidad = (producto.cantidad == 0) ? 1 : producto.cantidad;
-
         if(BayresService.tieneCarrito) {
             if(CartVars.carrito.length > 0) {
+                console.log(CartVars.carrito);
+
                 var existe = false;
                 for(var i=0; i < CartVars.carrito.length; i++) {
                     if(CartVars.carrito[i].producto_id == producto.producto_id) {
-                        //CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + producto.cantidad;
-                        CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + cantidad;
-                        existe = true;
-                        CartService.updateProductInCart(CartVars.carrito[i], function(data){
-                            if(data != -1) {
-                                console.log('Update Ok');
+                        CartVars.carrito[i].cantidad = CartVars.carrito[i].cantidad + ((producto.cantidad == 0) ? 1 : producto.cantidad);
+                        CartVars.carrito[i].en_oferta = producto.en_oferta;
+                        CartVars.carrito[i].nombre = producto.nombre;
+
+                        var miProducto = productoEntityToUpdate(CartVars.carrito[i]);
+
+                        CartService.updateProductInCart(miProducto, function(data){
+                            console.log(data);
+                            if(data){
                                 BayresService.miCarrito.total = CartVars.carrito_total();
                                 CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                     console.log(carritoActualizado);
                                     if(carritoActualizado) {
                                         console.log('Carrito update ok');
+                                        BayresService.messageConfirm = 'Se agrego el producto';
+                                        BayresService.showMessageConfirm = true;
                                         CartVars.broadcast();
                                     } else {
+                                        BayresService.messageConfirm = 'Error agregando el producto';
+                                        BayresService.showMessageConfirm = true;
                                         console.log('Carrito update error');
                                     }
                                 });
                             } else {
+                                BayresService.messageConfirm = 'Error agregando el producto';
+                                BayresService.showMessageConfirm = true;
                                 console.log('Update Error');
                             }
                         });
+                        existe = true;
                     }
                 }
                 if(!existe) {
@@ -218,8 +225,12 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                 console.log(carritoActualizado);
                                 if(carritoActualizado) {
                                     console.log('Carrito update ok');
+                                    BayresService.messageConfirm = 'Se agrego el producto';
+                                    BayresService.showMessageConfirm = true;
                                     CartVars.broadcast();
                                 } else {
+                                    BayresService.messageConfirm = 'Error agregando el producto';
+                                    BayresService.showMessageConfirm = true;
                                     console.log('Carrito update error');
                                 }
                             });
@@ -233,12 +244,25 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
                     console.log(data);
                     if(data != -1) {
+                        for(var i=0; i < productArray.length; i++) {
+                            for(var j=0; j < CartVars.carrito.length; j++){
+                                if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
+                                    if(CartVars.carrito[j].nombre === undefined)
+                                        CartVars.carrito[j].nombre = productArray[i].nombre;
+                                }
+                            }
+                        }
+
                         BayresService.miCarrito.total = CartVars.carrito_total();
                         CartService.update(BayresService.miCarrito, function(carritoActualizado){
                             if(carritoActualizado) {
                                 console.log('Carrito update ok');
+                                BayresService.messageConfirm = 'Se agrego el producto';
+                                BayresService.showMessageConfirm = true;
                                 CartVars.broadcast();
                             } else {
+                                BayresService.messageConfirm = 'Error agregando el producto';
+                                BayresService.showMessageConfirm = true;
                                 console.log('Carrito update error');
                             }
                         });
@@ -250,6 +274,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
             productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
             var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
             console.log(carrito);
+
             CartService.create(carrito, function(carritoCreado) {
                 if (carritoCreado != -1) {
                     BayresService.tieneCarrito = true;
@@ -273,7 +298,11 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                             CartService.update(carritoCreado, function(carritoUpdate){
                                 if(carritoUpdate) {
                                     console.log('Ok');
+                                    BayresService.messageConfirm = 'Se agrego el producto';
+                                    BayresService.showMessageConfirm = true;
                                 } else {
+                                    BayresService.messageConfirm = 'Error agregando el producto';
+                                    BayresService.showMessageConfirm = true;
                                     console.log('Error');
                                 }
                             });
