@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     //window.appName = 'bayres';
 
     angular.module('bayres.contacto', [])
@@ -83,7 +82,6 @@
             ContactoService.sendMailConsulta(vm.contactoForm, function(data){
                 if(data) {
                     vm.enviado = true;
-                    //vm.message = 'El mail fue enviado';
                     BayresService.messageConfirm = 'El mail fue enviado';
 
                     $timeout(hideMessage, 3000);

@@ -73,6 +73,8 @@
                 carrito_detalle_id: producto.carrito_detalle_id
             };
             console.log(miProducto);
+
+            return miProducto;
         }
 
         function productoEntityToAdd(producto, carrito_id) {
@@ -268,6 +270,9 @@
             } else {
                 BayresService.carrito.push(producto);
             }
+
+            BayresService.messageConfirm = 'Producto agregado al carrito';
+            BayresService.showMessageConfirm = true;
 
             console.log(BayresService.carrito);
             console.log('actualizarMiCarrito');

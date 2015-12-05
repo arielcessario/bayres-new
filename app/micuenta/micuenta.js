@@ -147,6 +147,21 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
         setMessageResponse(false, false, false, false, '');
     }
 
+    function productoEntityToUpdate(producto) {
+        var miProducto = {
+            producto_id: producto.producto_id,
+            cantidad: producto.cantidad,
+            en_oferta: producto.en_oferta,
+            precio_unitario: producto.precio_unitario,
+            carrito_id: producto.carrito_id,
+            nombre: producto.nombre,
+            carrito_detalle_id: producto.carrito_detalle_id
+        };
+        console.log(miProducto);
+
+        return miProducto;
+    }
+
     function productoEntityToAdd(producto, carrito_id) {
         var miProducto = {
             producto_id: producto.producto_id,

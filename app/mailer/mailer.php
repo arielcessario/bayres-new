@@ -23,9 +23,9 @@ if ($decoded != null) {
     } else if ($decoded->function == 'sendCancelarCarritoVendedor') {
         sendCancelarCarritoVendedor($decoded->usuario, $decoded->email, $decoded->carrito);
     } else if ($decoded->function == 'sendCarritoComprador') {
-        sendCarritoComprador($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->tipoEnvio, $decoded->lugarDeEnvio, $decoded->direccion);
+        sendCarritoComprador($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->direccion, $decoded->tipoEnvio, $decoded->lugarDeEnvio);
     } else if ($decoded->function == 'sendCarritoVendedor') {
-        sendCarritoVendedor($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->tipoEnvio, $decoded->lugarDeEnvio, $decoded->direccion);
+        sendCarritoVendedor($decoded->email, $decoded->nombre, $decoded->carrito, $decoded->sucursal, $decoded->direccion, $decoded->tipoEnvio, $decoded->lugarDeEnvio);
     }
 }
 
