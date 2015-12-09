@@ -527,13 +527,14 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                     CartService.addToCart(BayresService.miCarrito.carrito_id, carritoToAdd, function(data){
                                         console.log(data);
                                         if(data != -1) {
-                                            for (var i = 0; i<CartVars.carrito.length; i++){
+                                            for (var i = 0; i < CartVars.carrito.length; i++){
                                                 for(var j=0; j < carritoToDelete.length; j++){
                                                     if(CartVars.carrito[i].carrito_detalle_id == carritoToDelete[j]){
                                                         CartVars.carrito.splice(i, 1);
                                                     }
                                                 }
                                             }
+
                                             for(var i=0; i < carritoToAdd.length; i++) {
                                                 for(var j=0; j < CartVars.carrito.length; j++){
                                                     if(CartVars.carrito[j].producto_id == carritoToAdd[i].producto_id){

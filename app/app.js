@@ -78,11 +78,33 @@ window.appName = 'bayres';
         vm.goToAnchor = goToAnchor;
 
 
+        function carritoEntity(miCarrito) {
+            var carrito = {
+                'usuario_id': miCarrito.usuario_id,
+                'carrito_id': miCarrito.carrito_id,
+                'total': miCarrito.total,
+                'status': miCarrito.status,
+                'fecha': miCarrito.fecha
+            };
+
+            return carrito;
+        }
+
         if (UserService.getFromToken() != false) {
             console.log('Logueado');
 
             BayresService.usuario = UserService.getFromToken().data;
             BayresService.isLogged = true;
+
+            CartVars.clearCache = true;
+            CartService.reloadLastCart(BayresService.usuario.id, function(carrito) {
+                console.log(carrito);
+                if (carrito.length > 0) {
+                    BayresService.tieneCarrito = true;
+                    BayresService.miCarrito = carritoEntity(carrito[0]);
+                    CartVars.carrito = carrito[0].productos;
+                }
+            });
 
             CartVars.broadcast();
         } else {
