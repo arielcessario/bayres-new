@@ -14,6 +14,7 @@ window.appName = 'bayres';
         'acUtils',
         'acUsuarios',
         'acProductos',
+        'acSucursales',
         'bayres.agreement',
         'bayres.main',
         'bayres.login',

@@ -63,7 +63,7 @@
                  ripple-color="#ffffff"
                  ng-mouseover="(link.nombre == 'Categorias') ? bayresCtrl.showCategorias = true : bayresCtrl.showCategorias = false;"
                  ng-repeat="link in bayresCtrl.links"
-                 ng-click="bayresCtrl.goTo(link);link.nombre !== 'Categorias' ? bayresCtrl.goToAnchor('section-2', 'section-2'):'';"> {{link.nombre}}
+                 ng-click="bayresCtrl.goTo(link);(link.nombre !== 'Categorias' ? ((link.nombre == 'INICIO') ? bayresCtrl.goToAnchor('section-1', 'section-1') : bayresCtrl.goToAnchor('section-2', 'section-2')):'');"> {{link.nombre}}
               <div ng-if="link.tieneImagen">
                 <img src="images/{{link.nombreImagen}}" alt="{{link.nombre}}" title="{{link.nombre}}" height="20"/>
               </div>
@@ -245,6 +245,7 @@
 <script src="bower_components/ac-angular-utils/ac-utils.js"></script>
 <script src="bower_components/ac-angular-usuarios/ac-usuarios.js"></script>
 <script src="bower_components/ac-angular-productos/ac-productos.js"></script>
+<script src="bower_components/ac-angular-sucursales/ac-sucursales.js"></script>
 <script src="app.js"></script>
 <script src="agreement/agreement.min.js"></script>
 <script src="main/main.js"></script>

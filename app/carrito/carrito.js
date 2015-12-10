@@ -14,15 +14,18 @@ angular.module('bayres.carrito', [])
 
 
 CarritoController.$inject = ['AcUtils', 'UserService', 'CartVars', 'CartService',
-    '$timeout', '$location', 'CarritoService', 'LinksService', 'BayresService', 'UserVars'];
+    '$timeout', '$location', 'CarritoService', 'LinksService', 'BayresService',
+    'UserVars', 'SucursalService'];
 
 function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout,
-                           $location, CarritoService, LinksService, BayresService, UserVars) {
+                           $location, CarritoService, LinksService, BayresService,
+                           UserVars, SucursalService) {
 
     //  VARIABLES
     var vm = this;
     vm.message = '';
     vm.carritoDetalles = [];
+    vm.sucursales = [];
     vm.tipoEnvios = [
         {'id':1, 'name': 'Envio a'},
         {'id':2, 'name': 'Retira por'}
@@ -53,6 +56,11 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
 
     vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
     vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
+
+    SucursalService.get(function (data) {
+        vm.sucursales = data;
+        vm.sucursal = data[0];
+    });
 
     CartVars.listen(function () {
         console.log('Carrito-CartVars.listen');
@@ -136,7 +144,7 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
             BayresService.miCarrito.total = CartVars.carrito_total();
             BayresService.miCarrito.status = 1;
             BayresService.miCarrito.origen = vm.tipoEnvioDefecto.id;
-            BayresService.miCarrito.destino = vm.lugarDeEnvioDefecto.id;
+            BayresService.miCarrito.destino = (vm.tipoEnvioDefecto.id == 1) ? vm.lugarDeEnvioDefecto.id : vm.sucursal.sucursal_id;
 
             CartService.update(BayresService.miCarrito, function(carrito){
                 if(carrito) {
@@ -150,7 +158,7 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                             carritoMail.cliente = BayresService.usuario.nombre + ' ' + BayresService.usuario.apellido;
                             carritoMail.mail = data.mail;
                             carritoMail.tipoEnvio = vm.tipoEnvioDefecto.name;
-                            carritoMail.lugarDeEnvio = vm.lugarDeEnvioDefecto.name;
+                            carritoMail.lugarDeEnvio = (vm.tipoEnvioDefecto.id == 1) ? vm.lugarDeEnvioDefecto.name : vm.sucursal.nombre;
 
                             console.log(carritoMail);
 
@@ -170,7 +178,8 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     BayresService.tieneCarrito = false;
                     BayresService.miCarrito = {};
                     CartVars.carrito = [];
-                    $location.path('/main');
+                    $location.path('/micuenta');
+                    LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
                 } else {
                     BayresService.messageConfirm = 'Error confirmando el carrito';
                     BayresService.showMessageConfirm = true;

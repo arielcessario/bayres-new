@@ -353,7 +353,16 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                         UserService.update(vm.userForm, function (data) {
                             console.log(data);
                             if(data != -1) {
-                                setMessageResponse(true, false, false, 'Datos actualizados');
+                                UserService.getById(UserService.getFromToken().data.id, function(data){
+                                    BayresService.usuario.nombre = data.nombre;
+                                    BayresService.usuario.apellido = data.apellido;
+                                    BayresService.usuario.mail = data.mail;
+
+                                    setMessageResponse(true, false, false, 'Datos actualizados');
+                                    $location.path('/main');
+                                    LinksService.selectedIncludeTop = 'main/ofertas.html';
+                                    //LinksService.broadcast();
+                                });
                             } else {
                                 setMessageResponse(true, false, false, 'Error actualizando usuario');
                             }
@@ -366,7 +375,16 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 UserService.update(vm.userForm, function (data) {
                     console.log(data);
                     if(data != -1) {
-                        setMessageResponse(true, false, false, 'Datos actualizados');
+                        UserService.getById(UserService.getFromToken().data.id, function(data){
+                            BayresService.usuario.nombre = data.nombre;
+                            BayresService.usuario.apellido = data.apellido;
+                            BayresService.usuario.mail = data.mail;
+
+                            setMessageResponse(true, false, false, 'Datos actualizados');
+                            $location.path('/main');
+                            LinksService.selectedIncludeTop = 'main/ofertas.html';
+                            //LinksService.broadcast();
+                        });
                     } else {
                         setMessageResponse(true, false, false, 'Error actualizando usuario');
                     }
@@ -384,6 +402,20 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 if(data != -1) {
                     vm.passwordForm.password = '';
                     vm.passwordForm.password_repeat = '';
+
+                    UserService.logout(function (data) {
+                        console.log('logout');
+                        $location.path('/main');
+                        LinksService.selectedIncludeTop = 'main/ofertas.html';
+                        BayresService.usuario = null;
+                        BayresService.isLogged = false;
+                        BayresService.miCarrito = {};
+                        BayresService.carrito = [];
+                        CartVars.carrtio = [];
+
+                        CartVars.broadcast();
+                    });
+
                     setMessageResponse(false, true, false, 'La contrase�a se actualizo');
                 } else {
                     setMessageResponse(false, true, false, 'Error actualizando contrase�a');
