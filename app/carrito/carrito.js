@@ -178,8 +178,8 @@ function CarritoController(AcUtils, UserService, CartVars, CartService, $timeout
                     BayresService.tieneCarrito = false;
                     BayresService.miCarrito = {};
                     CartVars.carrito = [];
-                    $location.path('/micuenta');
-                    LinksService.selectedIncludeTop = 'micuenta/micuenta.html';
+                    $location.path('/main');
+                    LinksService.selectedIncludeTop = 'main/ofertas.html';
                 } else {
                     BayresService.messageConfirm = 'Error confirmando el carrito';
                     BayresService.showMessageConfirm = true;

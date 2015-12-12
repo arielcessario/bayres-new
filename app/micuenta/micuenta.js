@@ -495,35 +495,87 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                     if(CartVars.carrito.length > 0) {
                         var carritoToDelete = [];
                         var carritoToAdd = [];
+
+                        //Armo el arreglo de Ids para borrar
+                        for(var i=0; i < CartVars.carrito.length; i++) {
+                            carritoToDelete.push(CartVars.carrito[i].carrito_detalle_id);
+                            //carritoToAdd.push(productoEntityToAdd(CartVars.carrito[i], BayresService.miCarrito.carrito_id));
+                        }
+
                         var agregado = false;
                         for(var i=0; i < carrito.productos.length; i++){
                             for(var j=0; j < CartVars.carrito.length; j++) {
                                 if(carrito.productos[i].producto_id == CartVars.carrito[j].producto_id) {
-                                    console.log(carrito.productos[i]);
-                                    console.log(CartVars.carrito[j]);
                                     var carritoAux = {};
                                     carritoAux.cantidad = carrito.productos[i].cantidad + CartVars.carrito[j].cantidad;
-                                    carritoAux.carrito_id = BayresService.miCarrito.carrito_id;
-                                    carritoAux.en_oferta = carrito.productos[i].en_oferta;
-                                    carritoAux.nombre = carrito.productos[i].nombre;
-                                    carritoAux.precio_unitario = carrito.productos[i].precio_unitario;
-                                    carritoAux.producto_id = carrito.productos[i].producto_id;
+                                    carritoAux.carrito_id = CartVars.carrito[j].carrito_id;
+                                    carritoAux.en_oferta = CartVars.carrito[j].en_oferta;
+                                    carritoAux.nombre = CartVars.carrito[j].nombre;
+                                    carritoAux.precio_unitario = CartVars.carrito[j].precio_unitario;
+                                    carritoAux.producto_id = CartVars.carrito[j].producto_id;
+                                    carritoAux.carrito_detalle_id = CartVars.carrito[j].carrito_detalle_id;
 
-                                    carritoToDelete.push(CartVars.carrito[j].carrito_detalle_id);
+                                    CartVars.carrito.splice(j, 1);
                                     carritoToAdd.push(carritoAux);
                                     console.log(carritoAux);
                                     agregado = true;
                                 }
                             }
-                            if(!agregado)
-                                carritoToAdd.push(carrito.productos[i]);
-
-                            console.log(carritoToAdd);
+                            if(!agregado) {
+                                //carritoToAdd.push(carrito.productos[i]);
+                                carritoToAdd.push(productoEntityToAdd2(carrito.productos[i], BayresService.miCarrito.carrito_id));
+                            }
                             agregado = false;
+                        }
+                        for(var i=0; i < CartVars.carrito.length; i++) {
+                            carritoToAdd.push(productoEntityToAdd2(CartVars.carrito[i], BayresService.miCarrito.carrito_id));
                         }
                         console.log(carritoToDelete);
                         console.log(carritoToAdd);
-                        if(carritoToDelete.length == 0) {
+                        if(carritoToDelete.length > 0) {
+                            console.log(CartVars.carrito);
+                            CartVars.carrito = [];
+
+                            CartService.removeFromCart(carritoToDelete, function(carritoBorrado) {
+                                if (carritoBorrado != -1) {
+                                    CartVars.carrito = [];
+                                    CartService.addToCart(BayresService.miCarrito.carrito_id, carritoToAdd, function(carritoAgregado){
+                                        console.log(carritoAgregado);
+                                        if(carritoAgregado != -1) {
+                                            /*
+                                             for (var i = 0; i < CartVars.carrito.length; i++){
+                                             for(var j=0; j < carritoToDelete.length; j++){
+                                             if(CartVars.carrito[i].carrito_detalle_id == carritoToDelete[j]){
+                                             CartVars.carrito.splice(i, 1);
+                                             }
+                                             }
+                                             }
+                                             */
+                                            for(var i=0; i < carritoToAdd.length; i++) {
+                                                for(var j=0; j < CartVars.carrito.length; j++){
+                                                    if(CartVars.carrito[j].producto_id == carritoToAdd[i].producto_id){
+                                                        if(CartVars.carrito[j].nombre === undefined)
+                                                            CartVars.carrito[j].nombre = carritoToAdd[i].nombre;
+                                                    }
+                                                }
+                                            }
+                                            BayresService.miCarrito.total = CartVars.carrito_total();
+                                            console.log(CartVars.carrito);
+                                            console.log(BayresService.miCarrito);
+                                            CartService.update(BayresService.miCarrito, function(carritoActualizado){
+                                                console.log(carritoActualizado);
+                                                if(carritoActualizado) {
+                                                    console.log('Carrito update ok');
+                                                    //CartVars.broadcast();
+                                                } else {
+                                                    console.log('Carrito update error');
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
                             var productArray = [];
                             for(var i=0; i < carritoToAdd.length; i++) {
                                 productArray.push(productoEntityToAdd(carritoToAdd[i], BayresService.miCarrito.carrito_id));
@@ -546,47 +598,9 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                         console.log(carritoActualizado);
                                         if(carritoActualizado) {
                                             console.log('Carrito update ok');
-                                            CartVars.broadcast();
+                                            //CartVars.broadcast();
                                         } else {
                                             console.log('Carrito update error');
-                                        }
-                                    });
-                                }
-                            });
-                        } else {
-                            CartService.removeFromCart(carritoToDelete, function(data) {
-                                if (data != -1) {
-                                    CartService.addToCart(BayresService.miCarrito.carrito_id, carritoToAdd, function(data){
-                                        console.log(data);
-                                        if(data != -1) {
-                                            for (var i = 0; i < CartVars.carrito.length; i++){
-                                                for(var j=0; j < carritoToDelete.length; j++){
-                                                    if(CartVars.carrito[i].carrito_detalle_id == carritoToDelete[j]){
-                                                        CartVars.carrito.splice(i, 1);
-                                                    }
-                                                }
-                                            }
-
-                                            for(var i=0; i < carritoToAdd.length; i++) {
-                                                for(var j=0; j < CartVars.carrito.length; j++){
-                                                    if(CartVars.carrito[j].producto_id == carritoToAdd[i].producto_id){
-                                                        if(CartVars.carrito[j].nombre === undefined)
-                                                            CartVars.carrito[j].nombre = carritoToAdd[i].nombre;
-                                                    }
-                                                }
-                                            }
-                                            BayresService.miCarrito.total = CartVars.carrito_total();
-                                            console.log(CartVars.carrito);
-                                            console.log(BayresService.miCarrito);
-                                            CartService.update(BayresService.miCarrito, function(carritoActualizado){
-                                                console.log(carritoActualizado);
-                                                if(carritoActualizado) {
-                                                    console.log('Carrito update ok');
-                                                    CartVars.broadcast();
-                                                } else {
-                                                    console.log('Carrito update error');
-                                                }
-                                            });
                                         }
                                     });
                                 }
@@ -615,7 +629,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                 CartService.update(BayresService.miCarrito, function(carritoUpdate){
                                     if(carritoUpdate) {
                                         console.log('Ok');
-                                        CartVars.broadcast();
+                                        // CartVars.broadcast();
                                     } else {
                                         console.log('Error');
                                     }
@@ -655,7 +669,7 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                                     CartService.update(carritoCreado, function(carritoUpdate){
                                         if(carritoUpdate) {
                                             console.log('Ok');
-                                            CartVars.broadcast();
+                                            //CartVars.broadcast();
                                         } else {
                                             console.log('Error');
                                         }
@@ -669,6 +683,22 @@ function MiCuentaController($location, UserService, CartVars, CartService, AcUti
                 }
             }
         }
+    }
+
+    function productoEntityToAdd2(producto, carrito_id) {
+        var miProducto = {
+            producto_id: producto.producto_id,
+            cantidad: (producto.cantidad == 0) ? 1 : producto.cantidad,
+            en_oferta: producto.en_oferta,
+            precio_unitario: producto.precio_unitario,
+            nombre: producto.nombre,
+
+        };
+
+        if(carrito_id != -1)
+            miProducto.carrito_id = carrito_id;
+
+        return miProducto;
     }
 
     function home() {

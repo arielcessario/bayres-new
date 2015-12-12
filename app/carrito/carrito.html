@@ -39,11 +39,15 @@
                             ng-options="tipoEnvioDefecto.name for tipoEnvioDefecto in carritoCtrl.tipoEnvios"
                             class="form-control control-select">
                     </select>
-                    <select ng-if="carritoCtrl.tipoEnvioDefecto.id == 1" ng-model="carritoCtrl.lugarDeEnvioDefecto"
+                    <select style="display: none;"
+                            ng-class="{'select-envios' : carritoCtrl.tipoEnvioDefecto.id == 1}"
+                            ng-model="carritoCtrl.lugarDeEnvioDefecto"
                             ng-options="lugarDeEnvioDefecto.name for lugarDeEnvioDefecto in carritoCtrl.lugarDeEnvios"
                             class="form-control control-select">
                     </select>
-                    <select ng-if="carritoCtrl.tipoEnvioDefecto.id == 2" ng-model="carritoCtrl.sucursal"
+                    <select style="display: none;"
+                            ng-class="{'select-sucursales' : carritoCtrl.tipoEnvioDefecto.id == 2}"
+                            ng-model="carritoCtrl.sucursal"
                             ng-options="sucursal.nombre for sucursal in carritoCtrl.sucursales"
                             class="form-control control-select">
                     </select>
