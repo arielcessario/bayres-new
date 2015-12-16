@@ -675,7 +675,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 #roca2 {
   position: absolute;
   top: 0;
-  background: url(../images/piedra_02.png.png) top center no-repeat;
+  background: url(../images/piedra_02.png) top center no-repeat;
 }
 
 /* line 595, ../sass/main.scss */
@@ -685,7 +685,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 601, ../sass/main.scss */
 #roca4 {
-  background: url(../images/piedra_04.png.png) top center no-repeat;
+  background: url(../images/piedra_04.png) top center no-repeat;
 }
 
 /* line 605, ../sass/main.scss */

@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    //window.appName = 'bayres';
 
     angular.module('bayres.contacto', [])
         .config(['$routeProvider', function($routeProvider) {
@@ -10,14 +9,13 @@
                 data: {requiresLogin: false}
             });
         }])
-        .controller('ContactoController', ContactoController)
-        .service('ContactoService', ContactoService);
+        .controller('ContactoController', ContactoController);
 
-    ContactoController.$inject = ['$location', '$timeout', 'AcUtils', 'ContactoService', 'LinksService',
-        'CartVars', 'BayresService'];
+    ContactoController.$inject = ['$scope', '$location', '$timeout', 'AcUtils', 'LinksService',
+        'CartVars', 'BayresService', 'BayresMailerService'];
 
-    function ContactoController($location, $timeout, AcUtils, ContactoService, LinksService,
-                                CartVars, BayresService) {
+    function ContactoController($scope, $location, $timeout, AcUtils, LinksService,
+                                CartVars, BayresService, BayresMailerService) {
         var vm = this;
 
         vm.message = '';
@@ -79,7 +77,7 @@
                 return;
             }
 
-            ContactoService.sendMailConsulta(vm.contactoForm, function(data){
+            BayresMailerService.sendMailConsulta(vm.contactoForm, function(data){
                 if(data) {
                     vm.enviado = true;
                     BayresService.messageConfirm = 'El mail fue enviado';
@@ -91,46 +89,11 @@
                         mail:'',
                         consulta:''
                     };
-                    //vm.message = '';
                 } else {
-                    //vm.message = 'Error enviando el mail';
                     BayresService.messageConfirm = 'Error enviando el mail';
                 }
                 BayresService.showMessageConfirm = true;
             });
-        }
-
-    }
-
-
-    ContactoService.$inject = ['$http'];
-    function ContactoService($http) {
-
-        //Variables
-        var service = {};
-
-        service.sendMailConsulta = sendMailConsulta;
-
-        return service;
-
-        /**
-         *
-         * @param contactoForm
-         * @param callback
-         * @returns {*}
-         */
-        function sendMailConsulta(contactoForm, callback) {
-            return $http.post('mailer/mailer.php',
-                {
-                    function: 'sendConsulta',
-                    'contactoForm': JSON.stringify(contactoForm)
-                })
-                .success(function (data) {
-                    callback(data);
-                })
-                .error(function (data) {
-                    callback(data);
-                })
         }
 
     }

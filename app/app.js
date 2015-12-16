@@ -23,7 +23,8 @@ window.appName = 'bayres';
         'bayres.micuenta',
         'bayres.contacto',
         'bayres.detalle',
-        'bayres.legales'
+        'bayres.legales',
+        'bayres.mailer'
     ]).
         config(['$routeProvider', function ($routeProvider) {
             $routeProvider
