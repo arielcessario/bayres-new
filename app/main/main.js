@@ -42,7 +42,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
     vm.intervalo = $interval(cambiarSlide, 7000);
 
-
     vm.productos = BayresService.productos;
     vm.search = BayresService.search;
     vm.productoResultado = (BayresService.productos.length > 0) ? 'Resultados' : 'No hay resultados';
@@ -98,7 +97,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
             nombre: producto.nombre,
             carrito_detalle_id: producto.carrito_detalle_id
         };
-        console.log(miProducto);
 
         return miProducto;
     }
@@ -119,15 +117,10 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
     }
 
     function addProducto(producto) {
-        console.log(producto);
 
         if (UserService.getFromToken() != false) {
-            console.log('Estoy logueado');
             if(BayresService.tieneCarrito) {
-                console.log(BayresService.miCarrito);
-
                 if(CartVars.carrito.length > 0){
-                    console.log(CartVars.carrito);
 
                     var existe = false;
                     for(var i=0; i < CartVars.carrito.length; i++){
@@ -139,26 +132,21 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                             var miProducto = productoEntityToUpdate(CartVars.carrito[i]);
 
                             CartService.updateProductInCart(miProducto, function(data){
-                                console.log(data);
                                 if(data){
                                     BayresService.miCarrito.total = CartVars.carrito_total();
                                     CartService.update(BayresService.miCarrito, function(carritoActualizado){
-                                        console.log(carritoActualizado);
                                         if(carritoActualizado) {
-                                            console.log('Carrito update ok');
                                             BayresService.messageConfirm = 'Producto agregado al carrito';
                                             BayresService.showMessageConfirm = true;
                                             CartVars.broadcast();
                                         } else {
                                             BayresService.messageConfirm = 'Error agregando el producto';
                                             BayresService.showMessageConfirm = true;
-                                            console.log('Carrito update error');
                                         }
                                     });
                                 } else {
                                     BayresService.messageConfirm = 'Error agregando el producto';
                                     BayresService.showMessageConfirm = true;
-                                    console.log('Update Error');
                                 }
                             });
                             existe = true;
@@ -168,7 +156,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                         var productArray = [];
                         productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                         CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
-                            console.log(data);
                             if(data != -1) {
                                 for(var i=0; i < productArray.length; i++) {
                                     for(var j=0; j < CartVars.carrito.length; j++){
@@ -179,30 +166,23 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                     }
                                 }
                                 BayresService.miCarrito.total = CartVars.carrito_total();
-                                console.log(CartVars.carrito);
-                                console.log(BayresService.miCarrito);
                                 CartService.update(BayresService.miCarrito, function(carritoActualizado){
-                                    console.log(carritoActualizado);
                                     if(carritoActualizado) {
-                                        console.log('Carrito update ok');
                                         BayresService.messageConfirm = 'Producto agregado al carrito';
                                         BayresService.showMessageConfirm = true;
                                         CartVars.broadcast();
                                     } else {
                                         BayresService.messageConfirm = 'Error agregando el producto';
                                         BayresService.showMessageConfirm = true;
-                                        console.log('Carrito update error');
                                     }
                                 });
                             }
                         });
                     }
                 } else {
-                    console.log('no tiene carrito');
                     var productArray = [];
                     productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                     CartService.addToCart(BayresService.miCarrito.carrito_id, productArray, function(data){
-                        console.log(data);
                         if(data != -1) {
                             for(var i=0; i < productArray.length; i++) {
                                 for(var j=0; j < CartVars.carrito.length; j++){
@@ -216,14 +196,12 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                             BayresService.miCarrito.total = CartVars.carrito_total();
                             CartService.update(BayresService.miCarrito, function(carritoActualizado){
                                 if(carritoActualizado) {
-                                    console.log('Carrito update ok');
                                     BayresService.messageConfirm = 'Producto agregado al carrito';
                                     BayresService.showMessageConfirm = true;
                                     CartVars.broadcast();
                                 } else {
                                     BayresService.messageConfirm = 'Error agregando el producto';
                                     BayresService.showMessageConfirm = true;
-                                    console.log('Carrito update error');
                                 }
                             });
                         }
@@ -233,19 +211,14 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                 var productArray = [];
                 productArray.push(productoEntityToAdd(producto, BayresService.miCarrito.carrito_id));
                 var carrito = {'usuario_id': BayresService.usuario.id, 'total': 0, 'status': 0};
-                console.log(carrito);
 
                 CartService.create(carrito, function(carritoCreado) {
                     if (carritoCreado != -1) {
                         BayresService.tieneCarrito = true;
                         BayresService.miCarrito = carritoCreado;
 
-                        console.log(BayresService.miCarrito);
-
                         CartService.addToCart(carritoCreado.carrito_id, productArray, function(data){
-                            console.log(data);
                             if(data != -1) {
-                                console.log('AddToCart Ok');
                                 for(var i=0; i < productArray.length; i++) {
                                     for(var j=0; j < CartVars.carrito.length; j++){
                                         if(CartVars.carrito[j].producto_id == productArray[i].producto_id){
@@ -257,13 +230,11 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                                 carritoCreado.total = CartVars.carrito_total();
                                 CartService.update(carritoCreado, function(carritoUpdate){
                                     if(carritoUpdate) {
-                                        console.log('Ok');
                                         BayresService.messageConfirm = 'Producto agregado al carrito';
                                         BayresService.showMessageConfirm = true;
                                     } else {
                                         BayresService.messageConfirm = 'Error agregando el producto';
                                         BayresService.showMessageConfirm = true;
-                                        console.log('Error');
                                     }
                                 });
                             } else {
@@ -274,7 +245,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
                 });
             }
         } else {
-            console.log('No Estoy logueado');
             var miProducto = productoEntityToAdd(producto, -1);
 
             actualizarMiCarrito(miProducto);
@@ -283,7 +253,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
     function actualizarMiCarrito(producto) {
         var encontrado = false;
-        console.log(BayresService.carrito.length);
 
         if (BayresService.carrito.length > 0) {
             for(var i=0; i < BayresService.carrito.length; i++){
@@ -300,9 +269,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
         BayresService.messageConfirm = 'Producto agregado al carrito';
         BayresService.showMessageConfirm = true;
-
-        console.log(BayresService.carrito);
-        console.log('actualizarMiCarrito');
 
         LinksService.broadcast();
     }
@@ -321,7 +287,6 @@ function MainController($scope, $interval, $location, AcUtils, UserService,
 
     function showDetalle(id) {
         LinksService.productId = id;
-        console.log(LinksService.productId);
         $location.path('/detalle');
         LinksService.selectedIncludeTop = 'detalle/detalle.html';
 

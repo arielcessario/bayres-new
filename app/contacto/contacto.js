@@ -32,6 +32,7 @@
             consulta:''
         };
 
+
         function hideMessage(){
             vm.enviado = false;
             $location.path('/main');

@@ -50,6 +50,7 @@
         vm.refreshProducto = refreshProducto;
         vm.confirmCarrito = confirmCarrito;
 
+
         //*******************************************************************
         //  PROGRAMA
         vm.carritoDetalles = (CartVars.carrito.length > 0) ? CartVars.carrito : BayresService.carrito;
@@ -63,7 +64,6 @@
         });
 
         CartVars.listen(function () {
-            console.log('Carrito-CartVars.listen');
             vm.carritoInfo.cantidadDeProductos = (CartVars.carrito.length > 0) ? CartVars.carrito_cantidad_productos() : BayresService.carrito_cantidad_productos();
             vm.carritoInfo.totalAPagar = (CartVars.carrito.length > 0) ? CartVars.carrito_total() : BayresService.carrito_total();
         });
@@ -73,7 +73,6 @@
             var detalle = producto.nombre + ' $' + producto.precio_unitario + '(x' + producto.cantidad + ')';
             var borrarOk = confirm('¿Desea borrar el producto '+ detalle +'?');
             if(borrarOk){
-                console.log(CartVars.carrito);
                 var carrito_detalle_ids = [];
                 carrito_detalle_ids.push(producto.carrito_detalle_id);
                 CartService.removeFromCart(carrito_detalle_ids, function(data){
@@ -81,17 +80,14 @@
                         BayresService.miCarrito.total = CartVars.carrito_total();
                         CartService.update(BayresService.miCarrito, function(miCarrito){
                             if(miCarrito) {
-                                console.log('Update Ok');
                                 BayresService.messageConfirm = 'Se quito el producto';
                             } else {
-                                console.log('Update Error');
                                 BayresService.messageConfirm = 'Error borrando el producto';
                             }
                             BayresService.showMessageConfirm = true;
                         });
                         calcularCarritoTotal();
                     } else {
-                        console.log('Error borrando el producto');
                         BayresService.messageConfirm = 'Error borrando el producto';
                         BayresService.showMessageConfirm = true;
                     }
@@ -118,8 +114,6 @@
                 nombre: producto.nombre,
                 carrito_detalle_id: producto.carrito_detalle_id
             };
-
-            console.log(miProducto);
 
             CartService.updateProductInCart(miProducto, function(data){
                 if(data) {
@@ -159,10 +153,7 @@
                                 carritoMail.tipoEnvio = vm.tipoEnvioDefecto.name;
                                 carritoMail.lugarDeEnvio = (vm.tipoEnvioDefecto.id == 1) ? vm.lugarDeEnvioDefecto.name : vm.sucursal.nombre;
 
-                                console.log(carritoMail);
-
                                 BayresMailerService.sendMailConfirmarCarrito(carritoMail, function(data){
-                                    console.log(data);
                                     if(data) {
                                         BayresService.messageConfirm = 'Su pedido fue enviado';
                                     } else {
@@ -186,7 +177,6 @@
                 });
 
             } else {
-                console.log('El Carrito esta vacio. Por favor agregue productos');
                 vm.message = 'El Carrito esta vacio. Por favor agregue productos';
                 BayresService.messageConfirm = 'El Carrito esta vacio. Por favor agregue productos';
                 BayresService.showMessageConfirm = true;

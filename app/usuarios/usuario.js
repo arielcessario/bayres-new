@@ -97,16 +97,12 @@
 
                                                 if(BayresService.carrito.length > 0) {
                                                     var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
-                                                    console.log(carrito);
                                                     CartService.create(carrito, function(carritoCreado) {
                                                         if (carritoCreado != -1) {
                                                             BayresService.tieneCarrito = true;
                                                             BayresService.miCarrito = carritoCreado;
 
-                                                            console.log(BayresService.miCarrito);
-
                                                             CartService.addToCart(carritoCreado.carrito_id, BayresService.carrito, function(data){
-                                                                console.log(data);
                                                                 if(data != -1) {
                                                                     for(var i=0; i < BayresService.carrito.length; i++) {
                                                                         for(var j=0; j < CartVars.carrito.length; j++){

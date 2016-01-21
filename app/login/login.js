@@ -109,16 +109,13 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
           //console.log(BayresService.carrito);
           if(!BayresService.tieneCarrito && BayresService.carrito.length > 0) {
             var carrito = {'usuario_id': BayresService.usuario.id, 'total': BayresService.carrito_total(), 'status': 0};
-            //console.log(carrito);
+
             CartService.create(carrito, function(carritoCreado) {
               if (carritoCreado != -1) {
                 BayresService.tieneCarrito = true;
                 BayresService.miCarrito = carritoCreado;
 
-                //console.log(BayresService.miCarrito);
-
                 CartService.addToCart(carritoCreado.carrito_id, BayresService.carrito, function(data){
-                  //console.log(data);
                   if(data != -1) {
                     for(var i=0; i < BayresService.carrito.length; i++) {
                       for(var j=0; j < CartVars.carrito.length; j++){
@@ -179,10 +176,8 @@ function LoginController($location, UserService, LinksService, BayresService, Ca
       if (vm.loginForm.mail.trim().length > 0) {
         if (AcUtils.validateEmail(vm.loginForm.mail.trim())) {
           UserService.userExist(vm.loginForm.mail.trim(), function (data) {
-            //console.log(data);
             if (data != -1) {
               UserService.forgotPassword(vm.loginForm.mail.trim(), function (data) {
-                //console.log(data);
                 vm.recoveryPassword = false;
                 $location.path('/main');
                 LinksService.selectedIncludeTop = 'main/ofertas.html';
