@@ -177,17 +177,17 @@
                 return;
             }
             if(vm.userForm.telefono.trim().length == 0) {
-                vm.message = "El Teléfono es Obligatorio";
+                vm.message = "El Telï¿½fono es Obligatorio";
                 vm.error_code = 4;
                 return;
             }
             if(!validatePhoneNumber(vm.userForm.telefono.trim())) {
-                vm.message = "El Teléfono no tiene un formato valido";
+                vm.message = "El Telï¿½fono no tiene un formato valido";
                 vm.error_code = 4;
                 return;
             }
             if(vm.userForm.calle.trim().length == 0 || vm.userForm.nro.trim().length == 0) {
-                vm.message = "La dirección y el numero son Obligatorias";
+                vm.message = "La direcciï¿½n y el numero son Obligatorias";
                 vm.error_code = 5;
                 return;
             }
@@ -212,7 +212,7 @@
                 return;
             }
             if(vm.userForm.password.trim().length == 0) {
-                vm.message = "La Contraseña es Obligatoria";
+                vm.message = "La Contraseï¿½a es Obligatoria";
                 vm.error_code = 8;
                 return;
             }

@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+
     angular.module('bayres.contacto', [])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider.when('/contacto', {
