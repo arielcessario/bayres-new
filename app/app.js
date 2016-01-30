@@ -388,7 +388,7 @@ window.appName = 'bayres';
 
                 if (scrolltop > 1000) {
                     roca1.style.transform = 'translateY(' + ((scrolltop * .4) - 440) + 'px) translateZ(0)';
-                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 660) + 'px) translateZ(0)';
+                    roca2.style.transform = 'translateY(' + ((scrolltop * .6) - 550) + 'px) translateZ(0)';
                 }
 
                 if (scrolltop > 1500) {

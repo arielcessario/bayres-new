@@ -582,7 +582,7 @@ $border_color: #8CC63F;
   //background: url(../images/destacados_03.png) top center no-repeat;
   position: absolute;
   top:0;
-  background: url(../images/piedra_01.png) top center no-repeat;
+  background: url(../images/piedra_03.png) top center no-repeat;
   //transform: translateY(-100px);
 }
 
@@ -590,6 +590,11 @@ $border_color: #8CC63F;
   position: absolute;
   top:0;
   background: url(../images/piedra_02.png) top center no-repeat;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
 }
 
 #roca3 {
@@ -599,7 +604,8 @@ $border_color: #8CC63F;
 }
 
 #roca4 {
-  background: url(../images/piedra_04.png) top center no-repeat;
+  background: url(../images/piedra_01.png) top center no-repeat;
+
 }
 
 #lava0 {
