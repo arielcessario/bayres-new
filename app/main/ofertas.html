@@ -4,7 +4,9 @@
         <div class="oferta-top">
             <div class="container-oferta" ng-if="mainCtrl.slider_nro == 1;">
                 <div class="container-oferta-imagen">
-                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"
+                    <!--<img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"/>-->
+                    <img class="oferta-imagen" ng-src="{{mainCtrl.productosEnOfertas[0].fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+mainCtrl.productosEnOfertas[0].fotos[0].nombre : ''}}"
                          alt="{{mainCtrl.productosEnOfertas[0].fotos[0].nombre}}"/>
                 </div>
                 <div class="container-oferta-producto">
@@ -12,9 +14,11 @@
                     <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[0].descripcion.substring(0, 149) + "..."}}</div>
                     <div class="btn-oferta">
                         <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[0]);">
+                            <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
                             <span class="producto-peso-big">$</span>
                             <span class="producto-precio-big" style="margin-right:25px;color:#fff">
                                 {{mainCtrl.productosEnOfertas[0].precios[0].precio}}</span>
+                        </div>
                         </div>
                         <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[0].producto_id); bayresCtrl.goToAnchor('section-2', 'section-2');"></div>
                     </div>
@@ -23,7 +27,9 @@
 
             <div class="container-oferta" ng-if="mainCtrl.slider_nro == 2;">
                 <div class="container-oferta-imagen">
-                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"
+                    <!--<img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"/>-->
+                    <img class="oferta-imagen" ng-src="{{mainCtrl.productosEnOfertas[1].fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+mainCtrl.productosEnOfertas[1].fotos[0].nombre : ''}}"
                          alt="{{mainCtrl.productosEnOfertas[1].fotos[0].nombre}}"/>
                 </div>
                 <div class="container-oferta-producto">
@@ -31,9 +37,12 @@
                     <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[1].descripcion.substring(0, 149) + "..."}}</div>
                     <div class="btn-oferta">
                         <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[1]);">
+                            <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
+
                             <span class="producto-peso-big">$</span>
                             <span class="producto-precio-big" style="margin-right:25px;color:#fff">
                                 {{mainCtrl.productosEnOfertas[1].precios[0].precio}}</span>
+                        </div>
                         </div>
                         <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[1].producto_id); bayresCtrl.goToAnchor('seccion-2', 'seccion-2');"></div>
                     </div>
@@ -42,7 +51,9 @@
 
             <div class="container-oferta" ng-if="mainCtrl.slider_nro == 3;">
                 <div class="container-oferta-imagen">
-                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"
+                    <!--<img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"/>-->
+                    <img class="oferta-imagen" ng-src="{{mainCtrl.productosEnOfertas[2].fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+mainCtrl.productosEnOfertas[2].fotos[0].nombre : ''}}"
                          alt="{{mainCtrl.productosEnOfertas[2].fotos[0].nombre}}"/>
                 </div>
                 <div class="container-oferta-producto">
@@ -61,7 +72,9 @@
 
             <div class="container-oferta" ng-if="mainCtrl.slider_nro == 4;">
                 <div class="container-oferta-imagen">
-                    <img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"
+                    <!--<img class="oferta-imagen" ng-src="./images/{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"
+                         alt="{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"/>-->
+                    <img class="oferta-imagen" ng-src="{{mainCtrl.productosEnOfertas[3].fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+mainCtrl.productosEnOfertas[3].fotos[0].nombre : ''}}"
                          alt="{{mainCtrl.productosEnOfertas[3].fotos[0].nombre}}"/>
                 </div>
                 <div class="container-oferta-producto">
@@ -69,9 +82,11 @@
                     <div class="oferta-descripcion">{{mainCtrl.productosEnOfertas[3].descripcion.substring(0, 149) + "..."}}</div>
                     <div class="btn-oferta">
                         <div class="btn-carrigo-big div-button" ng-click="mainCtrl.addProducto(mainCtrl.productosEnOfertas[3]);">
+                            <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
                             <span class="producto-peso-big">$</span>
                             <span class="producto-precio-big" style="margin-right:25px;color:#fff">
                                 {{mainCtrl.productosEnOfertas[3].precios[0].precio}}</span>
+                        </div>
                         </div>
                         <div class="btn-info-big" ng-click="mainCtrl.showDetalle(mainCtrl.productosEnOfertas[3].producto_id); bayresCtrl.goToAnchor('seccion-2', 'seccion-2');"></div>
                     </div>

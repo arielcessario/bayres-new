@@ -18,16 +18,25 @@
                         <input class="carrito-table-row div-input" ng-change="(producto.cantidad < 0) ? producto.cantidad = 0 : producto.cantidad; carritoCtrl.refreshProducto(producto);"
                                type="number" ng-model="producto.cantidad" style=""/>
                         <div class="carrito-table-row table-row-image">
-                            <a href="" ng-click="carritoCtrl.showSubTotal(producto);">
+                            <a href="" ng-click="carritoCtrl.showSubTotal(producto);carritoCtrl.showDetalle(producto.producto_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
                                 <img src="images/lupa.png" class="div-image-small" title="SubTotal: ${{producto.precio_unitario * producto.cantidad}}" />
                             </a>
                         </div>
                         <div class="carrito-table-row table-row-image">
-                            <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.removeProducto($index)">
+                            <a href="" title="{{producto.nombre}}" ng-click="carritoCtrl.showMensaje=true;carritoCtrl.getDetalle($index);">
                                 <img src="images/cruz.png" class="div-image-small" title="Quitar Producto del Carrito" />
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="eliminar-producto" ng-if="carritoCtrl.showMensaje">
+                <div class="font-color-text">
+                    &iquest;Desea borrar el producto {{carritoCtrl.detalle}}?
+                </div>
+                <div class="botonera">
+                    <button class="btn-small" ng-click="carritoCtrl.removeProducto(carritoCtrl.index);">Aceptar</button>
+                    <button class="btn-small" ng-click="carritoCtrl.cancelar();">Cancelar</button>
                 </div>
             </div>
             <div class="container-carrito-2">
@@ -53,7 +62,8 @@
                     </select>
                 </div>
                 <div class="info-envios">
-                    Los envios se realizan por medio de cadeteria, seg&uacute;n el tama&ntilde;o y peso del pedido. El costo del mismo es a cargo del comprador, previo coordinacion con el vendedor
+                    Los envíos se realizan por medio de cadeteria, correo, empresa de transportes, según destino. El costo del mismo es a cargo del comprador, previo coordinación con el vendedor.
+
                 </div>
                 <div class="botonera">
                     <button class="btn-big" ng-click="carritoCtrl.confirmCarrito();">Pedido!</button>

@@ -1,18 +1,22 @@
 <div ng-controller="MainController as mainCtrl" id="main-productos">
     <div class="title-font container-main-title">{{mainCtrl.productoResultado}}</div>
     <div class="responsive-container">
-        <div class="container-main-productos" id="inner-productos" ng-if="mainCtrl.existenProductos">
+        <div class="container-main-productos" id="inner-productos" ng-if="mainCtrl.existenProductos" style="overflow-y: auto;">
             <div class="div-close-busqueda"><img src="images/close.png" title="Cerrar detalle" ng-click="bayresCtrl.clearFiltro();bayresCtrl.goToAnchor('section-2','section-2')" class="btn-close"></div>
             <div ng-repeat="producto in mainCtrl.productos">
                 <div class="container-producto">
                     <div class="container-producto-border">
                         <div class="producto-nombre">{{producto.nombre}}</div>
-                        <img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>
+                        <!--<img class="producto-img" ng-src="./images/{{producto.fotos[0].nombre}}" alt="{{producto.nombre}}"/>-->
+                        <img class="producto-img" ng-src="{{producto.fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+producto.fotos[0].nombre : ''}}"
+                             alt="{{producto.nombre}}"/>
                         <div class="producto-botones">
                             <div class="btn-carrito" ng-click="mainCtrl.addProducto(producto);">
+                                <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
                                 <span class="producto-peso">$</span><span class="producto-precio">{{producto.precios[0].precio}}</span>
                             </div>
-                            <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);"></div>
+                            </div>
+                            <div class="btn-info" ng-click="mainCtrl.showDetalle(producto.producto_id);bayresCtrl.goToAnchor('section-2', 'section-4')"></div>
                         </div>
                     </div>
                 </div>

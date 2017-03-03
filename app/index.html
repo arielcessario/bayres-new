@@ -16,7 +16,6 @@
   <!--script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script-->
 </head>
 <body ng-controller="BayresController as bayresCtrl">
-
 <!-- SECCION VIEW-->
 <div style="visibility: collapse; display: none" id="vista" ng-if="false" ng-view></div>
 
@@ -44,7 +43,6 @@
         <div ng-class="{'nav-button-mid-transformed':bayresCtrl.menu_mobile_open}"></div>
         <div ng-class="{'nav-button-bot-transformed':bayresCtrl.menu_mobile_open}"></div>
       </div>
-      <div class="header-separator"></div>
       <div class="bienvenidos">
         <div class="mi-carrito-mobile">Mi Carrito: ${{bayresCtrl.carritoInfo.totalAPagar}} ({{bayresCtrl.carritoInfo.cantidadDeProductos}})</div>
         <img class="mi-carrito-mobile-img" src="images/cart.png" alt="Mi Carrito" title="Mi Carrito">
@@ -52,7 +50,7 @@
     </div>
     <div class="menu-desktop menu-type-desktop">
       <div id="menu-desktop-logo" ng-click="bayresCtrl.goTo({nombre: 'INICIO', path: '/'});">
-        <img src="images/logo_top.png" alt="logo" height="60px" width="200px">
+        <img src="images/logo_top.png" alt="logo" height="80px">
       </div>
       <div id="menu-desktop-right">
         <div id="menu-desktop-upper"></div>
@@ -106,9 +104,9 @@
     <!--</div>-->
     <div ng-repeat="categoria in bayresCtrl.categorias">
       <div class="menu-subcategoria">
-        <div class="menu-categoria-titulo" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} (<span style="color: #ffff00;">{{categoria.total}}</span>)</div>
+        <div class="menu-categoria-titulo" ng-click="bayresCtrl.getByCategoria(categoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">{{categoria.nombre}} <span ng-if="categoria.total != 0">(<span style="color: #ffff00;">{{categoria.total}}</span>)</span></div>
         <div class="menu-separator" ng-repeat="subcategoria in categoria.subcategorias" ng-click="bayresCtrl.getByCategoria(subcategoria.categoria_id);bayresCtrl.goToAnchor('section-2', 'section-2');">
-          <spam class="menu-subcategoria-item">{{subcategoria.nombre}} (<span style="color: #ffff00;">{{subcategoria.total}}</span>)</spam>
+          <span class="menu-subcategoria-item">{{subcategoria.nombre}} <span ng-if="subcategoria.total != 0">(<span style="color: #ffff00;">{{subcategoria.total}}</span>)</span></span>
         </div>
       </div>
     </div>
@@ -135,28 +133,28 @@
       <input type="text" class="form-control" placeholder="Buscar..."
              ng-model="bayresCtrl.filtro"
              ng-keyup="bayresCtrl.buscarProducto(bayresCtrl.filtro);">
-      <img src="images/close.png" class="buscar-clear-image" ng-click="bayresCtrl.clearFiltro();">
+      <img src="images/btn-close.svg" class="buscar-clear-image" ng-click="bayresCtrl.clearFiltro();">
     </div>
-    <div id="section-2">
-      <div id="tierra1"></div>
-      <div id="tierra2"></div>
-      <div id="tierra3"></div>
-      <div class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeTop"></div>
+    <div id="section-2" style="transform-style: preserve-3d;">
+      <div style="transform-style: preserve-3d;" id="tierra1"></div>
+      <div style="transform-style: preserve-3d;" id="tierra2"></div>
+      <div style="transform-style: preserve-3d;" id="tierra3"></div>
+      <div style="transform-style: preserve-3d;" class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeTop"></div>
     </div>
-    <div id="section-3">
-      <div id="roca1"></div>
-      <div id="roca2"></div>
-      <div id="roca3"></div>
-      <div id="roca4"></div>
-      <div class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeMiddle"></div>
+    <div id="section-3" style="transform-style: preserve-3d;">
+      <div style="transform-style: preserve-3d;" id="roca1"></div>
+      <div style="transform-style: preserve-3d;" id="roca2"></div>
+      <div style="transform-style: preserve-3d;" id="roca3"></div>
+      <div style="transform-style: preserve-3d;" id="roca4"></div>
+      <div style="transform-style: preserve-3d;" class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeMiddle"></div>
     </div>
-    <div id="section-4">
-      <div id="lava0"></div>
-      <div id="lava1"></div>
-      <div id="lava2"></div>
-      <div id="lava3"></div>
-      <div id="lava4"></div>
-      <div class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeBottom"></div>
+    <div id="section-4" style="transform-style: preserve-3d;">
+      <div style="transform-style: preserve-3d;" id="lava0"></div>
+      <div style="transform-style: preserve-3d;" id="lava1"></div>
+      <div style="transform-style: preserve-3d;" id="lava2"></div>
+      <div style="transform-style: preserve-3d;" id="lava3"></div>
+      <div style="transform-style: preserve-3d;" id="lava4"></div>
+      <div style="transform-style: preserve-3d;" class="transition-pane-animation" ng-include="bayresCtrl.selectedIncludeBottom"></div>
     </div>
     <div id="section-5">
       <div class="medio-pagos">
@@ -175,8 +173,59 @@
       <div class="outer-center footer-outer">
         <div class="inner-center footer-inner">
           <div class="footer-container">
+
+        <div class="contenedor-sucursales">
+
+            <div class="contenedor-sucursal-1">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8114141778606!2d-58.406981748713285!3d-34.60892996518591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaede1718eed%3A0x868d2862016aaeb1!2sCastelli+90%2C+C1031AAB+CABA!5e0!3m2!1ses-419!2sar!4v1485282324650" frameborder="0" style="border:0" allowfullscreen></iframe>
+              <div class="hiddentext">
+                <h1 style="color: #8ab66b; font-weight: bolder; margin-bottom: 20px">Sucursal ONCE</h1>
+                <h2 style="font-size: 22px">Castelli 90 5to H</h2>
+                <h2 style="font-size: 22px">15-3049-8691</h2>
+              </div>
+            </div>
+
+          <div class="contenedor-sucursal-2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.9976345570885!2d-58.46709314871266!3d-34.629500066274694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9884f572f57%3A0xa1a4f17e040d51c7!2sAv.+Rivadavia+7055%2C+C1406GMA+CABA!5e0!3m2!1ses-419!2sar!4v1485284083303"frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div class="hiddentext">
+              <h1 style="color: #8ab66b; font-weight: bolder; margin-bottom: 20px">Sucursal FLORES</h1>
+              <h2 style="font-size: 22px">Rivadavia 7055 local 73</h2>
+              <h2 style="font-size: 22px">15-6676-2685</h2>
+            </div>
+          </div>
+
+          <div class="contenedor-sucursal-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.3148002430275!2d-58.425653748712755!3d-34.62148426585051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca572cbc037b%3A0x434076afa1e244a9!2sAv.+Independencia+4067%2C+Cdad.+Aut%C3%B3noma+de+Buenos+Aires!5e0!3m2!1ses-419!2sar!4v1485284132364"frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div class="hiddentext">
+              <h1 style="color: #8ab66b; font-weight: bolder; margin-bottom: 20px">Sucursal ALMAGRO</h1>
+              <h2 style="font-size: 22px">Independencia 4067</h2>
+              <h2 style="font-size: 22px">15-3041-2252</h2>
+            </div>
+          </div>
+
+          <div class="contenedor-sucursal-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.619248997839!2d-58.52804514871242!3d-34.63906096678107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc840ab23870b%3A0x84b5ab1428bcd1fc!2sAv.+Rivadavia+11450%2C+C1408ABO+CABA!5e0!3m2!1ses-419!2sar!4v1485284175612"frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div class="hiddentext">
+              <h1 style="color: #8ab66b; font-weight: bolder; margin-bottom: 20px">Sucursal LINIERS</h1>
+              <h2 style="font-size: 22px">Rivadavia 11450 local 13</h2>
+              <h2 style="font-size: 22px">15-6676-2716</h2>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
             <div class="footer-upper">
-              <img class="img-logo-footer" src="images/LOGOFOOTER.png" alt=""/>
+              <img class="img-logo-footer" style="width: 100%" src="images/LOGOFOOTER.png" alt=""/>
             </div>
             <div class="footer-lower">
               <div class="footer-lower-colum">
@@ -231,6 +280,18 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56571440-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
