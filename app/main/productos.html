@@ -2,7 +2,7 @@
     <div class="title-font container-main-title">{{mainCtrl.productoResultado}}</div>
     <div class="responsive-container">
         <div class="container-main-productos" id="inner-productos" ng-if="mainCtrl.existenProductos" style="overflow-y: auto;">
-            <div class="div-close-busqueda"><img src="images/close.png" title="Cerrar detalle" ng-click="bayresCtrl.clearFiltro();bayresCtrl.goToAnchor('section-2','section-2')" class="btn-close"></div>
+            <div class="div-close-busqueda"><img src="images/btn-close.svg" title="Cerrar detalle" ng-click="bayresCtrl.clearFiltro();bayresCtrl.goToAnchor('section-2','section-2')" class="btn-close"></div>
             <div ng-repeat="producto in mainCtrl.productos">
                 <div class="container-producto">
                     <div class="container-producto-border">

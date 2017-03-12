@@ -12,18 +12,21 @@
                 <img class="detalle-imagen" ng-src="{{detalleCtrl.producto.fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+detalleCtrl.producto.fotos[0].nombre : ''}}"
                      alt="{{detalleCtrl.producto.nombre}}"/>
                </div>
-                <div class="btn-carrigo-big div-button" ng-click="detalleCtrl.addProducto(detalleCtrl.producto);">
-                    <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
-                    <span class="producto-peso-big">$</span><span class="producto-precio-big">{{detalleCtrl.producto.precios[0].precio}}</span>
-                    </div>
-                </div>
+
 
                 </div>
             <div class="container-detalle-2">
 
                 <div class="detalle-titulo">{{detalleCtrl.producto.nombre}}</div>
                 <div class="div-detalle">{{detalleCtrl.producto.descripcion}}</div>
+                <div class="btn-carrigo-big div-button" ng-click="detalleCtrl.addProducto(detalleCtrl.producto);">
+                    <div style="margin-left: 5px; margin-top: 5px; width: 100%; text-align: left">
+                        <span class="producto-peso-big">$</span><span class="producto-precio-big">{{detalleCtrl.producto.precios[0].precio}}</span>
+                    </div>
                 </div>
             </div>
+
+            </div>
+
         </div>
 </div>
