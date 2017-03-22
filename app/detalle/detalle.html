@@ -5,16 +5,12 @@
         <div class="container-detalle-content">
             <div class="div-close"><img src="images/btn-close.svg" title="Cerrar detalle" ng-click="detalleCtrl.close();bayresCtrl.goToAnchor(bayresCtrl.id_origen)" class="btn-close"></div>
             <div class="container-detalle-1">
-                <!--<img ng-src="images/{{detalleCtrl.producto.fotos[0].nombre}}"
-                     alt="{{detalleCtrl.producto.nombre}}"
-                     class="detalle-imagen"/>-->
-               <div class="flex-foto-oferta">
+
                 <img class="detalle-imagen" ng-src="{{detalleCtrl.producto.fotos.length > 0 ? 'http://bayresnoproblem.com.ar/images/'+detalleCtrl.producto.fotos[0].nombre : ''}}"
                      alt="{{detalleCtrl.producto.nombre}}"/>
-               </div>
 
 
-                </div>
+            </div>
             <div class="container-detalle-2">
 
                 <div class="detalle-titulo">{{detalleCtrl.producto.nombre}}</div>

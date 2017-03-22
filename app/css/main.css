@@ -1347,7 +1347,6 @@ CONTENEDORES
   justify-content: space-around;
   margin-left: 10px;
   margin-right: 10px;
-  width: 27%;
 }
 @media (max-width: 500px) {
   /* line 1204, ../sass/main.scss */
@@ -1357,8 +1356,17 @@ CONTENEDORES
 }
 
 /* line 1213, ../sass/main.scss */
+.container-detalle-1 {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 30em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 1222, ../sass/main.scss */
 .container-detalle-2 {
-  width: 70%;
+  width: 100%;
   color: #fff;
   text-align: justify;
   text-justify: inter-word;
@@ -1368,7 +1376,7 @@ CONTENEDORES
 /**
 CONTROLES
 */
-/* line 1225, ../sass/main.scss */
+/* line 1234, ../sass/main.scss */
 .botonera {
   margin: 20px;
   display: flex;
@@ -1384,13 +1392,13 @@ CONTROLES
   */
 }
 @media (max-width: 360px) {
-  /* line 1225, ../sass/main.scss */
+  /* line 1234, ../sass/main.scss */
   .botonera {
     margin-bottom: 30px;
   }
 }
 
-/* line 1243, ../sass/main.scss */
+/* line 1252, ../sass/main.scss */
 .btn-carrito, .btn-carrigo-big {
   -webkit-backface-visibility: hidden;
   width: 90px;
@@ -1406,20 +1414,20 @@ CONTROLES
   align-items: center;
 }
 
-/* line 1258, ../sass/main.scss */
+/* line 1267, ../sass/main.scss */
 .btn-carrigo-big {
   -webkit-backface-visibility: hidden;
   width: 130px;
   height: 58px;
   background: url("../images/boton-oferta.svg") 50% 50% no-repeat;
 }
-/* line 1263, ../sass/main.scss */
+/* line 1272, ../sass/main.scss */
 .btn-carrigo-big span {
   color: black !important;
   margin-top: 10px;
 }
 
-/* line 1269, ../sass/main.scss */
+/* line 1278, ../sass/main.scss */
 .btn-carrito:hover {
   -webkit-transform-style: preserve-3d;
   /* Chrome, Safari, Opera */
@@ -1434,7 +1442,7 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1282, ../sass/main.scss */
+/* line 1291, ../sass/main.scss */
 .btn-carrigo-big:hover {
   -webkit-transform-style: preserve-3d;
   /* Chrome, Safari, Opera */
@@ -1446,13 +1454,13 @@ CONTROLES
   -o-transition: all ease-in 0.2s;
   transition: all ease-in 0.2s;
 }
-/* line 1291, ../sass/main.scss */
+/* line 1300, ../sass/main.scss */
 .btn-carrigo-big:hover span {
   color: black !important;
   margin-top: 10px;
 }
 
-/* line 1297, ../sass/main.scss */
+/* line 1306, ../sass/main.scss */
 .btn-info {
   -webkit-transform-style: preserve-3d;
   /* Chrome, Safari, Opera */
@@ -1469,7 +1477,7 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1312, ../sass/main.scss */
+/* line 1321, ../sass/main.scss */
 .btn-info:hover {
   -webkit-transform-style: preserve-3d;
   /* Chrome, Safari, Opera */
@@ -1484,18 +1492,18 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1325, ../sass/main.scss */
+/* line 1334, ../sass/main.scss */
 .contenedor-btn-info {
   width: 32px;
   margin-top: 3px;
   margin-left: 3px;
 }
 
-/* line 1332, ../sass/main.scss */
+/* line 1341, ../sass/main.scss */
 .contenedor-btn-info:hover {
   cursor: pointer;
 }
-/* line 1334, ../sass/main.scss */
+/* line 1343, ../sass/main.scss */
 .contenedor-btn-info:hover .cls-1 {
   fill: #949f14 !important;
   -webkit-transition: all ease-in 0.2s;
@@ -1505,7 +1513,7 @@ CONTROLES
   transition: all ease-in 0.2s;
   stroke: white !important;
 }
-/* line 1343, ../sass/main.scss */
+/* line 1352, ../sass/main.scss */
 .contenedor-btn-info:hover .cls-2 {
   fill: white !important;
   -webkit-transition: all ease-in 0.2s;
@@ -1515,7 +1523,7 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1353, ../sass/main.scss */
+/* line 1362, ../sass/main.scss */
 .cls-1, .cls-2 {
   -webkit-transition: all ease-in 0.2s;
   -moz-transition: all ease-in 0.2s;
@@ -1524,7 +1532,7 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1364, ../sass/main.scss */
+/* line 1373, ../sass/main.scss */
 .contenedor-btn-carrito .cls-4 {
   fill: #fff !important;
   stroke: #949f14 !important;
@@ -1535,11 +1543,11 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1374, ../sass/main.scss */
+/* line 1383, ../sass/main.scss */
 .contenedor-btn-carrito:hover {
   cursor: pointer;
 }
-/* line 1376, ../sass/main.scss */
+/* line 1385, ../sass/main.scss */
 .contenedor-btn-carrito:hover .cls-4 {
   fill: #949f14 !important;
   stroke: #fff !important;
@@ -1549,7 +1557,7 @@ CONTROLES
   -o-transition: all ease-in 0.2s;
   transition: all ease-in 0.2s;
 }
-/* line 1385, ../sass/main.scss */
+/* line 1394, ../sass/main.scss */
 .contenedor-btn-carrito:hover .cls-3 {
   fill: #fff !important;
   -webkit-transition: all ease-in 0.2s;
@@ -1559,18 +1567,18 @@ CONTROLES
   transition: all ease-in 0.2s;
 }
 
-/* line 1397, ../sass/main.scss */
+/* line 1406, ../sass/main.scss */
 .contenedor-btn-carrito {
   width: 90px;
   margin-top: 5px;
 }
 
-/* line 1403, ../sass/main.scss */
+/* line 1412, ../sass/main.scss */
 .btn-close {
   width: 40px;
 }
 
-/* line 1407, ../sass/main.scss */
+/* line 1416, ../sass/main.scss */
 button {
   width: 100px;
   height: 30px;
@@ -1597,7 +1605,7 @@ button {
   transition: all ease-in 0.2s;
 }
 
-/* line 1433, ../sass/main.scss */
+/* line 1442, ../sass/main.scss */
 button:hover {
   color: black;
   background: #d2ff52;
@@ -1615,14 +1623,14 @@ button:hover {
   transition: all ease-in 0.2s;
 }
 
-/* line 1451, ../sass/main.scss */
+/* line 1460, ../sass/main.scss */
 .btn-big {
   width: 120px;
   height: 37px;
   font-size: 16px;
 }
 
-/* line 1457, ../sass/main.scss */
+/* line 1466, ../sass/main.scss */
 .form-control {
   display: block;
   margin: 0 10px;
@@ -1642,20 +1650,20 @@ button:hover {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-/* line 1477, ../sass/main.scss */
+/* line 1486, ../sass/main.scss */
 .form-message {
   margin-top: 20px;
   text-align: center;
   width: 100%;
 }
 
-/* line 1483, ../sass/main.scss */
+/* line 1492, ../sass/main.scss */
 .message {
   font-weight: bold;
   color: #8cc63f;
 }
 
-/* line 1488, ../sass/main.scss */
+/* line 1497, ../sass/main.scss */
 .datos-titulo, .pwd-titulo, .carrito-titulo {
   font-size: 2em;
   color: #8cc63f;
@@ -1663,23 +1671,23 @@ button:hover {
   margin: 15px 0;
 }
 
-/* line 1495, ../sass/main.scss */
+/* line 1504, ../sass/main.scss */
 .carrito-titulo {
   margin-right: 5px;
 }
 
-/* line 1499, ../sass/main.scss */
+/* line 1508, ../sass/main.scss */
 .label-input {
   font-size: 18px;
   color: #fff;
 }
 
-/* line 1504, ../sass/main.scss */
+/* line 1513, ../sass/main.scss */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* line 1508, ../sass/main.scss */
+/* line 1517, ../sass/main.scss */
 label {
   display: inline-block;
   max-width: 100%;
@@ -1687,20 +1695,20 @@ label {
   font-weight: 700;
 }
 
-/* line 1515, ../sass/main.scss */
+/* line 1524, ../sass/main.scss */
 .control-select {
   height: 38px;
   width: 300px;
   margin-left: 5px;
 }
 @media (max-width: 700px) {
-  /* line 1515, ../sass/main.scss */
+  /* line 1524, ../sass/main.scss */
   .control-select {
     margin: 10px 0;
   }
 }
 
-/* line 1524, ../sass/main.scss */
+/* line 1533, ../sass/main.scss */
 .carrito-table-head, .carrito-table-body {
   display: flex;
   flex-direction: row;
@@ -1711,46 +1719,46 @@ label {
   width: 100%;
 }
 
-/* line 1534, ../sass/main.scss */
+/* line 1543, ../sass/main.scss */
 .carrito-table-head {
   color: #8cc63f;
 }
 
 @media (max-width: 600px) {
-  /* line 1539, ../sass/main.scss */
+  /* line 1548, ../sass/main.scss */
   .carrito-table-body {
     font-family: "Myriad Pro Condensed";
   }
 }
-/* line 1544, ../sass/main.scss */
+/* line 1553, ../sass/main.scss */
 .carrito-table-row-name {
   width: 220px;
 }
 @media (max-width: 600px) {
-  /* line 1544, ../sass/main.scss */
+  /* line 1553, ../sass/main.scss */
   .carrito-table-row-name {
     width: 40%;
   }
 }
 
-/* line 1551, ../sass/main.scss */
+/* line 1560, ../sass/main.scss */
 .carrito-table-row {
   width: 85px;
   text-align: center;
 }
 @media (max-width: 600px) {
-  /* line 1551, ../sass/main.scss */
+  /* line 1560, ../sass/main.scss */
   .carrito-table-row {
     width: 15%;
   }
 }
 
-/* line 1559, ../sass/main.scss */
+/* line 1568, ../sass/main.scss */
 .table-row-image {
   width: 32px;
 }
 
-/* line 1563, ../sass/main.scss */
+/* line 1572, ../sass/main.scss */
 .div-input, .div-input-big {
   background-color: #fff;
   padding: 5px 10px;
@@ -1760,27 +1768,27 @@ label {
   text-align: right;
 }
 
-/* line 1572, ../sass/main.scss */
+/* line 1581, ../sass/main.scss */
 .div-input {
   width: 60px;
   font-size: 12px;
 }
 @media (max-width: 600px) {
-  /* line 1572, ../sass/main.scss */
+  /* line 1581, ../sass/main.scss */
   .div-input {
     width: 10%;
     font-size: 15px;
   }
 }
 
-/* line 1581, ../sass/main.scss */
+/* line 1590, ../sass/main.scss */
 .div-input-big {
   width: 90px;
   font-size: 18px;
   height: 20px;
 }
 
-/* line 1587, ../sass/main.scss */
+/* line 1596, ../sass/main.scss */
 .div-image-small {
   background-color: #fff;
   padding: 2px;
@@ -1789,7 +1797,7 @@ label {
   height: 24px;
 }
 
-/* line 1598, ../sass/main.scss */
+/* line 1607, ../sass/main.scss */
 .carrito-entrega {
   display: flex;
   flex-direction: row;
@@ -1800,19 +1808,19 @@ label {
   padding: 20px 0;
 }
 @media (max-width: 700px) {
-  /* line 1598, ../sass/main.scss */
+  /* line 1607, ../sass/main.scss */
   .carrito-entrega {
     flex-direction: column;
   }
 }
 
-/* line 1611, ../sass/main.scss */
+/* line 1620, ../sass/main.scss */
 .carrito-subtotal {
   font-size: 26px;
   font-weight: bold;
 }
 
-/* line 1616, ../sass/main.scss */
+/* line 1625, ../sass/main.scss */
 .container-contacto {
   display: flex;
   flex-direction: row;
@@ -1823,11 +1831,11 @@ label {
   width: 100%;
 }
 @media (max-width: 800px) {
-  /* line 1616, ../sass/main.scss */
+  /* line 1625, ../sass/main.scss */
   .container-contacto {
     flex-direction: column;
   }
-  /* line 1627, ../sass/main.scss */
+  /* line 1636, ../sass/main.scss */
   .container-contacto .container-contacto-1, .container-contacto .container-contacto-2 {
     width: 100%;
     display: flex;
@@ -1837,7 +1845,7 @@ label {
     margin-right: 0px;
     margin-left: 0px;
   }
-  /* line 1636, ../sass/main.scss */
+  /* line 1645, ../sass/main.scss */
   .container-contacto .container-contacto-1 .form-group, .container-contacto .container-contacto-2 .form-group {
     width: 100%;
     display: flex;
@@ -1845,28 +1853,28 @@ label {
     justify-content: center;
     align-items: center;
   }
-  /* line 1642, ../sass/main.scss */
+  /* line 1651, ../sass/main.scss */
   .container-contacto .container-contacto-1 .form-group .form-control, .container-contacto .container-contacto-2 .form-group .form-control {
     width: 80%;
   }
 }
 
-/* line 1651, ../sass/main.scss */
+/* line 1660, ../sass/main.scss */
 .container-contacto-1, .container-contacto-2 {
   width: 40%;
 }
 
-/* line 1655, ../sass/main.scss */
+/* line 1664, ../sass/main.scss */
 .container-contacto-1 {
   margin-right: 25px;
 }
 
-/* line 1659, ../sass/main.scss */
+/* line 1668, ../sass/main.scss */
 .container-contacto-2 {
   margin-left: 30px;
 }
 
-/* line 1663, ../sass/main.scss */
+/* line 1672, ../sass/main.scss */
 textarea {
   font-size: 14px;
   width: 250px;
@@ -1876,7 +1884,7 @@ textarea {
   padding: 7px;
 }
 
-/* line 1672, ../sass/main.scss */
+/* line 1681, ../sass/main.scss */
 .container-buttons {
   display: flex;
   flex-direction: row;
@@ -1887,7 +1895,7 @@ textarea {
   margin-bottom: 15px;
 }
 
-/* line 1682, ../sass/main.scss */
+/* line 1691, ../sass/main.scss */
 .btn-cancel {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc0000+0,cc0000+100;Red+Flat */
   background: #cc0000;
@@ -1902,7 +1910,7 @@ textarea {
   /* IE6-9 */
 }
 
-/* line 1692, ../sass/main.scss */
+/* line 1701, ../sass/main.scss */
 .btn-cancel:hover {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
   background: #ff3019;
@@ -1918,7 +1926,7 @@ textarea {
   color: white;
 }
 
-/* line 1703, ../sass/main.scss */
+/* line 1712, ../sass/main.scss */
 .carrito-totales {
   color: #fff;
   font-size: 54px;
@@ -1927,13 +1935,13 @@ textarea {
   margin-top: 20px;
 }
 @media (max-width: 700px) {
-  /* line 1703, ../sass/main.scss */
+  /* line 1712, ../sass/main.scss */
   .carrito-totales {
     margin-top: 20px;
   }
 }
 
-/* line 1714, ../sass/main.scss */
+/* line 1723, ../sass/main.scss */
 .info-envios {
   font-family: "Myriad Pro Condensed", serif;
   font-size: 18px;
@@ -1942,13 +1950,13 @@ textarea {
   margin: 15px 10%;
 }
 @media (max-width: 600px) {
-  /* line 1714, ../sass/main.scss */
+  /* line 1723, ../sass/main.scss */
   .info-envios {
     margin: 0 10%;
   }
 }
 
-/* line 1726, ../sass/main.scss */
+/* line 1735, ../sass/main.scss */
 #medios {
   background-color: #FCFCFC;
   font-family: "Myriad Pro Bold Condensed", serif;
@@ -1958,7 +1966,7 @@ textarea {
   white-space: nowrap;
 }
 
-/* line 1735, ../sass/main.scss */
+/* line 1744, ../sass/main.scss */
 #medios {
   position: absolute;
   height: 50px;
@@ -1968,13 +1976,13 @@ textarea {
   z-index: 50;
 }
 
-/* line 1744, ../sass/main.scss */
+/* line 1753, ../sass/main.scss */
 .medio-pagos-text {
   padding: 5px;
   margin-top: 15px;
 }
 
-/* line 1750, ../sass/main.scss */
+/* line 1759, ../sass/main.scss */
 .medio-pagos {
   display: flex;
   flex-direction: row;
@@ -1984,14 +1992,14 @@ textarea {
   align-items: center;
 }
 
-/* line 1760, ../sass/main.scss */
+/* line 1769, ../sass/main.scss */
 .medio-pagos img {
   width: 40px;
   height: 30px;
   padding: 5px 5px 0 5px;
 }
 @media (max-width: 400px) {
-  /* line 1760, ../sass/main.scss */
+  /* line 1769, ../sass/main.scss */
   .medio-pagos img {
     width: 30px;
     height: 20px;
@@ -1999,7 +2007,7 @@ textarea {
   }
 }
 
-/* line 1771, ../sass/main.scss */
+/* line 1780, ../sass/main.scss */
 #footer {
   width: 100%;
   overflow-x: auto;
@@ -2007,7 +2015,7 @@ textarea {
   font-family: "Myriad Pro Condensed", serif;
 }
 
-/* line 1778, ../sass/main.scss */
+/* line 1787, ../sass/main.scss */
 #footer {
   position: absolute;
   height: 450px;
@@ -2018,7 +2026,7 @@ textarea {
   background-color: #000000;
 }
 
-/* line 1788, ../sass/main.scss */
+/* line 1797, ../sass/main.scss */
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -2028,12 +2036,12 @@ textarea {
   align-items: center;
 }
 
-/* line 1797, ../sass/main.scss */
+/* line 1806, ../sass/main.scss */
 .footer-upper {
   margin-top: 20px;
 }
 
-/* line 1801, ../sass/main.scss */
+/* line 1810, ../sass/main.scss */
 .footer-lower {
   display: flex;
   flex-direction: row;
@@ -2044,18 +2052,18 @@ textarea {
   margin-top: 50px;
 }
 @media (max-width: 360px) {
-  /* line 1801, ../sass/main.scss */
+  /* line 1810, ../sass/main.scss */
   .footer-lower {
     margin-top: 15px;
   }
 }
 
-/* line 1814, ../sass/main.scss */
+/* line 1823, ../sass/main.scss */
 .footer-lower-colum {
   width: 150px;
 }
 @media (max-width: 360px) {
-  /* line 1814, ../sass/main.scss */
+  /* line 1823, ../sass/main.scss */
   .footer-lower-colum {
     width: 60px;
     font-size: 12px;
@@ -2063,25 +2071,25 @@ textarea {
   }
 }
 
-/* line 1823, ../sass/main.scss */
+/* line 1832, ../sass/main.scss */
 .footer-lower-title {
   color: #8cc63f;
   font-family: "Myriad Pro Bold Condensed", serif;
   font-size: 25px;
 }
 @media (max-width: 400px) {
-  /* line 1823, ../sass/main.scss */
+  /* line 1832, ../sass/main.scss */
   .footer-lower-title {
     font-size: 16px;
   }
 }
 
-/* line 1833, ../sass/main.scss */
+/* line 1842, ../sass/main.scss */
 .footer-lower-colum img {
   width: 100%;
 }
 
-/* line 1837, ../sass/main.scss */
+/* line 1846, ../sass/main.scss */
 .footer-lower-link {
   font-family: "Myriad Pro Condensed", serif;
   line-height: 22px;
@@ -2090,12 +2098,12 @@ textarea {
   cursor: pointer;
 }
 
-/* line 1845, ../sass/main.scss */
+/* line 1854, ../sass/main.scss */
 .footer-lower-link:hover {
   color: #ffff00;
 }
 
-/* line 1849, ../sass/main.scss */
+/* line 1858, ../sass/main.scss */
 .copyright {
   width: 100%;
   margin-top: 50px;
@@ -2103,26 +2111,26 @@ textarea {
   font-size: 14px;
 }
 
-/* line 1856, ../sass/main.scss */
+/* line 1865, ../sass/main.scss */
 .ac-desarrollo {
   text-decoration: none;
   color: #fff;
 }
 
-/* line 1861, ../sass/main.scss */
+/* line 1870, ../sass/main.scss */
 .ac-desarrollo:hover {
   color: #ffff00;
 }
 
 @media (max-width: 360px) {
-  /* line 1865, ../sass/main.scss */
+  /* line 1874, ../sass/main.scss */
   .medio-pagos-text {
     display: none;
   }
 }
 
 @media (max-width: 360px) {
-  /* line 1871, ../sass/main.scss */
+  /* line 1880, ../sass/main.scss */
   .img-logo-footer {
     width: 100%;
     height: 100%;
@@ -2130,7 +2138,7 @@ textarea {
   }
 }
 
-/* line 1880, ../sass/main.scss */
+/* line 1889, ../sass/main.scss */
 #buscar {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+0,595959+12,666666+25,474747+39,2c2c2c+50,000000+51,111111+60,2b2b2b+76,1c1c1c+91,131313+100;Black+Gloss+%231 */
   background: #4c4c4c;
@@ -2152,19 +2160,19 @@ textarea {
   z-index: 1;
 }
 
-/* line 1896, ../sass/main.scss */
+/* line 1905, ../sass/main.scss */
 #buscar input[type="text"] {
   width: 60%;
   font-size: 18px;
 }
 @media (max-width: 360px) {
-  /* line 1896, ../sass/main.scss */
+  /* line 1905, ../sass/main.scss */
   #buscar input[type="text"] {
     width: 80%;
   }
 }
 
-/* line 1904, ../sass/main.scss */
+/* line 1913, ../sass/main.scss */
 #menu-categorias-detalle {
   position: fixed;
   width: 100%;
@@ -2187,13 +2195,13 @@ textarea {
   transition: all ease-in 0.2s;
 }
 
-/* line 1929, ../sass/main.scss */
+/* line 1938, ../sass/main.scss */
 .menu-separator {
   margin: 7px 0;
   cursor: pointer;
 }
 
-/* line 1934, ../sass/main.scss */
+/* line 1943, ../sass/main.scss */
 .menu-principal {
   order: 0;
   flex: 0 1 auto;
@@ -2201,7 +2209,7 @@ textarea {
   margin-top: 40px !important;
 }
 
-/* line 1941, ../sass/main.scss */
+/* line 1950, ../sass/main.scss */
 .menu-pricipal-item {
   color: #ffff00;
   cursor: pointer;
@@ -2209,12 +2217,12 @@ textarea {
   font-size: 22px;
 }
 
-/* line 1948, ../sass/main.scss */
+/* line 1957, ../sass/main.scss */
 .menu-pricipal-item:hover {
   color: #fff;
 }
 
-/* line 1952, ../sass/main.scss */
+/* line 1961, ../sass/main.scss */
 .menu-categoria-titulo {
   color: #fff;
   margin-top: 40px !important;
@@ -2225,13 +2233,13 @@ textarea {
   font-family: "Myriad Pro Bold Condensed";
 }
 
-/* line 1962, ../sass/main.scss */
+/* line 1971, ../sass/main.scss */
 .menu-categoria-titulo:hover {
   color: #ffff00;
   cursor: pointer;
 }
 
-/* line 1967, ../sass/main.scss */
+/* line 1976, ../sass/main.scss */
 .menu-subcategoria {
   order: 0;
   flex: 0 1 auto;
@@ -2241,12 +2249,12 @@ textarea {
   text-transform: capitalize;
 }
 
-/* line 1977, ../sass/main.scss */
+/* line 1986, ../sass/main.scss */
 .menu-subcategoria-item:hover {
   color: #ffff00;
 }
 
-/* line 1982, ../sass/main.scss */
+/* line 1991, ../sass/main.scss */
 .menu-subcategoria-item {
   color: #fff;
   cursor: pointer;
@@ -2254,17 +2262,17 @@ textarea {
   font-size: 18px;
 }
 
-/* line 1989, ../sass/main.scss */
+/* line 1998, ../sass/main.scss */
 .carrito-imagen {
   background: rgba(0, 0, 0, 0.7) url("../images/carritox2.png") 50% 50% no-repeat;
 }
 
-/* line 1993, ../sass/main.scss */
+/* line 2002, ../sass/main.scss */
 .container-carrito-1 {
   width: 90%;
 }
 
-/* line 2003, ../sass/main.scss */
+/* line 2012, ../sass/main.scss */
 .buscar-clear-image {
   position: relative;
   left: -40px;
@@ -2272,19 +2280,21 @@ textarea {
   width: 27px;
 }
 
-/* line 2010, ../sass/main.scss */
+/* line 2019, ../sass/main.scss */
 .detalle-imagen {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-/* line 2014, ../sass/main.scss */
+/* line 2024, ../sass/main.scss */
 .flex-foto-oferta {
   width: 100%;
   max-height: 400px;
+  min-height: 100%;
   overflow: hidden;
 }
 
-/* line 2022, ../sass/main.scss */
+/* line 2033, ../sass/main.scss */
 .detalle-titulo {
   color: #8cc63f;
   font-size: 4em;
@@ -2293,46 +2303,46 @@ textarea {
   margin-top: 10px;
 }
 
-/* line 2030, ../sass/main.scss */
+/* line 2041, ../sass/main.scss */
 .div-close {
   float: right;
   position: absolute;
 }
 
-/* line 2035, ../sass/main.scss */
+/* line 2046, ../sass/main.scss */
 .div-close-contacto {
   position: absolute;
   top: 115px;
   right: 15px;
 }
 
-/* line 2041, ../sass/main.scss */
+/* line 2052, ../sass/main.scss */
 .div-close-busqueda {
   position: absolute;
   top: 2px;
   right: 2px;
 }
 
-/* line 2047, ../sass/main.scss */
+/* line 2058, ../sass/main.scss */
 .div-detalle {
   font-size: 1.2em;
   line-height: 1.3em;
 }
 
-/* line 2054, ../sass/main.scss */
+/* line 2065, ../sass/main.scss */
 .div-button {
   bottom: 10px;
   float: right;
 }
 @media (max-width: 700px) {
-  /* line 2054, ../sass/main.scss */
+  /* line 2065, ../sass/main.scss */
   .div-button {
     position: static;
     float: right;
   }
 }
 
-/* line 2069, ../sass/main.scss */
+/* line 2080, ../sass/main.scss */
 .transition-pane-animation.ng-enter,
 .transition-pane-animation.ng-leave {
   -webkit-transition: 0.5s linear all;
@@ -2341,29 +2351,29 @@ textarea {
   transition: 0.5s linear all;
 }
 
-/* line 2077, ../sass/main.scss */
+/* line 2088, ../sass/main.scss */
 .transition-pane-animation.ng-enter {
   z-index: 100;
   opacity: 0;
 }
 
-/* line 2082, ../sass/main.scss */
+/* line 2093, ../sass/main.scss */
 .transition-pane-animation.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-/* line 2086, ../sass/main.scss */
+/* line 2097, ../sass/main.scss */
 .transition-pane-animation.ng-leave {
   z-index: 101;
   opacity: 1;
 }
 
-/* line 2091, ../sass/main.scss */
+/* line 2102, ../sass/main.scss */
 .transition-pane-animation.ng-leave.ng-leave-active {
   opacity: 0;
 }
 
-/* line 2095, ../sass/main.scss */
+/* line 2106, ../sass/main.scss */
 .container-oferta {
   width: 95%;
   display: flex;
@@ -2375,38 +2385,43 @@ textarea {
   -webkit-border-radius: 3px;
   padding: 10px;
 }
-/* line 2105, ../sass/main.scss */
+/* line 2116, ../sass/main.scss */
 .container-oferta .btn-oferta {
   margin-top: 20px !important;
 }
 @media (max-width: 700px) {
-  /* line 2095, ../sass/main.scss */
+  /* line 2106, ../sass/main.scss */
   .container-oferta {
     flex-direction: column;
     min-height: 350px;
     width: 90%;
   }
-  /* line 2112, ../sass/main.scss */
+  /* line 2123, ../sass/main.scss */
   .container-oferta .btn-oferta {
     margin-top: 0 !important;
   }
 }
 
 @media (max-width: 800px) {
-  /* line 2120, ../sass/main.scss */
+  /* line 2131, ../sass/main.scss */
   .div-close .btn-close {
     right: 1% !important;
   }
 }
 
-/* line 2127, ../sass/main.scss */
+/* line 2138, ../sass/main.scss */
 .container-oferta-imagen {
   margin: 5px;
 }
 
+/* line 2142, ../sass/main.scss */
+.container-oferta-producto {
+  padding: 10px;
+}
 @media (max-width: 800px) {
-  /* line 2131, ../sass/main.scss */
+  /* line 2142, ../sass/main.scss */
   .container-oferta-producto {
+    padding: 0px !important;
     width: 100%;
     position: relative;
     top: 0px;
@@ -2415,7 +2430,7 @@ textarea {
     align-items: center;
     justify-content: space-between;
   }
-  /* line 2142, ../sass/main.scss */
+  /* line 2156, ../sass/main.scss */
   .container-oferta-producto .oferta-titulo,
   .container-oferta-producto .oferta-descripcion {
     text-align: center;
@@ -2423,7 +2438,7 @@ textarea {
   }
 }
 
-/* line 2151, ../sass/main.scss */
+/* line 2165, ../sass/main.scss */
 .oferta-imagen {
   width: 350px;
   height: 350px;
@@ -2433,7 +2448,7 @@ textarea {
   margin-top: 5px;
 }
 @media (max-width: 700px) {
-  /* line 2151, ../sass/main.scss */
+  /* line 2165, ../sass/main.scss */
   .oferta-imagen {
     width: 100%;
     height: 150px;
@@ -2441,7 +2456,7 @@ textarea {
   }
 }
 
-/* line 2169, ../sass/main.scss */
+/* line 2183, ../sass/main.scss */
 .oferta-titulo {
   text-align: center;
   font-size: 50px;
@@ -2453,7 +2468,7 @@ textarea {
   display: flex;
 }
 @media (max-width: 400px) {
-  /* line 2169, ../sass/main.scss */
+  /* line 2183, ../sass/main.scss */
   .oferta-titulo {
     font-size: 25px;
     min-height: 0px;
@@ -2461,7 +2476,7 @@ textarea {
   }
 }
 
-/* line 2186, ../sass/main.scss */
+/* line 2200, ../sass/main.scss */
 .oferta-descripcion {
   text-align: left;
   font-family: "Myriad Pro Condensed", serif;
@@ -2473,7 +2488,7 @@ textarea {
   font-weight: lighter;
 }
 @media (max-width: 400px) {
-  /* line 2186, ../sass/main.scss */
+  /* line 2200, ../sass/main.scss */
   .oferta-descripcion {
     font-size: 18px;
     height: 75px;
@@ -2483,20 +2498,20 @@ textarea {
   }
 }
 
-/* line 2207, ../sass/main.scss */
+/* line 2221, ../sass/main.scss */
 .btn-oferta {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 @media (max-width: 700px) {
-  /* line 2207, ../sass/main.scss */
+  /* line 2221, ../sass/main.scss */
   .btn-oferta {
     justify-content: center;
   }
 }
 
-/* line 2216, ../sass/main.scss */
+/* line 2230, ../sass/main.scss */
 .btn-info-big {
   width: 45px;
   height: 45px;
@@ -2505,7 +2520,7 @@ textarea {
   background-size: 100%;
 }
 
-/* line 2224, ../sass/main.scss */
+/* line 2238, ../sass/main.scss */
 .btn-info-big:hover {
   background: url("../images/btn-info-hover.svg") 50% 50% no-repeat;
   background-size: 100%;
@@ -2518,7 +2533,7 @@ textarea {
 }
 
 @media (max-width: 700px) {
-  /* line 2236, ../sass/main.scss */
+  /* line 2250, ../sass/main.scss */
   .oferta-top {
     display: flex;
     flex-direction: column;
@@ -2527,25 +2542,25 @@ textarea {
   }
 }
 @media (min-width: 400px) {
-  /* line 2245, ../sass/main.scss */
+  /* line 2259, ../sass/main.scss */
   .oferta-top {
     min-height: 490px !important;
   }
 }
 @media (min-width: 700px) {
-  /* line 2250, ../sass/main.scss */
+  /* line 2264, ../sass/main.scss */
   .oferta-top {
     min-height: 430px !important;
   }
 }
-/* line 2256, ../sass/main.scss */
+/* line 2270, ../sass/main.scss */
 .oferta-bottom {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* line 2262, ../sass/main.scss */
+/* line 2276, ../sass/main.scss */
 .slider_1, .slider_2, .slider_3, .slider_4 {
   border: 2px solid #fff;
   border-radius: 10px;
@@ -2555,13 +2570,13 @@ textarea {
   margin: 10px;
 }
 
-/* line 2271, ../sass/main.scss */
+/* line 2285, ../sass/main.scss */
 .slider_selected {
   background-color: #8CC63F;
   border: 2px solid #8CC63F;
 }
 
-/* line 2276, ../sass/main.scss */
+/* line 2290, ../sass/main.scss */
 .ac-item-list {
   background-color: #8CC63F;
   color: #fff;
@@ -2569,17 +2584,17 @@ textarea {
   cursor: pointer;
 }
 
-/* line 2283, ../sass/main.scss */
+/* line 2297, ../sass/main.scss */
 .ac-item-list:hover {
   color: #ffff00;
 }
 
-/* line 2287, ../sass/main.scss */
+/* line 2301, ../sass/main.scss */
 .ac-item-selected-list {
   cursor: pointer;
 }
 
-/* line 2291, ../sass/main.scss */
+/* line 2305, ../sass/main.scss */
 .container-legales {
   font-size: 20px;
   font-family: "Myriad Pro Condensed";
@@ -2589,13 +2604,13 @@ textarea {
   text-align: justify;
 }
 
-/* line 2302, ../sass/main.scss */
+/* line 2316, ../sass/main.scss */
 #oferta-bottom {
   position: absolute;
   bottom: 0;
 }
 
-/* line 2307, ../sass/main.scss */
+/* line 2321, ../sass/main.scss */
 .oferta-top {
   position: relative;
   width: 100%;
@@ -2604,27 +2619,27 @@ textarea {
   overflow: hidden;
 }
 
-/* line 2315, ../sass/main.scss */
+/* line 2329, ../sass/main.scss */
 .container-oferta {
   position: absolute;
   top: 0;
 }
 
-/* line 2320, ../sass/main.scss */
+/* line 2334, ../sass/main.scss */
 .container-main-ofertas {
   background-color: transparent;
   border: 0;
   max-width: 800px;
 }
 
-/* line 2326, ../sass/main.scss */
+/* line 2340, ../sass/main.scss */
 .container-oferta.ng-enter {
   -webkit-animation: ofertas-container-enter 1s;
   -o-animation: ofertas-container-enter 1s;
   animation: ofertas-container-enter 1s;
 }
 
-/* line 2332, ../sass/main.scss */
+/* line 2346, ../sass/main.scss */
 .container-oferta.ng-leave {
   -webkit-animation: ofertas-container-leave 1s;
   -o-animation: ofertas-container-leave 1s;
@@ -2647,18 +2662,18 @@ textarea {
     transform: translateX(100%);
   }
 }
-/* line 2365, ../sass/main.scss */
+/* line 2379, ../sass/main.scss */
 a.recovery-pwd {
   text-decoration: none;
   color: #8cc63f;
 }
 
-/* line 2370, ../sass/main.scss */
+/* line 2384, ../sass/main.scss */
 span {
   color: #fff;
 }
 
-/* line 2374, ../sass/main.scss */
+/* line 2388, ../sass/main.scss */
 input[type='checkbox'] {
   width: 25px;
   height: 25px;
@@ -2666,7 +2681,7 @@ input[type='checkbox'] {
   border: 2px solid #fff;
 }
 
-/* line 2380, ../sass/main.scss */
+/* line 2394, ../sass/main.scss */
 .message-error {
   color: red;
   font-size: 28px;
@@ -2675,12 +2690,12 @@ input[type='checkbox'] {
   padding: 0 5%;
 }
 
-/* line 2387, ../sass/main.scss */
+/* line 2401, ../sass/main.scss */
 .input-error {
   border: 2px solid red;
 }
 
-/* line 2393, ../sass/main.scss */
+/* line 2407, ../sass/main.scss */
 .container-legales-content {
   min-height: 370px;
   width: 690px;
@@ -2691,13 +2706,13 @@ input[type='checkbox'] {
   padding: 25px 0;
 }
 @media (max-width: 800px) {
-  /* line 2393, ../sass/main.scss */
+  /* line 2407, ../sass/main.scss */
   .container-legales-content {
     width: 99%;
   }
 }
 
-/* line 2406, ../sass/main.scss */
+/* line 2420, ../sass/main.scss */
 .div-legal-close {
   float: right;
   position: relative;
@@ -2705,52 +2720,52 @@ input[type='checkbox'] {
   right: 10px;
 }
 
-/* line 2413, ../sass/main.scss */
+/* line 2427, ../sass/main.scss */
 .title-font-legales {
   font-family: "Myriad Pro Bold Condensed";
   font-size: 71px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
 }
 @media (max-width: 700px) {
-  /* line 2413, ../sass/main.scss */
+  /* line 2427, ../sass/main.scss */
   .title-font-legales {
     font-size: 60px;
   }
 }
 
-/* line 2421, ../sass/main.scss */
+/* line 2435, ../sass/main.scss */
 .btn-margin-right {
   margin-right: 20%;
 }
 @media (max-width: 800px) {
-  /* line 2421, ../sass/main.scss */
+  /* line 2435, ../sass/main.scss */
   .btn-margin-right {
     margin-right: 7px;
   }
 }
 
 @media (max-width: 800px) {
-  /* line 2429, ../sass/main.scss */
+  /* line 2443, ../sass/main.scss */
   .btn-big {
     margin: 5px;
   }
 
-  /* line 2432, ../sass/main.scss */
+  /* line 2446, ../sass/main.scss */
   .container-carrito {
     margin: 0 5px;
   }
 
-  /* line 2435, ../sass/main.scss */
+  /* line 2449, ../sass/main.scss */
   .div-input-cantidad {
     width: 6%;
   }
 
-  /* line 2438, ../sass/main.scss */
+  /* line 2452, ../sass/main.scss */
   .carrito-table-row-name {
     width: 33%;
   }
 
-  /* line 2441, ../sass/main.scss */
+  /* line 2455, ../sass/main.scss */
   .container-datos {
     margin: 0 5px;
     display: flex;
@@ -2758,7 +2773,7 @@ input[type='checkbox'] {
     align-items: center;
   }
 
-  /* line 2447, ../sass/main.scss */
+  /* line 2461, ../sass/main.scss */
   .container-pwd {
     margin: 15px 5px 0 5px;
     display: flex;
@@ -2766,43 +2781,43 @@ input[type='checkbox'] {
     align-items: center;
   }
 
-  /* line 2453, ../sass/main.scss */
+  /* line 2467, ../sass/main.scss */
   .form-message {
     margin-top: 0;
   }
 
-  /* line 2456, ../sass/main.scss */
+  /* line 2470, ../sass/main.scss */
   .contacto-content {
     width: 99%;
   }
 
-  /* line 2459, ../sass/main.scss */
+  /* line 2473, ../sass/main.scss */
   .div-close-contacto {
     right: 4%;
   }
 
-  /* line 2463, ../sass/main.scss */
+  /* line 2477, ../sass/main.scss */
   .container-datos-1, .container-datos-2, .container-datos-3 {
     flex-direction: column !important;
   }
 }
 @media (min-width: 480px) and (max-width: 800px) {
-  /* line 2469, ../sass/main.scss */
+  /* line 2483, ../sass/main.scss */
   .container-datos, .container-pwd {
     min-height: 445px;
   }
 
-  /* line 2472, ../sass/main.scss */
+  /* line 2486, ../sass/main.scss */
   .container-pwd {
     margin-top: 0;
   }
 }
-/* line 2477, ../sass/main.scss */
+/* line 2491, ../sass/main.scss */
 .container-interno {
   flex-direction: column;
 }
 
-/* line 2480, ../sass/main.scss */
+/* line 2494, ../sass/main.scss */
 .container-datos-1, .container-datos-2, .container-datos-3 {
   width: 100%;
   flex-direction: row;
@@ -2810,12 +2825,12 @@ input[type='checkbox'] {
   justify-content: center;
 }
 
-/* line 2486, ../sass/main.scss */
+/* line 2500, ../sass/main.scss */
 .form-control-space {
   margin: 0 5px;
 }
 
-/* line 2489, ../sass/main.scss */
+/* line 2503, ../sass/main.scss */
 .pwd-interno {
   width: 100%;
   flex-direction: column;
@@ -2825,12 +2840,12 @@ input[type='checkbox'] {
   align-items: center;
 }
 
-/* line 2497, ../sass/main.scss */
+/* line 2511, ../sass/main.scss */
 .bayres-display {
   display: inline !important;
 }
 
-/* line 2500, ../sass/main.scss */
+/* line 2514, ../sass/main.scss */
 .control-group {
   display: flex;
   flex-direction: row;
@@ -2842,13 +2857,13 @@ input[type='checkbox'] {
   width: 100%;
 }
 @media (max-width: 360px) {
-  /* line 2500, ../sass/main.scss */
+  /* line 2514, ../sass/main.scss */
   .control-group {
     flex-direction: column;
   }
 }
 
-/* line 2514, ../sass/main.scss */
+/* line 2528, ../sass/main.scss */
 .form-checkbox {
   width: 298px;
   display: flex;
@@ -2859,17 +2874,17 @@ input[type='checkbox'] {
 }
 
 @media (max-width: 360px) {
-  /* line 2523, ../sass/main.scss */
+  /* line 2537, ../sass/main.scss */
   .botonera.botonera-micuenta > button {
     font-size: 14px;
   }
 
-  /* line 2526, ../sass/main.scss */
+  /* line 2540, ../sass/main.scss */
   .botonera.botonera-micuenta > span {
     font-size: 20px;
   }
 }
-/* line 2530, ../sass/main.scss */
+/* line 2544, ../sass/main.scss */
 .micarrito-container {
   max-height: 110px;
   overflow-y: auto;
@@ -2877,13 +2892,13 @@ input[type='checkbox'] {
   margin-top: 5px;
 }
 
-/* line 2536, ../sass/main.scss */
+/* line 2550, ../sass/main.scss */
 .bottom-control {
   display: flex;
   align-items: flex-end;
 }
 
-/* line 2540, ../sass/main.scss */
+/* line 2554, ../sass/main.scss */
 .message-confirm {
   justify-content: center;
   position: absolute;
@@ -2891,17 +2906,17 @@ input[type='checkbox'] {
   z-index: 1500;
 }
 
-/* line 2548, ../sass/main.scss */
+/* line 2562, ../sass/main.scss */
 .no-show-message {
   visibility: hidden;
 }
 
-/* line 2552, ../sass/main.scss */
+/* line 2566, ../sass/main.scss */
 .show-message {
   visibility: visible !important;
 }
 
-/* line 2556, ../sass/main.scss */
+/* line 2570, ../sass/main.scss */
 .confirm-container {
   z-index: 9999;
   text-align: center;
@@ -2922,7 +2937,7 @@ input[type='checkbox'] {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=0 );
 }
 
-/* line 2576, ../sass/main.scss */
+/* line 2590, ../sass/main.scss */
 .animated {
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
@@ -2992,7 +3007,7 @@ input[type='checkbox'] {
     opacity: 0;
   }
 }
-/* line 2662, ../sass/main.scss */
+/* line 2676, ../sass/main.scss */
 .fadeInLeft {
   -webkit-animation-name: fadeInLeft;
   -moz-animation-name: fadeInLeft;
@@ -3000,17 +3015,17 @@ input[type='checkbox'] {
   animation-name: fadeInLeft;
 }
 
-/* line 2669, ../sass/main.scss */
+/* line 2683, ../sass/main.scss */
 .select-envios, .select-sucursales {
   display: inline !important;
 }
 
-/* line 2674, ../sass/main.scss */
+/* line 2688, ../sass/main.scss */
 #menu-desktop-lower-inner img {
   margin-left: 10px !important;
 }
 
-/* line 2679, ../sass/main.scss */
+/* line 2693, ../sass/main.scss */
 iframe {
   justify-content: center;
   width: 100%;
@@ -3018,7 +3033,7 @@ iframe {
   opacity: 1;
 }
 
-/* line 2686, ../sass/main.scss */
+/* line 2700, ../sass/main.scss */
 .hiddentext {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7);
@@ -3036,7 +3051,7 @@ iframe {
   margin: auto;
 }
 
-/* line 2703, ../sass/main.scss */
+/* line 2717, ../sass/main.scss */
 .hiddentext:hover {
   cursor: pointer;
   opacity: 0;
@@ -3048,7 +3063,7 @@ iframe {
   transition: all ease-in 0.2s;
 }
 
-/* line 2715, ../sass/main.scss */
+/* line 2729, ../sass/main.scss */
 .contenedor-sucursales {
   position: relative;
   width: 100%;
@@ -3056,20 +3071,20 @@ iframe {
   flex-wrap: wrap;
 }
 @media (max-width: 500px) {
-  /* line 2715, ../sass/main.scss */
+  /* line 2729, ../sass/main.scss */
   .contenedor-sucursales {
     flex-direction: column;
   }
 }
 
-/* line 2725, ../sass/main.scss */
+/* line 2739, ../sass/main.scss */
 .contenedor-sucursal-1, .contenedor-sucursal-2, .contenedor-sucursal-3, .contenedor-sucursal-4 {
   flex: 1;
   position: relative;
   text-align: center;
 }
 
-/* line 2732, ../sass/main.scss */
+/* line 2746, ../sass/main.scss */
 svg:hover {
   color: red !important;
 }
